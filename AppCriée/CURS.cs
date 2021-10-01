@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using MySql.Data.Types;
@@ -14,6 +15,7 @@ namespace AppCriée
         MySqlConnection maconnexion;
         MySqlCommand macommand;
         MySqlDataReader monreader;
+        Boolean _ConnectionOK = true;
         public CURS(string connec)
         {
             try
@@ -22,23 +24,24 @@ namespace AppCriée
                 maconnexion.Open();
                 monreader = null;
             }
-            catch
+            catch(Exception exception)
             {
-
+                DialogResult dialogResult = MessageBox.Show("Impossible de se connecter au serveur MySQL \nDescription de l'erreur :"+exception.Message, "Erreur Connexion MySQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _ConnectionOK = false;
+                Application.Exit();
             }
 
         }
         public MySqlConnection getMaconnexion()
         {
-
             return maconnexion;
         }
         public void ReqSelect(string req)
         {
-            macommand = new MySqlCommand(req, maconnexion);
-            monreader = macommand.ExecuteReader();
-            fin = false;
-            suivant();
+                macommand = new MySqlCommand(req, maconnexion);
+                monreader = macommand.ExecuteReader();
+                fin = false;
+                suivant();
         }
         public void fermer()
         {
@@ -85,6 +88,10 @@ namespace AppCriée
         {
             macommand = new MySqlCommand(req, maconnexion);
             return macommand.ExecuteScalar().ToString();
+        }
+        public bool isConnectionOK()
+        {
+            return _ConnectionOK;
         }
     }
 }

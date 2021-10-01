@@ -14,9 +14,13 @@ namespace AppCriée
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AppCriee());
+            CURS cs = new CURS("server = 127.0.0.1; user id = gestionCrie; password = 123xaro08 ; database = bddCrie2");
+            if (cs.isConnectionOK())
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new AppCriee());
+            }
         }
     }
 }

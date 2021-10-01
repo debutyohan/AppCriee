@@ -56,6 +56,12 @@
     <Compile Include="AppCriee_Receptionniste.Designer.cs">
       <DependentUpon>AppCriee_Receptionniste.cs</DependentUpon>
     </Compile>
+    <Compile Include="AppCriee_Veterinaire.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppCriee_Veterinaire.Designer.cs">
+      <DependentUpon>AppCriee_Veterinaire.cs</DependentUpon>
+    </Compile>
     <Compile Include="CURS.cs" />
     <Compile Include="Auth.cs">
       <SubType>Form</SubType>
@@ -64,11 +70,15 @@
       <DependentUpon>Auth.cs</DependentUpon>
     </Compile>
     <Compile Include="HashData.cs" />
+    <Compile Include="HiddenObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
     <EmbeddedResource Include="AppCriee_Receptionniste.resx">
       <DependentUpon>AppCriee_Receptionniste.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppCriee_Veterinaire.resx">
+      <DependentUpon>AppCriee_Veterinaire.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Auth.resx">
       <DependentUpon>Auth.cs</DependentUpon>

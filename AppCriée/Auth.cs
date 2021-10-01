@@ -47,6 +47,10 @@ namespace AppCriée
         {
             String passwdhash = new HashData(tbx_auth_passwd.Text).HashCalculate();
             CURS cs = new CURS(chaineConnexion);
+            if (!cs.isConnectionOK())
+            {
+                return;
+            }
             string requete = "SELECT count(utilisateur.id) as nbUser, utilisateur.id as iduser, login, nomuser, prenomuser, idtypeuser, libelle FROM utilisateur INNER JOIN typeutilisateur ON utilisateur.idtypeuser = typeutilisateur.id WHERE login='" + tbx_auth_id.Text + "' AND pwd='" + passwdhash + "'";
             cs.ReqSelect(requete);
             string nbUser = cs.champ("nbUser").ToString();
@@ -59,6 +63,11 @@ namespace AppCriée
                     case 3:
                         AppCriee_Receptionniste f = new AppCriee_Receptionniste(UserConnecte);
                         f.Show();
+                        this.Hide();
+                        break;
+                    case 2:
+                        AppCriee_Veterinaire g = new AppCriee_Veterinaire(UserConnecte);
+                        g.Show();
                         this.Hide();
                         break;
                 }

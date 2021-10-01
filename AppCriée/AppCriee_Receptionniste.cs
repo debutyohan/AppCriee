@@ -26,13 +26,7 @@ namespace AppCriée
             InitializeComponent();
             lbl_accueil_bienvenue.Text = "Bienvenue "+ unutilisateur.Nom+" "+unutilisateur.Prenom;
             lbl_accueil_role.Text = "Rôle : " + unutilisateur.Libelletype;
-            lbl_error_connection.Hide();
-            lbl_ajoutpeche_ispeche.Hide();
-            lbl_ajoutpeche_datejour.Hide();
-            lbl_title.Hide();
-            dg_pechejour.Hide();
-            lbl_ajoutpeche_explication.Hide();
-            lbl_ajoutpeche_explication2.Hide();
+            HiddenObject.Hide(new List<Control> { lbl_error_connection, lbl_ajoutpeche_ispeche, lbl_ajoutpeche_datejour, lbl_title, dg_pechejour, lbl_ajoutpeche_explication, lbl_ajoutpeche_explication2 });
             btn_ajoutpeche_creerpeche.Hide();
             lbl_ajoutpeche_creerpeche_nombateau.Hide();
             cbx_ajoutpeche_creerpeche_nombateau.Hide();
@@ -90,6 +84,7 @@ namespace AppCriée
                 lbl_ajoutpeche_explication.Hide();
                 lbl_ajoutpeche_explication2.Hide();
                 btn_ajoutpeche_creerpeche.Hide();
+                
             }
 
 
