@@ -48,7 +48,6 @@ namespace AppCriée
             this.lbl_ajoutpeche_creerpeche_nombateau = new System.Windows.Forms.Label();
             this.cbx_ajoutpeche_creerpeche_nombateau = new System.Windows.Forms.ComboBox();
             this.btn_pechejour_creerpeche_valider = new System.Windows.Forms.Button();
-            this.lbl_error_connection = new System.Windows.Forms.Label();
             this.lbl_pechejour_creerpeche_ok = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_pechejour)).BeginInit();
@@ -249,17 +248,6 @@ namespace AppCriée
             this.btn_pechejour_creerpeche_valider.UseVisualStyleBackColor = false;
             this.btn_pechejour_creerpeche_valider.Click += new System.EventHandler(this.btn_pechejour_creerpeche_valider_Click);
             // 
-            // lbl_error_connection
-            // 
-            this.lbl_error_connection.AutoSize = true;
-            this.lbl_error_connection.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.lbl_error_connection.ForeColor = System.Drawing.Color.Red;
-            this.lbl_error_connection.Location = new System.Drawing.Point(245, 243);
-            this.lbl_error_connection.Name = "lbl_error_connection";
-            this.lbl_error_connection.Size = new System.Drawing.Size(539, 29);
-            this.lbl_error_connection.TabIndex = 16;
-            this.lbl_error_connection.Text = "Impossible de se connecter au serveur MySQL";
-            // 
             // lbl_pechejour_creerpeche_ok
             // 
             this.lbl_pechejour_creerpeche_ok.AutoSize = true;
@@ -278,7 +266,6 @@ namespace AppCriée
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1084, 562);
             this.Controls.Add(this.lbl_pechejour_creerpeche_ok);
-            this.Controls.Add(this.lbl_error_connection);
             this.Controls.Add(this.btn_pechejour_creerpeche_valider);
             this.Controls.Add(this.cbx_ajoutpeche_creerpeche_nombateau);
             this.Controls.Add(this.lbl_ajoutpeche_creerpeche_nombateau);
@@ -325,7 +312,6 @@ namespace AppCriée
             private System.Windows.Forms.Label lbl_ajoutpeche_creerpeche_nombateau;
             private System.Windows.Forms.ComboBox cbx_ajoutpeche_creerpeche_nombateau;
             private System.Windows.Forms.Button btn_pechejour_creerpeche_valider;
-            private System.Windows.Forms.Label lbl_error_connection;
             private System.Windows.Forms.DataGridViewTextBoxColumn nameBateau;
             private System.Windows.Forms.Label lbl_pechejour_creerpeche_ok;
     }

@@ -16,5 +16,12 @@ namespace AppCriée
                 element.Hide();
             }
         }
+        public static void Show(List<Control> listeobjet)
+        {
+            foreach (Control element in listeobjet)
+            {
+                element.Show();
+            }
+        }
     }
 }

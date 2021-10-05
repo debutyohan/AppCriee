@@ -62,6 +62,7 @@
     <Compile Include="AppCriee_Veterinaire.Designer.cs">
       <DependentUpon>AppCriee_Veterinaire.cs</DependentUpon>
     </Compile>
+    <Compile Include="BacNotLot.cs" />
     <Compile Include="CURS.cs" />
     <Compile Include="Auth.cs">
       <SubType>Form</SubType>
