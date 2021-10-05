@@ -72,7 +72,6 @@ namespace AppCriée
             this.lbl_auth_title.Size = new System.Drawing.Size(395, 25);
             this.lbl_auth_title.TabIndex = 2;
             this.lbl_auth_title.Text = "Veuillez entrez vos identifiants de connexion";
-            this.lbl_auth_title.Click += new System.EventHandler(this.label1_Click);
             // 
             // lbl_auth_id
             // 
@@ -83,7 +82,6 @@ namespace AppCriée
             this.lbl_auth_id.Size = new System.Drawing.Size(77, 17);
             this.lbl_auth_id.TabIndex = 3;
             this.lbl_auth_id.Text = "Identifiant :";
-            this.lbl_auth_id.Click += new System.EventHandler(this.label2_Click);
             // 
             // lbl_auth_passwd
             // 
@@ -103,7 +101,6 @@ namespace AppCriée
             this.tbx_auth_passwd.Size = new System.Drawing.Size(132, 22);
             this.tbx_auth_passwd.TabIndex = 4;
             this.tbx_auth_passwd.UseSystemPasswordChar = true;
-            this.tbx_auth_passwd.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // btn_auth_quitter
             // 
@@ -172,7 +169,6 @@ namespace AppCriée
             this.Name = "AppCriee";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AppCriée";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

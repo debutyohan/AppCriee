@@ -286,9 +286,9 @@ namespace AppCriée
             this.btn_veterinaire_bacpoissons_creerlots.BackColor = System.Drawing.SystemColors.Highlight;
             this.btn_veterinaire_bacpoissons_creerlots.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_veterinaire_bacpoissons_creerlots.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btn_veterinaire_bacpoissons_creerlots.Location = new System.Drawing.Point(847, 513);
+            this.btn_veterinaire_bacpoissons_creerlots.Location = new System.Drawing.Point(829, 513);
             this.btn_veterinaire_bacpoissons_creerlots.Name = "btn_veterinaire_bacpoissons_creerlots";
-            this.btn_veterinaire_bacpoissons_creerlots.Size = new System.Drawing.Size(160, 33);
+            this.btn_veterinaire_bacpoissons_creerlots.Size = new System.Drawing.Size(188, 33);
             this.btn_veterinaire_bacpoissons_creerlots.TabIndex = 18;
             this.btn_veterinaire_bacpoissons_creerlots.Text = "CREER DES LOTS";
             this.btn_veterinaire_bacpoissons_creerlots.UseVisualStyleBackColor = false;

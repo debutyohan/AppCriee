@@ -23,26 +23,6 @@ namespace AppCriée
             ChaineConnexion = "server = 127.0.0.1; user id = gestionCrie; password = 123xaro08 ; database = bddCrie2";
             InitializeComponent();
         }
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             String passwdhash = new HashData(tbx_auth_passwd.Text).HashCalculate();
@@ -51,8 +31,9 @@ namespace AppCriée
             {
                 return;
             }
-            string requete = "SELECT count(utilisateur.id) as nbUser, utilisateur.id as iduser, login, nomuser, prenomuser, idtypeuser, libelle FROM utilisateur INNER JOIN typeutilisateur ON utilisateur.idtypeuser = typeutilisateur.id WHERE login='" + tbx_auth_id.Text + "' AND pwd='" + passwdhash + "'";
-            cs.ReqSelect(requete);
+            //string requete = "SELECT count(utilisateur.id) as nbUser, utilisateur.id as iduser, login, nomuser, prenomuser, idtypeuser, libelle FROM utilisateur INNER JOIN typeutilisateur ON utilisateur.idtypeuser = typeutilisateur.id WHERE login='" + tbx_auth_id.Text + "' AND pwd='" + passwdhash + "'";
+            //cs.ReqSelect(requete);
+            cs.ReqSelectPrepare("SELECT count(utilisateur.id) as nbUser, utilisateur.id as iduser, login, nomuser, prenomuser, idtypeuser, libelle FROM utilisateur INNER JOIN typeutilisateur ON utilisateur.idtypeuser = typeutilisateur.id WHERE login=?unlogin AND pwd=?unpassword",new List<string> {"unlogin","unpassword"}, new List<object> { tbx_auth_id.Text.ToString(), passwdhash });
             string nbUser = cs.champ("nbUser").ToString();
             
             if (nbUser == "1")

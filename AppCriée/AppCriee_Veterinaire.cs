@@ -38,7 +38,6 @@ namespace AppCriée
 
         private void tbc_veterinaire_Selected(object sender, TabControlEventArgs e)
         {
-            Datejour = "2020-07-24";
             switch (e.TabPage.Name)
             {
                 case "tbp_veterinaire_bacpoisson":
@@ -66,12 +65,13 @@ namespace AppCriée
 
         private void cbx_veterinaire_bacpoissons_listebateaux_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            bool isbateau = false;
             HiddenObject.Hide(new List<Control> { lbl_veterinaire_bacpoissons_creationbac, lbl_veterinaire_bacpoissons_espece, lbl_veterinaire_bacpoissons_taille, lbl_veterinaire_bacpoissons_qualite, lbl_veterinaire_bacpoissons_presentation, lbl_veterinaire_bacpoissons_typebac, cbx_veterinaire_bacpoissons_espece, cbx_veterinaire_bacpoissons_taille, cbx_veterinaire_bacpoissons_qualite, cbx_veterinaire_bacpoissons_presentation, cbx_veterinaire_bacpoissons_typebac, btn_veterinaire_bacpoissons_valider });
-            Datejour = "2020-07-24";
             String elmt_bateau = cbx_veterinaire_bacpoissons_listebateaux.SelectedItem.ToString();
             int char_bateau = elmt_bateau.IndexOf("(");
             String imma = elmt_bateau.Substring(char_bateau + 1, elmt_bateau.Length - char_bateau - 2);
             CURS cs = new CURS(ChaineConnexion);
+            dg_veterinaire_bacpoissons_listebac.Rows.Clear();
             cs.ReqSelect("SELECT bac.id as idBac, idLot, idTypeBac, espece.nom as nomEspece, idTaille, idQualite, idPresentation FROM bac INNER JOIN lot ON lot.id=bac.idLot AND lot.idDatePeche=bac.idDatePeche AND lot.idBateau=bac.idBateau INNER JOIN espece ON lot.idEspece=espece.id INNER JOIN bateau ON lot.idBateau=bateau.id AND bac.idBateau=bateau.id WHERE bac.idDatePeche='" + Datejour + "' AND immatriculation='" + imma + "'");
             if (cs.champ("idBac") is null)
             {
@@ -79,8 +79,8 @@ namespace AppCriée
             }
             else
             {
+                isbateau = true;
                 lbl_veterinaire_bacpoissons_isbac.Hide();
-                dg_veterinaire_bacpoissons_listebac.Rows.Clear();
                 while (!cs.Fin())
                 {
                     dg_veterinaire_bacpoissons_listebac.Rows.Add(cs.champ("idBac") + " (" + cs.champ("idLot") + ")", cs.champ("nomEspece"), cs.champ("idTaille"), cs.champ("idQualite"), cs.champ("idPresentation"), cs.champ("idTypeBac"));
@@ -104,12 +104,23 @@ namespace AppCriée
             if (listebacnotlot.Count(ai=>ai.IdBateau == idbateau) != 0)
             {
                 HiddenObject.Show(new List<Control> { btn_veterinaire_bacpoissons_supprimerbacs, btn_veterinaire_bacpoissons_modifierbacs, btn_veterinaire_bacpoissons_creerlots });
+                isbateau = true;
             }
             else
             {
                 HiddenObject.Hide(new List<Control> { btn_veterinaire_bacpoissons_supprimerbacs, btn_veterinaire_bacpoissons_modifierbacs, btn_veterinaire_bacpoissons_creerlots });
             }
-            dg_veterinaire_bacpoissons_listebac.Show();
+            if (isbateau)
+            {
+                dg_veterinaire_bacpoissons_listebac.Show();
+                lbl_veterinaire_bacpoissons_isbac.Hide();
+            }
+            else
+            {
+                dg_veterinaire_bacpoissons_listebac.Hide();
+                lbl_veterinaire_bacpoissons_isbac.Show();
+            }
+            
             btn_veterinaire_bacpoissons_creerbacs.Show();
         }
 
@@ -130,6 +141,8 @@ namespace AppCriée
             listebacnotlot.Add(new BacNotLot(cbx_veterinaire_bacpoissons_espece.SelectedItem.ToString(), Int32.Parse(cbx_veterinaire_bacpoissons_taille.SelectedItem.ToString()), Char.Parse(cbx_veterinaire_bacpoissons_qualite.SelectedItem.ToString()), cbx_veterinaire_bacpoissons_presentation.SelectedItem.ToString(),IdBateau, Char.Parse(cbx_veterinaire_bacpoissons_typebac.SelectedItem.ToString())));
             dg_veterinaire_bacpoissons_listebac.Rows.Add("(Pas de lots)", cbx_veterinaire_bacpoissons_espece.SelectedItem, cbx_veterinaire_bacpoissons_taille.SelectedItem, cbx_veterinaire_bacpoissons_qualite.SelectedItem, cbx_veterinaire_bacpoissons_presentation.SelectedItem, cbx_veterinaire_bacpoissons_typebac.SelectedItem);
             HiddenObject.Show(new List<Control> { btn_veterinaire_bacpoissons_supprimerbacs, btn_veterinaire_bacpoissons_modifierbacs, btn_veterinaire_bacpoissons_creerlots });
+            dg_veterinaire_bacpoissons_listebac.Show();
+            lbl_veterinaire_bacpoissons_isbac.Hide();
         }
 
         private void AppCriee_Veterinaire_FormClosing(object sender, FormClosingEventArgs e)
@@ -174,10 +187,7 @@ namespace AppCriée
 
         private void btn_veterinaire_bacpoissons_creerlots_Click(object sender, EventArgs e)
         {
-            TabControlEventArgs b = new TabControlEventArgs(tbp_veterinaire_lotspeche, 2, TabControlAction.Selected);
-            TabControlEventHandler handler = tbc_veterinaire_Selected;
-            handler?.Invoke(sender,b);
-            //Aller dans le menu Lots de poissons
+            tbc_veterinaire.SelectedTab = tbp_veterinaire_lotspeche;
         }
     }
 }
