@@ -50,6 +50,7 @@ namespace AppCriée
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbl_ajoutpeche_datejour = new System.Windows.Forms.Label();
             this.lbl_title = new System.Windows.Forms.Label();
+            this.btn_receptionniste_peche_supprimer = new System.Windows.Forms.Button();
             this.tbc_receptionniste.SuspendLayout();
             this.tabAccueil.SuspendLayout();
             this.tabPeche.SuspendLayout();
@@ -61,8 +62,8 @@ namespace AppCriée
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1088, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(816, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -71,10 +72,9 @@ namespace AppCriée
             this.tbc_receptionniste.Controls.Add(this.tabAccueil);
             this.tbc_receptionniste.Controls.Add(this.tabPeche);
             this.tbc_receptionniste.Location = new System.Drawing.Point(0, 0);
-            this.tbc_receptionniste.Margin = new System.Windows.Forms.Padding(4);
             this.tbc_receptionniste.Name = "tbc_receptionniste";
             this.tbc_receptionniste.SelectedIndex = 0;
-            this.tbc_receptionniste.Size = new System.Drawing.Size(1099, 570);
+            this.tbc_receptionniste.Size = new System.Drawing.Size(824, 463);
             this.tbc_receptionniste.TabIndex = 18;
             this.tbc_receptionniste.SelectedIndexChanged += new System.EventHandler(this.tbc_receptionniste_SelectedIndexChanged);
             // 
@@ -84,11 +84,10 @@ namespace AppCriée
             this.tabAccueil.Controls.Add(this.lbl_accueil_details);
             this.tabAccueil.Controls.Add(this.lbl_accueil_role);
             this.tabAccueil.Controls.Add(this.lbl_accueil_bienvenue);
-            this.tabAccueil.Location = new System.Drawing.Point(4, 25);
-            this.tabAccueil.Margin = new System.Windows.Forms.Padding(4);
+            this.tabAccueil.Location = new System.Drawing.Point(4, 22);
             this.tabAccueil.Name = "tabAccueil";
-            this.tabAccueil.Padding = new System.Windows.Forms.Padding(4);
-            this.tabAccueil.Size = new System.Drawing.Size(1091, 541);
+            this.tabAccueil.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabAccueil.Size = new System.Drawing.Size(816, 437);
             this.tabAccueil.TabIndex = 0;
             this.tabAccueil.Text = "Accueil";
             // 
@@ -96,10 +95,9 @@ namespace AppCriée
             // 
             this.lbl_accueil_details.AutoSize = true;
             this.lbl_accueil_details.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_accueil_details.Location = new System.Drawing.Point(221, 295);
-            this.lbl_accueil_details.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_accueil_details.Location = new System.Drawing.Point(166, 240);
             this.lbl_accueil_details.Name = "lbl_accueil_details";
-            this.lbl_accueil_details.Size = new System.Drawing.Size(470, 24);
+            this.lbl_accueil_details.Size = new System.Drawing.Size(366, 18);
             this.lbl_accueil_details.TabIndex = 3;
             this.lbl_accueil_details.Text = "Cette application permettra de gérer les pêches du jour";
             // 
@@ -107,10 +105,9 @@ namespace AppCriée
             // 
             this.lbl_accueil_role.AutoSize = true;
             this.lbl_accueil_role.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.lbl_accueil_role.Location = new System.Drawing.Point(201, 183);
-            this.lbl_accueil_role.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_accueil_role.Location = new System.Drawing.Point(151, 149);
             this.lbl_accueil_role.Name = "lbl_accueil_role";
-            this.lbl_accueil_role.Size = new System.Drawing.Size(273, 31);
+            this.lbl_accueil_role.Size = new System.Drawing.Size(219, 26);
             this.lbl_accueil_role.TabIndex = 2;
             this.lbl_accueil_role.Text = "Rôle : Réceptionniste";
             // 
@@ -118,16 +115,16 @@ namespace AppCriée
             // 
             this.lbl_accueil_bienvenue.AutoSize = true;
             this.lbl_accueil_bienvenue.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.lbl_accueil_bienvenue.Location = new System.Drawing.Point(201, 111);
-            this.lbl_accueil_bienvenue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_accueil_bienvenue.Location = new System.Drawing.Point(151, 90);
             this.lbl_accueil_bienvenue.Name = "lbl_accueil_bienvenue";
-            this.lbl_accueil_bienvenue.Size = new System.Drawing.Size(475, 31);
+            this.lbl_accueil_bienvenue.Size = new System.Drawing.Size(383, 26);
             this.lbl_accueil_bienvenue.TabIndex = 1;
             this.lbl_accueil_bienvenue.Text = "Bienvenue [Nom_user] [Prenom_user]";
             // 
             // tabPeche
             // 
             this.tabPeche.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPeche.Controls.Add(this.btn_receptionniste_peche_supprimer);
             this.tabPeche.Controls.Add(this.lbl_pechejour_allpeche);
             this.tabPeche.Controls.Add(this.lbl_pechejour_pecheok);
             this.tabPeche.Controls.Add(this.btn_pechejour_creerpeche_valider);
@@ -140,11 +137,10 @@ namespace AppCriée
             this.tabPeche.Controls.Add(this.dg_pechejour);
             this.tabPeche.Controls.Add(this.lbl_ajoutpeche_datejour);
             this.tabPeche.Controls.Add(this.lbl_title);
-            this.tabPeche.Location = new System.Drawing.Point(4, 25);
-            this.tabPeche.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPeche.Location = new System.Drawing.Point(4, 22);
             this.tabPeche.Name = "tabPeche";
-            this.tabPeche.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPeche.Size = new System.Drawing.Size(1091, 541);
+            this.tabPeche.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPeche.Size = new System.Drawing.Size(816, 437);
             this.tabPeche.TabIndex = 1;
             this.tabPeche.Text = "Pêche du jour";
             // 
@@ -152,9 +148,10 @@ namespace AppCriée
             // 
             this.lbl_pechejour_allpeche.AutoSize = true;
             this.lbl_pechejour_allpeche.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.lbl_pechejour_allpeche.Location = new System.Drawing.Point(553, 229);
+            this.lbl_pechejour_allpeche.Location = new System.Drawing.Point(415, 186);
+            this.lbl_pechejour_allpeche.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_pechejour_allpeche.Name = "lbl_pechejour_allpeche";
-            this.lbl_pechejour_allpeche.Size = new System.Drawing.Size(418, 29);
+            this.lbl_pechejour_allpeche.Size = new System.Drawing.Size(329, 24);
             this.lbl_pechejour_allpeche.TabIndex = 19;
             this.lbl_pechejour_allpeche.Text = "Tous les pêches ont été réceptionnée";
             // 
@@ -163,10 +160,9 @@ namespace AppCriée
             this.lbl_pechejour_pecheok.AutoSize = true;
             this.lbl_pechejour_pecheok.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_pechejour_pecheok.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lbl_pechejour_pecheok.Location = new System.Drawing.Point(81, 465);
-            this.lbl_pechejour_pecheok.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_pechejour_pecheok.Location = new System.Drawing.Point(61, 378);
             this.lbl_pechejour_pecheok.Name = "lbl_pechejour_pecheok";
-            this.lbl_pechejour_pecheok.Size = new System.Drawing.Size(268, 24);
+            this.lbl_pechejour_pecheok.Size = new System.Drawing.Size(205, 18);
             this.lbl_pechejour_pecheok.TabIndex = 18;
             this.lbl_pechejour_pecheok.Text = "La pêche de ce jour du bateau";
             // 
@@ -175,10 +171,10 @@ namespace AppCriée
             this.btn_pechejour_creerpeche_valider.BackColor = System.Drawing.SystemColors.Info;
             this.btn_pechejour_creerpeche_valider.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_pechejour_creerpeche_valider.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btn_pechejour_creerpeche_valider.Location = new System.Drawing.Point(617, 454);
-            this.btn_pechejour_creerpeche_valider.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_pechejour_creerpeche_valider.Location = new System.Drawing.Point(463, 369);
+            this.btn_pechejour_creerpeche_valider.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_pechejour_creerpeche_valider.Name = "btn_pechejour_creerpeche_valider";
-            this.btn_pechejour_creerpeche_valider.Size = new System.Drawing.Size(160, 33);
+            this.btn_pechejour_creerpeche_valider.Size = new System.Drawing.Size(120, 27);
             this.btn_pechejour_creerpeche_valider.TabIndex = 16;
             this.btn_pechejour_creerpeche_valider.Text = "Valider";
             this.btn_pechejour_creerpeche_valider.UseVisualStyleBackColor = false;
@@ -188,9 +184,10 @@ namespace AppCriée
             // 
             this.lbl_ajoutpeche_creerpeche_nombateau.AutoSize = true;
             this.lbl_ajoutpeche_creerpeche_nombateau.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_ajoutpeche_creerpeche_nombateau.Location = new System.Drawing.Point(528, 404);
+            this.lbl_ajoutpeche_creerpeche_nombateau.Location = new System.Drawing.Point(396, 328);
+            this.lbl_ajoutpeche_creerpeche_nombateau.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_ajoutpeche_creerpeche_nombateau.Name = "lbl_ajoutpeche_creerpeche_nombateau";
-            this.lbl_ajoutpeche_creerpeche_nombateau.Size = new System.Drawing.Size(151, 24);
+            this.lbl_ajoutpeche_creerpeche_nombateau.Size = new System.Drawing.Size(119, 18);
             this.lbl_ajoutpeche_creerpeche_nombateau.TabIndex = 15;
             this.lbl_ajoutpeche_creerpeche_nombateau.Text = "Nom du Bateau :";
             // 
@@ -198,10 +195,10 @@ namespace AppCriée
             // 
             this.cbx_ajoutpeche_creerpeche_nombateau.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_ajoutpeche_creerpeche_nombateau.FormattingEnabled = true;
-            this.cbx_ajoutpeche_creerpeche_nombateau.Location = new System.Drawing.Point(692, 404);
-            this.cbx_ajoutpeche_creerpeche_nombateau.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbx_ajoutpeche_creerpeche_nombateau.Location = new System.Drawing.Point(519, 328);
+            this.cbx_ajoutpeche_creerpeche_nombateau.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbx_ajoutpeche_creerpeche_nombateau.Name = "cbx_ajoutpeche_creerpeche_nombateau";
-            this.cbx_ajoutpeche_creerpeche_nombateau.Size = new System.Drawing.Size(231, 24);
+            this.cbx_ajoutpeche_creerpeche_nombateau.Size = new System.Drawing.Size(174, 21);
             this.cbx_ajoutpeche_creerpeche_nombateau.TabIndex = 14;
             // 
             // btn_ajoutpeche_creerpeche
@@ -209,10 +206,10 @@ namespace AppCriée
             this.btn_ajoutpeche_creerpeche.BackColor = System.Drawing.SystemColors.Highlight;
             this.btn_ajoutpeche_creerpeche.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_ajoutpeche_creerpeche.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btn_ajoutpeche_creerpeche.Location = new System.Drawing.Point(640, 416);
-            this.btn_ajoutpeche_creerpeche.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_ajoutpeche_creerpeche.Location = new System.Drawing.Point(480, 338);
+            this.btn_ajoutpeche_creerpeche.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_ajoutpeche_creerpeche.Name = "btn_ajoutpeche_creerpeche";
-            this.btn_ajoutpeche_creerpeche.Size = new System.Drawing.Size(160, 33);
+            this.btn_ajoutpeche_creerpeche.Size = new System.Drawing.Size(120, 27);
             this.btn_ajoutpeche_creerpeche.TabIndex = 13;
             this.btn_ajoutpeche_creerpeche.Text = "Créer une pêche";
             this.btn_ajoutpeche_creerpeche.UseVisualStyleBackColor = false;
@@ -222,9 +219,10 @@ namespace AppCriée
             // 
             this.lbl_ajoutpeche_explication2.AutoSize = true;
             this.lbl_ajoutpeche_explication2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lbl_ajoutpeche_explication2.Location = new System.Drawing.Point(591, 316);
+            this.lbl_ajoutpeche_explication2.Location = new System.Drawing.Point(443, 257);
+            this.lbl_ajoutpeche_explication2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_ajoutpeche_explication2.Name = "lbl_ajoutpeche_explication2";
-            this.lbl_ajoutpeche_explication2.Size = new System.Drawing.Size(276, 25);
+            this.lbl_ajoutpeche_explication2.Size = new System.Drawing.Size(224, 20);
             this.lbl_ajoutpeche_explication2.TabIndex = 12;
             this.lbl_ajoutpeche_explication2.Text = "cliquant sur \"Créer une pêche\"";
             // 
@@ -232,9 +230,10 @@ namespace AppCriée
             // 
             this.lbl_ajoutpeche_explication.AutoSize = true;
             this.lbl_ajoutpeche_explication.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lbl_ajoutpeche_explication.Location = new System.Drawing.Point(591, 271);
+            this.lbl_ajoutpeche_explication.Location = new System.Drawing.Point(443, 220);
+            this.lbl_ajoutpeche_explication.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_ajoutpeche_explication.Name = "lbl_ajoutpeche_explication";
-            this.lbl_ajoutpeche_explication.Size = new System.Drawing.Size(274, 25);
+            this.lbl_ajoutpeche_explication.Size = new System.Drawing.Size(222, 20);
             this.lbl_ajoutpeche_explication.TabIndex = 11;
             this.lbl_ajoutpeche_explication.Text = "Insérer une nouvelle pêche en";
             // 
@@ -242,9 +241,10 @@ namespace AppCriée
             // 
             this.lbl_ajoutpeche_ispeche.AutoSize = true;
             this.lbl_ajoutpeche_ispeche.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.lbl_ajoutpeche_ispeche.Location = new System.Drawing.Point(257, 229);
+            this.lbl_ajoutpeche_ispeche.Location = new System.Drawing.Point(193, 186);
+            this.lbl_ajoutpeche_ispeche.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_ajoutpeche_ispeche.Name = "lbl_ajoutpeche_ispeche";
-            this.lbl_ajoutpeche_ispeche.Size = new System.Drawing.Size(270, 31);
+            this.lbl_ajoutpeche_ispeche.Size = new System.Drawing.Size(219, 26);
             this.lbl_ajoutpeche_ispeche.TabIndex = 10;
             this.lbl_ajoutpeche_ispeche.Text = "Pas de Pêche ce jour";
             // 
@@ -260,14 +260,14 @@ namespace AppCriée
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
             this.dg_pechejour.GridColor = System.Drawing.SystemColors.Control;
-            this.dg_pechejour.Location = new System.Drawing.Point(71, 166);
-            this.dg_pechejour.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dg_pechejour.Location = new System.Drawing.Point(53, 135);
+            this.dg_pechejour.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dg_pechejour.Name = "dg_pechejour";
             this.dg_pechejour.ReadOnly = true;
             this.dg_pechejour.RowHeadersWidth = 10;
             this.dg_pechejour.RowTemplate.Height = 24;
             this.dg_pechejour.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dg_pechejour.Size = new System.Drawing.Size(419, 292);
+            this.dg_pechejour.Size = new System.Drawing.Size(314, 237);
             this.dg_pechejour.TabIndex = 9;
             // 
             // dataGridViewTextBoxColumn1
@@ -291,9 +291,10 @@ namespace AppCriée
             // 
             this.lbl_ajoutpeche_datejour.AutoSize = true;
             this.lbl_ajoutpeche_datejour.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_ajoutpeche_datejour.Location = new System.Drawing.Point(215, 108);
+            this.lbl_ajoutpeche_datejour.Location = new System.Drawing.Point(161, 88);
+            this.lbl_ajoutpeche_datejour.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_ajoutpeche_datejour.Name = "lbl_ajoutpeche_datejour";
-            this.lbl_ajoutpeche_datejour.Size = new System.Drawing.Size(127, 24);
+            this.lbl_ajoutpeche_datejour.Size = new System.Drawing.Size(100, 18);
             this.lbl_ajoutpeche_datejour.TabIndex = 8;
             this.lbl_ajoutpeche_datejour.Text = "Date du jour : ";
             // 
@@ -301,21 +302,31 @@ namespace AppCriée
             // 
             this.lbl_title.AutoSize = true;
             this.lbl_title.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_title.Location = new System.Drawing.Point(279, 49);
+            this.lbl_title.Location = new System.Drawing.Point(209, 40);
+            this.lbl_title.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_title.Name = "lbl_title";
-            this.lbl_title.Size = new System.Drawing.Size(485, 32);
+            this.lbl_title.Size = new System.Drawing.Size(390, 26);
             this.lbl_title.TabIndex = 7;
             this.lbl_title.Text = "GESTION DES PECHES DU JOUR";
             // 
+            // btn_receptionniste_peche_supprimer
+            // 
+            this.btn_receptionniste_peche_supprimer.BackColor = System.Drawing.Color.Red;
+            this.btn_receptionniste_peche_supprimer.Location = new System.Drawing.Point(602, 371);
+            this.btn_receptionniste_peche_supprimer.Name = "btn_receptionniste_peche_supprimer";
+            this.btn_receptionniste_peche_supprimer.Size = new System.Drawing.Size(111, 25);
+            this.btn_receptionniste_peche_supprimer.TabIndex = 20;
+            this.btn_receptionniste_peche_supprimer.Text = "Supprimer";
+            this.btn_receptionniste_peche_supprimer.UseVisualStyleBackColor = false;
+            // 
             // AppCriee_Receptionniste
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1088, 561);
+            this.ClientSize = new System.Drawing.Size(816, 456);
             this.Controls.Add(this.tbc_receptionniste);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AppCriee_Receptionniste";
             this.Text = "AppCriée (Réceptionniste)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AppCriee_Receptionniste_FormClosing);
@@ -352,5 +363,6 @@ namespace AppCriée
         private System.Windows.Forms.Label lbl_pechejour_allpeche;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.Button btn_receptionniste_peche_supprimer;
     }
 }
