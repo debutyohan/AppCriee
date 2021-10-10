@@ -34,6 +34,7 @@ namespace AppCriée
             HiddenObject.Show(new List<Control> {lbl_ajoutpeche_creerpeche_nombateau, cbx_ajoutpeche_creerpeche_nombateau, btn_pechejour_creerpeche_valider });
             btn_ajoutpeche_creerpeche.Hide();
             lbl_pechejour_pecheok.Hide();
+            btn_receptionniste_peche_supprimer.Show();
             cbx_ajoutpeche_creerpeche_nombateau.Items.Clear();
             CURS cs = new CURS(ChaineConnexion);
             string requete = "SELECT id, nom, immatriculation FROM bateau WHERE id NOT IN(SELECT DISTINCT idBateau FROM peche WHERE datePeche='" + Datejour + "')";
@@ -88,6 +89,7 @@ namespace AppCriée
                 {
 
                     lbl_ajoutpeche_ispeche.Hide();
+                    btn_receptionniste_peche_supprimer.Hide();
                     dg_pechejour.Rows.Clear();
                     while (!cs.Fin())
                     {
@@ -103,6 +105,19 @@ namespace AppCriée
         private void AppCriee_Receptionniste_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.ExitThread();
+        }
+
+        private void btn_receptionniste_peche_supprimer_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow item in this.dg_pechejour.SelectedRows)
+            {             
+                dg_pechejour.Rows.RemoveAt(item.Index);
+                CURS cs = new CURS(ChaineConnexion);
+                // Faire requete pour récupérer l'id du bateau en fonction de l'immatriculation du bateau selectionné par la ligne;
+                string requeteDel = "DELETE peche FROM peche INNER JOIN bateau ON peche.idBateau = bateau.id WHERE peche.datePeche ='" + Datejour + "'AND immatriculation='" + item.Cells[1].Value + "'";
+                cs.ReqAdmin(requeteDel);
+
+            }
         }
     }
  
