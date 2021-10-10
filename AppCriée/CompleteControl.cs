@@ -31,7 +31,7 @@ namespace AppCriée
         }
         public static bool RemplirDataGridViewByRequest(DataGridView unDataGridView, String requete, String[] Params, Boolean clear = true)
         {
-            string chaineConnexion = "server = 127.0.0.1; user id = gestionCrie; password = 123xaro08 ; database = bddCrie2";
+            string chaineConnexion = ConnectionChain.chaineConnexion();
             bool islots = false;
             unDataGridView.Rows.Clear();
             CURS cs = new CURS(chaineConnexion);

@@ -12,24 +12,13 @@ namespace AppCriée
 {
     public partial class AppCriee_Veterinaire : Form
     {
-        string chaineConnexion;
+        string chaineConnexion = ConnectionChain.chaineConnexion();
         int idbateau;
-        public string ChaineConnexion
-        {
-            get { return chaineConnexion; }
-            set { chaineConnexion = value; }
-        }
-        public int IdBateau
-        {
-            get { return idbateau; }
-            set { idbateau = value; }
-        }
         List<BacNotLot> listebacnotlot = new List<BacNotLot>();
 
         string Datejour = DateTime.Today.ToString("yyyy-MM-dd");
         public AppCriee_Veterinaire(User unutilisateur)
         {
-            ChaineConnexion = "server = 127.0.0.1; user id = gestionCrie; password = 123xaro08 ; database = bddCrie2";
             InitializeComponent();
             lbl_veterinaire_accueil_bienvenue.Text = "Bienvenue " + unutilisateur.Nom + " " + unutilisateur.Prenom;
             lbl_veterinaire_bacpoissons_datejour.Text = "Date du jour : " + Datejour;
@@ -43,7 +32,7 @@ namespace AppCriée
                 case "tbp_veterinaire_bacpoisson":
                     if (cbx_veterinaire_bacpoissons_listebateaux.SelectedItem is null)
                     {
-                        CURS cs = new CURS(ChaineConnexion);
+                        CURS cs = new CURS(chaineConnexion);
                         cs.ReqSelect("SELECT idBateau, nom, immatriculation FROM peche INNER JOIN Bateau ON peche.idBateau=Bateau.id WHERE DatePeche='" + Datejour + "'");
                         if (!(cs.champ("idBateau") is null))
                         {
@@ -70,7 +59,7 @@ namespace AppCriée
                 case "tbp_veterinaire_lotspeche":
                     if (cbx_veterinaire_lotspeche_listebateaux.SelectedItem is null)
                     {
-                        CURS cs = new CURS(ChaineConnexion);
+                        CURS cs = new CURS(chaineConnexion);
                         cs.ReqSelect("SELECT idBateau, nom, immatriculation FROM peche INNER JOIN Bateau ON peche.idBateau=Bateau.id WHERE DatePeche='" + Datejour + "'");
                         if (!(cs.champ("idBateau") is null))
                         {
@@ -104,7 +93,7 @@ namespace AppCriée
             String elmt_bateau = cbx_veterinaire_bacpoissons_listebateaux.SelectedItem.ToString();
             int char_bateau = elmt_bateau.IndexOf("(");
             String imma = elmt_bateau.Substring(char_bateau + 1, elmt_bateau.Length - char_bateau - 2);
-            CURS cs = new CURS(ChaineConnexion);
+            CURS cs = new CURS(chaineConnexion);
             dg_veterinaire_bacpoissons_listebac.Rows.Clear();
             cs.ReqSelect("SELECT bac.id as idBac, idLot, idTypeBac, espece.nom as nomEspece, idTaille, idQualite, idPresentation FROM bac INNER JOIN lot ON lot.id=bac.idLot AND lot.idDatePeche=bac.idDatePeche AND lot.idBateau=bac.idBateau INNER JOIN espece ON lot.idEspece=espece.id INNER JOIN bateau ON lot.idBateau=bateau.id AND bac.idBateau=bateau.id WHERE bac.idDatePeche='" + Datejour + "' AND immatriculation='" + imma + "'");
             if (cs.champ("idBac") is null)
@@ -123,7 +112,7 @@ namespace AppCriée
                 
             }
             cs.fermer();
-            cs = new CURS(ChaineConnexion);
+            cs = new CURS(chaineConnexion);
             cs.ReqSelect("SELECT id FROM bateau WHERE immatriculation ='" + imma + "'");
             idbateau = Int32.Parse(cs.champ("id").ToString());
             cs.fermer();
@@ -213,7 +202,7 @@ namespace AppCriée
             String imma = elmt_bateau.Substring(char_bateau + 1, elmt_bateau.Length - char_bateau - 2);
             bool islots = CompleteControl.RemplirDataGridViewByRequest(dg_veterinaire_lotspeche_lotsbateau, "SELECT idLot, count(idLot) as nbbac, espece.nom as nomEspece, idTaille, idPresentation, idQualite FROM bac INNER JOIN lot ON bac.idDatePeche=lot.idDatePeche AND bac.idBateau=lot.idBateau AND bac.idLot=lot.id INNER JOIN espece ON espece.id=lot.idEspece INNER JOIN bateau ON bateau.id=lot.idBateau AND bateau.id=bac.idBateau WHERE bac.idDatePeche='" + Datejour + "' AND immatriculation='" + imma + "' GROUP BY idLot",new string[] { "idLot","nomEspece", "idTaille", "idQualite", "idPresentation", "nbbac" });
             if (islots) { dg_veterinaire_lotspeche_lotsbateau.Show(); lbl_veterinaire_lotspeche_islots.Hide(); }
-            CURS cs = new CURS(ChaineConnexion);
+            CURS cs = new CURS(chaineConnexion);
             cs.ReqSelect("SELECT id FROM bateau WHERE immatriculation ='" + imma + "'");
             idbateau = Int32.Parse(cs.champ("id").ToString());
             cs.fermer();
@@ -276,7 +265,7 @@ namespace AppCriée
             }
             else
             {
-                CURS cs = new CURS(ChaineConnexion);
+                CURS cs = new CURS(chaineConnexion);
                 cs.ReqAdmin("INSERT INTO lot(idDatePeche,idBateau , id, idEspece, idTaille, idPresentation, idQualite) VALUES ('" + Datejour + "',(SELECT id FROM bateau WHERE immatriculation='"+ imma + "'),"+(idlotmax+1)+",(SELECT id FROM espece WHERE nom='" + etqplot[0] + "')," + etqplot[1] + ",'" + etqplot[3] + "','" + etqplot[2] + "')");
                 cs.fermer();
                 string requetesel = "INSERT INTO bac(id, idDatePeche,idBateau, idLot, idTypeBac) VALUES ";
@@ -285,7 +274,7 @@ namespace AppCriée
                     requetesel+="("+i+",'"+Datejour+ "',(SELECT id FROM bateau WHERE immatriculation='" + imma + "')," + (idlotmax+1)+",'" + dg_veterinaire_lotspeche_bacnotlot.SelectedRows[i].Cells["dgtbx_bacnotlots_typebac"].Value.ToString()+"'),";
                 }
                 requetesel = requetesel.Substring(0, requetesel.Length - 1);
-                cs = new CURS(ChaineConnexion);
+                cs = new CURS(chaineConnexion);
                 cs.ReqAdmin(requetesel);
                 cs.fermer();
                 foreach(DataGridViewRow item in dg_veterinaire_lotspeche_bacnotlot.SelectedRows)

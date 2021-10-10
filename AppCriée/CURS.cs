@@ -28,7 +28,7 @@ namespace AppCriée
             {
                 DialogResult dialogResult = MessageBox.Show("Impossible de se connecter au serveur MySQL \nDescription de l'erreur :"+exception.Message, "Erreur Connexion MySQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 _ConnectionOK = false;
-                Application.Exit();
+                Application.ExitThread();
             }
 
         }

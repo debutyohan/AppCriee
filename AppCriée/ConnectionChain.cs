@@ -11,7 +11,7 @@ namespace AppCriée
     {
         public static string chaineConnexion()
         {
-            return "server = 127.0.0.1; user id = gestionCrie; password = 123xaro08 ; database = bddCrie2";
+            return "server = " + ConfigurationManager.AppSettings["server"] + "; user id = " + ConfigurationManager.AppSettings["user id"] + "; password = " + ConfigurationManager.AppSettings["password"] + " ; database = " + ConfigurationManager.AppSettings["database"];
         }
         
     }
