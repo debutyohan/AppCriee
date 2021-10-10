@@ -64,6 +64,8 @@
       <DependentUpon>AppCriee_Veterinaire.cs</DependentUpon>
     </Compile>
     <Compile Include="BacNotLot.cs" />
+    <Compile Include="CompleteControl.cs" />
+    <Compile Include="ConnectionChain.cs" />
     <Compile Include="CURS.cs" />
     <Compile Include="Auth.cs">
       <SubType>Form</SubType>
@@ -73,6 +75,8 @@
     </Compile>
     <Compile Include="HashData.cs" />
     <Compile Include="HiddenObject.cs" />
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.6.1.AssemblyAttributes.cs" />
+    <Compile Include="obj\Release\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
@@ -95,6 +99,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="bin\Debug\AppCriée.exe.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -108,10 +113,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <Folder Include="bin\Release\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\AppCriée.exe" />
+    <Content Include="bin\Debug\AppCriée.pdb" />
     <Content Include="Resources\autocollant-cadenas-muraux.jpg" />
     <Content Include="Resources\kisspng-padlock-logo-symbol-locker-5b22e325cc22c3.2363844015290130298362.jpg" />
+    <Content Include="Script SQL\SqlCrie.sql" />
+    <Content Include="Script SQL\sqlcriemodif%284%29.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

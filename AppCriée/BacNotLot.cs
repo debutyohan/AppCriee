@@ -8,6 +8,7 @@ namespace AppCriée
 {
     public class BacNotLot
     {
+        private string _id = System.Guid.NewGuid().ToString();
         private string _nomEspece;
         private int _idTaille;
         private char _idQualite;
@@ -30,5 +31,6 @@ namespace AppCriée
         public int IdBateau { get => _idBateau; set => _idBateau = value; }
         public string NomEspece { get => _nomEspece; set => _nomEspece = value; }
         public char IdTypeBac { get => _idTypeBac; set => _idTypeBac = value; }
+        public string Id { get => _id; set => _id = value; }
     }
 }
