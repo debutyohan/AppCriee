@@ -436,7 +436,7 @@ namespace AppCriée
             this.lbl_veterinaire_bacpoissons_datejour.Name = "lbl_veterinaire_bacpoissons_datejour";
             this.lbl_veterinaire_bacpoissons_datejour.Size = new System.Drawing.Size(127, 24);
             this.lbl_veterinaire_bacpoissons_datejour.TabIndex = 8;
-            this.lbl_veterinaire_bacpoissons_datejour.Text = "Date du jour : ";
+            this.lbl_veterinaire_bacpoissons_datejour.Text = "Date du jour : " + System.DateTime.Today.ToString("dd/MM/yyyy");
             // 
             // lbl_veterinaire_bacpoissons_title
             // 
@@ -725,7 +725,7 @@ namespace AppCriée
             this.lbl_veterinaire_lotspeche_datejour.Name = "lbl_veterinaire_lotspeche_datejour";
             this.lbl_veterinaire_lotspeche_datejour.Size = new System.Drawing.Size(127, 24);
             this.lbl_veterinaire_lotspeche_datejour.TabIndex = 9;
-            this.lbl_veterinaire_lotspeche_datejour.Text = "Date du jour : ";
+            this.lbl_veterinaire_lotspeche_datejour.Text = "Date du jour : " + System.DateTime.Today.ToString("dd/MM/yyyy");
             // 
             // lbl_veterinaire_lotspeche_title
             // 

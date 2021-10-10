@@ -9,8 +9,9 @@ namespace AppCriée
 {
     public class CompleteControl
     {
-        public static void RemplirCombobox(ComboBox unComboBox, String requete, String champs, Boolean selectdefault = true, Boolean clear = true)
+        public static bool RemplirCombobox(ComboBox unComboBox, String requete, String champs, Boolean selectdefault = true, Boolean clear = true)
         {
+            bool ispeche = false;
             string chaineConnexion = ConnectionChain.chaineConnexion();
             if (clear)
             {
@@ -18,16 +19,36 @@ namespace AppCriée
             }
             CURS cs = new CURS(chaineConnexion);
             cs.ReqSelect(requete);
-            while (!cs.Fin())
+            if (champs.Contains("("))
             {
-                unComboBox.Items.Add(cs.champ(champs));
-                cs.suivant();
+                string champ1 = champs.Substring(0, champs.IndexOf("("));
+                string champ2 = champs.Substring(champs.IndexOf("(") + 1, champs.Length - champs.IndexOf("(") - 2);
+                while (!cs.Fin())
+                {
+                    ispeche = true;
+                    unComboBox.Items.Add(cs.champ(champ1) + "(" + cs.champ(champ2) + ")");
+                    cs.suivant();
+                }
+            }
+            else
+            {
+                while (!cs.Fin())
+                {
+                    ispeche = true;
+                    unComboBox.Items.Add(cs.champ(champs));
+                    cs.suivant();
+                }
             }
             cs.fermer();
             if (selectdefault)
             {
-                unComboBox.SelectedItem = unComboBox.Items[0];
+                if (ispeche)
+                {
+                    unComboBox.SelectedItem = unComboBox.Items[0];
+                }
+                
             }
+            return ispeche;
         }
         public static bool RemplirDataGridViewByRequest(DataGridView unDataGridView, String requete, String[] Params, Boolean clear = true)
         {

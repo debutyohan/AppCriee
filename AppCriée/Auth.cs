@@ -12,15 +12,9 @@ namespace AppCriée
 {
     public partial class AppCriee : Form
     {
-        string chaineConnexion;
-        public string ChaineConnexion
-        {
-            get { return chaineConnexion; }
-            set { chaineConnexion = value; }
-        }
+        string chaineConnexion = ConnectionChain.chaineConnexion();
         public AppCriee()
         {
-            ChaineConnexion = "server = 127.0.0.1; user id = gestionCrie; password = 123xaro08 ; database = bddCrie2";
             InitializeComponent();
         }
         private void button1_Click(object sender, EventArgs e)
@@ -31,8 +25,6 @@ namespace AppCriée
             {
                 return;
             }
-            //string requete = "SELECT count(utilisateur.id) as nbUser, utilisateur.id as iduser, login, nomuser, prenomuser, idtypeuser, libelle FROM utilisateur INNER JOIN typeutilisateur ON utilisateur.idtypeuser = typeutilisateur.id WHERE login='" + tbx_auth_id.Text + "' AND pwd='" + passwdhash + "'";
-            //cs.ReqSelect(requete);
             cs.ReqSelectPrepare("SELECT count(utilisateur.id) as nbUser, utilisateur.id as iduser, login, nomuser, prenomuser, idtypeuser, libelle FROM utilisateur INNER JOIN typeutilisateur ON utilisateur.idtypeuser = typeutilisateur.id WHERE login=?unlogin AND pwd=?unpassword",new List<string> {"unlogin","unpassword"}, new List<object> { tbx_auth_id.Text.ToString(), passwdhash });
             string nbUser = cs.champ("nbUser").ToString();
             

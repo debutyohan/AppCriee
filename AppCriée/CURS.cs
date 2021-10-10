@@ -54,30 +54,6 @@ namespace AppCriée
             monreader = macommand.ExecuteReader();
             suivant();
         }
-            /*
-            public void ReqSelectPrepare(string req, List<String> field, List<Object> parameters)
-            {
-                macommand = new MySqlCommand(null, maconnexion);
-                macommand.CommandText = req;
-                foreach (Object param in parameters)
-                {
-                    if (param is int)
-                    {
-                        MySqlParameter unparam = new MySqlParameter(field[parameters.IndexOf(param)], MySqlDbType.Int32);
-                        unparam.Value = param;
-                    }
-                    if (param is string)
-                    {
-                        MySqlParameter unparam = new MySqlParameter(field[parameters.IndexOf(param)], MySqlDbType.Text);
-                        unparam.Value = param;
-                    }
-                }
-                macommand.Prepare();
-                monreader = macommand.ExecuteReader();
-                fin = false;
-                suivant();
-            }
-            */
         public void fermer()
         {
             if (monreader != null)

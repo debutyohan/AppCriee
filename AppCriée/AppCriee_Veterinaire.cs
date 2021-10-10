@@ -21,7 +21,7 @@ namespace AppCriée
         {
             InitializeComponent();
             lbl_veterinaire_accueil_bienvenue.Text = "Bienvenue " + unutilisateur.Nom + " " + unutilisateur.Prenom;
-            lbl_veterinaire_bacpoissons_datejour.Text = "Date du jour : " + Datejour;
+            lbl_veterinaire_lotspeche_datejour.Text = "Date du jour : " + Datejour;
             HiddenObject.Hide(new List<Control> { lbl_veterinaire_bacpoissons_choixbateau, cbx_veterinaire_bacpoissons_listebateaux,btn_veterinaire_bacpoissons_creerbacs, btn_veterinaire_bacpoissons_creerlots, btn_veterinaire_bacpoissons_modifierbacs, btn_veterinaire_bacpoissons_supprimerbacs, dg_veterinaire_bacpoissons_listebac, lbl_veterinaire_bacpoissons_isbac,lbl_veterinaire_bacpoissons_creationbac, lbl_veterinaire_bacpoissons_espece, lbl_veterinaire_bacpoissons_presentation, lbl_veterinaire_bacpoissons_taille, lbl_veterinaire_bacpoissons_qualite, lbl_veterinaire_bacpoissons_typebac, cbx_veterinaire_bacpoissons_espece, cbx_veterinaire_bacpoissons_presentation, cbx_veterinaire_bacpoissons_taille, cbx_veterinaire_bacpoissons_qualite, cbx_veterinaire_bacpoissons_typebac, btn_veterinaire_bacpoissons_valider});
         }
 
@@ -32,21 +32,11 @@ namespace AppCriée
                 case "tbp_veterinaire_bacpoisson":
                     if (cbx_veterinaire_bacpoissons_listebateaux.SelectedItem is null)
                     {
-                        CURS cs = new CURS(chaineConnexion);
-                        cs.ReqSelect("SELECT idBateau, nom, immatriculation FROM peche INNER JOIN Bateau ON peche.idBateau=Bateau.id WHERE DatePeche='" + Datejour + "'");
-                        if (!(cs.champ("idBateau") is null))
+                        if (CompleteControl.RemplirCombobox(cbx_veterinaire_bacpoissons_listebateaux, "SELECT idBateau, nom, immatriculation FROM peche INNER JOIN Bateau ON peche.idBateau=Bateau.id WHERE DatePeche='" + Datejour + "'", "nom(immatriculation)"))
                         {
-                            lbl_veterinaire_bacpoissons_ispeche.Hide();
-                            cbx_veterinaire_bacpoissons_listebateaux.Items.Clear();
-                            while (!cs.Fin())
-                            {
-                                cbx_veterinaire_bacpoissons_listebateaux.Items.Add(cs.champ("nom") + "(" + cs.champ("immatriculation") + ")");
-                                cs.suivant();
-                            }
-                            cbx_veterinaire_bacpoissons_listebateaux.Show();
-                            lbl_veterinaire_bacpoissons_choixbateau.Show();
+                            HiddenObject.Hide(new List<Control> { lbl_veterinaire_bacpoissons_ispeche });
+                            HiddenObject.Show(new List<Control> { cbx_veterinaire_bacpoissons_listebateaux, lbl_veterinaire_bacpoissons_choixbateau });
                         }
-                        cs.fermer();
                     }
                     else
                     {
@@ -59,21 +49,11 @@ namespace AppCriée
                 case "tbp_veterinaire_lotspeche":
                     if (cbx_veterinaire_lotspeche_listebateaux.SelectedItem is null)
                     {
-                        CURS cs = new CURS(chaineConnexion);
-                        cs.ReqSelect("SELECT idBateau, nom, immatriculation FROM peche INNER JOIN Bateau ON peche.idBateau=Bateau.id WHERE DatePeche='" + Datejour + "'");
-                        if (!(cs.champ("idBateau") is null))
+                        if (CompleteControl.RemplirCombobox(cbx_veterinaire_lotspeche_listebateaux, "SELECT idBateau, nom, immatriculation FROM peche INNER JOIN Bateau ON peche.idBateau=Bateau.id WHERE DatePeche='" + Datejour + "'", "nom(immatriculation)"))
                         {
-                            lbl_veterinaire_lotspeche_ispeche.Hide();
-                            cbx_veterinaire_lotspeche_listebateaux.Items.Clear();
-                            while (!cs.Fin())
-                            {
-                                cbx_veterinaire_lotspeche_listebateaux.Items.Add(cs.champ("nom") + "(" + cs.champ("immatriculation") + ")");
-                                cs.suivant();
-                            }
-                            cbx_veterinaire_lotspeche_listebateaux.Show();
-                            lbl_veterinaire_lotspeche_choixbateau.Show();
+                            HiddenObject.Hide(new List<Control> { lbl_veterinaire_lotspeche_ispeche });
+                            HiddenObject.Show(new List<Control> { cbx_veterinaire_lotspeche_listebateaux, lbl_veterinaire_lotspeche_choixbateau });
                         }
-                        cs.fermer();
                     }
                     else
                     {
@@ -161,7 +141,7 @@ namespace AppCriée
         private void btn_veterinaire_bacpoissons_valider_Click(object sender, EventArgs e)
         {
             String elmt_bateau = cbx_veterinaire_bacpoissons_espece.SelectedItem.ToString();
-            listebacnotlot.Add(new BacNotLot(cbx_veterinaire_bacpoissons_espece.SelectedItem.ToString(), Int32.Parse(cbx_veterinaire_bacpoissons_taille.SelectedItem.ToString()), Char.Parse(cbx_veterinaire_bacpoissons_qualite.SelectedItem.ToString()), cbx_veterinaire_bacpoissons_presentation.SelectedItem.ToString(),IdBateau, Char.Parse(cbx_veterinaire_bacpoissons_typebac.SelectedItem.ToString())));
+            listebacnotlot.Add(new BacNotLot(cbx_veterinaire_bacpoissons_espece.SelectedItem.ToString(), Int32.Parse(cbx_veterinaire_bacpoissons_taille.SelectedItem.ToString()), Char.Parse(cbx_veterinaire_bacpoissons_qualite.SelectedItem.ToString()), cbx_veterinaire_bacpoissons_presentation.SelectedItem.ToString(),idbateau, Char.Parse(cbx_veterinaire_bacpoissons_typebac.SelectedItem.ToString())));
             dg_veterinaire_bacpoissons_listebac.Rows.Add("(Pas de lots)", cbx_veterinaire_bacpoissons_espece.SelectedItem, cbx_veterinaire_bacpoissons_taille.SelectedItem, cbx_veterinaire_bacpoissons_qualite.SelectedItem, cbx_veterinaire_bacpoissons_presentation.SelectedItem, cbx_veterinaire_bacpoissons_typebac.SelectedItem);
             HiddenObject.Show(new List<Control> { btn_veterinaire_bacpoissons_supprimerbacs, btn_veterinaire_bacpoissons_modifierbacs, btn_veterinaire_bacpoissons_creerlots });
             dg_veterinaire_bacpoissons_listebac.Show();
