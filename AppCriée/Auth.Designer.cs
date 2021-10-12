@@ -49,7 +49,7 @@ namespace AppCriée
             this.btn_auth_connexion.Margin = new System.Windows.Forms.Padding(4);
             this.btn_auth_connexion.Name = "btn_auth_connexion";
             this.btn_auth_connexion.Size = new System.Drawing.Size(89, 39);
-            this.btn_auth_connexion.TabIndex = 0;
+            this.btn_auth_connexion.TabIndex = 4;
             this.btn_auth_connexion.Text = "Connexion";
             this.btn_auth_connexion.UseVisualStyleBackColor = false;
             this.btn_auth_connexion.Click += new System.EventHandler(this.button1_Click);
@@ -60,7 +60,7 @@ namespace AppCriée
             this.tbx_auth_id.Margin = new System.Windows.Forms.Padding(4);
             this.tbx_auth_id.Name = "tbx_auth_id";
             this.tbx_auth_id.Size = new System.Drawing.Size(132, 22);
-            this.tbx_auth_id.TabIndex = 1;
+            this.tbx_auth_id.TabIndex = 0;
             // 
             // lbl_auth_title
             // 
@@ -99,7 +99,7 @@ namespace AppCriée
             this.tbx_auth_passwd.Margin = new System.Windows.Forms.Padding(4);
             this.tbx_auth_passwd.Name = "tbx_auth_passwd";
             this.tbx_auth_passwd.Size = new System.Drawing.Size(132, 22);
-            this.tbx_auth_passwd.TabIndex = 4;
+            this.tbx_auth_passwd.TabIndex = 1;
             this.tbx_auth_passwd.UseSystemPasswordChar = true;
             // 
             // btn_auth_quitter
@@ -121,7 +121,7 @@ namespace AppCriée
             this.chx_auth_showchar.Margin = new System.Windows.Forms.Padding(4);
             this.chx_auth_showchar.Name = "chx_auth_showchar";
             this.chx_auth_showchar.Size = new System.Drawing.Size(171, 21);
-            this.chx_auth_showchar.TabIndex = 8;
+            this.chx_auth_showchar.TabIndex = 4;
             this.chx_auth_showchar.Text = "Afficher les caractères";
             this.chx_auth_showchar.UseVisualStyleBackColor = true;
             this.chx_auth_showchar.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
@@ -169,6 +169,8 @@ namespace AppCriée
             this.Name = "AppCriee";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AppCriée";
+            this.Enter += new System.EventHandler(this.AppCriee_Enter);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.AppCriee_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

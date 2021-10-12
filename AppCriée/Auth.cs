@@ -66,5 +66,16 @@ namespace AppCriée
             else
                 tbx_auth_passwd.UseSystemPasswordChar = true;
         }
+
+        private void AppCriee_KeyUp(object sender, KeyEventArgs e)
+        {
+            int keyvalue = e.KeyValue;
+            keyvalue = keyvalue;
+        }
+
+        private void AppCriee_Enter(object sender, EventArgs e)
+        {
+            string test = "e";
+        }
     }
 }

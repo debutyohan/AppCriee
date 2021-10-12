@@ -43,7 +43,6 @@ namespace AppCriée
                 fin = false;
                 suivant();
         }
-
         public void ReqSelectPrepare(string req, List<String> field, List<Object> parameters)
         {
             macommand = new MySqlCommand(req, maconnexion);

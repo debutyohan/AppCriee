@@ -32,7 +32,7 @@ namespace AppCriée
                 case "tbp_veterinaire_bacpoisson":
                     if (cbx_veterinaire_bacpoissons_listebateaux.SelectedItem is null)
                     {
-                        if (CompleteControl.RemplirCombobox(cbx_veterinaire_bacpoissons_listebateaux, "SELECT idBateau, nom, immatriculation FROM peche INNER JOIN Bateau ON peche.idBateau=Bateau.id WHERE DatePeche='" + Datejour + "'", "nom(immatriculation)"))
+                        if (CompleteControl.RemplirCombobox(cbx_veterinaire_bacpoissons_listebateaux, "SELECT idBateau, nom, immatriculation FROM peche INNER JOIN Bateau ON peche.idBateau=Bateau.id WHERE DatePeche='" + Datejour + "'", "nom(immatriculation)",false))
                         {
                             HiddenObject.Hide(new List<Control> { lbl_veterinaire_bacpoissons_ispeche });
                             HiddenObject.Show(new List<Control> { cbx_veterinaire_bacpoissons_listebateaux, lbl_veterinaire_bacpoissons_choixbateau });
@@ -49,7 +49,7 @@ namespace AppCriée
                 case "tbp_veterinaire_lotspeche":
                     if (cbx_veterinaire_lotspeche_listebateaux.SelectedItem is null)
                     {
-                        if (CompleteControl.RemplirCombobox(cbx_veterinaire_lotspeche_listebateaux, "SELECT idBateau, nom, immatriculation FROM peche INNER JOIN Bateau ON peche.idBateau=Bateau.id WHERE DatePeche='" + Datejour + "'", "nom(immatriculation)"))
+                        if (CompleteControl.RemplirCombobox(cbx_veterinaire_lotspeche_listebateaux, "SELECT idBateau, nom, immatriculation FROM peche INNER JOIN Bateau ON peche.idBateau=Bateau.id WHERE DatePeche='" + Datejour + "'", "nom(immatriculation)",false))
                         {
                             HiddenObject.Hide(new List<Control> { lbl_veterinaire_lotspeche_ispeche });
                             HiddenObject.Show(new List<Control> { cbx_veterinaire_lotspeche_listebateaux, lbl_veterinaire_lotspeche_choixbateau });
@@ -210,7 +210,7 @@ namespace AppCriée
 
         private void btn_veterinaire_lotspeche_creerlot_Click(object sender, EventArgs e)
         {
-            String elmt_bateau = cbx_veterinaire_lotspeche_listebateaux.SelectedItem.ToString();
+            String elmt_bateau = cbx_veterinaire_lotspeche_listebateaux.Text;
             int char_bateau = elmt_bateau.IndexOf("(");
             String imma = elmt_bateau.Substring(char_bateau + 1, elmt_bateau.Length - char_bateau - 2);
             int idlotmax = -1;
