@@ -27,7 +27,6 @@ namespace AppCriée
             HiddenObject.Show(new List<Control> {lbl_ajoutpeche_creerpeche_nombateau, cbx_ajoutpeche_creerpeche_nombateau, btn_pechejour_creerpeche_valider });
             btn_ajoutpeche_creerpeche.Hide();
             lbl_pechejour_pecheok.Hide();
-            btn_receptionniste_peche_supprimer.Show();
             CompleteControl.RemplirCombobox(cbx_ajoutpeche_creerpeche_nombateau, "SELECT id, nom, immatriculation FROM bateau WHERE id NOT IN(SELECT DISTINCT idBateau FROM peche WHERE datePeche='" + Datejour + "')", "nom(immatriculation)");
         }
 
@@ -54,6 +53,7 @@ namespace AppCriée
 
         private void tbc_receptionniste_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lbl_pechejour_pecheok.Hide();
             if (tbc_receptionniste.SelectedTab == tabPeche)
             {
                 CURS cs = new CURS(chaineConnexion);
@@ -66,8 +66,8 @@ namespace AppCriée
                 cs.fermer();
                 if (CompleteControl.RemplirDataGridViewByRequest(dg_pechejour, "SELECT idBateau, nom, immatriculation FROM peche INNER JOIN Bateau ON peche.idBateau=Bateau.id WHERE DatePeche='" + Datejour + "'", new string[] { "nom", "immatriculation" }))
                 {
-                    HiddenObject.Hide(new List<Control> { lbl_ajoutpeche_ispeche, btn_receptionniste_peche_supprimer });
-                    HiddenObject.Show(new List<Control> { dg_pechejour });
+                    HiddenObject.Hide(new List<Control> { lbl_ajoutpeche_ispeche });
+                    HiddenObject.Show(new List<Control> { dg_pechejour, btn_receptionniste_peche_supprimer });
                 }
                 }
             }
@@ -79,13 +79,35 @@ namespace AppCriée
 
         private void btn_receptionniste_peche_supprimer_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow item in this.dg_pechejour.SelectedRows)
-            {             
-                dg_pechejour.Rows.RemoveAt(item.Index);
-                CURS cs = new CURS(chaineConnexion);
-                // Faire requete pour récupérer l'id du bateau en fonction de l'immatriculation du bateau selectionné par la ligne;
-                string requeteDel = "DELETE peche FROM peche INNER JOIN bateau ON peche.idBateau = bateau.id WHERE peche.datePeche ='" + Datejour + "'AND immatriculation='" + item.Cells[1].Value + "'";
-                cs.ReqAdmin(requeteDel);
+            if (MessageBox.Show("Etes-vous sûr de vouloir supprimer cette pêche ?", "Supprimer", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                string listImmaIsLot = "";
+                foreach (DataGridViewRow item in this.dg_pechejour.SelectedRows)
+                {
+                    string requete = "SELECT COUNT(lot.id) as nbLot FROM lot INNER JOIN bateau ON lot.idBateau = bateau.id WHERE immatriculation='" + item.Cells[1].Value + "' AND idDatePeche='" + Datejour + "'";
+                    CURS cs = new CURS(chaineConnexion);
+                    cs.ReqSelect(requete);
+                    string nbLot = cs.champ("nbLot").ToString();
+                    if (cs.champ("nbLot").ToString() != "0")
+                    {
+                        listImmaIsLot += "," + item.Cells[1].Value;
+                    }
+                    else
+                    {
+                        dg_pechejour.Rows.RemoveAt(item.Index);
+                        cs = new CURS(chaineConnexion);
+                        string requeteDel = "DELETE peche FROM peche INNER JOIN bateau ON peche.idBateau = bateau.id WHERE peche.datePeche ='" + Datejour + "'AND immatriculation='" + item.Cells[1].Value + "'";
+                        cs.ReqAdmin(requeteDel);
+                        lbl_pechejour_pecheok.Text = "Les pêches ont bien été supprimées";
+                        lbl_pechejour_pecheok.Show();
+                    }
+                    
+                }
+                if (listImmaIsLot != "")
+                {
+                    MessageBox.Show("Impossible de supprimer la pêche des bateaux d'immatriculation : " + listImmaIsLot + " car elle comprend déjà des lots, veuillez contacter le vétérinaire.", "Suppression impossible", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
 
             }
         }
