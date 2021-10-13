@@ -82,6 +82,7 @@ namespace AppCriée
             if (MessageBox.Show("Etes-vous sûr de vouloir supprimer cette pêche ?", "Supprimer", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 string listImmaIsLot = "";
+                string listImmaIsNoLot = "";
                 foreach (DataGridViewRow item in this.dg_pechejour.SelectedRows)
                 {
                     string requete = "SELECT COUNT(lot.id) as nbLot FROM lot INNER JOIN bateau ON lot.idBateau = bateau.id WHERE immatriculation='" + item.Cells[1].Value + "' AND idDatePeche='" + Datejour + "'";
@@ -90,24 +91,37 @@ namespace AppCriée
                     string nbLot = cs.champ("nbLot").ToString();
                     if (cs.champ("nbLot").ToString() != "0")
                     {
-                        listImmaIsLot += "," + item.Cells[1].Value;
+                        listImmaIsLot += ", " + item.Cells[0].Value;
                     }
                     else
                     {
+                        listImmaIsNoLot+=", " + item.Cells[0].Value;
                         dg_pechejour.Rows.RemoveAt(item.Index);
                         cs = new CURS(chaineConnexion);
                         string requeteDel = "DELETE peche FROM peche INNER JOIN bateau ON peche.idBateau = bateau.id WHERE peche.datePeche ='" + Datejour + "'AND immatriculation='" + item.Cells[1].Value + "'";
                         cs.ReqAdmin(requeteDel);
-                        lbl_pechejour_pecheok.Text = "Les pêches ont bien été supprimées";
-                        lbl_pechejour_pecheok.Show();
                     }
                     
                 }
                 if (listImmaIsLot != "")
                 {
-                    MessageBox.Show("Impossible de supprimer la pêche des bateaux d'immatriculation : " + listImmaIsLot + " car elle comprend déjà des lots, veuillez contacter le vétérinaire.", "Suppression impossible", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                    listImmaIsLot = listImmaIsLot.Substring(2, listImmaIsLot.Length - 2);
+                    MessageBox.Show("Impossible de supprimer les pêches des bateaux : " + listImmaIsLot + " car elle comprend déjà des lots, veuillez contacter le vétérinaire.", "Suppression impossible", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    lbl_pechejour_pecheok.Hide();
+                    if (listImmaIsNoLot != "")
+                    {
+                        listImmaIsNoLot = listImmaIsNoLot.Substring(2, listImmaIsNoLot.Length - 2);
+                        lbl_pechejour_pecheok.Text = "Les pêches des bateaux : " + listImmaIsNoLot + " ont bien été supprimées";
+                        lbl_pechejour_pecheok.Show();
+                    }
                 }
+                else
+                {
+
+                    lbl_pechejour_pecheok.Text = "Toutes les pêches ont bien été supprimées";
+                    lbl_pechejour_pecheok.Show();
+                }
+                
 
             }
         }

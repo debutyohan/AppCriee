@@ -21,7 +21,6 @@ namespace AppCriée
         {
             InitializeComponent();
             lbl_veterinaire_accueil_bienvenue.Text = "Bienvenue " + unutilisateur.Nom + " " + unutilisateur.Prenom;
-            lbl_veterinaire_lotspeche_datejour.Text = "Date du jour : " + Datejour;
             HiddenObject.Hide(new List<Control> { lbl_veterinaire_bacpoissons_choixbateau, cbx_veterinaire_bacpoissons_listebateaux,btn_veterinaire_bacpoissons_creerbacs, btn_veterinaire_bacpoissons_creerlots, btn_veterinaire_bacpoissons_modifierbacs, btn_veterinaire_bacpoissons_supprimerbacs, dg_veterinaire_bacpoissons_listebac, lbl_veterinaire_bacpoissons_isbac,lbl_veterinaire_bacpoissons_creationbac, lbl_veterinaire_bacpoissons_espece, lbl_veterinaire_bacpoissons_presentation, lbl_veterinaire_bacpoissons_taille, lbl_veterinaire_bacpoissons_qualite, lbl_veterinaire_bacpoissons_typebac, cbx_veterinaire_bacpoissons_espece, cbx_veterinaire_bacpoissons_presentation, cbx_veterinaire_bacpoissons_taille, cbx_veterinaire_bacpoissons_qualite, cbx_veterinaire_bacpoissons_typebac, btn_veterinaire_bacpoissons_valider, lbl_veterinaire_bacpoissons_notlot });
         }
 
@@ -65,11 +64,10 @@ namespace AppCriée
                     break;
             }
         }
-
         private void cbx_veterinaire_bacpoissons_listebateaux_SelectionChangeCommitted(object sender, EventArgs e)
         {
             bool isbateau = false;
-            HiddenObject.Hide(new List<Control> { lbl_veterinaire_bacpoissons_creationbac, lbl_veterinaire_bacpoissons_espece, lbl_veterinaire_bacpoissons_taille, lbl_veterinaire_bacpoissons_qualite, lbl_veterinaire_bacpoissons_presentation, lbl_veterinaire_bacpoissons_typebac, cbx_veterinaire_bacpoissons_espece, cbx_veterinaire_bacpoissons_taille, cbx_veterinaire_bacpoissons_qualite, cbx_veterinaire_bacpoissons_presentation, cbx_veterinaire_bacpoissons_typebac, btn_veterinaire_bacpoissons_valider });
+            HiddenObject.Hide(new List<Control> { lbl_veterinaire_bacpoissons_creationbac, lbl_veterinaire_bacpoissons_espece, lbl_veterinaire_bacpoissons_taille, lbl_veterinaire_bacpoissons_qualite, lbl_veterinaire_bacpoissons_presentation, lbl_veterinaire_bacpoissons_typebac, cbx_veterinaire_bacpoissons_espece, cbx_veterinaire_bacpoissons_taille, cbx_veterinaire_bacpoissons_qualite, cbx_veterinaire_bacpoissons_presentation, cbx_veterinaire_bacpoissons_typebac, btn_veterinaire_bacpoissons_valider, lbl_veterinaire_bacpoissons_notlot });
             String elmt_bateau = cbx_veterinaire_bacpoissons_listebateaux.SelectedItem.ToString();
             int char_bateau = elmt_bateau.IndexOf("(");
             String imma = elmt_bateau.Substring(char_bateau + 1, elmt_bateau.Length - char_bateau - 2);
@@ -106,22 +104,24 @@ namespace AppCriée
             }
             if (listebacnotlot.Count(ai=>ai.IdBateau == idbateau) != 0)
             {
-                HiddenObject.Show(new List<Control> { btn_veterinaire_bacpoissons_supprimerbacs, btn_veterinaire_bacpoissons_modifierbacs, btn_veterinaire_bacpoissons_creerlots });
+                HiddenObject.Show(new List<Control> { btn_veterinaire_bacpoissons_modifierbacs, btn_veterinaire_bacpoissons_creerlots });
                 isbateau = true;
             }
             else
             {
-                HiddenObject.Hide(new List<Control> { btn_veterinaire_bacpoissons_supprimerbacs, btn_veterinaire_bacpoissons_modifierbacs, btn_veterinaire_bacpoissons_creerlots });
+                HiddenObject.Hide(new List<Control> { btn_veterinaire_bacpoissons_modifierbacs, btn_veterinaire_bacpoissons_creerlots });
             }
             if (isbateau)
             {
                 dg_veterinaire_bacpoissons_listebac.Show();
                 lbl_veterinaire_bacpoissons_isbac.Hide();
+                btn_veterinaire_bacpoissons_supprimerbacs.Show();
             }
             else
             {
                 dg_veterinaire_bacpoissons_listebac.Hide();
                 lbl_veterinaire_bacpoissons_isbac.Show();
+                btn_veterinaire_bacpoissons_supprimerbacs.Hide();
             }
             
             btn_veterinaire_bacpoissons_creerbacs.Show();
@@ -137,7 +137,6 @@ namespace AppCriée
             btn_veterinaire_bacpoissons_creerbacs.Hide();
             HiddenObject.Show(new List<Control> { btn_veterinaire_bacpoissons_valider, lbl_veterinaire_bacpoissons_creationbac, lbl_veterinaire_bacpoissons_espece, lbl_veterinaire_bacpoissons_taille, lbl_veterinaire_bacpoissons_qualite, lbl_veterinaire_bacpoissons_presentation, lbl_veterinaire_bacpoissons_typebac, cbx_veterinaire_bacpoissons_espece, cbx_veterinaire_bacpoissons_taille, cbx_veterinaire_bacpoissons_qualite, cbx_veterinaire_bacpoissons_presentation, cbx_veterinaire_bacpoissons_typebac});
         }
-
         private void btn_veterinaire_bacpoissons_valider_Click(object sender, EventArgs e)
         {
             String elmt_bateau = cbx_veterinaire_bacpoissons_espece.SelectedItem.ToString();
@@ -289,16 +288,21 @@ namespace AppCriée
                         CURS cs = new CURS(chaineConnexion);
                         string requeteDel = "DELETE FROM bac WHERE idBateau='" + idbateau + "' AND idLot ='" + idLot + "' AND idDatePeche='" + Datejour + "' AND id ='" + id + "'";
                         cs.ReqAdmin(requeteDel);
+                        cs.fermer();
                     }
 
                    
 
                 }
                 string requeteSup = "DELETE LOT FROM lot LEFT JOIN bac ON lot.idDatePeche=bac.idDatePeche AND lot.idBateau=bac.idBateau AND lot.id=bac.idLot WHERE lot.idDatePeche='" + Datejour + "' AND lot.idBateau='" + idbateau + "'AND bac.id is NULL";
-            
+                CURS csa = new CURS(chaineConnexion);
+                csa.ReqAdmin(requeteSup);
+                csa.fermer();
+                cbx_veterinaire_bacpoissons_listebateaux_SelectionChangeCommitted(sender, e);
+                lbl_veterinaire_bacpoissons_notlot.Text = "Les bacs ont été supprimées";
+                lbl_veterinaire_bacpoissons_notlot.Show();
 
-                cbx_veterinaire_lotspeche_listebateaux_SelectionChangeCommitted(sender, e);
-                
+
 
             }
         }
