@@ -7,23 +7,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace AppCriée
 {
     public partial class AppCriee_Veterinaire : Form
     {
+        #region Données privées
         string chaineConnexion = ConnectionChain.chaineConnexion();
         int idbateau;
         List<BacNotLot> listebacnotlot = new List<BacNotLot>();
-
         string Datejour = DateTime.Today.ToString("yyyy-MM-dd");
+        #endregion
+
+        #region Constructeur
         public AppCriee_Veterinaire(User unutilisateur)
         {
             InitializeComponent();
             lbl_veterinaire_accueil_bienvenue.Text = "Bienvenue " + unutilisateur.Nom + " " + unutilisateur.Prenom;
+            lbl_veterinaire_lotspeche_datejour.Text = "Date du jour : " + DateTime.Today.ToString("dd/MM/yyyy");
+            lbl_veterinaire_bacpoissons_datejour.Text = "Date du jour : " + DateTime.Today.ToString("dd/MM/yyyy");
+            lbl_veterinaire_touslots_datejour.Text = "Date du jour : " + DateTime.Today.ToString("dd/MM/yyyy");
             HiddenObject.Hide(new List<Control> { lbl_veterinaire_bacpoissons_choixbateau, cbx_veterinaire_bacpoissons_listebateaux,btn_veterinaire_bacpoissons_creerbacs, btn_veterinaire_bacpoissons_creerlots, btn_veterinaire_bacpoissons_modifierbacs, btn_veterinaire_bacpoissons_supprimerbacs, dg_veterinaire_bacpoissons_listebac, lbl_veterinaire_bacpoissons_isbac,lbl_veterinaire_bacpoissons_creationbac, lbl_veterinaire_bacpoissons_espece, lbl_veterinaire_bacpoissons_presentation, lbl_veterinaire_bacpoissons_taille, lbl_veterinaire_bacpoissons_qualite, lbl_veterinaire_bacpoissons_typebac, cbx_veterinaire_bacpoissons_espece, cbx_veterinaire_bacpoissons_presentation, cbx_veterinaire_bacpoissons_taille, cbx_veterinaire_bacpoissons_qualite, cbx_veterinaire_bacpoissons_typebac, btn_veterinaire_bacpoissons_valider, lbl_veterinaire_bacpoissons_notlot });
         }
+        #endregion
 
+        #region Changement d'onglets
         private void tbc_veterinaire_Selected(object sender, TabControlEventArgs e)
         {
             switch (e.TabPage.Name)
@@ -62,8 +71,36 @@ namespace AppCriée
                         }
                     }
                     break;
+                case "tbp_veterinaire_touslots":
+                    CURS cs = new CURS(chaineConnexion);
+                    cs.ReqSelect("SELECT count(idBateau) as nbBateau FROM peche INNER JOIN Bateau ON peche.idBateau=Bateau.id WHERE DatePeche='" + Datejour + "'");
+                    if (cs.champ("nbBateau").ToString() == "0")
+                    {
+                        lbl_veterinaire_touslots_ispeche.Show();
+                        lbl_veterinaire_touslots_islots.Hide();
+                        dg_veterinaire_touslots_alllot.Hide();
+                    }
+                    else
+                    {
+                        if (CompleteControl.RemplirDataGridViewByRequest(dg_veterinaire_touslots_alllot, "SELECT bateau.nom as nomBateau, idLot, count(idLot) as nbbac, espece.nom as nomEspece, idTaille, idPresentation, idQualite FROM bac INNER JOIN lot ON bac.idDatePeche=lot.idDatePeche AND bac.idBateau=lot.idBateau AND bac.idLot=lot.id INNER JOIN espece ON espece.id=lot.idEspece INNER JOIN bateau ON bateau.id=lot.idBateau AND bateau.id=bac.idBateau WHERE bac.idDatePeche='" + Datejour + "' GROUP BY idLot, lot.idBateau ORDER BY bateau.nom, idLot", new string[] {"nomBateau", "idLot", "nomEspece", "idTaille" , "idQualite", "idPresentation", "nbbac"}))
+                        {
+                            dg_veterinaire_touslots_alllot.Show();
+                            lbl_veterinaire_touslots_islots.Hide();
+                            lbl_veterinaire_touslots_ispeche.Hide();
+                        }
+                        else
+                        {
+                            dg_veterinaire_touslots_alllot.Hide();
+                            lbl_veterinaire_touslots_islots.Show();
+                            lbl_veterinaire_touslots_ispeche.Hide();
+                        }
+                    }
+                    break;
             }
         }
+        #endregion
+
+        #region Onglet Bac de poissons
         private void cbx_veterinaire_bacpoissons_listebateaux_SelectionChangeCommitted(object sender, EventArgs e)
         {
             bool isbateau = false;
@@ -94,7 +131,7 @@ namespace AppCriée
             cs.ReqSelect("SELECT id FROM bateau WHERE immatriculation ='" + imma + "'");
             idbateau = Int32.Parse(cs.champ("id").ToString());
             cs.fermer();
-
+            
             foreach (BacNotLot unbacnotlot in listebacnotlot)
             {
                 if (unbacnotlot.IdBateau == idbateau)
@@ -147,26 +184,8 @@ namespace AppCriée
             dg_veterinaire_bacpoissons_listebac.Show();
             lbl_veterinaire_bacpoissons_isbac.Hide();
         }
-
-        private void AppCriee_Veterinaire_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (listebacnotlot.Count != 0)
-            {
-                DialogResult result = MessageBox.Show("Des bacs ont été crée sans être associer à un lot, ces bacs ne seront pas sauvegardées\nVoulez-vous vraiment quitter ?", "Attention", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                if (result == DialogResult.Yes)
-                {
-                    Application.ExitThread();
-                }
-                else
-                {
-                    e.Cancel = true;
-                }
-            }
-            else
-            {
-                Application.ExitThread();
-            }
-        }
+        #endregion
+        
 
         private void btn_veterinaire_bacpoissons_creerlots_Click(object sender, EventArgs e)
         {
@@ -175,13 +194,19 @@ namespace AppCriée
 
         private void cbx_veterinaire_lotspeche_listebateaux_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            HiddenObject.Hide(new List<Control> {lbl_veterinaire_lotspeche_isokcreerlot,cbx_veterinaire_lotspeche_lotsbateau, btn_veterinaire_lotspeche_assigneralot, btn_veterinaire_lotspeche_creerlot, dg_veterinaire_lotspeche_bacnotlot, dg_veterinaire_lotspeche_lotsbateau, lbl_veterinaire_lotspeche_isbacs });
+            HiddenObject.Hide(new List<Control> {lbl_veterinaire_lotspeche_assignerlot, cbx_veterinaire_lotspeche_lotsbateau,lbl_veterinaire_lotspeche_isokcreerlot, cbx_veterinaire_lotspeche_lotsbateau, btn_veterinaire_lotspeche_assigneralot, btn_veterinaire_lotspeche_creerlot, dg_veterinaire_lotspeche_bacnotlot, dg_veterinaire_lotspeche_lotsbateau, lbl_veterinaire_lotspeche_isbacs, lbl_veterinaire_lotspeche_assignerlot, btn_veterinaire_lotspeche_assigneralot });
             HiddenObject.Show(new List<Control> {lbl_veterinaire_lotspeche_isbacsnotlot, lbl_veterinaire_lotspeche_lotsbateau, lbl_veterinaire_lotspeche_bacnotlot, lbl_veterinaire_lotspeche_islots });
             String elmt_bateau = cbx_veterinaire_lotspeche_listebateaux.Text;
             int char_bateau = elmt_bateau.IndexOf("(");
             String imma = elmt_bateau.Substring(char_bateau + 1, elmt_bateau.Length - char_bateau - 2);
+            lbl_veterinaire_lotspeche_bacnotlot.Text = "Liste des Bacs non assignées à un lot du Bateau '" + elmt_bateau.Substring(0,char_bateau) + "' :";
+            lbl_veterinaire_lotspeche_lotsbateau.Text = "Liste de tous les lots du Bateau '" + elmt_bateau.Substring(0, char_bateau) + "' :";
             bool islots = CompleteControl.RemplirDataGridViewByRequest(dg_veterinaire_lotspeche_lotsbateau, "SELECT idLot, count(idLot) as nbbac, espece.nom as nomEspece, idTaille, idPresentation, idQualite FROM bac INNER JOIN lot ON bac.idDatePeche=lot.idDatePeche AND bac.idBateau=lot.idBateau AND bac.idLot=lot.id INNER JOIN espece ON espece.id=lot.idEspece INNER JOIN bateau ON bateau.id=lot.idBateau AND bateau.id=bac.idBateau WHERE bac.idDatePeche='" + Datejour + "' AND immatriculation='" + imma + "' GROUP BY idLot",new string[] { "idLot","nomEspece", "idTaille", "idQualite", "idPresentation", "nbbac" });
-            if (islots) { dg_veterinaire_lotspeche_lotsbateau.Show(); lbl_veterinaire_lotspeche_islots.Hide(); }
+            if (islots)
+            {
+                lbl_veterinaire_lotspeche_islots.Hide();
+                HiddenObject.Show(new List<Control> { dg_veterinaire_lotspeche_lotsbateau });
+            }
             CURS cs = new CURS(chaineConnexion);
             cs.ReqSelect("SELECT id FROM bateau WHERE immatriculation ='" + imma + "'");
             idbateau = Int32.Parse(cs.champ("id").ToString());
@@ -198,12 +223,18 @@ namespace AppCriée
             }
             if (isbacnotlot)
             {
-                HiddenObject.Show(new List<Control> { cbx_veterinaire_lotspeche_lotsbateau, btn_veterinaire_lotspeche_creerlot, dg_veterinaire_lotspeche_bacnotlot, btn_veterinaire_lotspeche_assigneralot });
+                CompleteControl.RemplirCombobox(cbx_veterinaire_lotspeche_lotsbateau, "SELECT lot.id as idLot, espece.nom as nomEspece, idTaille, idPresentation, idQualite FROM lot INNER JOIN espece ON espece.id=lot.idEspece INNER JOIN bateau ON bateau.id=lot.idBateau AND bateau.id=lot.idBateau WHERE lot.idDatePeche='" + Datejour + "' AND immatriculation='" + imma + "'", "#Lot n°#idLot (nomEspece:idTaille:idQualite:idPresentation)", false);
+                HiddenObject.Show(new List<Control> { btn_veterinaire_lotspeche_creerlot, dg_veterinaire_lotspeche_bacnotlot });
+                if (islots)
+                {
+                    HiddenObject.Show(new List<Control> { cbx_veterinaire_lotspeche_lotsbateau, lbl_veterinaire_lotspeche_assignerlot });
+
+                }
                 HiddenObject.Hide(new List<Control> { lbl_veterinaire_lotspeche_isbacsnotlot });
             }
 
-            if(!isbacnotlot && !islots){
-                HiddenObject.Hide(new List<Control> { lbl_veterinaire_lotspeche_lotsbateau, lbl_veterinaire_lotspeche_bacnotlot, lbl_veterinaire_bacpoissons_isbac, lbl_veterinaire_lotspeche_isbacsnotlot, lbl_veterinaire_lotspeche_islots });
+            if (!isbacnotlot && !islots){
+                HiddenObject.Hide(new List<Control> { lbl_veterinaire_lotspeche_islots, lbl_veterinaire_lotspeche_lotsbateau, lbl_veterinaire_lotspeche_bacnotlot, lbl_veterinaire_bacpoissons_isbac, lbl_veterinaire_lotspeche_isbacsnotlot });
                 HiddenObject.Show(new List<Control> { lbl_veterinaire_lotspeche_isbacs });
             }
         }
@@ -222,7 +253,14 @@ namespace AppCriée
             }
             object[] etqplot = null;
             bool isok = true;
-            foreach(DataGridViewRow item in dg_veterinaire_lotspeche_bacnotlot.SelectedRows)
+            if (dg_veterinaire_lotspeche_bacnotlot.SelectedRows.Count == 0)
+            {
+                lbl_veterinaire_lotspeche_isokcreerlot.ForeColor = System.Drawing.Color.Red;
+                lbl_veterinaire_lotspeche_isokcreerlot.Text = "Veuillez sélectionner au moins un bac.";
+                lbl_veterinaire_lotspeche_isokcreerlot.Show();
+                return;
+            }
+            foreach (DataGridViewRow item in dg_veterinaire_lotspeche_bacnotlot.SelectedRows)
             {
                 if(!(etqplot is null))
                 {
@@ -239,7 +277,7 @@ namespace AppCriée
             }
             if (!isok)
             {
-                lbl_veterinaire_lotspeche_isokcreerlot.ForeColor = System.Drawing.Color.Red;
+                lbl_veterinaire_lotspeche_isokcreerlot.ForeColor = Color.Red;
                 lbl_veterinaire_lotspeche_isokcreerlot.Text = "Veuillez sélectionner des bacs ayant\nles mêmes caractéristiques ETQP";
                 lbl_veterinaire_lotspeche_isokcreerlot.Show();
             }
@@ -262,7 +300,7 @@ namespace AppCriée
                     listebacnotlot.Remove(listebacnotlot.Find(ai => ai.Id == item.Cells["id"].Value.ToString()));
                 }
                 cbx_veterinaire_lotspeche_listebateaux_SelectionChangeCommitted(sender, e);
-                lbl_veterinaire_lotspeche_isokcreerlot.ForeColor = System.Drawing.Color.Blue;
+                lbl_veterinaire_lotspeche_isokcreerlot.ForeColor = Color.Blue;
                 lbl_veterinaire_lotspeche_isokcreerlot.Text = "Le lot a bien été créée";
                 lbl_veterinaire_lotspeche_isokcreerlot.Show();
             }
@@ -302,11 +340,79 @@ namespace AppCriée
                 lbl_veterinaire_bacpoissons_notlot.Text = "Les bacs ont été supprimées";
                 lbl_veterinaire_bacpoissons_notlot.Show();
 
-
+                //lbl_veterinaire_lotspeche_islots
 
             }
         }
+        private void AppCriee_Veterinaire_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (listebacnotlot.Count != 0)
+            {
+                DialogResult result = MessageBox.Show("Des bacs ont été crée sans être associer à un lot, ces bacs ne seront pas sauvegardées\nVoulez-vous vraiment quitter ?", "Attention", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                if (result == DialogResult.Yes)
+                {
+                    Application.ExitThread();
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
+            else
+            {
+                Application.ExitThread();
+            }
+        }
 
+        private void cbx_veterinaire_lotspeche_lotsbateau_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            btn_veterinaire_lotspeche_assigneralot.Show();
+        }
+
+        private void btn_veterinaire_lotspeche_assigneralot_Click(object sender, EventArgs e)
+        {
+            if (dg_veterinaire_lotspeche_bacnotlot.SelectedRows.Count < 1)
+            {
+                lbl_veterinaire_lotspeche_isokcreerlot.Text = "Veuillez sélectionner un ou plusieurs bacs";
+                lbl_veterinaire_lotspeche_isokcreerlot.ForeColor = Color.Red;
+                lbl_veterinaire_lotspeche_isokcreerlot.Show();
+            }
+            else
+            {
+                MatchCollection infolot = Regex.Matches(cbx_veterinaire_lotspeche_lotsbateau.Text.Substring(6), @"[a-zA-Z0-9]+");
+                string numLot = infolot[0].Value;
+                string nomEspece = infolot[1].Value;
+                string idTaille = infolot[2].Value;
+                string idQualite = infolot[3].Value;
+                string idPresentation = infolot[4].Value;
+                foreach(DataGridViewRow ligne in dg_veterinaire_lotspeche_bacnotlot.SelectedRows)
+                {
+                    if (nomEspece != ligne.Cells[0].Value.ToString() || idTaille != ligne.Cells[1].Value.ToString() || idQualite != ligne.Cells[2].Value.ToString() || idPresentation != ligne.Cells[3].Value.ToString())
+                    {
+                        lbl_veterinaire_lotspeche_isokcreerlot.Text = "Veuillez sélectionner des bacs dont les\ncaractéristiques ETQP sont les mêmes que le\nlot sélectionné";
+                        lbl_veterinaire_lotspeche_isokcreerlot.ForeColor = Color.Red;
+                        lbl_veterinaire_lotspeche_isokcreerlot.Show();
+                        return;
+                    }
+                }
+                CURS cs = new CURS(chaineConnexion);
+                cs.ReqSelect("SELECT max(id) as maxId FROM bac WHERE idDatePeche='"+Datejour+"' AND idBateau='"+idbateau+"' AND idLot='"+numLot+"'");
+                int maxId = Int32.Parse(cs.champ("maxId").ToString());
+                string requeteInsert = "";
+                foreach (DataGridViewRow ligne in dg_veterinaire_lotspeche_bacnotlot.SelectedRows)
+                {
+                    maxId++;
+                    requeteInsert += ",('" + maxId + "','" + Datejour + "','" + idbateau + "','" + numLot + "','" + ligne.Cells[4].Value.ToString() + "')";
+                    listebacnotlot.Remove(listebacnotlot.Find(ai => ai.Id == ligne.Cells["id"].Value.ToString()));
+                }
+                cs = new CURS(chaineConnexion);
+                cs.ReqAdmin("INSERT INTO bac(id, idDatePeche, idBateau,idLot, idTypeBac) VALUES " + requeteInsert.Substring(1));
+                cbx_veterinaire_lotspeche_listebateaux_SelectionChangeCommitted(sender, e);
+                lbl_veterinaire_lotspeche_isokcreerlot.Text = "Le ou les bacs ont bien été assignées au lot : " + numLot;
+                lbl_veterinaire_lotspeche_isokcreerlot.ForeColor = Color.Blue;
+                lbl_veterinaire_lotspeche_isokcreerlot.Show();
+            }
+        }
 
     }
 }

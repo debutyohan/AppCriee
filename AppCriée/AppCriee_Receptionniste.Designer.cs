@@ -154,7 +154,7 @@ namespace AppCriée
             this.btn_receptionniste_peche_supprimer.TabIndex = 20;
             this.btn_receptionniste_peche_supprimer.Text = "Supprimer";
             this.btn_receptionniste_peche_supprimer.UseVisualStyleBackColor = false;
-            this.btn_receptionniste_peche_supprimer.Click += new System.EventHandler(this.btn_receptionniste_peche_supprimer_Click);
+            this.btn_receptionniste_peche_supprimer.Click += new System.EventHandler(this.btn_receptionniste_creerpeche_supprimer_Click);
             // 
             // lbl_pechejour_allpeche
             // 
@@ -190,7 +190,7 @@ namespace AppCriée
             this.btn_pechejour_creerpeche_valider.TabIndex = 16;
             this.btn_pechejour_creerpeche_valider.Text = "Valider";
             this.btn_pechejour_creerpeche_valider.UseVisualStyleBackColor = false;
-            this.btn_pechejour_creerpeche_valider.Click += new System.EventHandler(this.btn_pechejour_creerpeche_valider_Click);
+            this.btn_pechejour_creerpeche_valider.Click += new System.EventHandler(this.btn_receptionniste_creerpeche_valider_Click);
             // 
             // lbl_ajoutpeche_creerpeche_nombateau
             // 
@@ -225,7 +225,7 @@ namespace AppCriée
             this.btn_ajoutpeche_creerpeche.TabIndex = 13;
             this.btn_ajoutpeche_creerpeche.Text = "Créer une pêche";
             this.btn_ajoutpeche_creerpeche.UseVisualStyleBackColor = false;
-            this.btn_ajoutpeche_creerpeche.Click += new System.EventHandler(this.btn_ajoutpeche_creerpeche_Click);
+            this.btn_ajoutpeche_creerpeche.Click += new System.EventHandler(this.btn_receptionniste_creerpeche_Click);
             // 
             // lbl_ajoutpeche_explication2
             // 
@@ -308,7 +308,7 @@ namespace AppCriée
             this.lbl_ajoutpeche_datejour.Name = "lbl_ajoutpeche_datejour";
             this.lbl_ajoutpeche_datejour.Size = new System.Drawing.Size(172, 18);
             this.lbl_ajoutpeche_datejour.TabIndex = 8;
-            this.lbl_ajoutpeche_datejour.Text = "Date du jour : 10/10/2021";
+            this.lbl_ajoutpeche_datejour.Text = "Date du jour : " + System.DateTime.Today.ToString("dd/MM/yyyy");
             // 
             // lbl_title
             // 

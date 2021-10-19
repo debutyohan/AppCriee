@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -9,8 +10,17 @@ namespace AppCriée
 {
     public class CompleteControl
     {
+
         public static bool RemplirCombobox(ComboBox unComboBox, String requete, String champs, Boolean selectdefault = true, Boolean clear = true)
         {
+            List<String> valuefield = new List<String>();
+            foreach (Match field in Regex.Matches(champs, @"#(?<=\#)(.*?)(?=\#)|[a-zA-Z]+"))
+            {
+                if (field.Value.Substring(0, 1) != "#")
+                {
+                    valuefield.Add(field.Value);
+                }
+            }
             bool ispeche = false;
             string chaineConnexion = ConnectionChain.chaineConnexion();
             if (clear)
@@ -19,25 +29,18 @@ namespace AppCriée
             }
             CURS cs = new CURS(chaineConnexion);
             cs.ReqSelect(requete);
-            if (champs.Contains("("))
+            while (!cs.Fin())
             {
-                string champ1 = champs.Substring(0, champs.IndexOf("("));
-                string champ2 = champs.Substring(champs.IndexOf("(") + 1, champs.Length - champs.IndexOf("(") - 2);
-                while (!cs.Fin())
+                String champtemp = champs;
+                ispeche = true;
+                champtemp = champtemp.Replace("#","");
+                foreach(String unfield in valuefield)
                 {
-                    ispeche = true;
-                    unComboBox.Items.Add(cs.champ(champ1) + "(" + cs.champ(champ2) + ")");
-                    cs.suivant();
+                    champtemp = champtemp.Replace(unfield, cs.champ(unfield).ToString());
                 }
-            }
-            else
-            {
-                while (!cs.Fin())
-                {
-                    ispeche = true;
-                    unComboBox.Items.Add(cs.champ(champs));
-                    cs.suivant();
-                }
+                String champfinale = champtemp;
+                unComboBox.Items.Add(champfinale);
+                cs.suivant();
             }
             cs.fermer();
             if (selectdefault)
@@ -45,6 +48,7 @@ namespace AppCriée
                 if (ispeche)
                 {
                     unComboBox.SelectedItem = unComboBox.Items[0];
+                    //unComboBox.SelectedItem = unComboBox.Items[unComboBox.FindString("Tutbot")];
                 }
                 
             }
