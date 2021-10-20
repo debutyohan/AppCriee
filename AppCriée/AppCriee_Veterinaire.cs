@@ -312,7 +312,7 @@ namespace AppCriée
             {
                 
                 foreach (DataGridViewRow item in dg_veterinaire_bacpoissons_listebac.SelectedRows)
-                {           
+                {
                     string numBacLot = item.Cells[0].Value.ToString();
                     string id = numBacLot.Substring(0, numBacLot.IndexOf("("));
                     string idLot = numBacLot.Substring(numBacLot.IndexOf("(") + 1, numBacLot.Length - numBacLot.IndexOf("(") - 2);
