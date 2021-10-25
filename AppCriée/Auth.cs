@@ -43,6 +43,11 @@ namespace AppCriée
                         g.Show();
                         this.Hide();
                         break;
+                    case 1:
+                        AppCriee_Peseur p = new AppCriee_Peseur(UserConnecte);
+                        p.Show();
+                        this.Hide();
+                        break;
                 }
             }
             else
