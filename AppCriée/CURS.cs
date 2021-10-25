@@ -43,10 +43,10 @@ namespace AppCriée
                 fin = false;
                 suivant();
         }
-        public void ReqSelectPrepare(string req, List<String> field, List<Object> parameters)
+        public void ReqSelectPrepare(string req, List<string> field, List<object> parameters)
         {
             macommand = new MySqlCommand(req, maconnexion);
-            foreach (Object param in parameters)
+            foreach (object param in parameters)
             {
                 macommand.Parameters.Add(new MySqlParameter(field[parameters.IndexOf(param)], param));
             }

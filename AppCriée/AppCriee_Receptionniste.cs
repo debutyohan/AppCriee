@@ -15,13 +15,16 @@ namespace AppCriée
         #region Données privées
         string chaineConnexion = ConnectionChain.chaineConnexion();
         string Datejour = DateTime.Today.ToString("yyyy-MM-dd");
+        AppCriee _authAccueil;
         #endregion
 
         #region Constructeur
-        public AppCriee_Receptionniste(User unutilisateur)
+        public AppCriee_Receptionniste(User unutilisateur, AppCriee authAccueil)
         {
+            _authAccueil = authAccueil;
             InitializeComponent();
             lbl_accueil_bienvenue.Text = "Bienvenue " + unutilisateur.Nom + " " + unutilisateur.Prenom;
+            lbl_receptionniste_datejour.Text = "Date du jour : " + DateTime.Today.ToString("dd/MM/yyyy");
             HiddenObject.Hide(new List<Control> { lbl_pechejour_allpeche, dg_pechejour, lbl_ajoutpeche_creerpeche_nombateau, cbx_ajoutpeche_creerpeche_nombateau, btn_pechejour_creerpeche_valider, lbl_pechejour_pecheok });
         }
         #endregion
@@ -33,14 +36,15 @@ namespace AppCriée
             if (tbc_receptionniste.SelectedTab == tabPeche)
             {
                 CURS cs = new CURS(chaineConnexion);
-                cs.ReqSelect("SELECT count(id) as nbnotpeche FROM bateau WHERE id NOT IN(SELECT DISTINCT idBateau FROM peche WHERE datePeche='" + Datejour + "')");
+                cs.ReqSelectPrepare("SELECT count(id) as nbnotpeche FROM bateau WHERE id NOT IN(SELECT DISTINCT idBateau FROM peche WHERE datePeche=?uneDatejour)", new List<string> { "uneDatejour" }, new List<object> { Datejour });
+                
                 if (cs.champ("nbnotpeche").ToString() == "0")
                 {
                     lbl_pechejour_allpeche.Show();
                     HiddenObject.Hide(new List<Control> { lbl_ajoutpeche_explication, lbl_ajoutpeche_explication2, btn_ajoutpeche_creerpeche });
                 }
                 cs.fermer();
-                if (CompleteControl.RemplirDataGridViewByRequest(dg_pechejour, "SELECT idBateau, nom, immatriculation FROM peche INNER JOIN Bateau ON peche.idBateau=Bateau.id WHERE DatePeche='" + Datejour + "'", new string[] { "nom", "immatriculation" }))
+                if (CompleteControl.RemplirDataGridViewByRequest(dg_pechejour, "SELECT idBateau, nom, immatriculation FROM peche INNER JOIN Bateau ON peche.idBateau=Bateau.id WHERE DatePeche=?uneDatejour", new string[] { "nom", "immatriculation" }, new List<string> { "uneDatejour" }, new List<object> { Datejour })) ;
                 {
                     HiddenObject.Hide(new List<Control> { lbl_ajoutpeche_ispeche });
                     HiddenObject.Show(new List<Control> { dg_pechejour, btn_receptionniste_peche_supprimer });
@@ -128,10 +132,12 @@ namespace AppCriée
         }
         #endregion
 
+        #region Fermeture du Formulaire
         private void AppCriee_Receptionniste_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.ExitThread();
+            _authAccueil.Show();
         }
+        #endregion
     }
- 
+
 }

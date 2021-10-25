@@ -12,34 +12,46 @@ namespace AppCriée
 {
     public partial class AppCriee : Form
     {
+        #region Données privées
         string chaineConnexion = ConnectionChain.chaineConnexion();
+        #endregion
+
+        #region Constructeur
         public AppCriee()
         {
             InitializeComponent();
         }
-        private void button1_Click(object sender, EventArgs e)
+        #endregion
+
+        #region Procédure évènement
+        private void btn_auth_connexion_Click(object sender, EventArgs e)
         {
             String passwdhash = new HashData(tbx_auth_passwd.Text).HashCalculate();
             CURS cs = new CURS(chaineConnexion);
+
             if (!cs.isConnectionOK())
             {
                 return;
             }
+
             cs.ReqSelectPrepare("SELECT count(utilisateur.id) as nbUser, utilisateur.id as iduser, login, nomuser, prenomuser, idtypeuser, libelle FROM utilisateur INNER JOIN typeutilisateur ON utilisateur.idtypeuser = typeutilisateur.id WHERE login=?unlogin AND pwd=?unpassword",new List<string> {"unlogin","unpassword"}, new List<object> { tbx_auth_id.Text.ToString(), passwdhash });
-            string nbUser = cs.champ("nbUser").ToString();
             
-            if (nbUser == "1")
+            tbx_auth_id.Text = "";
+            tbx_auth_passwd.Text = "";
+
+            if (cs.champ("nbUser").ToString() == "1")
             {
                 User UserConnecte = new User(Int32.Parse(cs.champ("iduser").ToString()), cs.champ("login").ToString(), cs.champ("nomuser").ToString(), cs.champ("prenomuser").ToString(), Int32.Parse(cs.champ("idtypeuser").ToString()), cs.champ("libelle").ToString());
+                
                 switch (UserConnecte.Type)
                 {
                     case 3:
-                        AppCriee_Receptionniste f = new AppCriee_Receptionniste(UserConnecte);
+                        AppCriee_Receptionniste f = new AppCriee_Receptionniste(UserConnecte, this);
                         f.Show();
                         this.Hide();
                         break;
                     case 2:
-                        AppCriee_Veterinaire g = new AppCriee_Veterinaire(UserConnecte);
+                        AppCriee_Veterinaire g = new AppCriee_Veterinaire(UserConnecte, this);
                         g.Show();
                         this.Hide();
                         break;
@@ -48,34 +60,25 @@ namespace AppCriée
             else
             {
                 lbl_auth_falseidpasswd.Visible = true;
-                tbx_auth_id.Text = "";
-                tbx_auth_passwd.Text = "";
             }
+
+            cs.fermer();
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btn_auth_quitter_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void chx_auth_showchar_CheckedChanged(object sender, EventArgs e)
         {
             if (chx_auth_showchar.Checked)
                 tbx_auth_passwd.UseSystemPasswordChar = false;
             else
                 tbx_auth_passwd.UseSystemPasswordChar = true;
         }
+        #endregion
 
-        private void AppCriee_KeyUp(object sender, KeyEventArgs e)
-        {
-            int keyvalue = e.KeyValue;
-            keyvalue = keyvalue;
-        }
-
-        private void AppCriee_Enter(object sender, EventArgs e)
-        {
-            string test = "e";
-        }
     }
 }

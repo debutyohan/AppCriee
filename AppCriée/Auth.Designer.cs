@@ -52,7 +52,7 @@ namespace AppCriée
             this.btn_auth_connexion.TabIndex = 4;
             this.btn_auth_connexion.Text = "Connexion";
             this.btn_auth_connexion.UseVisualStyleBackColor = false;
-            this.btn_auth_connexion.Click += new System.EventHandler(this.button1_Click);
+            this.btn_auth_connexion.Click += new System.EventHandler(this.btn_auth_connexion_Click);
             // 
             // tbx_auth_id
             // 
@@ -112,7 +112,7 @@ namespace AppCriée
             this.btn_auth_quitter.TabIndex = 6;
             this.btn_auth_quitter.Text = "Quitter";
             this.btn_auth_quitter.UseVisualStyleBackColor = false;
-            this.btn_auth_quitter.Click += new System.EventHandler(this.button2_Click);
+            this.btn_auth_quitter.Click += new System.EventHandler(this.btn_auth_quitter_Click);
             // 
             // chx_auth_showchar
             // 
@@ -124,7 +124,7 @@ namespace AppCriée
             this.chx_auth_showchar.TabIndex = 4;
             this.chx_auth_showchar.Text = "Afficher les caractères";
             this.chx_auth_showchar.UseVisualStyleBackColor = true;
-            this.chx_auth_showchar.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.chx_auth_showchar.CheckedChanged += new System.EventHandler(this.chx_auth_showchar_CheckedChanged);
             // 
             // lbl_auth_falseidpasswd
             // 
@@ -169,8 +169,6 @@ namespace AppCriée
             this.Name = "AppCriee";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AppCriée";
-            this.Enter += new System.EventHandler(this.AppCriee_Enter);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.AppCriee_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
