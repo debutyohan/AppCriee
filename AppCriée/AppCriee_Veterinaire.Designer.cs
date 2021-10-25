@@ -35,6 +35,11 @@ namespace AppCriée
             this.lbl_veterinaire_accueil_role = new System.Windows.Forms.Label();
             this.lbl_veterinaire_accueil_bienvenue = new System.Windows.Forms.Label();
             this.tbp_veterinaire_bacpoisson = new System.Windows.Forms.TabPage();
+            this.lbl_veterinaire_bacpoissons_plusbacs = new System.Windows.Forms.Label();
+            this.lbl_veterinaire_bacpoissons_choixlot = new System.Windows.Forms.Label();
+            this.cbx_veterinaire_bacpoissons_choixlot = new System.Windows.Forms.ComboBox();
+            this.rbtn_veterinaire_bacpoissons_bacparlots = new System.Windows.Forms.RadioButton();
+            this.rbtn_veterinaire_bacpoissons_touslesbacs = new System.Windows.Forms.RadioButton();
             this.btn_veterinaire_bacpoissons_modifierbacsValider = new System.Windows.Forms.Button();
             this.lbl_veterinaire_bacpoissons_modifierbacs = new System.Windows.Forms.Label();
             this.lbl_veterinaire_bacpoissons_validationok = new System.Windows.Forms.Label();
@@ -144,7 +149,7 @@ namespace AppCriée
             this.tbp_veterinaire_accueil.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbp_veterinaire_accueil.Name = "tbp_veterinaire_accueil";
             this.tbp_veterinaire_accueil.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tbp_veterinaire_accueil.Size = new System.Drawing.Size(1077, 663);
+            this.tbp_veterinaire_accueil.Size = new System.Drawing.Size(1077, 651);
             this.tbp_veterinaire_accueil.TabIndex = 0;
             this.tbp_veterinaire_accueil.Text = "Accueil";
             this.tbp_veterinaire_accueil.UseVisualStyleBackColor = true;
@@ -173,6 +178,11 @@ namespace AppCriée
             // 
             // tbp_veterinaire_bacpoisson
             // 
+            this.tbp_veterinaire_bacpoisson.Controls.Add(this.lbl_veterinaire_bacpoissons_plusbacs);
+            this.tbp_veterinaire_bacpoisson.Controls.Add(this.lbl_veterinaire_bacpoissons_choixlot);
+            this.tbp_veterinaire_bacpoisson.Controls.Add(this.cbx_veterinaire_bacpoissons_choixlot);
+            this.tbp_veterinaire_bacpoisson.Controls.Add(this.rbtn_veterinaire_bacpoissons_bacparlots);
+            this.tbp_veterinaire_bacpoisson.Controls.Add(this.rbtn_veterinaire_bacpoissons_touslesbacs);
             this.tbp_veterinaire_bacpoisson.Controls.Add(this.btn_veterinaire_bacpoissons_modifierbacsValider);
             this.tbp_veterinaire_bacpoisson.Controls.Add(this.lbl_veterinaire_bacpoissons_modifierbacs);
             this.tbp_veterinaire_bacpoisson.Controls.Add(this.lbl_veterinaire_bacpoissons_validationok);
@@ -207,6 +217,68 @@ namespace AppCriée
             this.tbp_veterinaire_bacpoisson.TabIndex = 1;
             this.tbp_veterinaire_bacpoisson.Text = "Bac de poissons";
             this.tbp_veterinaire_bacpoisson.UseVisualStyleBackColor = true;
+            // 
+            // lbl_veterinaire_bacpoissons_plusbacs
+            // 
+            this.lbl_veterinaire_bacpoissons_plusbacs.AutoSize = true;
+            this.lbl_veterinaire_bacpoissons_plusbacs.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
+            this.lbl_veterinaire_bacpoissons_plusbacs.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lbl_veterinaire_bacpoissons_plusbacs.Location = new System.Drawing.Point(117, 224);
+            this.lbl_veterinaire_bacpoissons_plusbacs.Name = "lbl_veterinaire_bacpoissons_plusbacs";
+            this.lbl_veterinaire_bacpoissons_plusbacs.Size = new System.Drawing.Size(118, 24);
+            this.lbl_veterinaire_bacpoissons_plusbacs.TabIndex = 39;
+            this.lbl_veterinaire_bacpoissons_plusbacs.Text = "Plus de bacs";
+            this.lbl_veterinaire_bacpoissons_plusbacs.Visible = false;
+            // 
+            // lbl_veterinaire_bacpoissons_choixlot
+            // 
+            this.lbl_veterinaire_bacpoissons_choixlot.AutoSize = true;
+            this.lbl_veterinaire_bacpoissons_choixlot.CausesValidation = false;
+            this.lbl_veterinaire_bacpoissons_choixlot.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.lbl_veterinaire_bacpoissons_choixlot.Location = new System.Drawing.Point(787, 60);
+            this.lbl_veterinaire_bacpoissons_choixlot.Name = "lbl_veterinaire_bacpoissons_choixlot";
+            this.lbl_veterinaire_bacpoissons_choixlot.Size = new System.Drawing.Size(151, 26);
+            this.lbl_veterinaire_bacpoissons_choixlot.TabIndex = 38;
+            this.lbl_veterinaire_bacpoissons_choixlot.Text = "Choisir un lot :";
+            this.lbl_veterinaire_bacpoissons_choixlot.Visible = false;
+            // 
+            // cbx_veterinaire_bacpoissons_choixlot
+            // 
+            this.cbx_veterinaire_bacpoissons_choixlot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_veterinaire_bacpoissons_choixlot.FormattingEnabled = true;
+            this.cbx_veterinaire_bacpoissons_choixlot.Location = new System.Drawing.Point(792, 100);
+            this.cbx_veterinaire_bacpoissons_choixlot.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbx_veterinaire_bacpoissons_choixlot.Name = "cbx_veterinaire_bacpoissons_choixlot";
+            this.cbx_veterinaire_bacpoissons_choixlot.Size = new System.Drawing.Size(209, 24);
+            this.cbx_veterinaire_bacpoissons_choixlot.TabIndex = 37;
+            this.cbx_veterinaire_bacpoissons_choixlot.Visible = false;
+            this.cbx_veterinaire_bacpoissons_choixlot.SelectionChangeCommitted += new System.EventHandler(this.cbx_veterinaire_bacpoissons_choixlot_SelectionChangeCommitted);
+            // 
+            // rbtn_veterinaire_bacpoissons_bacparlots
+            // 
+            this.rbtn_veterinaire_bacpoissons_bacparlots.AutoSize = true;
+            this.rbtn_veterinaire_bacpoissons_bacparlots.Location = new System.Drawing.Point(581, 103);
+            this.rbtn_veterinaire_bacpoissons_bacparlots.Name = "rbtn_veterinaire_bacpoissons_bacparlots";
+            this.rbtn_veterinaire_bacpoissons_bacparlots.Size = new System.Drawing.Size(104, 21);
+            this.rbtn_veterinaire_bacpoissons_bacparlots.TabIndex = 36;
+            this.rbtn_veterinaire_bacpoissons_bacparlots.Text = "Bacs par lot";
+            this.rbtn_veterinaire_bacpoissons_bacparlots.UseVisualStyleBackColor = true;
+            this.rbtn_veterinaire_bacpoissons_bacparlots.Visible = false;
+            this.rbtn_veterinaire_bacpoissons_bacparlots.CheckedChanged += new System.EventHandler(this.rbtn_veterinaire_bacpoissons_CheckedChanged);
+            // 
+            // rbtn_veterinaire_bacpoissons_touslesbacs
+            // 
+            this.rbtn_veterinaire_bacpoissons_touslesbacs.AutoSize = true;
+            this.rbtn_veterinaire_bacpoissons_touslesbacs.Checked = true;
+            this.rbtn_veterinaire_bacpoissons_touslesbacs.Location = new System.Drawing.Point(581, 76);
+            this.rbtn_veterinaire_bacpoissons_touslesbacs.Name = "rbtn_veterinaire_bacpoissons_touslesbacs";
+            this.rbtn_veterinaire_bacpoissons_touslesbacs.Size = new System.Drawing.Size(117, 21);
+            this.rbtn_veterinaire_bacpoissons_touslesbacs.TabIndex = 35;
+            this.rbtn_veterinaire_bacpoissons_touslesbacs.TabStop = true;
+            this.rbtn_veterinaire_bacpoissons_touslesbacs.Text = "Tous les bacs";
+            this.rbtn_veterinaire_bacpoissons_touslesbacs.UseVisualStyleBackColor = true;
+            this.rbtn_veterinaire_bacpoissons_touslesbacs.Visible = false;
+            this.rbtn_veterinaire_bacpoissons_touslesbacs.CheckedChanged += new System.EventHandler(this.rbtn_veterinaire_bacpoissons_CheckedChanged);
             // 
             // btn_veterinaire_bacpoissons_modifierbacsValider
             // 
@@ -537,7 +609,7 @@ namespace AppCriée
             // 
             this.cbx_veterinaire_bacpoissons_listebateaux.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_veterinaire_bacpoissons_listebateaux.FormattingEnabled = true;
-            this.cbx_veterinaire_bacpoissons_listebateaux.Location = new System.Drawing.Point(589, 87);
+            this.cbx_veterinaire_bacpoissons_listebateaux.Location = new System.Drawing.Point(277, 87);
             this.cbx_veterinaire_bacpoissons_listebateaux.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbx_veterinaire_bacpoissons_listebateaux.Name = "cbx_veterinaire_bacpoissons_listebateaux";
             this.cbx_veterinaire_bacpoissons_listebateaux.Size = new System.Drawing.Size(199, 24);
@@ -548,7 +620,7 @@ namespace AppCriée
             // 
             this.lbl_veterinaire_bacpoissons_choixbateau.AutoSize = true;
             this.lbl_veterinaire_bacpoissons_choixbateau.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_veterinaire_bacpoissons_choixbateau.Location = new System.Drawing.Point(400, 85);
+            this.lbl_veterinaire_bacpoissons_choixbateau.Location = new System.Drawing.Point(61, 85);
             this.lbl_veterinaire_bacpoissons_choixbateau.Name = "lbl_veterinaire_bacpoissons_choixbateau";
             this.lbl_veterinaire_bacpoissons_choixbateau.Size = new System.Drawing.Size(167, 24);
             this.lbl_veterinaire_bacpoissons_choixbateau.TabIndex = 10;
@@ -1195,5 +1267,10 @@ namespace AppCriée
         private System.Windows.Forms.Label lbl_veterinaire_bacpoissons_modifierbacs;
         private System.Windows.Forms.Button btn_veterinaire_bacpoissons_modifierbacsValider;
         private System.Windows.Forms.Label lbl_veterinaire_datejour;
+        private System.Windows.Forms.RadioButton rbtn_veterinaire_bacpoissons_bacparlots;
+        private System.Windows.Forms.RadioButton rbtn_veterinaire_bacpoissons_touslesbacs;
+        private System.Windows.Forms.Label lbl_veterinaire_bacpoissons_choixlot;
+        private System.Windows.Forms.ComboBox cbx_veterinaire_bacpoissons_choixlot;
+        private System.Windows.Forms.Label lbl_veterinaire_bacpoissons_plusbacs;
     }
 }
