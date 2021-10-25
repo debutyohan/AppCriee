@@ -52,6 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppCriee_Peseur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppCriee_Peseur.Designer.cs">
+      <DependentUpon>AppCriee_Peseur.cs</DependentUpon>
+    </Compile>
     <Compile Include="AppCriee_Receptionniste.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +87,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
+    <EmbeddedResource Include="AppCriee_Peseur.resx">
+      <DependentUpon>AppCriee_Peseur.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AppCriee_Receptionniste.resx">
       <DependentUpon>AppCriee_Receptionniste.cs</DependentUpon>
     </EmbeddedResource>
