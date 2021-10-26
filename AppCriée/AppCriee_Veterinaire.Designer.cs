@@ -981,7 +981,7 @@ namespace AppCriée
             // 
             this.cbx_veterinaire_lotspeche_listebateaux.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_veterinaire_lotspeche_listebateaux.FormattingEnabled = true;
-            this.cbx_veterinaire_lotspeche_listebateaux.Location = new System.Drawing.Point(589, 87);
+            this.cbx_veterinaire_lotspeche_listebateaux.Location = new System.Drawing.Point(256, 87);
             this.cbx_veterinaire_lotspeche_listebateaux.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbx_veterinaire_lotspeche_listebateaux.Name = "cbx_veterinaire_lotspeche_listebateaux";
             this.cbx_veterinaire_lotspeche_listebateaux.Size = new System.Drawing.Size(199, 24);
@@ -993,7 +993,7 @@ namespace AppCriée
             // 
             this.lbl_veterinaire_lotspeche_choixbateau.AutoSize = true;
             this.lbl_veterinaire_lotspeche_choixbateau.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_veterinaire_lotspeche_choixbateau.Location = new System.Drawing.Point(400, 85);
+            this.lbl_veterinaire_lotspeche_choixbateau.Location = new System.Drawing.Point(59, 85);
             this.lbl_veterinaire_lotspeche_choixbateau.Name = "lbl_veterinaire_lotspeche_choixbateau";
             this.lbl_veterinaire_lotspeche_choixbateau.Size = new System.Drawing.Size(167, 24);
             this.lbl_veterinaire_lotspeche_choixbateau.TabIndex = 11;
