@@ -31,13 +31,23 @@ namespace AppCriée
             _authAccueil = authAccueil;
             lbl_veterinaire_accueil_bienvenue.Text = "Bienvenue " + unutilisateur.Nom + " " + unutilisateur.Prenom;
             lbl_veterinaire_datejour.Text = "Date du jour : " + DateTime.Today.ToString("dd/MM/yyyy");
-            HiddenObject.Hide(new List<Control> { lbl_veterinaire_bacpoissons_choixbateau, cbx_veterinaire_bacpoissons_listebateaux, btn_veterinaire_bacpoissons_creerbacs, btn_veterinaire_bacpoissons_creerlots, btn_veterinaire_bacpoissons_modifierbacs, btn_veterinaire_bacpoissons_supprimerbacs, dg_veterinaire_bacpoissons_listebac, lbl_veterinaire_bacpoissons_isbac, lbl_veterinaire_bacpoissons_creationbac, lbl_veterinaire_bacpoissons_espece, lbl_veterinaire_bacpoissons_presentation, lbl_veterinaire_bacpoissons_taille, lbl_veterinaire_bacpoissons_qualite, lbl_veterinaire_bacpoissons_typebac, cbx_veterinaire_bacpoissons_espece, cbx_veterinaire_bacpoissons_presentation, cbx_veterinaire_bacpoissons_taille, cbx_veterinaire_bacpoissons_qualite, cbx_veterinaire_bacpoissons_typebac, btn_veterinaire_bacpoissons_valider, lbl_veterinaire_bacpoissons_validationok });
+            HiddenObject.Hide(new List<Control> { lbl_veterinaire_bacpoissons_choixbateau, scbx_veterinaire_bacpoissons_listebateaux, btn_veterinaire_bacpoissons_creerbacs, btn_veterinaire_bacpoissons_creerlots, btn_veterinaire_bacpoissons_modifierbacs, btn_veterinaire_bacpoissons_supprimerbacs, dg_veterinaire_bacpoissons_listebac, lbl_veterinaire_bacpoissons_isbac, lbl_veterinaire_bacpoissons_creationbac, lbl_veterinaire_bacpoissons_espece, lbl_veterinaire_bacpoissons_presentation, lbl_veterinaire_bacpoissons_taille, lbl_veterinaire_bacpoissons_qualite, lbl_veterinaire_bacpoissons_typebac, cbx_veterinaire_bacpoissons_espece, cbx_veterinaire_bacpoissons_presentation, cbx_veterinaire_bacpoissons_taille, cbx_veterinaire_bacpoissons_qualite, cbx_veterinaire_bacpoissons_typebac, btn_veterinaire_bacpoissons_valider, lbl_veterinaire_bacpoissons_validationok });
+            tbp_veterinaire_lotspeche.Enabled = false;
+            if (CompleteControl.RemplirCombobox(cbx_veterinaire_bacpoissons_listebateaux, "SELECT idBateau, nom, immatriculation FROM peche INNER JOIN Bateau ON peche.idBateau=Bateau.id WHERE DatePeche='" + Datejour + "'", "nom(immatriculation)", false))
+            {
+                HiddenObject.Hide(new List<Control> { lbl_veterinaire_lotspeche_ispeche });
+                tbp_veterinaire_lotspeche.Enabled = true;
+            }
         }
         #endregion
 
         #region Changement d'onglets
         private void tbc_veterinaire_Selected(object sender, TabControlEventArgs e)
         {
+            if (!(tbp_veterinaire_lotspeche.Enabled))
+            {
+                tbc_veterinaire.SelectedTab = tbp_veterinaire_accueil;
+            }
             switch (e.TabPage.Name)
             {
                 case "tbp_veterinaire_bacpoisson":
@@ -614,10 +624,40 @@ namespace AppCriée
             }
             else
             {
-                _authAccueil.Show();
+                DialogResult result = MessageBox.Show("Confirmez-vous la déconnexion ?", "Confirmation de déconnexion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (result == DialogResult.Yes)
+                {
+                    _authAccueil.Show();
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
             }
         }
         #endregion
 
+        private Dictionary<TabPage, Color> TabColors = new Dictionary<TabPage, Color>();
+        private void SetTabHeader(TabPage page, Color color)
+        {
+            TabColors[page] = color;
+            tbc_veterinaire.Invalidate();
+        }
+        private void tbc_veterinaire_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            
+            using (Brush br = new SolidBrush(Color.White))
+            {
+                //e.Graphics.FillRectangle(br, e.Bounds);
+                SizeF sz = e.Graphics.MeasureString(tbc_veterinaire.TabPages[e.Index].Text, e.Font);
+                e.Graphics.DrawString(tbc_veterinaire.TabPages[e.Index].Text, e.Font, Brushes.Gray, e.Bounds.Left + (e.Bounds.Width - sz.Width) / 2, e.Bounds.Top + (e.Bounds.Height - sz.Height) / 2 + 1);
+                /*
+                Rectangle rect = e.Bounds;
+                rect.Offset(0, 1);
+                rect.Inflate(0, -1);
+                e.DrawFocusRectangle();
+                */
+            }
+        }
     }
 }
