@@ -62,13 +62,6 @@ namespace AppCriée
             this.btn_veterinaire_bacpoissons_supprimerbacs = new System.Windows.Forms.Button();
             this.btn_veterinaire_bacpoissons_creerbacs = new System.Windows.Forms.Button();
             this.dg_veterinaire_bacpoissons_listebac = new System.Windows.Forms.DataGridView();
-            this.numBac = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.espece = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.taille = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.qualite = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.presentation = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.typebac = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdBac = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cbx_veterinaire_bacpoissons_listebateaux = new System.Windows.Forms.ComboBox();
             this.lbl_veterinaire_bacpoissons_choixbateau = new System.Windows.Forms.Label();
             this.lbl_veterinaire_bacpoissons_ispeche = new System.Windows.Forms.Label();
@@ -93,12 +86,6 @@ namespace AppCriée
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbl_veterinaire_lotspeche_bacnotlot = new System.Windows.Forms.Label();
             this.dg_veterinaire_lotspeche_lotsbateau = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbl_veterinaire_lotspeche_lotsbateau = new System.Windows.Forms.Label();
             this.cbx_veterinaire_lotspeche_listebateaux = new System.Windows.Forms.ComboBox();
             this.lbl_veterinaire_lotspeche_choixbateau = new System.Windows.Forms.Label();
@@ -108,6 +95,8 @@ namespace AppCriée
             this.lbl_veterinaire_touslots_ispeche = new System.Windows.Forms.Label();
             this.lbl_veterinaire_touslots_title = new System.Windows.Forms.Label();
             this.dg_veterinaire_touslots_alllot = new System.Windows.Forms.DataGridView();
+            this.lbl_veterinaire_datejour = new System.Windows.Forms.Label();
+            this.pbx_veterinaire_deconnexion = new System.Windows.Forms.PictureBox();
             this.nomBateau = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numLot = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -115,7 +104,21 @@ namespace AppCriée
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nbbac = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lbl_veterinaire_datejour = new System.Windows.Forms.Label();
+            this.IdduBateau = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdduLot = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numBac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.espece = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.taille = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qualite = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.presentation = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.typebac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdBac = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbc_veterinaire.SuspendLayout();
             this.tbp_veterinaire_accueil.SuspendLayout();
             this.tbp_veterinaire_bacpoisson.SuspendLayout();
@@ -125,6 +128,7 @@ namespace AppCriée
             ((System.ComponentModel.ISupportInitialize)(this.dg_veterinaire_lotspeche_lotsbateau)).BeginInit();
             this.tbp_veterinaire_touslots.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_veterinaire_touslots_alllot)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbx_veterinaire_deconnexion)).BeginInit();
             this.SuspendLayout();
             // 
             // tbc_veterinaire
@@ -139,6 +143,7 @@ namespace AppCriée
             this.tbc_veterinaire.SelectedIndex = 0;
             this.tbc_veterinaire.Size = new System.Drawing.Size(1085, 680);
             this.tbc_veterinaire.TabIndex = 0;
+            this.tbc_veterinaire.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tbc_veterinaire_DrawItem);
             this.tbc_veterinaire.Selected += new System.Windows.Forms.TabControlEventHandler(this.tbc_veterinaire_Selected);
             // 
             // tbp_veterinaire_accueil
@@ -547,64 +552,6 @@ namespace AppCriée
             this.dg_veterinaire_bacpoissons_listebac.Size = new System.Drawing.Size(595, 190);
             this.dg_veterinaire_bacpoissons_listebac.TabIndex = 12;
             // 
-            // numBac
-            // 
-            this.numBac.HeaderText = "Numéro de Bac (Numéro de Lot)";
-            this.numBac.MinimumWidth = 6;
-            this.numBac.Name = "numBac";
-            this.numBac.ReadOnly = true;
-            this.numBac.Width = 70;
-            // 
-            // espece
-            // 
-            this.espece.HeaderText = "Espèce";
-            this.espece.MinimumWidth = 6;
-            this.espece.Name = "espece";
-            this.espece.ReadOnly = true;
-            this.espece.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.espece.Width = 65;
-            // 
-            // taille
-            // 
-            this.taille.HeaderText = "Taille";
-            this.taille.MinimumWidth = 6;
-            this.taille.Name = "taille";
-            this.taille.ReadOnly = true;
-            this.taille.Width = 65;
-            // 
-            // qualite
-            // 
-            this.qualite.HeaderText = "Qualité";
-            this.qualite.MinimumWidth = 6;
-            this.qualite.Name = "qualite";
-            this.qualite.ReadOnly = true;
-            this.qualite.Width = 65;
-            // 
-            // presentation
-            // 
-            this.presentation.HeaderText = "Présentation";
-            this.presentation.MinimumWidth = 6;
-            this.presentation.Name = "presentation";
-            this.presentation.ReadOnly = true;
-            this.presentation.Width = 75;
-            // 
-            // typebac
-            // 
-            this.typebac.HeaderText = "Type Bac";
-            this.typebac.MinimumWidth = 6;
-            this.typebac.Name = "typebac";
-            this.typebac.ReadOnly = true;
-            this.typebac.Width = 75;
-            // 
-            // IdBac
-            // 
-            this.IdBac.HeaderText = "Id";
-            this.IdBac.MinimumWidth = 6;
-            this.IdBac.Name = "IdBac";
-            this.IdBac.ReadOnly = true;
-            this.IdBac.Visible = false;
-            this.IdBac.Width = 125;
-            // 
             // cbx_veterinaire_bacpoissons_listebateaux
             // 
             this.cbx_veterinaire_bacpoissons_listebateaux.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -904,7 +851,8 @@ namespace AppCriée
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6});
+            this.dataGridViewTextBoxColumn6,
+            this.IdduLot});
             this.dg_veterinaire_lotspeche_lotsbateau.GridColor = System.Drawing.SystemColors.Control;
             this.dg_veterinaire_lotspeche_lotsbateau.Location = new System.Drawing.Point(36, 177);
             this.dg_veterinaire_lotspeche_lotsbateau.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -916,55 +864,6 @@ namespace AppCriée
             this.dg_veterinaire_lotspeche_lotsbateau.Size = new System.Drawing.Size(659, 154);
             this.dg_veterinaire_lotspeche_lotsbateau.TabIndex = 22;
             this.dg_veterinaire_lotspeche_lotsbateau.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Numéro de Lot";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 50;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Espèce";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn2.Width = 120;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Taille";
-            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 65;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Qualité";
-            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 65;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Présentation";
-            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 75;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "Nombre de bacs";
-            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Width = 75;
             // 
             // lbl_veterinaire_lotspeche_lotsbateau
             // 
@@ -1075,7 +974,8 @@ namespace AppCriée
             this.dataGridViewTextBoxColumn8,
             this.dataGridViewTextBoxColumn9,
             this.dataGridViewTextBoxColumn10,
-            this.nbbac});
+            this.nbbac,
+            this.IdduBateau});
             this.dg_veterinaire_touslots_alllot.GridColor = System.Drawing.SystemColors.Control;
             this.dg_veterinaire_touslots_alllot.Location = new System.Drawing.Point(59, 146);
             this.dg_veterinaire_touslots_alllot.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1087,6 +987,29 @@ namespace AppCriée
             this.dg_veterinaire_touslots_alllot.Size = new System.Drawing.Size(957, 364);
             this.dg_veterinaire_touslots_alllot.TabIndex = 38;
             this.dg_veterinaire_touslots_alllot.Visible = false;
+            // 
+            // lbl_veterinaire_datejour
+            // 
+            this.lbl_veterinaire_datejour.AutoSize = true;
+            this.lbl_veterinaire_datejour.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_veterinaire_datejour.Location = new System.Drawing.Point(771, 693);
+            this.lbl_veterinaire_datejour.Name = "lbl_veterinaire_datejour";
+            this.lbl_veterinaire_datejour.Size = new System.Drawing.Size(217, 24);
+            this.lbl_veterinaire_datejour.TabIndex = 10;
+            this.lbl_veterinaire_datejour.Text = "Date du jour : 16/10/2021";
+            // 
+            // pbx_veterinaire_deconnexion
+            // 
+            this.pbx_veterinaire_deconnexion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pbx_veterinaire_deconnexion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbx_veterinaire_deconnexion.Image = global::AppCriée.Properties.Resources.computer_icons_login_icon_design_exit_5abfc840bf8ca4_9038982415225180807846;
+            this.pbx_veterinaire_deconnexion.Location = new System.Drawing.Point(1019, 685);
+            this.pbx_veterinaire_deconnexion.Name = "pbx_veterinaire_deconnexion";
+            this.pbx_veterinaire_deconnexion.Size = new System.Drawing.Size(45, 45);
+            this.pbx_veterinaire_deconnexion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbx_veterinaire_deconnexion.TabIndex = 21;
+            this.pbx_veterinaire_deconnexion.TabStop = false;
+            this.pbx_veterinaire_deconnexion.Click += new System.EventHandler(this.pbx_veterinaire_deconnexion_Click);
             // 
             // nomBateau
             // 
@@ -1111,7 +1034,6 @@ namespace AppCriée
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
             this.dataGridViewTextBoxColumn7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn7.Width = 80;
             // 
             // dataGridViewTextBoxColumn8
             // 
@@ -1145,21 +1067,137 @@ namespace AppCriée
             this.nbbac.ReadOnly = true;
             this.nbbac.Width = 125;
             // 
-            // lbl_veterinaire_datejour
+            // IdduBateau
             // 
-            this.lbl_veterinaire_datejour.AutoSize = true;
-            this.lbl_veterinaire_datejour.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_veterinaire_datejour.Location = new System.Drawing.Point(855, 687);
-            this.lbl_veterinaire_datejour.Name = "lbl_veterinaire_datejour";
-            this.lbl_veterinaire_datejour.Size = new System.Drawing.Size(217, 24);
-            this.lbl_veterinaire_datejour.TabIndex = 10;
-            this.lbl_veterinaire_datejour.Text = "Date du jour : 16/10/2021";
+            this.IdduBateau.HeaderText = "idbateau";
+            this.IdduBateau.MinimumWidth = 6;
+            this.IdduBateau.Name = "IdduBateau";
+            this.IdduBateau.ReadOnly = true;
+            this.IdduBateau.Visible = false;
+            this.IdduBateau.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Numéro de Lot";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Espèce";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn2.Width = 120;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Taille";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 65;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Qualité";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 65;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Présentation";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 75;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "Nombre de bacs";
+            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 75;
+            // 
+            // IdduLot
+            // 
+            this.IdduLot.HeaderText = "idlot";
+            this.IdduLot.MinimumWidth = 6;
+            this.IdduLot.Name = "IdduLot";
+            this.IdduLot.ReadOnly = true;
+            this.IdduLot.Visible = false;
+            this.IdduLot.Width = 125;
+            // 
+            // numBac
+            // 
+            this.numBac.HeaderText = "Numéro de Bac (Numéro de Lot)";
+            this.numBac.MinimumWidth = 6;
+            this.numBac.Name = "numBac";
+            this.numBac.ReadOnly = true;
+            this.numBac.Width = 70;
+            // 
+            // espece
+            // 
+            this.espece.HeaderText = "Espèce";
+            this.espece.MinimumWidth = 6;
+            this.espece.Name = "espece";
+            this.espece.ReadOnly = true;
+            this.espece.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.espece.Width = 90;
+            // 
+            // taille
+            // 
+            this.taille.HeaderText = "Taille";
+            this.taille.MinimumWidth = 6;
+            this.taille.Name = "taille";
+            this.taille.ReadOnly = true;
+            this.taille.Width = 65;
+            // 
+            // qualite
+            // 
+            this.qualite.HeaderText = "Qualité";
+            this.qualite.MinimumWidth = 6;
+            this.qualite.Name = "qualite";
+            this.qualite.ReadOnly = true;
+            this.qualite.Width = 60;
+            // 
+            // presentation
+            // 
+            this.presentation.HeaderText = "Présentation";
+            this.presentation.MinimumWidth = 6;
+            this.presentation.Name = "presentation";
+            this.presentation.ReadOnly = true;
+            this.presentation.Width = 60;
+            // 
+            // typebac
+            // 
+            this.typebac.HeaderText = "Type Bac";
+            this.typebac.MinimumWidth = 6;
+            this.typebac.Name = "typebac";
+            this.typebac.ReadOnly = true;
+            this.typebac.Width = 60;
+            // 
+            // IdBac
+            // 
+            this.IdBac.HeaderText = "Id";
+            this.IdBac.MinimumWidth = 6;
+            this.IdBac.Name = "IdBac";
+            this.IdBac.ReadOnly = true;
+            this.IdBac.Visible = false;
+            this.IdBac.Width = 125;
             // 
             // AppCriee_Veterinaire
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1087, 720);
+            this.ClientSize = new System.Drawing.Size(1087, 736);
+            this.Controls.Add(this.pbx_veterinaire_deconnexion);
             this.Controls.Add(this.lbl_veterinaire_datejour);
             this.Controls.Add(this.tbc_veterinaire);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1179,6 +1217,7 @@ namespace AppCriée
             this.tbp_veterinaire_touslots.ResumeLayout(false);
             this.tbp_veterinaire_touslots.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_veterinaire_touslots_alllot)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbx_veterinaire_deconnexion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1229,21 +1268,8 @@ namespace AppCriée
         private System.Windows.Forms.Label lbl_veterinaire_lotspeche_islots;
         private System.Windows.Forms.Label lbl_veterinaire_lotspeche_isbacsnotlot;
         private System.Windows.Forms.Label lbl_veterinaire_lotspeche_isbacs;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.Label lbl_veterinaire_lotspeche_isokcreerlot;
         private System.Windows.Forms.Label lbl_veterinaire_bacpoissons_validationok;
-        private System.Windows.Forms.DataGridViewTextBoxColumn numBac;
-        private System.Windows.Forms.DataGridViewTextBoxColumn espece;
-        private System.Windows.Forms.DataGridViewTextBoxColumn taille;
-        private System.Windows.Forms.DataGridViewTextBoxColumn qualite;
-        private System.Windows.Forms.DataGridViewTextBoxColumn presentation;
-        private System.Windows.Forms.DataGridViewTextBoxColumn typebac;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdBac;
         private System.Windows.Forms.Label lbl_veterinaire_lotspeche_assignerlot;
         private System.Windows.Forms.Label lbl_veterinaire_lotspeche_info;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgtbx_bacnotlots_espece;
@@ -1257,13 +1283,6 @@ namespace AppCriée
         private System.Windows.Forms.Label lbl_veterinaire_touslots_islots;
         private System.Windows.Forms.Label lbl_veterinaire_touslots_ispeche;
         private System.Windows.Forms.Label lbl_veterinaire_touslots_title;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nomBateau;
-        private System.Windows.Forms.DataGridViewTextBoxColumn numLot;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nbbac;
         private System.Windows.Forms.Label lbl_veterinaire_bacpoissons_modifierbacs;
         private System.Windows.Forms.Button btn_veterinaire_bacpoissons_modifierbacsValider;
         private System.Windows.Forms.Label lbl_veterinaire_datejour;
@@ -1272,5 +1291,28 @@ namespace AppCriée
         private System.Windows.Forms.Label lbl_veterinaire_bacpoissons_choixlot;
         private System.Windows.Forms.ComboBox cbx_veterinaire_bacpoissons_choixlot;
         private System.Windows.Forms.Label lbl_veterinaire_bacpoissons_plusbacs;
+        private System.Windows.Forms.PictureBox pbx_veterinaire_deconnexion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nomBateau;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numLot;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nbbac;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdduBateau;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numBac;
+        private System.Windows.Forms.DataGridViewTextBoxColumn espece;
+        private System.Windows.Forms.DataGridViewTextBoxColumn taille;
+        private System.Windows.Forms.DataGridViewTextBoxColumn qualite;
+        private System.Windows.Forms.DataGridViewTextBoxColumn presentation;
+        private System.Windows.Forms.DataGridViewTextBoxColumn typebac;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdBac;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdduLot;
     }
 }

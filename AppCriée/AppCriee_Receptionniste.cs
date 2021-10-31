@@ -36,18 +36,20 @@ namespace AppCriée
             if (tbc_receptionniste.SelectedTab == tabPeche)
             {
                 CURS cs = new CURS(chaineConnexion);
-                cs.ReqSelectPrepare("SELECT count(id) as nbnotpeche FROM bateau WHERE id NOT IN(SELECT DISTINCT idBateau FROM peche WHERE datePeche=?uneDatejour)", new List<string> { "uneDatejour" }, new List<object> { Datejour });
-                
+                cs.ReqSelectPrepare("SELECT count(id) as nbnotpeche FROM bateau WHERE id NOT IN(SELECT DISTINCT idBateau FROM peche WHERE datePeche=?)", new List<object> { Datejour });
                 if (cs.champ("nbnotpeche").ToString() == "0")
                 {
                     lbl_pechejour_allpeche.Show();
                     HiddenObject.Hide(new List<Control> { lbl_ajoutpeche_explication, lbl_ajoutpeche_explication2, btn_ajoutpeche_creerpeche });
                 }
                 cs.fermer();
-                if (CompleteControl.RemplirDataGridViewByRequest(dg_pechejour, "SELECT idBateau, nom, immatriculation FROM peche INNER JOIN Bateau ON peche.idBateau=Bateau.id WHERE DatePeche=?uneDatejour", new string[] { "nom", "immatriculation" }, new List<string> { "uneDatejour" }, new List<object> { Datejour })) ;
+                if (CompleteControl.RemplirDataGridViewByRequest(dg_pechejour, "SELECT idBateau, nom, immatriculation FROM peche INNER JOIN Bateau ON peche.idBateau=Bateau.id WHERE DatePeche=?", new string[] { "nom", "immatriculation" }, new List<object> { Datejour }))
                 {
                     HiddenObject.Hide(new List<Control> { lbl_ajoutpeche_ispeche });
                     HiddenObject.Show(new List<Control> { dg_pechejour, btn_receptionniste_peche_supprimer });
+                }else
+                {
+                    HiddenObject.Hide(new List<Control> { dg_pechejour, btn_receptionniste_peche_supprimer });
                 }
             }
         }
@@ -59,7 +61,7 @@ namespace AppCriée
             HiddenObject.Show(new List<Control> {lbl_ajoutpeche_creerpeche_nombateau, cbx_ajoutpeche_creerpeche_nombateau, btn_pechejour_creerpeche_valider });
             btn_ajoutpeche_creerpeche.Hide();
             lbl_pechejour_pecheok.Hide();
-            CompleteControl.RemplirCombobox(cbx_ajoutpeche_creerpeche_nombateau, "SELECT id, nom, immatriculation FROM bateau WHERE id NOT IN(SELECT DISTINCT idBateau FROM peche WHERE datePeche='" + Datejour + "')", "nom(immatriculation)");
+            CompleteControl.RemplirCombobox(cbx_ajoutpeche_creerpeche_nombateau, "SELECT bateau.id, nom, immatriculation FROM peche RIGHT JOIN bateau ON peche.idBateau=Bateau.id  WHERE bateau.id NOT IN(SELECT DISTINCT idBateau FROM peche WHERE datePeche='" + Datejour + "') GROUP BY bateau.id ORDER BY count(*)*(NOT(ISNULL(peche.datePeche))) DESC", "nom(immatriculation)");
         }
         
         private void btn_receptionniste_creerpeche_valider_Click(object sender, EventArgs e)
@@ -72,15 +74,10 @@ namespace AppCriée
             string requete = "INSERT INTO Peche(DatePeche, idBateau) VALUES ('" + Datejour + "',(SELECT id FROM Bateau WHERE immatriculation = '" + imma + "'))";
             cs.ReqAdmin(requete);
             cs.fermer();
-            lbl_ajoutpeche_creerpeche_nombateau.Hide();
-            cbx_ajoutpeche_creerpeche_nombateau.Hide();
-            btn_pechejour_creerpeche_valider.Hide();
+            HiddenObject.Hide(new List<Control> { lbl_pechejour_allpeche, lbl_ajoutpeche_creerpeche_nombateau, cbx_ajoutpeche_creerpeche_nombateau, btn_pechejour_creerpeche_valider, lbl_ajoutpeche_ispeche });
+            HiddenObject.Show(new List<Control> { btn_ajoutpeche_creerpeche, lbl_pechejour_pecheok, dg_pechejour, btn_receptionniste_peche_supprimer });
             dg_pechejour.Rows.Add(nomBateau, imma);
-            btn_ajoutpeche_creerpeche.Show();
             lbl_pechejour_pecheok.Text = "La peche de ce jour du bateau " + elmt_bateau + " a bien été crée";
-            lbl_pechejour_pecheok.Show();
-            lbl_ajoutpeche_ispeche.Hide();
-            dg_pechejour.Show();
         }
         private void btn_receptionniste_creerpeche_supprimer_Click(object sender, EventArgs e)
         {
@@ -88,7 +85,7 @@ namespace AppCriée
             {
                 string listImmaIsLot = "";
                 string listImmaIsNoLot = "";
-                foreach (DataGridViewRow item in this.dg_pechejour.SelectedRows)
+                foreach (DataGridViewRow item in dg_pechejour.SelectedRows)
                 {
                     string requete = "SELECT COUNT(lot.id) as nbLot FROM lot INNER JOIN bateau ON lot.idBateau = bateau.id WHERE immatriculation='" + item.Cells[1].Value + "' AND idDatePeche='" + Datejour + "'";
                     CURS cs = new CURS(chaineConnexion);
@@ -126,7 +123,12 @@ namespace AppCriée
                     lbl_pechejour_pecheok.Text = "Toutes les pêches ont bien été supprimées";
                     lbl_pechejour_pecheok.Show();
                 }
-                
+                if (dg_pechejour.Rows.Count == 0)
+                {
+                    dg_pechejour.Hide();
+                    lbl_pechejour_allpeche.Show();
+                    btn_receptionniste_peche_supprimer.Hide();
+                }
 
             }
         }
@@ -135,9 +137,23 @@ namespace AppCriée
         #region Fermeture du Formulaire
         private void AppCriee_Receptionniste_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _authAccueil.Show();
+            DialogResult result = MessageBox.Show("Confirmez-vous la déconnexion ?", "Confirmation de déconnexion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (result == DialogResult.Yes)
+            {
+                _authAccueil.Show();
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
+        private void pbx_receptionniste_deconnexion_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         #endregion
+
     }
 
 }

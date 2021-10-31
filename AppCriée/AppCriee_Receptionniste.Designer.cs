@@ -51,10 +51,12 @@ namespace AppCriée
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbl_title = new System.Windows.Forms.Label();
             this.lbl_receptionniste_datejour = new System.Windows.Forms.Label();
+            this.pbx_receptionniste_deconnexion = new System.Windows.Forms.PictureBox();
             this.tbc_receptionniste.SuspendLayout();
             this.tabAccueil.SuspendLayout();
             this.tabPeche.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_pechejour)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbx_receptionniste_deconnexion)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -72,7 +74,7 @@ namespace AppCriée
             this.tbc_receptionniste.Controls.Add(this.tabAccueil);
             this.tbc_receptionniste.Controls.Add(this.tabPeche);
             this.tbc_receptionniste.Location = new System.Drawing.Point(0, 0);
-            this.tbc_receptionniste.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbc_receptionniste.Margin = new System.Windows.Forms.Padding(4);
             this.tbc_receptionniste.Name = "tbc_receptionniste";
             this.tbc_receptionniste.SelectedIndex = 0;
             this.tbc_receptionniste.Size = new System.Drawing.Size(1099, 570);
@@ -86,9 +88,9 @@ namespace AppCriée
             this.tabAccueil.Controls.Add(this.lbl_accueil_role);
             this.tabAccueil.Controls.Add(this.lbl_accueil_bienvenue);
             this.tabAccueil.Location = new System.Drawing.Point(4, 25);
-            this.tabAccueil.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabAccueil.Margin = new System.Windows.Forms.Padding(4);
             this.tabAccueil.Name = "tabAccueil";
-            this.tabAccueil.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabAccueil.Padding = new System.Windows.Forms.Padding(4);
             this.tabAccueil.Size = new System.Drawing.Size(1091, 541);
             this.tabAccueil.TabIndex = 0;
             this.tabAccueil.Text = "Accueil";
@@ -142,9 +144,9 @@ namespace AppCriée
             this.tabPeche.Controls.Add(this.dg_pechejour);
             this.tabPeche.Controls.Add(this.lbl_title);
             this.tabPeche.Location = new System.Drawing.Point(4, 25);
-            this.tabPeche.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPeche.Margin = new System.Windows.Forms.Padding(4);
             this.tabPeche.Name = "tabPeche";
-            this.tabPeche.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPeche.Padding = new System.Windows.Forms.Padding(4);
             this.tabPeche.Size = new System.Drawing.Size(1091, 541);
             this.tabPeche.TabIndex = 1;
             this.tabPeche.Text = "Pêche du jour";
@@ -154,7 +156,7 @@ namespace AppCriée
             this.btn_receptionniste_peche_supprimer.BackColor = System.Drawing.Color.Red;
             this.btn_receptionniste_peche_supprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_receptionniste_peche_supprimer.Location = new System.Drawing.Point(803, 310);
-            this.btn_receptionniste_peche_supprimer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_receptionniste_peche_supprimer.Margin = new System.Windows.Forms.Padding(4);
             this.btn_receptionniste_peche_supprimer.Name = "btn_receptionniste_peche_supprimer";
             this.btn_receptionniste_peche_supprimer.Size = new System.Drawing.Size(148, 31);
             this.btn_receptionniste_peche_supprimer.TabIndex = 20;
@@ -315,22 +317,36 @@ namespace AppCriée
             // 
             this.lbl_receptionniste_datejour.AutoSize = true;
             this.lbl_receptionniste_datejour.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_receptionniste_datejour.Location = new System.Drawing.Point(842, 574);
+            this.lbl_receptionniste_datejour.Location = new System.Drawing.Point(782, 586);
             this.lbl_receptionniste_datejour.Name = "lbl_receptionniste_datejour";
             this.lbl_receptionniste_datejour.Size = new System.Drawing.Size(217, 24);
             this.lbl_receptionniste_datejour.TabIndex = 19;
             this.lbl_receptionniste_datejour.Text = "Date du jour : 20/10/2021";
             // 
+            // pbx_receptionniste_deconnexion
+            // 
+            this.pbx_receptionniste_deconnexion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pbx_receptionniste_deconnexion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbx_receptionniste_deconnexion.Image = global::AppCriée.Properties.Resources.computer_icons_login_icon_design_exit_5abfc840bf8ca4_9038982415225180807846;
+            this.pbx_receptionniste_deconnexion.Location = new System.Drawing.Point(1031, 577);
+            this.pbx_receptionniste_deconnexion.Name = "pbx_receptionniste_deconnexion";
+            this.pbx_receptionniste_deconnexion.Size = new System.Drawing.Size(45, 45);
+            this.pbx_receptionniste_deconnexion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbx_receptionniste_deconnexion.TabIndex = 20;
+            this.pbx_receptionniste_deconnexion.TabStop = false;
+            this.pbx_receptionniste_deconnexion.Click += new System.EventHandler(this.pbx_receptionniste_deconnexion_Click);
+            // 
             // AppCriee_Receptionniste
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1088, 610);
+            this.ClientSize = new System.Drawing.Size(1088, 630);
+            this.Controls.Add(this.pbx_receptionniste_deconnexion);
             this.Controls.Add(this.lbl_receptionniste_datejour);
             this.Controls.Add(this.tbc_receptionniste);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AppCriee_Receptionniste";
             this.Text = "AppCriée (Réceptionniste)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AppCriee_Receptionniste_FormClosing);
@@ -340,6 +356,7 @@ namespace AppCriée
             this.tabPeche.ResumeLayout(false);
             this.tabPeche.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_pechejour)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbx_receptionniste_deconnexion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -368,5 +385,6 @@ namespace AppCriée
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.Button btn_receptionniste_peche_supprimer;
         private System.Windows.Forms.Label lbl_receptionniste_datejour;
+        private System.Windows.Forms.PictureBox pbx_receptionniste_deconnexion;
     }
 }

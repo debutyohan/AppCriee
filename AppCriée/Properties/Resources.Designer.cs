@@ -19,7 +19,7 @@ namespace AppCriée.Properties {
     // à l'aide d'un outil, tel que ResGen ou Visual Studio.
     // Pour ajouter ou supprimer un membre, modifiez votre fichier .ResX, puis réexécutez ResGen
     // avec l'option /str ou régénérez votre projet VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -66,6 +66,16 @@ namespace AppCriée.Properties {
         internal static System.Drawing.Bitmap autocollant_cadenas_muraux {
             get {
                 object obj = ResourceManager.GetObject("autocollant-cadenas-muraux", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap computer_icons_login_icon_design_exit_5abfc840bf8ca4_9038982415225180807846 {
+            get {
+                object obj = ResourceManager.GetObject("computer-icons-login-icon-design-exit-5abfc840bf8ca4.9038982415225180807846", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -121,4 +121,7 @@
   <data name="autocollant-cadenas-muraux" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\autocollant-cadenas-muraux.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="computer-icons-login-icon-design-exit-5abfc840bf8ca4.9038982415225180807846" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\computer-icons-login-icon-design-exit-5abfc840bf8ca4.9038982415225180807846.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

@@ -34,13 +34,14 @@ namespace AppCriée
                 return;
             }
 
-            cs.ReqSelectPrepare("SELECT count(utilisateur.id) as nbUser, utilisateur.id as iduser, login, nomuser, prenomuser, idtypeuser, libelle FROM utilisateur INNER JOIN typeutilisateur ON utilisateur.idtypeuser = typeutilisateur.id WHERE login=?unlogin AND pwd=?unpassword",new List<string> {"unlogin","unpassword"}, new List<object> { tbx_auth_id.Text.ToString(), passwdhash });
+            cs.ReqSelectPrepare("SELECT count(utilisateur.id) as nbUser, utilisateur.id as iduser, login, nomuser, prenomuser, idtypeuser, libelle FROM utilisateur INNER JOIN typeutilisateur ON utilisateur.idtypeuser = typeutilisateur.id WHERE login=? AND pwd=?", new List<object> { tbx_auth_id.Text.ToString(), passwdhash });
             
             tbx_auth_id.Text = "";
             tbx_auth_passwd.Text = "";
 
             if (cs.champ("nbUser").ToString() == "1")
             {
+                lbl_auth_falseidpasswd.Hide();
                 User UserConnecte = new User(Int32.Parse(cs.champ("iduser").ToString()), cs.champ("login").ToString(), cs.champ("nomuser").ToString(), cs.champ("prenomuser").ToString(), Int32.Parse(cs.champ("idtypeuser").ToString()), cs.champ("libelle").ToString());
                 
                 switch (UserConnecte.Type)
@@ -64,7 +65,7 @@ namespace AppCriée
             }
             else
             {
-                lbl_auth_falseidpasswd.Visible = true;
+                lbl_auth_falseidpasswd.Show();
             }
 
             cs.fermer();

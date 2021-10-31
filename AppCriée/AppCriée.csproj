@@ -99,6 +99,11 @@
     <EmbeddedResource Include="Auth.resx">
       <DependentUpon>Auth.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="obj\Debug\AppCriée.AppCriee.resources" />
+    <EmbeddedResource Include="obj\Debug\AppCriée.AppCriee_Peseur.resources" />
+    <EmbeddedResource Include="obj\Debug\AppCriée.AppCriee_Receptionniste.resources" />
+    <EmbeddedResource Include="obj\Debug\AppCriée.AppCriee_Veterinaire.resources" />
+    <EmbeddedResource Include="obj\Debug\AppCriée.Properties.Resources.resources" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -110,6 +115,12 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="bin\Debug\AppCriée.exe.config" />
+    <None Include="obj\Debug\AppCriée.csproj.CopyComplete" />
+    <None Include="obj\Debug\AppCriée.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\AppCriée.csproj.GenerateResource.cache" />
+    <None Include="obj\Debug\AppCriée.csprojAssemblyReference.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -142,7 +153,12 @@
     <Content Include="bin\Debug\Ubiety.Dns.Core.dll" />
     <Content Include="bin\Debug\WinAuthentification.pdb" />
     <Content Include="bin\Debug\Zstandard.Net.dll" />
+    <Content Include="obj\Debug\AppCriée.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\AppCriée.exe" />
+    <Content Include="obj\Debug\AppCriée.pdb" />
+    <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
     <Content Include="Resources\autocollant-cadenas-muraux.jpg" />
+    <None Include="Resources\computer-icons-login-icon-design-exit-5abfc840bf8ca4.9038982415225180807846.png" />
     <Content Include="Resources\kisspng-padlock-logo-symbol-locker-5b22e325cc22c3.2363844015290130298362.jpg" />
     <Content Include="Script SQL\SqlCrie.sql" />
     <Content Include="Script SQL\sqlcriemodif%284%29.sql" />

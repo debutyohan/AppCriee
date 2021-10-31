@@ -53,17 +53,20 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.poidstotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbl_peseur_lotspeche_lotsbateau = new System.Windows.Forms.Label();
             this.cbx_peseur_lotspeche_listebateaux = new System.Windows.Forms.ComboBox();
             this.lbl_peseur_lotspeche_choixbateau = new System.Windows.Forms.Label();
             this.lbl_peseur_lotspeche_title = new System.Windows.Forms.Label();
             this.lbl_peseur_lotspeche_ispeche = new System.Windows.Forms.Label();
             this.lbl_peseur_lotspeche_datejour = new System.Windows.Forms.Label();
+            this.pbx_peseur_deconnexion = new System.Windows.Forms.PictureBox();
             this.tbc_peseur.SuspendLayout();
             this.tbp_peseur_accueil.SuspendLayout();
             this.tbp_peseur_lotspeche.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_peseur_lotspeche_bacs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dg_peseur_lotspeche_lotsbateau)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbx_peseur_deconnexion)).BeginInit();
             this.SuspendLayout();
             // 
             // lbl_peseur_accueil_bienvenue
@@ -310,7 +313,8 @@
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6});
+            this.dataGridViewTextBoxColumn6,
+            this.poidstotal});
             this.dg_peseur_lotspeche_lotsbateau.GridColor = System.Drawing.SystemColors.Control;
             this.dg_peseur_lotspeche_lotsbateau.Location = new System.Drawing.Point(36, 177);
             this.dg_peseur_lotspeche_lotsbateau.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -319,7 +323,7 @@
             this.dg_peseur_lotspeche_lotsbateau.ReadOnly = true;
             this.dg_peseur_lotspeche_lotsbateau.RowHeadersWidth = 10;
             this.dg_peseur_lotspeche_lotsbateau.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dg_peseur_lotspeche_lotsbateau.Size = new System.Drawing.Size(659, 154);
+            this.dg_peseur_lotspeche_lotsbateau.Size = new System.Drawing.Size(796, 154);
             this.dg_peseur_lotspeche_lotsbateau.TabIndex = 22;
             this.dg_peseur_lotspeche_lotsbateau.Visible = false;
             this.dg_peseur_lotspeche_lotsbateau.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dg_peseur_lotspeche_lotsbateau_CellMouseClick);
@@ -372,6 +376,14 @@
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
             this.dataGridViewTextBoxColumn6.Width = 75;
+            // 
+            // poidstotal
+            // 
+            this.poidstotal.HeaderText = "Poids total (en kg)";
+            this.poidstotal.MinimumWidth = 6;
+            this.poidstotal.Name = "poidstotal";
+            this.poidstotal.ReadOnly = true;
+            this.poidstotal.Width = 125;
             // 
             // lbl_peseur_lotspeche_lotsbateau
             // 
@@ -436,18 +448,32 @@
             // 
             this.lbl_peseur_lotspeche_datejour.AutoSize = true;
             this.lbl_peseur_lotspeche_datejour.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_peseur_lotspeche_datejour.Location = new System.Drawing.Point(857, 693);
+            this.lbl_peseur_lotspeche_datejour.Location = new System.Drawing.Point(778, 702);
             this.lbl_peseur_lotspeche_datejour.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_peseur_lotspeche_datejour.Name = "lbl_peseur_lotspeche_datejour";
             this.lbl_peseur_lotspeche_datejour.Size = new System.Drawing.Size(217, 24);
             this.lbl_peseur_lotspeche_datejour.TabIndex = 1;
             this.lbl_peseur_lotspeche_datejour.Text = "Date du jour : 23/10/2021";
             // 
+            // pbx_peseur_deconnexion
+            // 
+            this.pbx_peseur_deconnexion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pbx_peseur_deconnexion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbx_peseur_deconnexion.Image = global::AppCriée.Properties.Resources.computer_icons_login_icon_design_exit_5abfc840bf8ca4_9038982415225180807846;
+            this.pbx_peseur_deconnexion.Location = new System.Drawing.Point(1029, 691);
+            this.pbx_peseur_deconnexion.Name = "pbx_peseur_deconnexion";
+            this.pbx_peseur_deconnexion.Size = new System.Drawing.Size(45, 45);
+            this.pbx_peseur_deconnexion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbx_peseur_deconnexion.TabIndex = 2;
+            this.pbx_peseur_deconnexion.TabStop = false;
+            this.pbx_peseur_deconnexion.Click += new System.EventHandler(this.pbx_peseur_deconnexion_Click);
+            // 
             // AppCriee_Peseur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1087, 726);
+            this.ClientSize = new System.Drawing.Size(1087, 741);
+            this.Controls.Add(this.pbx_peseur_deconnexion);
             this.Controls.Add(this.tbc_peseur);
             this.Controls.Add(this.lbl_peseur_lotspeche_datejour);
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -461,6 +487,7 @@
             this.tbp_peseur_lotspeche.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_peseur_lotspeche_bacs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dg_peseur_lotspeche_lotsbateau)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbx_peseur_deconnexion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -481,12 +508,6 @@
         private System.Windows.Forms.ComboBox cbx_peseur_lotspeche_listebateaux;
         private System.Windows.Forms.Label lbl_peseur_lotspeche_lotsbateau;
         private System.Windows.Forms.DataGridView dg_peseur_lotspeche_lotsbateau;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.Label lbl_peseur_lotspeche_ispeche;
         private System.Windows.Forms.Label lbl_peseur_lotspeche_islots;
         private System.Windows.Forms.Label lbl_peseur_lotspeche_info;
@@ -501,5 +522,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
         private System.Windows.Forms.Label lbl_peseur_lotspeche_validationok;
         private System.Windows.Forms.Button btn_peseur_lotspeche_validersaisiepoids;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn poidstotal;
+        private System.Windows.Forms.PictureBox pbx_peseur_deconnexion;
     }
 }

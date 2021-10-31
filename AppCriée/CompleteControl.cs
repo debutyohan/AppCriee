@@ -48,7 +48,6 @@ namespace AppCriée
                 if (ispeche)
                 {
                     unComboBox.SelectedItem = unComboBox.Items[0];
-                    //unComboBox.SelectedItem = unComboBox.Items[unComboBox.FindString("Tutbot")];
                 }
                 
             }
@@ -78,13 +77,13 @@ namespace AppCriée
             cs.fermer();
             return islots;
         }
-        public static bool RemplirDataGridViewByRequest(DataGridView unDataGridView, String requete, String[] Params, List<string> field, List<object> parameters, Boolean clear = true)
+        public static bool RemplirDataGridViewByRequest(DataGridView unDataGridView, String requete, String[] Params, List<object> parameters, Boolean clear = true)
         {
             string chaineConnexion = ConnectionChain.chaineConnexion();
             bool islots = false;
             unDataGridView.Rows.Clear();
             CURS cs = new CURS(chaineConnexion);
-            cs.ReqSelectPrepare(requete, field, parameters);
+            cs.ReqSelectPrepare(requete, parameters);
             Object[] Parametres = new Object[Params.Length];
             while (!cs.Fin())
             {

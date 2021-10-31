@@ -43,12 +43,12 @@ namespace AppCriée
                 fin = false;
                 suivant();
         }
-        public void ReqSelectPrepare(string req, List<string> field, List<object> parameters)
+        public void ReqSelectPrepare(string req, List<object> parameters)
         {
             macommand = new MySqlCommand(req, maconnexion);
             foreach (object param in parameters)
             {
-                macommand.Parameters.Add(new MySqlParameter(field[parameters.IndexOf(param)], param));
+                macommand.Parameters.Add(new MySqlParameter("value"+parameters.IndexOf(param), param));
             }
             monreader = macommand.ExecuteReader();
             suivant();
