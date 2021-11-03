@@ -8,6 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using iTextSharp;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
+using System.Diagnostics;
 
 namespace AppCriée
 {
@@ -37,12 +42,14 @@ namespace AppCriée
             {
                 HiddenObject.Hide(new List<Control> { lbl_veterinaire_lotspeche_ispeche });
                 tbp_veterinaire_lotspeche.Enabled = true;
+                lbl_veterinaire_ispeche.Hide();
             }
             tbc_veterinaire.Appearance = 0;
         }
         #endregion
 
         #region Changement d'onglets
+
         private void tbc_veterinaire_Selected(object sender, TabControlEventArgs e)
         {
             if (!(tbp_veterinaire_lotspeche.Enabled))
@@ -96,6 +103,7 @@ namespace AppCriée
                     }
                     else
                     {
+                        HiddenObject.Hide(new List<Control> {lbl_veterinaire_touslots_error, lbl_veterinaire_touslots_ok });
                         if (CompleteControl.RemplirDataGridViewByRequest(dg_veterinaire_touslots_alllot, "SELECT bateau.id as idBateau, bateau.nom as nomBateau, idLot, count(idLot) as nbbac, espece.nom as nomEspece, idTaille, idPresentation, idQualite FROM bac INNER JOIN lot ON bac.idDatePeche=lot.idDatePeche AND bac.idBateau=lot.idBateau AND bac.idLot=lot.id INNER JOIN espece ON espece.id=lot.idEspece INNER JOIN bateau ON bateau.id=lot.idBateau AND bateau.id=bac.idBateau WHERE bac.idDatePeche='" + Datejour + "' GROUP BY idLot, lot.idBateau ORDER BY bateau.nom, idLot", new string[] { "nomBateau", "idLot", "nomEspece", "idTaille", "idQualite", "idPresentation", "nbbac", "idBateau" }))
                         {
                             foreach (DataGridViewRow ligne in dg_veterinaire_touslots_alllot.Rows)
@@ -116,23 +124,23 @@ namespace AppCriée
                                 }
                                 ligne.Cells[1].Value = numLotBateau + numLotLot;
                             }
-                            dg_veterinaire_touslots_alllot.Show();
-                            lbl_veterinaire_touslots_islots.Hide();
-                            lbl_veterinaire_touslots_ispeche.Hide();
+                            HiddenObject.Show(new List<Control> { dg_veterinaire_touslots_alllot, btn_veterinaire_touslots_imprimer });
+                            HiddenObject.Hide(new List<Control> { lbl_veterinaire_touslots_islots, lbl_veterinaire_touslots_ispeche });
                         }
                         else
                         {
-                            dg_veterinaire_touslots_alllot.Hide();
-                            lbl_veterinaire_touslots_islots.Show();
-                            lbl_veterinaire_touslots_ispeche.Hide();
+                            HiddenObject.Show(new List<Control> { lbl_veterinaire_touslots_islots });
+                            HiddenObject.Hide(new List<Control> { dg_veterinaire_touslots_alllot, lbl_veterinaire_touslots_ispeche, btn_veterinaire_touslots_imprimer });
                         }
                     }
                     break;
             }
         }
+
         #endregion
 
         #region Onglet Bac de poissons
+
         private void cbx_veterinaire_bacpoissons_listebateaux_SelectionChangeCommitted(object sender, EventArgs e)
         {
             bool isbateau = false;
@@ -214,7 +222,6 @@ namespace AppCriée
 
             btn_veterinaire_bacpoissons_creerbacs.Show();
         }
-
         private void btn_veterinaire_bacpoissons_creerbacs_Click(object sender, EventArgs e)
         {
             cbx_veterinaire_bacpoissons_espece.Enabled = true;
@@ -261,8 +268,6 @@ namespace AppCriée
                 foreach (DataGridViewRow item in dg_veterinaire_bacpoissons_listebac.SelectedRows)
                 {
                     string numBacLot = item.Cells[0].Value.ToString();
-                    string id = numBacLot.Substring(0, numBacLot.IndexOf("("));
-                    string idLot = Int32.Parse(numBacLot.Substring(numBacLot.IndexOf("(") + 1, numBacLot.Length - numBacLot.IndexOf("(") - 2).Substring(2,3)).ToString();
 
                     if (numBacLot == "(Pas de lots)")
                     {
@@ -270,6 +275,8 @@ namespace AppCriée
                     }
                     else
                     {
+                        string id = numBacLot.Substring(0, numBacLot.IndexOf("("));
+                        string idLot = Int32.Parse(numBacLot.Substring(numBacLot.IndexOf("(") + 1, numBacLot.Length - numBacLot.IndexOf("(") - 2).Substring(2, 3)).ToString();
                         CURS cs = new CURS(chaineConnexion);
                         string requeteDel = "DELETE FROM bac WHERE idBateau='" + idbateau + "' AND idLot ='" + idLot + "' AND idDatePeche='" + Datejour + "' AND id ='" + id + "'";
                         cs.ReqAdmin(requeteDel);
@@ -488,6 +495,7 @@ namespace AppCriée
         #endregion
 
         #region Onglet Lots de peche
+
         private void cbx_veterinaire_lotspeche_listebateaux_SelectionChangeCommitted(object sender, EventArgs e)
         {
             HiddenObject.Hide(new List<Control> { btn_veterinaire_bacpoissons_modifierbacsValider, lbl_veterinaire_lotspeche_assignerlot, cbx_veterinaire_lotspeche_lotsbateau, lbl_veterinaire_lotspeche_isokcreerlot, cbx_veterinaire_lotspeche_lotsbateau, btn_veterinaire_lotspeche_assigneralot, btn_veterinaire_lotspeche_creerlot, dg_veterinaire_lotspeche_bacnotlot, dg_veterinaire_lotspeche_lotsbateau, lbl_veterinaire_lotspeche_isbacs, lbl_veterinaire_lotspeche_assignerlot, btn_veterinaire_lotspeche_assigneralot });
@@ -553,13 +561,12 @@ namespace AppCriée
                 HiddenObject.Show(new List<Control> { lbl_veterinaire_lotspeche_isbacs });
             }
         }
-
         private void btn_veterinaire_lotspeche_creerlot_Click(object sender, EventArgs e)
         {
             String elmt_bateau = cbx_veterinaire_lotspeche_listebateaux.Text;
             int char_bateau = elmt_bateau.IndexOf("(");
             String imma = elmt_bateau.Substring(char_bateau + 1, elmt_bateau.Length - char_bateau - 2);
-            int idlotmax = -1;
+            int idlotmax = 0;
             foreach (DataGridViewRow row in dg_veterinaire_lotspeche_lotsbateau.Rows)
             {
                 if (idlotmax < Int32.Parse(row.Cells[6].Value.ToString()))
@@ -603,9 +610,9 @@ namespace AppCriée
                 cs.ReqAdmin("INSERT INTO lot(idDatePeche,idBateau , id, idEspece, idTaille, idPresentation, idQualite) VALUES ('" + Datejour + "',(SELECT id FROM bateau WHERE immatriculation='" + imma + "')," + (idlotmax + 1) + ",(SELECT id FROM espece WHERE nom='" + etqplot[0] + "')," + etqplot[1] + ",'" + etqplot[3] + "','" + etqplot[2] + "')");
                 cs.fermer();
                 string requetesel = "INSERT INTO bac(id, idDatePeche,idBateau, idLot, idTypeBac) VALUES ";
-                for (int i = 0; i < dg_veterinaire_lotspeche_bacnotlot.SelectedRows.Count; i++)
+                for (int i = 1; i <= dg_veterinaire_lotspeche_bacnotlot.SelectedRows.Count; i++)
                 {
-                    requetesel += "(" + i + ",'" + Datejour + "',(SELECT id FROM bateau WHERE immatriculation='" + imma + "')," + (idlotmax + 1) + ",'" + dg_veterinaire_lotspeche_bacnotlot.SelectedRows[i].Cells["dgtbx_bacnotlots_typebac"].Value.ToString() + "'),";
+                    requetesel += "(" + i + ",'" + Datejour + "',(SELECT id FROM bateau WHERE immatriculation='" + imma + "')," + (idlotmax + 1) + ",'" + dg_veterinaire_lotspeche_bacnotlot.SelectedRows[i-1].Cells["dgtbx_bacnotlots_typebac"].Value.ToString() + "'),";
                 }
                 requetesel = requetesel.Substring(0, requetesel.Length - 1);
                 cs = new CURS(chaineConnexion);
@@ -621,12 +628,10 @@ namespace AppCriée
                 lbl_veterinaire_lotspeche_isokcreerlot.Show();
             }
         }
-
         private void cbx_veterinaire_lotspeche_lotsbateau_SelectionChangeCommitted(object sender, EventArgs e)
         {
             btn_veterinaire_lotspeche_assigneralot.Show();
         }
-
         private void btn_veterinaire_lotspeche_assigneralot_Click(object sender, EventArgs e)
         {
             if (dg_veterinaire_lotspeche_bacnotlot.SelectedRows.Count < 1)
@@ -637,12 +642,17 @@ namespace AppCriée
             }
             else
             {
-                MatchCollection infolot = Regex.Matches(cbx_veterinaire_lotspeche_lotsbateau.Text.Substring(6), @"[a-zA-Z0-9]+");
+                MatchCollection infolot = Regex.Matches(cbx_veterinaire_lotspeche_lotsbateau.Text.Substring(6), @"[a-zA-Z0-9À-ú]+");
+                int count = infolot.Count;
                 string numLot = infolot[0].Value;
                 string nomEspece = infolot[1].Value;
-                string idTaille = infolot[2].Value;
-                string idQualite = infolot[3].Value;
-                string idPresentation = infolot[4].Value;
+                for (int i = 5; i < count; i++)
+                {
+                    nomEspece += " "+ infolot[i-3].Value;
+                }
+                string idTaille = infolot[count-3].Value;
+                string idQualite = infolot[count-2].Value;
+                string idPresentation = infolot[count-1].Value;
                 foreach (DataGridViewRow ligne in dg_veterinaire_lotspeche_bacnotlot.SelectedRows)
                 {
                     if (nomEspece != ligne.Cells[0].Value.ToString() || idTaille != ligne.Cells[1].Value.ToString() || idQualite != ligne.Cells[2].Value.ToString() || idPresentation != ligne.Cells[3].Value.ToString())
@@ -671,6 +681,246 @@ namespace AppCriée
                 lbl_veterinaire_lotspeche_isokcreerlot.Show();
             }
         }
+
+        #endregion
+
+        #region Tous les lots de vente
+
+        private void btn_veterinaire_touslots_imprimer_Click(object sender, EventArgs e)
+        {
+            if (dg_veterinaire_touslots_alllot.SelectedRows.Count != 1)
+            {
+                lbl_veterinaire_touslots_error.Show();
+                return;
+            }
+
+            DataGridViewRow ligneselect = dg_veterinaire_touslots_alllot.SelectedRows[0];
+            string nomBateau = ligneselect.Cells[0].Value.ToString();
+            string numLot = ligneselect.Cells[1].Value.ToString();
+            string idLot = Int32.Parse(ligneselect.Cells[1].Value.ToString().Substring(2, 3)).ToString();
+            string espece = ligneselect.Cells[2].Value.ToString();
+            string taille = ligneselect.Cells[3].Value.ToString();
+            string qualite = ligneselect.Cells[4].Value.ToString();
+            string presentation = ligneselect.Cells[5].Value.ToString();
+            int nbbac = Int32.Parse(ligneselect.Cells[6].Value.ToString());
+            string numBateau = ligneselect.Cells[7].Value.ToString();
+
+            CURS cs = new CURS(chaineConnexion);
+            cs.ReqSelectPrepare("SELECT immatriculation FROM bateau WHERE id=?", new List<Object> { numBateau });
+            string immatriculation = cs.champ("immatriculation").ToString();
+            cs.fermer();
+
+            cs = new CURS(chaineConnexion);
+            cs.ReqSelectPrepare("SELECT bac.id as idBac, idTypeBac FROM bac INNER JOIN typebac ON typebac.id=bac.idTypeBac WHERE idDatePeche=? AND idBateau=? AND idLot=? ORDER BY bac.id", new List<Object> { Datejour, numBateau, idLot });
+
+            List<string> listebac = new List<string>();
+            List<string> listetypebac = new List<string>();
+
+            while (!cs.Fin())
+            {
+                listebac.Add(cs.champ("idBac").ToString());
+                listetypebac.Add(cs.champ("idTypeBac").ToString());
+                cs.suivant();
+            }
+            cs.fermer();
+
+            iTextSharp.text.Font font10b = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES_BOLD, 9);
+            iTextSharp.text.Font font24b = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES_BOLD, 24);
+            iTextSharp.text.Font font18 = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES, 18);
+            iTextSharp.text.Font font18b = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES_BOLD, 18);
+            iTextSharp.text.Font font14 = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES, 14);
+            iTextSharp.text.Font font14b = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES_BOLD, 14);
+            iTextSharp.text.Font font12 = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES, 12);
+            iTextSharp.text.Font font11 = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES, 11);
+            iTextSharp.text.Font font10 = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES, 10);
+            iTextSharp.text.Font font8 = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES, 8);
+            iTextSharp.text.Font font7 = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES, 7);
+            iTextSharp.text.Font font9 = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES, 9);
+            iTextSharp.text.Font font10i = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES_ITALIC, 10);
+
+            Document nouveauDocument = new Document();
+            nouveauDocument.SetPageSize(iTextSharp.text.PageSize.A4.Rotate());
+            nouveauDocument.SetMargins(-15,-15,30,30);
+            iTextSharp.text.pdf.PdfPTable ligne = new iTextSharp.text.pdf.PdfPTable(5);
+            ligne.SetTotalWidth(new float[] { 60, 2, 60, 2, 60 });
+
+            FileStream filePDF = new FileStream("Etiquettes ETQP Lot n°" + numLot + " du bateau " + nomBateau + " " + DateTime.Now.ToString("yyyyMMdd-HHmmss") + ".pdf", FileMode.Create);
+            PdfWriter.GetInstance(nouveauDocument, filePDF);
+            nouveauDocument.Open();
+            for (int grp3 = 0; grp3 <= (int)((nbbac-1) / 3); grp3++)
+            {
+                if ((grp3 != 0) && (grp3 % 3 == 0))
+                {
+                    nouveauDocument.NewPage();
+                }
+
+                ligne = new iTextSharp.text.pdf.PdfPTable(5);
+                ligne.SetTotalWidth(new float[] { 60, 2, 60, 2, 60 });
+                for (int bac = 3 * grp3; bac < 3 * (grp3 + 1); bac++)
+                {
+                    if (bac+1 > nbbac)
+                    {
+                        PdfPCell vide = new PdfPCell();
+                        vide.Border = 0;
+                        vide.Padding = 0;
+                        ligne.AddCell(vide);
+                    }
+                    else
+                    {
+                        PdfPCell etiquette = new PdfPCell();
+                        etiquette.Padding = 0;
+                        etiquette.PaddingLeft = -25;
+                        etiquette.PaddingRight = -25;
+
+                        iTextSharp.text.pdf.PdfPTable etiquetteligne1 = new iTextSharp.text.pdf.PdfPTable(1);
+                        etiquetteligne1.PaddingTop = 0;
+                        PdfPCell etiquetteligne1cellule1 = new PdfPCell();
+                        etiquetteligne1cellule1.PaddingTop = 0;
+                        etiquetteligne1cellule1.PaddingLeft = 35;
+                        etiquetteligne1cellule1.Border = 0;
+
+                        iTextSharp.text.Chunk titre = new iTextSharp.text.Chunk("Criée de la Poulgoazec", font14b);
+                        etiquetteligne1cellule1.AddElement(titre);
+
+                        etiquetteligne1.AddCell(etiquetteligne1cellule1);
+                        etiquette.AddElement(etiquetteligne1);
+
+                        iTextSharp.text.pdf.PdfPTable etiquetteligne2 = new iTextSharp.text.pdf.PdfPTable(2);
+                        etiquetteligne2.SetTotalWidth(new float[] { 90, 70 });
+                        etiquetteligne2.PaddingTop = 0;
+
+                        PdfPCell etiquetteligne2cellule1 = new PdfPCell();
+                        etiquetteligne2cellule1.PaddingTop = 0;
+                        iTextSharp.text.Chunk itembateau = new iTextSharp.text.Chunk("Bateau : " + nomBateau + ", " + immatriculation, font11);
+                        iTextSharp.text.Chunk itemdate = new iTextSharp.text.Chunk("Date : " + DateTime.Today.ToString("dd/MM/yyyy"), font11);
+                        iTextSharp.text.Chunk itemnumlot = new iTextSharp.text.Chunk("N° Lot : " + numLot, font11);
+                        etiquetteligne2cellule1.AddElement(itembateau);
+                        etiquetteligne2cellule1.AddElement(itemdate);
+                        etiquetteligne2cellule1.AddElement(itemnumlot);
+                        etiquetteligne2cellule1.Border = 0;
+
+                        PdfPCell etiquetteligne2cellule2 = new PdfPCell();
+                        etiquetteligne2cellule2.PaddingTop = 0;
+                        iTextSharp.text.Chunk itemespece = new iTextSharp.text.Chunk("Espèce : " + espece, font9);
+                        iTextSharp.text.Chunk itemtaille = new iTextSharp.text.Chunk("Taille : " + taille, font9);
+                        iTextSharp.text.Chunk itemqualite = new iTextSharp.text.Chunk("Qualité : " + qualite, font9);
+                        iTextSharp.text.Chunk itempresentation = new iTextSharp.text.Chunk("Présentation : " + presentation, font9);
+                        etiquetteligne2cellule2.AddElement(itemespece);
+                        etiquetteligne2cellule2.AddElement(itemtaille);
+                        etiquetteligne2cellule2.AddElement(itemqualite);
+                        etiquetteligne2cellule2.AddElement(itempresentation);
+                        etiquetteligne2cellule2.Border = 0;
+
+                        etiquetteligne2.AddCell(etiquetteligne2cellule1);
+                        etiquetteligne2.AddCell(etiquetteligne2cellule2);
+                        etiquette.AddElement(etiquetteligne2);
+
+                        iTextSharp.text.pdf.PdfPTable etiquetteligne3 = new iTextSharp.text.pdf.PdfPTable(1);
+                        etiquetteligne3.PaddingTop = 0;
+                        PdfPCell etiquetteligne3cellule1 = new PdfPCell();
+                        etiquetteligne3cellule1.PaddingTop = 0;
+                        etiquetteligne3cellule1.PaddingLeft = 15;
+                        etiquetteligne3cellule1.Border = 0;
+
+                        font12.Color = iTextSharp.text.BaseColor.BLUE;
+                        iTextSharp.text.Chunk itemnumbac = new iTextSharp.text.Chunk("Numéro de bac : " + listebac[bac], font12);
+                        iTextSharp.text.Chunk itemtypebac = new iTextSharp.text.Chunk("Type de bac : " + listetypebac[bac], font12);
+                        
+                        etiquetteligne3cellule1.AddElement(itemnumbac);
+                        etiquetteligne3cellule1.AddElement(itemtypebac);
+
+                        etiquetteligne3.AddCell(etiquetteligne3cellule1);
+                        etiquette.AddElement(etiquetteligne3);
+
+
+                        iTextSharp.text.pdf.PdfPTable etiquetteligne4 = new iTextSharp.text.pdf.PdfPTable(2);
+                        etiquetteligne4.SetTotalWidth(new float[] { 50, 20 });
+                        etiquetteligne4.PaddingTop = 0;
+
+                        PdfPCell etiquetteligne4cellule1 = new PdfPCell();
+                        etiquetteligne4cellule1.PaddingTop = 0;
+                        etiquetteligne4cellule1.Border = 0;
+
+                        PdfPCell etiquetteligne4cellule2 = new PdfPCell();
+                        etiquetteligne2cellule2.PaddingTop = 0;
+                        iTextSharp.text.Chunk itemdatenow = new iTextSharp.text.Chunk(DateTime.Now.ToString("dd/MM/yyyy HH:mm"), font7);
+                        etiquetteligne4cellule2.AddElement(itemdatenow);
+                        etiquetteligne4cellule2.Border = 0;
+
+                        etiquetteligne4.AddCell(etiquetteligne4cellule1);
+                        etiquetteligne4.AddCell(etiquetteligne4cellule2);
+                        etiquette.AddElement(etiquetteligne4);
+
+                        ligne.AddCell(etiquette);
+                    }
+                    if (bac % 3 != 2)
+                    {
+                        PdfPCell vide = new PdfPCell();
+                        vide.Border = 0;
+                        ligne.AddCell(vide);
+
+                    }
+                }
+                nouveauDocument.Add(ligne);
+                nouveauDocument.Add(new Paragraph("\n"));
+            }
+            /*
+            for (int grp9 = 0; grp9 <= (int)(nbbac / 9); grp9++)
+            {
+                if (grp9 != 0)
+                {
+                    nouveauDocument.NewPage();
+                }
+                for(int bac = 9 * grp9; bac < 9 * (grp9 + 1) && bac<=nbbac; bac++)
+                {
+                    if (bac % 3 == 0)
+                    {
+                        if (bac % 9 != 0)
+                        {
+                            nouveauDocument.Add(ligne);
+                        }
+                        ligne = new iTextSharp.text.pdf.PdfPTable(5);
+                        ligne.SetTotalWidth(new float[] { 60, 10, 60, 10, 60 }) ;
+                    }
+
+                    PdfPCell ligne2sous2cell1 = new PdfPCell();
+                    ligne2sous2cell1.AddElement(new iTextSharp.text.Chunk(" OP :", font14));
+                    ligne.AddCell(ligne2sous2cell1);
+                    if (bac % 3 != 0)
+                    {
+                        PdfPCell vide = new PdfPCell();
+                        vide.AddElement(new iTextSharp.text.Chunk("VIDE", font14));
+                        ligne.AddCell(vide);
+
+                    }
+                }
+                    nouveauDocument.Add(ligne);
+            }
+            */
+            nouveauDocument.Close();
+            lbl_veterinaire_touslots_ok.Text = "Un document PDF contenant les étiquettes du lot a bien été généré :\n";
+            for(int line = 0; line <= filePDF.Name.Length / 90; line++)
+            {
+                int nbchar = 90;
+                if (line == filePDF.Name.Length / 90)
+                {
+                    nbchar = filePDF.Name.Length - 90 * line;
+                }
+                lbl_veterinaire_touslots_ok.Text += "\n" + filePDF.Name.Substring(90 * line, nbchar);
+            }
+            lbl_veterinaire_touslots_ok.Show();
+            try
+            {
+                System.Diagnostics.Process.Start(filePDF.Name);
+            }
+            catch
+            {
+                MessageBox.Show("Impossible d'ouvrir le fichier pdf\nVous pouvez néanmoins ouvrir le fichier manuellement au chemin indiqué dans l'application","Echec ouverture fichier", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+        }
+
         #endregion
 
         #region Fermeture du formulaire
@@ -730,6 +980,6 @@ namespace AppCriée
             }
             tbc_veterinaire.Appearance = 0;
         }
-        
+
     }
 }

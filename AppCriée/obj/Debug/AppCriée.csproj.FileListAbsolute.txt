@@ -5,7 +5,6 @@ C:\Users\debut\source\repos\AppCriée\AppCriée\obj\Debug\AppCriée.csproj.CoreC
 C:\Users\debut\source\repos\AppCriée\AppCriée\bin\Debug\AppCriée.exe.config
 C:\Users\debut\source\repos\AppCriée\AppCriée\bin\Debug\AppCriée.exe
 C:\Users\debut\source\repos\AppCriée\AppCriée\bin\Debug\AppCriée.pdb
-C:\Users\debut\source\repos\AppCriée\AppCriée\bin\Debug\BouncyCastle.Crypto.dll
 C:\Users\debut\source\repos\AppCriée\AppCriée\bin\Debug\Renci.SshNet.dll
 C:\Users\debut\source\repos\AppCriée\AppCriée\obj\Debug\AppCriée.csproj.CopyComplete
 C:\Users\debut\source\repos\AppCriée\AppCriée\obj\Debug\AppCriée.exe
@@ -31,3 +30,5 @@ C:\Users\debut\source\repos\AppCriéesauve5\AppCriée\obj\Debug\AppCriée.csproj
 C:\Users\debut\source\repos\AppCriéesauve5\AppCriée\obj\Debug\AppCriée.exe
 C:\Users\debut\source\repos\AppCriéesauve5\AppCriée\obj\Debug\AppCriée.pdb
 C:\Users\debut\source\repos\AppCriée\AppCriée\obj\Debug\AppCriée.AppCriee_Peseur.resources
+C:\Users\debut\source\repos\AppCriée\AppCriée\bin\Debug\itextsharp.dll
+C:\Users\debut\source\repos\AppCriée\AppCriée\bin\Debug\itextsharp.xml

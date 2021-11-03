@@ -69,9 +69,9 @@ namespace AppCriée
             this.lbl_auth_title.Location = new System.Drawing.Point(347, 32);
             this.lbl_auth_title.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_auth_title.Name = "lbl_auth_title";
-            this.lbl_auth_title.Size = new System.Drawing.Size(395, 25);
+            this.lbl_auth_title.Size = new System.Drawing.Size(391, 25);
             this.lbl_auth_title.TabIndex = 2;
-            this.lbl_auth_title.Text = "Veuillez entrez vos identifiants de connexion";
+            this.lbl_auth_title.Text = "Veuillez entrer vos identifiants de connexion";
             // 
             // lbl_auth_id
             // 

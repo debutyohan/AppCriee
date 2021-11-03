@@ -32,6 +32,7 @@ namespace AppCriée
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AppCriee_Veterinaire));
             this.tbc_veterinaire = new System.Windows.Forms.TabControl();
             this.tbp_veterinaire_accueil = new System.Windows.Forms.TabPage();
+            this.lbl_veterinaire_ispeche = new System.Windows.Forms.Label();
             this.lbl_veterinaire_accueil_role = new System.Windows.Forms.Label();
             this.lbl_veterinaire_accueil_bienvenue = new System.Windows.Forms.Label();
             this.tbp_veterinaire_bacpoisson = new System.Windows.Forms.TabPage();
@@ -62,6 +63,13 @@ namespace AppCriée
             this.btn_veterinaire_bacpoissons_supprimerbacs = new System.Windows.Forms.Button();
             this.btn_veterinaire_bacpoissons_creerbacs = new System.Windows.Forms.Button();
             this.dg_veterinaire_bacpoissons_listebac = new System.Windows.Forms.DataGridView();
+            this.numBac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.espece = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.taille = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qualite = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.presentation = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.typebac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdBac = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cbx_veterinaire_bacpoissons_listebateaux = new System.Windows.Forms.ComboBox();
             this.lbl_veterinaire_bacpoissons_choixbateau = new System.Windows.Forms.Label();
             this.lbl_veterinaire_bacpoissons_ispeche = new System.Windows.Forms.Label();
@@ -86,17 +94,25 @@ namespace AppCriée
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbl_veterinaire_lotspeche_bacnotlot = new System.Windows.Forms.Label();
             this.dg_veterinaire_lotspeche_lotsbateau = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdduLot = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbl_veterinaire_lotspeche_lotsbateau = new System.Windows.Forms.Label();
             this.cbx_veterinaire_lotspeche_listebateaux = new System.Windows.Forms.ComboBox();
             this.lbl_veterinaire_lotspeche_choixbateau = new System.Windows.Forms.Label();
             this.lbl_veterinaire_lotspeche_title = new System.Windows.Forms.Label();
             this.tbp_veterinaire_touslots = new System.Windows.Forms.TabPage();
+            this.lbl_veterinaire_touslots_ok = new System.Windows.Forms.Label();
+            this.lbl_veterinaire_touslots_error = new System.Windows.Forms.Label();
+            this.btn_veterinaire_touslots_imprimer = new System.Windows.Forms.Button();
             this.lbl_veterinaire_touslots_islots = new System.Windows.Forms.Label();
             this.lbl_veterinaire_touslots_ispeche = new System.Windows.Forms.Label();
             this.lbl_veterinaire_touslots_title = new System.Windows.Forms.Label();
             this.dg_veterinaire_touslots_alllot = new System.Windows.Forms.DataGridView();
-            this.lbl_veterinaire_datejour = new System.Windows.Forms.Label();
-            this.pbx_veterinaire_deconnexion = new System.Windows.Forms.PictureBox();
             this.nomBateau = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numLot = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -105,20 +121,8 @@ namespace AppCriée
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nbbac = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdduBateau = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdduLot = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numBac = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.espece = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.taille = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.qualite = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.presentation = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.typebac = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdBac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lbl_veterinaire_datejour = new System.Windows.Forms.Label();
+            this.pbx_veterinaire_deconnexion = new System.Windows.Forms.PictureBox();
             this.tbc_veterinaire.SuspendLayout();
             this.tbp_veterinaire_accueil.SuspendLayout();
             this.tbp_veterinaire_bacpoisson.SuspendLayout();
@@ -148,6 +152,7 @@ namespace AppCriée
             // 
             // tbp_veterinaire_accueil
             // 
+            this.tbp_veterinaire_accueil.Controls.Add(this.lbl_veterinaire_ispeche);
             this.tbp_veterinaire_accueil.Controls.Add(this.lbl_veterinaire_accueil_role);
             this.tbp_veterinaire_accueil.Controls.Add(this.lbl_veterinaire_accueil_bienvenue);
             this.tbp_veterinaire_accueil.Location = new System.Drawing.Point(4, 25);
@@ -158,6 +163,18 @@ namespace AppCriée
             this.tbp_veterinaire_accueil.TabIndex = 0;
             this.tbp_veterinaire_accueil.Text = "Accueil";
             this.tbp_veterinaire_accueil.UseVisualStyleBackColor = true;
+            // 
+            // lbl_veterinaire_ispeche
+            // 
+            this.lbl_veterinaire_ispeche.AutoSize = true;
+            this.lbl_veterinaire_ispeche.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
+            this.lbl_veterinaire_ispeche.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lbl_veterinaire_ispeche.Location = new System.Drawing.Point(155, 331);
+            this.lbl_veterinaire_ispeche.Name = "lbl_veterinaire_ispeche";
+            this.lbl_veterinaire_ispeche.Size = new System.Drawing.Size(700, 48);
+            this.lbl_veterinaire_ispeche.TabIndex = 19;
+            this.lbl_veterinaire_ispeche.Text = "Il n\'y a aucune pêche enregistrée pour ce jour, veuillez contacter le réceptionni" +
+    "ste.\nLes autres onglets sont bloqués";
             // 
             // lbl_veterinaire_accueil_role
             // 
@@ -552,6 +569,64 @@ namespace AppCriée
             this.dg_veterinaire_bacpoissons_listebac.Size = new System.Drawing.Size(595, 190);
             this.dg_veterinaire_bacpoissons_listebac.TabIndex = 12;
             // 
+            // numBac
+            // 
+            this.numBac.HeaderText = "Numéro de Bac (Numéro de Lot)";
+            this.numBac.MinimumWidth = 6;
+            this.numBac.Name = "numBac";
+            this.numBac.ReadOnly = true;
+            this.numBac.Width = 70;
+            // 
+            // espece
+            // 
+            this.espece.HeaderText = "Espèce";
+            this.espece.MinimumWidth = 6;
+            this.espece.Name = "espece";
+            this.espece.ReadOnly = true;
+            this.espece.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.espece.Width = 90;
+            // 
+            // taille
+            // 
+            this.taille.HeaderText = "Taille";
+            this.taille.MinimumWidth = 6;
+            this.taille.Name = "taille";
+            this.taille.ReadOnly = true;
+            this.taille.Width = 65;
+            // 
+            // qualite
+            // 
+            this.qualite.HeaderText = "Qualité";
+            this.qualite.MinimumWidth = 6;
+            this.qualite.Name = "qualite";
+            this.qualite.ReadOnly = true;
+            this.qualite.Width = 60;
+            // 
+            // presentation
+            // 
+            this.presentation.HeaderText = "Présentation";
+            this.presentation.MinimumWidth = 6;
+            this.presentation.Name = "presentation";
+            this.presentation.ReadOnly = true;
+            this.presentation.Width = 60;
+            // 
+            // typebac
+            // 
+            this.typebac.HeaderText = "Type Bac";
+            this.typebac.MinimumWidth = 6;
+            this.typebac.Name = "typebac";
+            this.typebac.ReadOnly = true;
+            this.typebac.Width = 60;
+            // 
+            // IdBac
+            // 
+            this.IdBac.HeaderText = "Id";
+            this.IdBac.MinimumWidth = 6;
+            this.IdBac.Name = "IdBac";
+            this.IdBac.ReadOnly = true;
+            this.IdBac.Visible = false;
+            this.IdBac.Width = 125;
+            // 
             // cbx_veterinaire_bacpoissons_listebateaux
             // 
             this.cbx_veterinaire_bacpoissons_listebateaux.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -865,217 +940,6 @@ namespace AppCriée
             this.dg_veterinaire_lotspeche_lotsbateau.TabIndex = 22;
             this.dg_veterinaire_lotspeche_lotsbateau.Visible = false;
             // 
-            // lbl_veterinaire_lotspeche_lotsbateau
-            // 
-            this.lbl_veterinaire_lotspeche_lotsbateau.AutoSize = true;
-            this.lbl_veterinaire_lotspeche_lotsbateau.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.lbl_veterinaire_lotspeche_lotsbateau.Location = new System.Drawing.Point(31, 135);
-            this.lbl_veterinaire_lotspeche_lotsbateau.Name = "lbl_veterinaire_lotspeche_lotsbateau";
-            this.lbl_veterinaire_lotspeche_lotsbateau.Size = new System.Drawing.Size(323, 26);
-            this.lbl_veterinaire_lotspeche_lotsbateau.TabIndex = 21;
-            this.lbl_veterinaire_lotspeche_lotsbateau.Text = "Liste de tous les lots du bateau :";
-            this.lbl_veterinaire_lotspeche_lotsbateau.Visible = false;
-            // 
-            // cbx_veterinaire_lotspeche_listebateaux
-            // 
-            this.cbx_veterinaire_lotspeche_listebateaux.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_veterinaire_lotspeche_listebateaux.FormattingEnabled = true;
-            this.cbx_veterinaire_lotspeche_listebateaux.Location = new System.Drawing.Point(256, 87);
-            this.cbx_veterinaire_lotspeche_listebateaux.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbx_veterinaire_lotspeche_listebateaux.Name = "cbx_veterinaire_lotspeche_listebateaux";
-            this.cbx_veterinaire_lotspeche_listebateaux.Size = new System.Drawing.Size(199, 24);
-            this.cbx_veterinaire_lotspeche_listebateaux.TabIndex = 12;
-            this.cbx_veterinaire_lotspeche_listebateaux.Visible = false;
-            this.cbx_veterinaire_lotspeche_listebateaux.SelectionChangeCommitted += new System.EventHandler(this.cbx_veterinaire_lotspeche_listebateaux_SelectionChangeCommitted);
-            // 
-            // lbl_veterinaire_lotspeche_choixbateau
-            // 
-            this.lbl_veterinaire_lotspeche_choixbateau.AutoSize = true;
-            this.lbl_veterinaire_lotspeche_choixbateau.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_veterinaire_lotspeche_choixbateau.Location = new System.Drawing.Point(59, 85);
-            this.lbl_veterinaire_lotspeche_choixbateau.Name = "lbl_veterinaire_lotspeche_choixbateau";
-            this.lbl_veterinaire_lotspeche_choixbateau.Size = new System.Drawing.Size(167, 24);
-            this.lbl_veterinaire_lotspeche_choixbateau.TabIndex = 11;
-            this.lbl_veterinaire_lotspeche_choixbateau.Text = "Choisir un bateau :";
-            this.lbl_veterinaire_lotspeche_choixbateau.Visible = false;
-            // 
-            // lbl_veterinaire_lotspeche_title
-            // 
-            this.lbl_veterinaire_lotspeche_title.AutoSize = true;
-            this.lbl_veterinaire_lotspeche_title.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_veterinaire_lotspeche_title.Location = new System.Drawing.Point(368, 28);
-            this.lbl_veterinaire_lotspeche_title.Name = "lbl_veterinaire_lotspeche_title";
-            this.lbl_veterinaire_lotspeche_title.Size = new System.Drawing.Size(303, 32);
-            this.lbl_veterinaire_lotspeche_title.TabIndex = 8;
-            this.lbl_veterinaire_lotspeche_title.Text = "GESTION DES LOTS";
-            // 
-            // tbp_veterinaire_touslots
-            // 
-            this.tbp_veterinaire_touslots.Controls.Add(this.lbl_veterinaire_touslots_islots);
-            this.tbp_veterinaire_touslots.Controls.Add(this.lbl_veterinaire_touslots_ispeche);
-            this.tbp_veterinaire_touslots.Controls.Add(this.lbl_veterinaire_touslots_title);
-            this.tbp_veterinaire_touslots.Controls.Add(this.dg_veterinaire_touslots_alllot);
-            this.tbp_veterinaire_touslots.Location = new System.Drawing.Point(4, 25);
-            this.tbp_veterinaire_touslots.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tbp_veterinaire_touslots.Name = "tbp_veterinaire_touslots";
-            this.tbp_veterinaire_touslots.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tbp_veterinaire_touslots.Size = new System.Drawing.Size(1077, 651);
-            this.tbp_veterinaire_touslots.TabIndex = 3;
-            this.tbp_veterinaire_touslots.Text = "Tous les lots de vente";
-            this.tbp_veterinaire_touslots.UseVisualStyleBackColor = true;
-            // 
-            // lbl_veterinaire_touslots_islots
-            // 
-            this.lbl_veterinaire_touslots_islots.AutoSize = true;
-            this.lbl_veterinaire_touslots_islots.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
-            this.lbl_veterinaire_touslots_islots.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lbl_veterinaire_touslots_islots.Location = new System.Drawing.Point(117, 290);
-            this.lbl_veterinaire_touslots_islots.Name = "lbl_veterinaire_touslots_islots";
-            this.lbl_veterinaire_touslots_islots.Size = new System.Drawing.Size(853, 24);
-            this.lbl_veterinaire_touslots_islots.TabIndex = 42;
-            this.lbl_veterinaire_touslots_islots.Text = "Pas encore de lots créés pour aujourd’hui, vous pouvez créer des lots dans l’ongl" +
-    "et “Lots de pêche”.";
-            this.lbl_veterinaire_touslots_islots.Visible = false;
-            // 
-            // lbl_veterinaire_touslots_ispeche
-            // 
-            this.lbl_veterinaire_touslots_ispeche.AutoSize = true;
-            this.lbl_veterinaire_touslots_ispeche.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
-            this.lbl_veterinaire_touslots_ispeche.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lbl_veterinaire_touslots_ispeche.Location = new System.Drawing.Point(187, 318);
-            this.lbl_veterinaire_touslots_ispeche.Name = "lbl_veterinaire_touslots_ispeche";
-            this.lbl_veterinaire_touslots_ispeche.Size = new System.Drawing.Size(700, 24);
-            this.lbl_veterinaire_touslots_ispeche.TabIndex = 41;
-            this.lbl_veterinaire_touslots_ispeche.Text = "Il n\'y a aucune pêche enregistrée pour ce jour, veuillez contacter le réceptionni" +
-    "ste.";
-            // 
-            // lbl_veterinaire_touslots_title
-            // 
-            this.lbl_veterinaire_touslots_title.AutoSize = true;
-            this.lbl_veterinaire_touslots_title.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_veterinaire_touslots_title.Location = new System.Drawing.Point(304, 31);
-            this.lbl_veterinaire_touslots_title.Name = "lbl_veterinaire_touslots_title";
-            this.lbl_veterinaire_touslots_title.Size = new System.Drawing.Size(404, 32);
-            this.lbl_veterinaire_touslots_title.TabIndex = 39;
-            this.lbl_veterinaire_touslots_title.Text = "TOUS LES LOTS DE VENTE";
-            // 
-            // dg_veterinaire_touslots_alllot
-            // 
-            this.dg_veterinaire_touslots_alllot.AllowUserToAddRows = false;
-            this.dg_veterinaire_touslots_alllot.AllowUserToDeleteRows = false;
-            this.dg_veterinaire_touslots_alllot.AllowUserToResizeRows = false;
-            this.dg_veterinaire_touslots_alllot.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dg_veterinaire_touslots_alllot.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dg_veterinaire_touslots_alllot.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dg_veterinaire_touslots_alllot.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nomBateau,
-            this.numLot,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.dataGridViewTextBoxColumn9,
-            this.dataGridViewTextBoxColumn10,
-            this.nbbac,
-            this.IdduBateau});
-            this.dg_veterinaire_touslots_alllot.GridColor = System.Drawing.SystemColors.Control;
-            this.dg_veterinaire_touslots_alllot.Location = new System.Drawing.Point(59, 146);
-            this.dg_veterinaire_touslots_alllot.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dg_veterinaire_touslots_alllot.Name = "dg_veterinaire_touslots_alllot";
-            this.dg_veterinaire_touslots_alllot.ReadOnly = true;
-            this.dg_veterinaire_touslots_alllot.RowHeadersWidth = 10;
-            this.dg_veterinaire_touslots_alllot.RowTemplate.Height = 24;
-            this.dg_veterinaire_touslots_alllot.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dg_veterinaire_touslots_alllot.Size = new System.Drawing.Size(957, 364);
-            this.dg_veterinaire_touslots_alllot.TabIndex = 38;
-            this.dg_veterinaire_touslots_alllot.Visible = false;
-            // 
-            // lbl_veterinaire_datejour
-            // 
-            this.lbl_veterinaire_datejour.AutoSize = true;
-            this.lbl_veterinaire_datejour.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_veterinaire_datejour.Location = new System.Drawing.Point(771, 693);
-            this.lbl_veterinaire_datejour.Name = "lbl_veterinaire_datejour";
-            this.lbl_veterinaire_datejour.Size = new System.Drawing.Size(217, 24);
-            this.lbl_veterinaire_datejour.TabIndex = 10;
-            this.lbl_veterinaire_datejour.Text = "Date du jour : 16/10/2021";
-            // 
-            // pbx_veterinaire_deconnexion
-            // 
-            this.pbx_veterinaire_deconnexion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pbx_veterinaire_deconnexion.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbx_veterinaire_deconnexion.Image = global::AppCriée.Properties.Resources.computer_icons_login_icon_design_exit_5abfc840bf8ca4_9038982415225180807846;
-            this.pbx_veterinaire_deconnexion.Location = new System.Drawing.Point(1019, 685);
-            this.pbx_veterinaire_deconnexion.Name = "pbx_veterinaire_deconnexion";
-            this.pbx_veterinaire_deconnexion.Size = new System.Drawing.Size(45, 45);
-            this.pbx_veterinaire_deconnexion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbx_veterinaire_deconnexion.TabIndex = 21;
-            this.pbx_veterinaire_deconnexion.TabStop = false;
-            this.pbx_veterinaire_deconnexion.Click += new System.EventHandler(this.pbx_veterinaire_deconnexion_Click);
-            // 
-            // nomBateau
-            // 
-            this.nomBateau.HeaderText = "Nom du Bateau";
-            this.nomBateau.MinimumWidth = 6;
-            this.nomBateau.Name = "nomBateau";
-            this.nomBateau.ReadOnly = true;
-            this.nomBateau.Width = 125;
-            // 
-            // numLot
-            // 
-            this.numLot.HeaderText = "Numéro de Lot";
-            this.numLot.MinimumWidth = 6;
-            this.numLot.Name = "numLot";
-            this.numLot.ReadOnly = true;
-            this.numLot.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "Espèce";
-            this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            this.dataGridViewTextBoxColumn7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.HeaderText = "Taille";
-            this.dataGridViewTextBoxColumn8.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.ReadOnly = true;
-            this.dataGridViewTextBoxColumn8.Width = 65;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.HeaderText = "Qualité";
-            this.dataGridViewTextBoxColumn9.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.ReadOnly = true;
-            this.dataGridViewTextBoxColumn9.Width = 65;
-            // 
-            // dataGridViewTextBoxColumn10
-            // 
-            this.dataGridViewTextBoxColumn10.HeaderText = "Présentation";
-            this.dataGridViewTextBoxColumn10.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-            this.dataGridViewTextBoxColumn10.ReadOnly = true;
-            this.dataGridViewTextBoxColumn10.Width = 75;
-            // 
-            // nbbac
-            // 
-            this.nbbac.HeaderText = "Nombre de bacs";
-            this.nbbac.MinimumWidth = 6;
-            this.nbbac.Name = "nbbac";
-            this.nbbac.ReadOnly = true;
-            this.nbbac.Width = 125;
-            // 
-            // IdduBateau
-            // 
-            this.IdduBateau.HeaderText = "idbateau";
-            this.IdduBateau.MinimumWidth = 6;
-            this.IdduBateau.Name = "IdduBateau";
-            this.IdduBateau.ReadOnly = true;
-            this.IdduBateau.Visible = false;
-            this.IdduBateau.Width = 125;
-            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.HeaderText = "Numéro de Lot";
@@ -1134,63 +998,261 @@ namespace AppCriée
             this.IdduLot.Visible = false;
             this.IdduLot.Width = 125;
             // 
-            // numBac
+            // lbl_veterinaire_lotspeche_lotsbateau
             // 
-            this.numBac.HeaderText = "Numéro de Bac (Numéro de Lot)";
-            this.numBac.MinimumWidth = 6;
-            this.numBac.Name = "numBac";
-            this.numBac.ReadOnly = true;
-            this.numBac.Width = 70;
+            this.lbl_veterinaire_lotspeche_lotsbateau.AutoSize = true;
+            this.lbl_veterinaire_lotspeche_lotsbateau.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.lbl_veterinaire_lotspeche_lotsbateau.Location = new System.Drawing.Point(31, 135);
+            this.lbl_veterinaire_lotspeche_lotsbateau.Name = "lbl_veterinaire_lotspeche_lotsbateau";
+            this.lbl_veterinaire_lotspeche_lotsbateau.Size = new System.Drawing.Size(323, 26);
+            this.lbl_veterinaire_lotspeche_lotsbateau.TabIndex = 21;
+            this.lbl_veterinaire_lotspeche_lotsbateau.Text = "Liste de tous les lots du bateau :";
+            this.lbl_veterinaire_lotspeche_lotsbateau.Visible = false;
             // 
-            // espece
+            // cbx_veterinaire_lotspeche_listebateaux
             // 
-            this.espece.HeaderText = "Espèce";
-            this.espece.MinimumWidth = 6;
-            this.espece.Name = "espece";
-            this.espece.ReadOnly = true;
-            this.espece.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.espece.Width = 90;
+            this.cbx_veterinaire_lotspeche_listebateaux.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_veterinaire_lotspeche_listebateaux.FormattingEnabled = true;
+            this.cbx_veterinaire_lotspeche_listebateaux.Location = new System.Drawing.Point(256, 87);
+            this.cbx_veterinaire_lotspeche_listebateaux.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbx_veterinaire_lotspeche_listebateaux.Name = "cbx_veterinaire_lotspeche_listebateaux";
+            this.cbx_veterinaire_lotspeche_listebateaux.Size = new System.Drawing.Size(199, 24);
+            this.cbx_veterinaire_lotspeche_listebateaux.TabIndex = 12;
+            this.cbx_veterinaire_lotspeche_listebateaux.Visible = false;
+            this.cbx_veterinaire_lotspeche_listebateaux.SelectionChangeCommitted += new System.EventHandler(this.cbx_veterinaire_lotspeche_listebateaux_SelectionChangeCommitted);
             // 
-            // taille
+            // lbl_veterinaire_lotspeche_choixbateau
             // 
-            this.taille.HeaderText = "Taille";
-            this.taille.MinimumWidth = 6;
-            this.taille.Name = "taille";
-            this.taille.ReadOnly = true;
-            this.taille.Width = 65;
+            this.lbl_veterinaire_lotspeche_choixbateau.AutoSize = true;
+            this.lbl_veterinaire_lotspeche_choixbateau.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_veterinaire_lotspeche_choixbateau.Location = new System.Drawing.Point(59, 85);
+            this.lbl_veterinaire_lotspeche_choixbateau.Name = "lbl_veterinaire_lotspeche_choixbateau";
+            this.lbl_veterinaire_lotspeche_choixbateau.Size = new System.Drawing.Size(167, 24);
+            this.lbl_veterinaire_lotspeche_choixbateau.TabIndex = 11;
+            this.lbl_veterinaire_lotspeche_choixbateau.Text = "Choisir un bateau :";
+            this.lbl_veterinaire_lotspeche_choixbateau.Visible = false;
             // 
-            // qualite
+            // lbl_veterinaire_lotspeche_title
             // 
-            this.qualite.HeaderText = "Qualité";
-            this.qualite.MinimumWidth = 6;
-            this.qualite.Name = "qualite";
-            this.qualite.ReadOnly = true;
-            this.qualite.Width = 60;
+            this.lbl_veterinaire_lotspeche_title.AutoSize = true;
+            this.lbl_veterinaire_lotspeche_title.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_veterinaire_lotspeche_title.Location = new System.Drawing.Point(368, 28);
+            this.lbl_veterinaire_lotspeche_title.Name = "lbl_veterinaire_lotspeche_title";
+            this.lbl_veterinaire_lotspeche_title.Size = new System.Drawing.Size(303, 32);
+            this.lbl_veterinaire_lotspeche_title.TabIndex = 8;
+            this.lbl_veterinaire_lotspeche_title.Text = "GESTION DES LOTS";
             // 
-            // presentation
+            // tbp_veterinaire_touslots
             // 
-            this.presentation.HeaderText = "Présentation";
-            this.presentation.MinimumWidth = 6;
-            this.presentation.Name = "presentation";
-            this.presentation.ReadOnly = true;
-            this.presentation.Width = 60;
+            this.tbp_veterinaire_touslots.Controls.Add(this.btn_veterinaire_touslots_imprimer);
+            this.tbp_veterinaire_touslots.Controls.Add(this.lbl_veterinaire_touslots_ok);
+            this.tbp_veterinaire_touslots.Controls.Add(this.lbl_veterinaire_touslots_error);
+            this.tbp_veterinaire_touslots.Controls.Add(this.lbl_veterinaire_touslots_islots);
+            this.tbp_veterinaire_touslots.Controls.Add(this.lbl_veterinaire_touslots_ispeche);
+            this.tbp_veterinaire_touslots.Controls.Add(this.lbl_veterinaire_touslots_title);
+            this.tbp_veterinaire_touslots.Controls.Add(this.dg_veterinaire_touslots_alllot);
+            this.tbp_veterinaire_touslots.Location = new System.Drawing.Point(4, 25);
+            this.tbp_veterinaire_touslots.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbp_veterinaire_touslots.Name = "tbp_veterinaire_touslots";
+            this.tbp_veterinaire_touslots.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbp_veterinaire_touslots.Size = new System.Drawing.Size(1077, 651);
+            this.tbp_veterinaire_touslots.TabIndex = 3;
+            this.tbp_veterinaire_touslots.Text = "Tous les lots de vente";
+            this.tbp_veterinaire_touslots.UseVisualStyleBackColor = true;
             // 
-            // typebac
+            // lbl_veterinaire_touslots_ok
             // 
-            this.typebac.HeaderText = "Type Bac";
-            this.typebac.MinimumWidth = 6;
-            this.typebac.Name = "typebac";
-            this.typebac.ReadOnly = true;
-            this.typebac.Width = 60;
+            this.lbl_veterinaire_touslots_ok.AutoSize = true;
+            this.lbl_veterinaire_touslots_ok.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
+            this.lbl_veterinaire_touslots_ok.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lbl_veterinaire_touslots_ok.Location = new System.Drawing.Point(100, 518);
+            this.lbl_veterinaire_touslots_ok.Name = "lbl_veterinaire_touslots_ok";
+            this.lbl_veterinaire_touslots_ok.Size = new System.Drawing.Size(583, 48);
+            this.lbl_veterinaire_touslots_ok.TabIndex = 45;
+            this.lbl_veterinaire_touslots_ok.Text = "Un document PDF contenant les étiquettes du lot a bien été généré :\n[chemin d’acc" +
+    "ès absolu du document PDF]\n";
+            this.lbl_veterinaire_touslots_ok.Visible = false;
             // 
-            // IdBac
+            // lbl_veterinaire_touslots_error
             // 
-            this.IdBac.HeaderText = "Id";
-            this.IdBac.MinimumWidth = 6;
-            this.IdBac.Name = "IdBac";
-            this.IdBac.ReadOnly = true;
-            this.IdBac.Visible = false;
-            this.IdBac.Width = 125;
+            this.lbl_veterinaire_touslots_error.AutoSize = true;
+            this.lbl_veterinaire_touslots_error.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
+            this.lbl_veterinaire_touslots_error.ForeColor = System.Drawing.Color.Red;
+            this.lbl_veterinaire_touslots_error.Location = new System.Drawing.Point(117, 566);
+            this.lbl_veterinaire_touslots_error.Name = "lbl_veterinaire_touslots_error";
+            this.lbl_veterinaire_touslots_error.Size = new System.Drawing.Size(323, 24);
+            this.lbl_veterinaire_touslots_error.TabIndex = 44;
+            this.lbl_veterinaire_touslots_error.Text = "Veuillez sélectionner un et un seul lot";
+            this.lbl_veterinaire_touslots_error.Visible = false;
+            // 
+            // btn_veterinaire_touslots_imprimer
+            // 
+            this.btn_veterinaire_touslots_imprimer.BackColor = System.Drawing.Color.Yellow;
+            this.btn_veterinaire_touslots_imprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_veterinaire_touslots_imprimer.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btn_veterinaire_touslots_imprimer.Location = new System.Drawing.Point(762, 487);
+            this.btn_veterinaire_touslots_imprimer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_veterinaire_touslots_imprimer.Name = "btn_veterinaire_touslots_imprimer";
+            this.btn_veterinaire_touslots_imprimer.Size = new System.Drawing.Size(222, 48);
+            this.btn_veterinaire_touslots_imprimer.TabIndex = 43;
+            this.btn_veterinaire_touslots_imprimer.Text = "Imprimer les étiquettes ETQP des bacs du lot";
+            this.btn_veterinaire_touslots_imprimer.UseVisualStyleBackColor = false;
+            this.btn_veterinaire_touslots_imprimer.Visible = false;
+            this.btn_veterinaire_touslots_imprimer.Click += new System.EventHandler(this.btn_veterinaire_touslots_imprimer_Click);
+            // 
+            // lbl_veterinaire_touslots_islots
+            // 
+            this.lbl_veterinaire_touslots_islots.AutoSize = true;
+            this.lbl_veterinaire_touslots_islots.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
+            this.lbl_veterinaire_touslots_islots.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lbl_veterinaire_touslots_islots.Location = new System.Drawing.Point(117, 290);
+            this.lbl_veterinaire_touslots_islots.Name = "lbl_veterinaire_touslots_islots";
+            this.lbl_veterinaire_touslots_islots.Size = new System.Drawing.Size(853, 24);
+            this.lbl_veterinaire_touslots_islots.TabIndex = 42;
+            this.lbl_veterinaire_touslots_islots.Text = "Pas encore de lots créés pour aujourd’hui, vous pouvez créer des lots dans l’ongl" +
+    "et “Lots de pêche”.";
+            this.lbl_veterinaire_touslots_islots.Visible = false;
+            // 
+            // lbl_veterinaire_touslots_ispeche
+            // 
+            this.lbl_veterinaire_touslots_ispeche.AutoSize = true;
+            this.lbl_veterinaire_touslots_ispeche.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
+            this.lbl_veterinaire_touslots_ispeche.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lbl_veterinaire_touslots_ispeche.Location = new System.Drawing.Point(187, 318);
+            this.lbl_veterinaire_touslots_ispeche.Name = "lbl_veterinaire_touslots_ispeche";
+            this.lbl_veterinaire_touslots_ispeche.Size = new System.Drawing.Size(700, 24);
+            this.lbl_veterinaire_touslots_ispeche.TabIndex = 41;
+            this.lbl_veterinaire_touslots_ispeche.Text = "Il n\'y a aucune pêche enregistrée pour ce jour, veuillez contacter le réceptionni" +
+    "ste.";
+            // 
+            // lbl_veterinaire_touslots_title
+            // 
+            this.lbl_veterinaire_touslots_title.AutoSize = true;
+            this.lbl_veterinaire_touslots_title.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_veterinaire_touslots_title.Location = new System.Drawing.Point(304, 31);
+            this.lbl_veterinaire_touslots_title.Name = "lbl_veterinaire_touslots_title";
+            this.lbl_veterinaire_touslots_title.Size = new System.Drawing.Size(404, 32);
+            this.lbl_veterinaire_touslots_title.TabIndex = 39;
+            this.lbl_veterinaire_touslots_title.Text = "TOUS LES LOTS DE VENTE";
+            // 
+            // dg_veterinaire_touslots_alllot
+            // 
+            this.dg_veterinaire_touslots_alllot.AllowUserToAddRows = false;
+            this.dg_veterinaire_touslots_alllot.AllowUserToDeleteRows = false;
+            this.dg_veterinaire_touslots_alllot.AllowUserToResizeRows = false;
+            this.dg_veterinaire_touslots_alllot.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dg_veterinaire_touslots_alllot.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dg_veterinaire_touslots_alllot.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dg_veterinaire_touslots_alllot.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.nomBateau,
+            this.numLot,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10,
+            this.nbbac,
+            this.IdduBateau});
+            this.dg_veterinaire_touslots_alllot.GridColor = System.Drawing.SystemColors.Control;
+            this.dg_veterinaire_touslots_alllot.Location = new System.Drawing.Point(57, 99);
+            this.dg_veterinaire_touslots_alllot.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dg_veterinaire_touslots_alllot.MultiSelect = false;
+            this.dg_veterinaire_touslots_alllot.Name = "dg_veterinaire_touslots_alllot";
+            this.dg_veterinaire_touslots_alllot.ReadOnly = true;
+            this.dg_veterinaire_touslots_alllot.RowHeadersWidth = 10;
+            this.dg_veterinaire_touslots_alllot.RowTemplate.Height = 24;
+            this.dg_veterinaire_touslots_alllot.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dg_veterinaire_touslots_alllot.Size = new System.Drawing.Size(957, 364);
+            this.dg_veterinaire_touslots_alllot.TabIndex = 38;
+            this.dg_veterinaire_touslots_alllot.Visible = false;
+            // 
+            // nomBateau
+            // 
+            this.nomBateau.HeaderText = "Nom du Bateau";
+            this.nomBateau.MinimumWidth = 6;
+            this.nomBateau.Name = "nomBateau";
+            this.nomBateau.ReadOnly = true;
+            this.nomBateau.Width = 125;
+            // 
+            // numLot
+            // 
+            this.numLot.HeaderText = "Numéro de Lot";
+            this.numLot.MinimumWidth = 6;
+            this.numLot.Name = "numLot";
+            this.numLot.ReadOnly = true;
+            this.numLot.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "Espèce";
+            this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn7.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.HeaderText = "Taille";
+            this.dataGridViewTextBoxColumn8.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            this.dataGridViewTextBoxColumn8.Width = 65;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.HeaderText = "Qualité";
+            this.dataGridViewTextBoxColumn9.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            this.dataGridViewTextBoxColumn9.Width = 65;
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.HeaderText = "Présentation";
+            this.dataGridViewTextBoxColumn10.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.ReadOnly = true;
+            this.dataGridViewTextBoxColumn10.Width = 75;
+            // 
+            // nbbac
+            // 
+            this.nbbac.HeaderText = "Nombre de bacs";
+            this.nbbac.MinimumWidth = 6;
+            this.nbbac.Name = "nbbac";
+            this.nbbac.ReadOnly = true;
+            this.nbbac.Width = 125;
+            // 
+            // IdduBateau
+            // 
+            this.IdduBateau.HeaderText = "idbateau";
+            this.IdduBateau.MinimumWidth = 6;
+            this.IdduBateau.Name = "IdduBateau";
+            this.IdduBateau.ReadOnly = true;
+            this.IdduBateau.Visible = false;
+            this.IdduBateau.Width = 125;
+            // 
+            // lbl_veterinaire_datejour
+            // 
+            this.lbl_veterinaire_datejour.AutoSize = true;
+            this.lbl_veterinaire_datejour.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_veterinaire_datejour.Location = new System.Drawing.Point(771, 693);
+            this.lbl_veterinaire_datejour.Name = "lbl_veterinaire_datejour";
+            this.lbl_veterinaire_datejour.Size = new System.Drawing.Size(217, 24);
+            this.lbl_veterinaire_datejour.TabIndex = 10;
+            this.lbl_veterinaire_datejour.Text = "Date du jour : 16/10/2021";
+            // 
+            // pbx_veterinaire_deconnexion
+            // 
+            this.pbx_veterinaire_deconnexion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pbx_veterinaire_deconnexion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbx_veterinaire_deconnexion.Image = global::AppCriée.Properties.Resources.computer_icons_login_icon_design_exit_5abfc840bf8ca4_9038982415225180807846;
+            this.pbx_veterinaire_deconnexion.Location = new System.Drawing.Point(1019, 685);
+            this.pbx_veterinaire_deconnexion.Name = "pbx_veterinaire_deconnexion";
+            this.pbx_veterinaire_deconnexion.Size = new System.Drawing.Size(45, 45);
+            this.pbx_veterinaire_deconnexion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbx_veterinaire_deconnexion.TabIndex = 21;
+            this.pbx_veterinaire_deconnexion.TabStop = false;
+            this.pbx_veterinaire_deconnexion.Click += new System.EventHandler(this.pbx_veterinaire_deconnexion_Click);
             // 
             // AppCriee_Veterinaire
             // 
@@ -1314,5 +1376,9 @@ namespace AppCriée
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdduLot;
+        private System.Windows.Forms.Label lbl_veterinaire_ispeche;
+        private System.Windows.Forms.Label lbl_veterinaire_touslots_ok;
+        private System.Windows.Forms.Label lbl_veterinaire_touslots_error;
+        private System.Windows.Forms.Button btn_veterinaire_touslots_imprimer;
     }
 }

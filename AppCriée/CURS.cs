@@ -46,9 +46,11 @@ namespace AppCriée
         public void ReqSelectPrepare(string req, List<object> parameters)
         {
             macommand = new MySqlCommand(req, maconnexion);
+            int rang = 0;
             foreach (object param in parameters)
             {
-                macommand.Parameters.Add(new MySqlParameter("value"+parameters.IndexOf(param), param));
+                macommand.Parameters.Add(new MySqlParameter("value"+rang, param));
+                rang++;
             }
             monreader = macommand.ExecuteReader();
             suivant();
