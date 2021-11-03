@@ -59,7 +59,7 @@
             this.lbl_peseur_lotspeche_choixbateau = new System.Windows.Forms.Label();
             this.lbl_peseur_lotspeche_title = new System.Windows.Forms.Label();
             this.lbl_peseur_lotspeche_ispeche = new System.Windows.Forms.Label();
-            this.lbl_peseur_lotspeche_datejour = new System.Windows.Forms.Label();
+            this.lbl_peseur_datejour = new System.Windows.Forms.Label();
             this.pbx_peseur_deconnexion = new System.Windows.Forms.PictureBox();
             this.tbc_peseur.SuspendLayout();
             this.tbp_peseur_accueil.SuspendLayout();
@@ -100,7 +100,7 @@
             this.tbc_peseur.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbc_peseur.Name = "tbc_peseur";
             this.tbc_peseur.SelectedIndex = 0;
-            this.tbc_peseur.Size = new System.Drawing.Size(1083, 688);
+            this.tbc_peseur.Size = new System.Drawing.Size(1085, 680);
             this.tbc_peseur.TabIndex = 2;
             this.tbc_peseur.SelectedIndexChanged += new System.EventHandler(this.tbc_peseur_SelectedIndexChanged);
             // 
@@ -112,7 +112,7 @@
             this.tbp_peseur_accueil.Margin = new System.Windows.Forms.Padding(4);
             this.tbp_peseur_accueil.Name = "tbp_peseur_accueil";
             this.tbp_peseur_accueil.Padding = new System.Windows.Forms.Padding(4);
-            this.tbp_peseur_accueil.Size = new System.Drawing.Size(1075, 662);
+            this.tbp_peseur_accueil.Size = new System.Drawing.Size(1077, 654);
             this.tbp_peseur_accueil.TabIndex = 0;
             this.tbp_peseur_accueil.Text = "Accueil";
             this.tbp_peseur_accueil.UseVisualStyleBackColor = true;
@@ -138,7 +138,7 @@
             this.tbp_peseur_lotspeche.Margin = new System.Windows.Forms.Padding(4);
             this.tbp_peseur_lotspeche.Name = "tbp_peseur_lotspeche";
             this.tbp_peseur_lotspeche.Padding = new System.Windows.Forms.Padding(4);
-            this.tbp_peseur_lotspeche.Size = new System.Drawing.Size(1075, 662);
+            this.tbp_peseur_lotspeche.Size = new System.Drawing.Size(1077, 654);
             this.tbp_peseur_lotspeche.TabIndex = 1;
             this.tbp_peseur_lotspeche.Text = "Lots de pêche";
             this.tbp_peseur_lotspeche.UseVisualStyleBackColor = true;
@@ -444,23 +444,23 @@
             this.lbl_peseur_lotspeche_ispeche.Text = "Il n\'y a aucune pêche enregistrée pour ce jour, veuillez contacter le réceptionni" +
     "ste.";
             // 
-            // lbl_peseur_lotspeche_datejour
+            // lbl_peseur_datejour
             // 
-            this.lbl_peseur_lotspeche_datejour.AutoSize = true;
-            this.lbl_peseur_lotspeche_datejour.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_peseur_lotspeche_datejour.Location = new System.Drawing.Point(778, 702);
-            this.lbl_peseur_lotspeche_datejour.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_peseur_lotspeche_datejour.Name = "lbl_peseur_lotspeche_datejour";
-            this.lbl_peseur_lotspeche_datejour.Size = new System.Drawing.Size(217, 24);
-            this.lbl_peseur_lotspeche_datejour.TabIndex = 1;
-            this.lbl_peseur_lotspeche_datejour.Text = "Date du jour : 23/10/2021";
+            this.lbl_peseur_datejour.AutoSize = true;
+            this.lbl_peseur_datejour.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_peseur_datejour.Location = new System.Drawing.Point(771, 693);
+            this.lbl_peseur_datejour.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_peseur_datejour.Name = "lbl_peseur_datejour";
+            this.lbl_peseur_datejour.Size = new System.Drawing.Size(217, 24);
+            this.lbl_peseur_datejour.TabIndex = 1;
+            this.lbl_peseur_datejour.Text = "Date du jour : 23/10/2021";
             // 
             // pbx_peseur_deconnexion
             // 
             this.pbx_peseur_deconnexion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pbx_peseur_deconnexion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbx_peseur_deconnexion.Image = global::AppCriée.Properties.Resources.computer_icons_login_icon_design_exit_5abfc840bf8ca4_9038982415225180807846;
-            this.pbx_peseur_deconnexion.Location = new System.Drawing.Point(1029, 691);
+            this.pbx_peseur_deconnexion.Location = new System.Drawing.Point(1019, 685);
             this.pbx_peseur_deconnexion.Name = "pbx_peseur_deconnexion";
             this.pbx_peseur_deconnexion.Size = new System.Drawing.Size(45, 45);
             this.pbx_peseur_deconnexion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -472,10 +472,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1087, 741);
+            this.ClientSize = new System.Drawing.Size(1087, 736);
             this.Controls.Add(this.pbx_peseur_deconnexion);
             this.Controls.Add(this.tbc_peseur);
-            this.Controls.Add(this.lbl_peseur_lotspeche_datejour);
+            this.Controls.Add(this.lbl_peseur_datejour);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AppCriee_Peseur";
             this.Text = "AppCriée (Peseur)";
@@ -503,7 +503,7 @@
         private System.Windows.Forms.TabPage tbp_peseur_accueil;
         private System.Windows.Forms.TabPage tbp_peseur_lotspeche;
         private System.Windows.Forms.Label lbl_peseur_lotspeche_title;
-        private System.Windows.Forms.Label lbl_peseur_lotspeche_datejour;
+        private System.Windows.Forms.Label lbl_peseur_datejour;
         private System.Windows.Forms.Label lbl_peseur_lotspeche_choixbateau;
         private System.Windows.Forms.ComboBox cbx_peseur_lotspeche_listebateaux;
         private System.Windows.Forms.Label lbl_peseur_lotspeche_lotsbateau;

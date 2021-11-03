@@ -16,6 +16,22 @@ namespace AppCriée
         MySqlCommand macommand;
         MySqlDataReader monreader;
         Boolean _ConnectionOK = true;
+
+        public CURS()
+        {
+            try
+            {
+                maconnexion = new MySqlConnection(ConnectionChain.chaineConnexion());
+                maconnexion.Open();
+                monreader = null;
+            }
+            catch (Exception exception)
+            {
+                DialogResult dialogResult = MessageBox.Show("Impossible de se connecter au serveur MySQL \nDescription de l'erreur :" + exception.Message, "Erreur Connexion MySQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _ConnectionOK = false;
+                Application.ExitThread();
+            }
+        }
         public CURS(string connec)
         {
             try
@@ -82,6 +98,19 @@ namespace AppCriée
         {
 
             macommand = new MySqlCommand(req, maconnexion);
+            macommand.ExecuteNonQuery();
+
+        }
+        public void ReqAdminPrepare(string req, List<object> parameters)
+        {
+
+            macommand = new MySqlCommand(req, maconnexion);
+            int rang = 0;
+            foreach (object param in parameters)
+            {
+                macommand.Parameters.Add(new MySqlParameter("value" + rang, param));
+                rang++;
+            }
             macommand.ExecuteNonQuery();
 
         }

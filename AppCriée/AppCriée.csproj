@@ -58,6 +58,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppCriee_Administrateur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppCriee_Administrateur.Designer.cs">
+      <DependentUpon>AppCriee_Administrateur.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppCriee_DirecteurDesVentes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppCriee_DirecteurDesVentes.Designer.cs">
+      <DependentUpon>AppCriee_DirecteurDesVentes.cs</DependentUpon>
+    </Compile>
     <Compile Include="AppCriee_Peseur.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +105,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
+    <EmbeddedResource Include="AppCriee_Administrateur.resx">
+      <DependentUpon>AppCriee_Administrateur.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppCriee_DirecteurDesVentes.resx">
+      <DependentUpon>AppCriee_DirecteurDesVentes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AppCriee_Peseur.resx">
       <DependentUpon>AppCriee_Peseur.cs</DependentUpon>
     </EmbeddedResource>
@@ -165,6 +183,7 @@
     <Content Include="obj\Debug\AppCriée.pdb" />
     <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
     <Content Include="Resources\autocollant-cadenas-muraux.jpg" />
+    <Content Include="Script SQL\sqlcriemodif%285%29.sql" />
     <None Include="Resources\computer-icons-login-icon-design-exit-5abfc840bf8ca4.9038982415225180807846.png" />
     <Content Include="Resources\kisspng-padlock-logo-symbol-locker-5b22e325cc22c3.2363844015290130298362.jpg" />
     <Content Include="Script SQL\SqlCrie.sql" />

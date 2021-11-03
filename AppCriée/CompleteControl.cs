@@ -22,12 +22,11 @@ namespace AppCriée
                 }
             }
             bool ispeche = false;
-            string chaineConnexion = ConnectionChain.chaineConnexion();
             if (clear)
             {
                 unComboBox.Items.Clear();
             }
-            CURS cs = new CURS(chaineConnexion);
+            CURS cs = new CURS();
             cs.ReqSelect(requete);
             while (!cs.Fin())
             {
@@ -53,12 +52,52 @@ namespace AppCriée
             }
             return ispeche;
         }
-        public static bool RemplirDataGridViewByRequest(DataGridView unDataGridView, String requete, String[] Params, Boolean clear = true)
+        public static bool RemplirCombobox(ComboBox unComboBox, String requete, String champs, List<object> parameters, Boolean selectdefault = true, Boolean clear = true)
         {
-            string chaineConnexion = ConnectionChain.chaineConnexion();
+            List<String> valuefield = new List<String>();
+            foreach (Match field in Regex.Matches(champs, @"#(?<=\#)(.*?)(?=\#)|[a-zA-Z]+"))
+            {
+                if (field.Value.Substring(0, 1) != "#")
+                {
+                    valuefield.Add(field.Value);
+                }
+            }
+            bool ispeche = false;
+            if (clear)
+            {
+                unComboBox.Items.Clear();
+            }
+            CURS cs = new CURS();
+            cs.ReqSelectPrepare(requete, parameters);
+            while (!cs.Fin())
+            {
+                String champtemp = champs;
+                ispeche = true;
+                champtemp = champtemp.Replace("#", "");
+                foreach (String unfield in valuefield)
+                {
+                    champtemp = champtemp.Replace(unfield, cs.champ(unfield).ToString());
+                }
+                String champfinale = champtemp;
+                unComboBox.Items.Add(champfinale);
+                cs.suivant();
+            }
+            cs.fermer();
+            if (selectdefault)
+            {
+                if (ispeche)
+                {
+                    unComboBox.SelectedItem = unComboBox.Items[0];
+                }
+
+            }
+            return ispeche;
+        }
+        public static bool RemplirDataGridViewByRequest(DataGridView unDataGridView, string requete, String[] Params, Boolean clear = true)
+        {
             bool islots = false;
             unDataGridView.Rows.Clear();
-            CURS cs = new CURS(chaineConnexion);
+            CURS cs = new CURS();
             cs.ReqSelect(requete);
             Object[] Parametres = new Object[Params.Length];
             while (!cs.Fin())
@@ -79,10 +118,9 @@ namespace AppCriée
         }
         public static bool RemplirDataGridViewByRequest(DataGridView unDataGridView, String requete, String[] Params, List<object> parameters, Boolean clear = true)
         {
-            string chaineConnexion = ConnectionChain.chaineConnexion();
             bool islots = false;
             unDataGridView.Rows.Clear();
-            CURS cs = new CURS(chaineConnexion);
+            CURS cs = new CURS();
             cs.ReqSelectPrepare(requete, parameters);
             Object[] Parametres = new Object[Params.Length];
             while (!cs.Fin())

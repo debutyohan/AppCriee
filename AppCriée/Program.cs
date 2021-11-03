@@ -14,7 +14,7 @@ namespace AppCriée
         [STAThread]
         static void Main()
         {
-            CURS cs = new CURS("server = 127.0.0.1; user id = gestionCrie; password = 123xaro08 ; database = bddCrie2");
+            CURS cs = new CURS();
             if (cs.isConnectionOK())
             {
                 Application.EnableVisualStyles();
