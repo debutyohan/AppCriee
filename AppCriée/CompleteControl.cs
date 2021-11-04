@@ -150,6 +150,13 @@ namespace AppCriée
             }
         }
 
+        public static void degriseligne(DataGridViewRow line)
+        {
+            foreach (DataGridViewCell cellule in line.Cells)
+            {
+                cellule.Style.BackColor = Color.White;
+            }
+        }
         public static bool SendMail(string adrMailTo,string objet, string contenu, out Exception iferror)
         {
             bool result;

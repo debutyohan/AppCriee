@@ -52,6 +52,7 @@ namespace AppCriée
             this.lbl_title = new System.Windows.Forms.Label();
             this.lbl_receptionniste_datejour = new System.Windows.Forms.Label();
             this.pbx_receptionniste_deconnexion = new System.Windows.Forms.PictureBox();
+            this.tbp_receptionniste_mesdonnees = new System.Windows.Forms.TabPage();
             this.tbc_receptionniste.SuspendLayout();
             this.tabAccueil.SuspendLayout();
             this.tabPeche.SuspendLayout();
@@ -73,6 +74,7 @@ namespace AppCriée
             // 
             this.tbc_receptionniste.Controls.Add(this.tabAccueil);
             this.tbc_receptionniste.Controls.Add(this.tabPeche);
+            this.tbc_receptionniste.Controls.Add(this.tbp_receptionniste_mesdonnees);
             this.tbc_receptionniste.Location = new System.Drawing.Point(0, 0);
             this.tbc_receptionniste.Margin = new System.Windows.Forms.Padding(4);
             this.tbc_receptionniste.Name = "tbc_receptionniste";
@@ -336,6 +338,16 @@ namespace AppCriée
             this.pbx_receptionniste_deconnexion.TabStop = false;
             this.pbx_receptionniste_deconnexion.Click += new System.EventHandler(this.pbx_receptionniste_deconnexion_Click);
             // 
+            // tbp_receptionniste_mesdonnees
+            // 
+            this.tbp_receptionniste_mesdonnees.Location = new System.Drawing.Point(4, 25);
+            this.tbp_receptionniste_mesdonnees.Name = "tbp_receptionniste_mesdonnees";
+            this.tbp_receptionniste_mesdonnees.Padding = new System.Windows.Forms.Padding(3);
+            this.tbp_receptionniste_mesdonnees.Size = new System.Drawing.Size(1077, 651);
+            this.tbp_receptionniste_mesdonnees.TabIndex = 2;
+            this.tbp_receptionniste_mesdonnees.Text = "Mes données";
+            this.tbp_receptionniste_mesdonnees.UseVisualStyleBackColor = true;
+            // 
             // AppCriee_Receptionniste
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -388,5 +400,6 @@ namespace AppCriée
         private System.Windows.Forms.Button btn_receptionniste_peche_supprimer;
         private System.Windows.Forms.Label lbl_receptionniste_datejour;
         private System.Windows.Forms.PictureBox pbx_receptionniste_deconnexion;
+        private System.Windows.Forms.TabPage tbp_receptionniste_mesdonnees;
     }
 }

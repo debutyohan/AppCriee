@@ -36,6 +36,7 @@ namespace AppCriée
             this.tbp_directeurdesventes_lotsvente = new System.Windows.Forms.TabPage();
             this.pbx_directeurdesventes_deconnexion = new System.Windows.Forms.PictureBox();
             this.lbl_directeurdesventes_datejour = new System.Windows.Forms.Label();
+            this.tbp_directeurdesventes_mesdonnees = new System.Windows.Forms.TabPage();
             this.tbc_directeurdesventes.SuspendLayout();
             this.tbp_directeurdesventes_accueil.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbx_directeurdesventes_deconnexion)).BeginInit();
@@ -45,6 +46,7 @@ namespace AppCriée
             // 
             this.tbc_directeurdesventes.Controls.Add(this.tbp_directeurdesventes_accueil);
             this.tbc_directeurdesventes.Controls.Add(this.tbp_directeurdesventes_lotsvente);
+            this.tbc_directeurdesventes.Controls.Add(this.tbp_directeurdesventes_mesdonnees);
             this.tbc_directeurdesventes.Location = new System.Drawing.Point(0, 0);
             this.tbc_directeurdesventes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbc_directeurdesventes.Name = "tbc_directeurdesventes";
@@ -119,6 +121,16 @@ namespace AppCriée
             this.lbl_directeurdesventes_datejour.TabIndex = 20;
             this.lbl_directeurdesventes_datejour.Text = "Date du jour : 23/10/2021";
             // 
+            // tbp_directeurdesventes_mesdonnees
+            // 
+            this.tbp_directeurdesventes_mesdonnees.Location = new System.Drawing.Point(4, 25);
+            this.tbp_directeurdesventes_mesdonnees.Name = "tbp_directeurdesventes_mesdonnees";
+            this.tbp_directeurdesventes_mesdonnees.Padding = new System.Windows.Forms.Padding(3);
+            this.tbp_directeurdesventes_mesdonnees.Size = new System.Drawing.Size(1077, 651);
+            this.tbp_directeurdesventes_mesdonnees.TabIndex = 2;
+            this.tbp_directeurdesventes_mesdonnees.Text = "Mes données";
+            this.tbp_directeurdesventes_mesdonnees.UseVisualStyleBackColor = true;
+            // 
             // AppCriee_DirecteurDesVentes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -149,5 +161,6 @@ namespace AppCriée
         private System.Windows.Forms.Label lbl_directeurdesventes_accueil_role;
         private System.Windows.Forms.PictureBox pbx_directeurdesventes_deconnexion;
         private System.Windows.Forms.Label lbl_directeurdesventes_datejour;
+        private System.Windows.Forms.TabPage tbp_directeurdesventes_mesdonnees;
     }
 }

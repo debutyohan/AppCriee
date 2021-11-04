@@ -34,6 +34,7 @@ namespace AppCriée
             this.lbl_administrateur_accueil_role = new System.Windows.Forms.Label();
             this.lbl_administrateur_accueil_bienvenue = new System.Windows.Forms.Label();
             this.tbp_administrateur_gestioncomptes = new System.Windows.Forms.TabPage();
+            this.lbl_administrateur_gestioncomptes_validationajoutok = new System.Windows.Forms.Label();
             this.lbl_administrateur_gestioncomptes_champsobli = new System.Windows.Forms.Label();
             this.lbl_administrateur_gestioncomptes_validationajouterror = new System.Windows.Forms.Label();
             this.btn_administrateur_gestioncomptes_validerajout = new System.Windows.Forms.Button();
@@ -64,7 +65,7 @@ namespace AppCriée
             this.lbl_administrateur_gestioncomptes_title = new System.Windows.Forms.Label();
             this.pbx_administrateur_deconnexion = new System.Windows.Forms.PictureBox();
             this.lbl_administrateur_datejour = new System.Windows.Forms.Label();
-            this.lbl_administrateur_gestioncomptes_validationajoutok = new System.Windows.Forms.Label();
+            this.tbp_administrateur_mesdonnees = new System.Windows.Forms.TabPage();
             this.tbc_administrateur.SuspendLayout();
             this.tbp_administrateur_accueil.SuspendLayout();
             this.tbp_administrateur_gestioncomptes.SuspendLayout();
@@ -76,6 +77,7 @@ namespace AppCriée
             // 
             this.tbc_administrateur.Controls.Add(this.tbp_administrateur_accueil);
             this.tbc_administrateur.Controls.Add(this.tbp_administrateur_gestioncomptes);
+            this.tbc_administrateur.Controls.Add(this.tbp_administrateur_mesdonnees);
             this.tbc_administrateur.Location = new System.Drawing.Point(0, 0);
             this.tbc_administrateur.Name = "tbc_administrateur";
             this.tbc_administrateur.SelectedIndex = 0;
@@ -149,6 +151,20 @@ namespace AppCriée
             this.tbp_administrateur_gestioncomptes.TabIndex = 1;
             this.tbp_administrateur_gestioncomptes.Text = "Gestion des comptes";
             this.tbp_administrateur_gestioncomptes.UseVisualStyleBackColor = true;
+            // 
+            // lbl_administrateur_gestioncomptes_validationajoutok
+            // 
+            this.lbl_administrateur_gestioncomptes_validationajoutok.AutoSize = true;
+            this.lbl_administrateur_gestioncomptes_validationajoutok.BackColor = System.Drawing.Color.White;
+            this.lbl_administrateur_gestioncomptes_validationajoutok.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_administrateur_gestioncomptes_validationajoutok.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lbl_administrateur_gestioncomptes_validationajoutok.Location = new System.Drawing.Point(103, 387);
+            this.lbl_administrateur_gestioncomptes_validationajoutok.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_administrateur_gestioncomptes_validationajoutok.Name = "lbl_administrateur_gestioncomptes_validationajoutok";
+            this.lbl_administrateur_gestioncomptes_validationajoutok.Size = new System.Drawing.Size(242, 25);
+            this.lbl_administrateur_gestioncomptes_validationajoutok.TabIndex = 38;
+            this.lbl_administrateur_gestioncomptes_validationajoutok.Text = "L\'utilisateur a bien été crée";
+            this.lbl_administrateur_gestioncomptes_validationajoutok.Visible = false;
             // 
             // lbl_administrateur_gestioncomptes_champsobli
             // 
@@ -479,19 +495,15 @@ namespace AppCriée
             this.lbl_administrateur_datejour.TabIndex = 21;
             this.lbl_administrateur_datejour.Text = "Date du jour : 23/10/2021";
             // 
-            // lbl_administrateur_gestioncomptes_validationajoutok
+            // tbp_administrateur_mesdonnees
             // 
-            this.lbl_administrateur_gestioncomptes_validationajoutok.AutoSize = true;
-            this.lbl_administrateur_gestioncomptes_validationajoutok.BackColor = System.Drawing.Color.White;
-            this.lbl_administrateur_gestioncomptes_validationajoutok.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_administrateur_gestioncomptes_validationajoutok.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lbl_administrateur_gestioncomptes_validationajoutok.Location = new System.Drawing.Point(103, 387);
-            this.lbl_administrateur_gestioncomptes_validationajoutok.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_administrateur_gestioncomptes_validationajoutok.Name = "lbl_administrateur_gestioncomptes_validationajoutok";
-            this.lbl_administrateur_gestioncomptes_validationajoutok.Size = new System.Drawing.Size(242, 25);
-            this.lbl_administrateur_gestioncomptes_validationajoutok.TabIndex = 38;
-            this.lbl_administrateur_gestioncomptes_validationajoutok.Text = "L\'utilisateur a bien été crée";
-            this.lbl_administrateur_gestioncomptes_validationajoutok.Visible = false;
+            this.tbp_administrateur_mesdonnees.Location = new System.Drawing.Point(4, 25);
+            this.tbp_administrateur_mesdonnees.Name = "tbp_administrateur_mesdonnees";
+            this.tbp_administrateur_mesdonnees.Padding = new System.Windows.Forms.Padding(3);
+            this.tbp_administrateur_mesdonnees.Size = new System.Drawing.Size(1077, 651);
+            this.tbp_administrateur_mesdonnees.TabIndex = 2;
+            this.tbp_administrateur_mesdonnees.Text = "Mes données";
+            this.tbp_administrateur_mesdonnees.UseVisualStyleBackColor = true;
             // 
             // AppCriee_Administrateur
             // 
@@ -556,5 +568,6 @@ namespace AppCriée
         private System.Windows.Forms.Label lbl_administrateur_gestioncomptes_validationajouterror;
         private System.Windows.Forms.Label lbl_administrateur_gestioncomptes_champsobli;
         private System.Windows.Forms.Label lbl_administrateur_gestioncomptes_validationajoutok;
+        private System.Windows.Forms.TabPage tbp_administrateur_mesdonnees;
     }
 }

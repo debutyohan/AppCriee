@@ -588,7 +588,7 @@ namespace AppCriée
             }
             if (isbacnotlot)
             {
-                CompleteControl.RemplirCombobox(cbx_veterinaire_lotspeche_lotsbateau, "SELECT lot.id as idLot, espece.nom as nomEspece, idTaille, idPresentation, idQualite FROM lot INNER JOIN espece ON espece.id=lot.idEspece INNER JOIN bateau ON bateau.id=lot.idBateau AND bateau.id=lot.idBateau WHERE lot.idDatePeche=? AND immatriculation=? AND codeEtat =NULL", "#Lot n°#idLot (nomEspece:idTaille:idQualite:idPresentation)", new List<object> {Datejour, imma }, false);
+                CompleteControl.RemplirCombobox(cbx_veterinaire_lotspeche_lotsbateau, "SELECT lot.id as idLot, espece.nom as nomEspece, idTaille, idPresentation, idQualite FROM lot INNER JOIN espece ON espece.id=lot.idEspece INNER JOIN bateau ON bateau.id=lot.idBateau AND bateau.id=lot.idBateau WHERE lot.idDatePeche=? AND immatriculation=? AND codeEtat is NULL", "#Lot n°#idLot (nomEspece:idTaille:idQualite:idPresentation)", new List<object> {Datejour, imma }, false);
                 HiddenObject.Show(new List<Control> { btn_veterinaire_lotspeche_creerlot, dg_veterinaire_lotspeche_bacnotlot });
                 if (islots)
                 {
