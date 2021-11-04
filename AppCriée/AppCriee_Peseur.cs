@@ -67,7 +67,7 @@ namespace AppCriée
             idLotisWeightModifing = -1;
             idBacisWeightModifing = "";
             HiddenObject.Show(new List<Control> { lbl_peseur_lotspeche_lotsbateau });
-            HiddenObject.Hide(new List<Control> { rbtn_peseur_lotspeche_lotnonbloque, rbtn_peseur_lotspeche_lotbloque, lbl_peseur_lotspeche_validation, lbl_peseur_lotspeche_saisirpoids, tbx_peseur_lotspeche_saisirpoids, lbl_peseur_lotspeche_validationok, btn_peseur_lotspeche_validersaisiepoids, dg_peseur_lotspeche_bacs, btn_peseur_lotspeche_saisirpoids, lbl_peseur_lotspeche_bacdulot });
+            HiddenObject.Hide(new List<Control> {lbl_peseur_lotspeche_info, lbl_peseur_lotspeche_info2 ,rbtn_peseur_lotspeche_lotnonbloque, rbtn_peseur_lotspeche_lotbloque, lbl_peseur_lotspeche_validation, lbl_peseur_lotspeche_saisirpoids, tbx_peseur_lotspeche_saisirpoids, lbl_peseur_lotspeche_validationok, btn_peseur_lotspeche_validersaisiepoids, dg_peseur_lotspeche_bacs, btn_peseur_lotspeche_saisirpoids, lbl_peseur_lotspeche_bacdulot });
             String elmt_bateau = cbx_peseur_lotspeche_listebateaux.Text;
             int char_bateau = elmt_bateau.IndexOf("(");
             String imma = elmt_bateau.Substring(char_bateau + 1, elmt_bateau.Length - char_bateau - 2);
@@ -101,7 +101,7 @@ namespace AppCriée
                     }
                 }
                 lbl_peseur_lotspeche_islots.Hide();
-                HiddenObject.Show(new List<Control> { dg_peseur_lotspeche_lotsbateau });
+                HiddenObject.Show(new List<Control> { dg_peseur_lotspeche_lotsbateau, lbl_peseur_lotspeche_info2 });
                 dg_peseur_lotspeche_lotsbateau.SelectedRows[0].Selected = false;
             }
             else
@@ -120,7 +120,7 @@ namespace AppCriée
                 ligneselect = ligneselectionne;
                 idLotisWeightModifing = Int32.Parse(ligneselectionne.Cells[0].Value.ToString().Substring(2, 3));
                 CompleteControl.RemplirDataGridViewByRequest(dg_peseur_lotspeche_bacs, "SELECT bac.id as idBac, idTypeBac, tare, IF(ISNULL(poidsbrutBac)OR poidsbrutBac='0.00', 'Non saisie', poidsbrutBac) as poidsbrut FROM bac INNER JOIN typebac ON typebac.id=bac.idTypeBac WHERE idDatePeche=? AND idBateau=? AND idLot=? ORDER BY bac.id", new string[] { "idBac", "idTypeBac", "tare", "poidsbrut" }, new List<object> { Datejour, idbateau, idLotisWeightModifing });
-                HiddenObject.Show(new List<Control> { dg_peseur_lotspeche_bacs, btn_peseur_lotspeche_saisirpoids, lbl_peseur_lotspeche_bacdulot });
+                HiddenObject.Show(new List<Control> { dg_peseur_lotspeche_bacs, btn_peseur_lotspeche_saisirpoids, lbl_peseur_lotspeche_bacdulot, lbl_peseur_lotspeche_info });
                 foreach (DataGridViewRow ligne in dg_peseur_lotspeche_bacs.Rows)
                 {
                     string poidsBac = ligne.Cells[3].Value.ToString().ToLower();
@@ -210,6 +210,30 @@ namespace AppCriée
 
         }
 
+        private void rbtn_peseur_lotspeche_ChangedBloqueLot_CheckedChanged(object sender, EventArgs e)
+        {
+            DataGridViewRow ligneselectionne = dg_peseur_lotspeche_lotsbateau.SelectedRows[0];
+            string idbateau = Int32.Parse(ligneselectionne.Cells[0].Value.ToString().Substring(0, 2)).ToString();
+            string idlot = Int32.Parse(ligneselectionne.Cells[0].Value.ToString().Substring(2, 3)).ToString();
+            CURS cs = new CURS();
+            if (rbtn_peseur_lotspeche_lotbloque.Checked)
+            {
+                cs.ReqAdminPrepare("UPDATE lot SET codeEtat ='C' WHERE idDatePeche =? AND idBateau =? AND id =?", new List<object> { Datejour, idbateau, idlot });
+                CompleteControl.griseligne(ligneselectionne);
+                lbl_peseur_lotspeche_validation.Text = "Le lot sélectionné a bien été bloqué";
+                ligneselectionne.Cells[7].Value = "C";
+            }
+            if (rbtn_peseur_lotspeche_lotnonbloque.Checked)
+            {
+                cs.ReqAdminPrepare("UPDATE lot SET codeEtat =NULL WHERE idDatePeche =? AND idBateau =? AND id =?", new List<object> { Datejour, idbateau, idlot });
+                CompleteControl.degriseligne(ligneselectionne);
+                lbl_peseur_lotspeche_validation.Text = "Le lot sélectionné a bien été débloqué";
+                ligneselectionne.Cells[7].Value = "";
+
+            }
+            cs.fermer();
+            lbl_peseur_lotspeche_validation.Show();
+        }
         #endregion
 
         #region Fermeture du formulaire
@@ -233,29 +257,5 @@ namespace AppCriée
 
         #endregion
 
-        private void rbtn_peseur_lotspeche_ChangedBloqueLot_CheckedChanged(object sender, EventArgs e)
-        {
-            DataGridViewRow ligneselectionne = dg_peseur_lotspeche_lotsbateau.SelectedRows[0];
-            string idbateau = Int32.Parse(ligneselectionne.Cells[0].Value.ToString().Substring(0, 2)).ToString();
-            string idlot = Int32.Parse(ligneselectionne.Cells[0].Value.ToString().Substring(2, 3)).ToString();
-            CURS cs = new CURS();
-            if (rbtn_peseur_lotspeche_lotbloque.Checked)
-            {      
-                cs.ReqAdminPrepare("UPDATE lot SET codeEtat ='C' WHERE idDatePeche =? AND idBateau =? AND id =?", new List<object> { Datejour, idbateau, idlot});
-                CompleteControl.griseligne(ligneselectionne);
-                lbl_peseur_lotspeche_validation.Text = "Le lot sélectionné a bien été bloquer";
-                ligneselectionne.Cells[7].Value = "C";
-            }
-            if (rbtn_peseur_lotspeche_lotnonbloque.Checked)
-            {             
-                cs.ReqAdminPrepare("UPDATE lot SET codeEtat =NULL WHERE idDatePeche =? AND idBateau =? AND id =?", new List<object> { Datejour, idbateau, idlot });
-                CompleteControl.degriseligne(ligneselectionne);
-                lbl_peseur_lotspeche_validation.Text = "Le lot sélectionné a bien été débloquer";
-                ligneselectionne.Cells[7].Value = "";
-
-            }
-            cs.fermer();
-            lbl_peseur_lotspeche_validation.Show();
-        }
     }
 }

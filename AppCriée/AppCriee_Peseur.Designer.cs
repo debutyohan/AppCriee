@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AppCriee_Peseur));
             this.lbl_peseur_accueil_bienvenue = new System.Windows.Forms.Label();
             this.lbl_peseur_accueil_role = new System.Windows.Forms.Label();
             this.tbc_peseur = new System.Windows.Forms.TabControl();
             this.tbp_peseur_accueil = new System.Windows.Forms.TabPage();
             this.tbp_peseur_lotspeche = new System.Windows.Forms.TabPage();
+            this.lbl_peseur_lotspeche_info2 = new System.Windows.Forms.Label();
             this.lbl_peseur_lotspeche_validation = new System.Windows.Forms.Label();
             this.rbtn_peseur_lotspeche_lotbloque = new System.Windows.Forms.RadioButton();
             this.rbtn_peseur_lotspeche_lotnonbloque = new System.Windows.Forms.RadioButton();
@@ -63,9 +65,9 @@
             this.lbl_peseur_lotspeche_choixbateau = new System.Windows.Forms.Label();
             this.lbl_peseur_lotspeche_title = new System.Windows.Forms.Label();
             this.lbl_peseur_lotspeche_ispeche = new System.Windows.Forms.Label();
+            this.tbp_peseur_mesdonnees = new System.Windows.Forms.TabPage();
             this.lbl_peseur_datejour = new System.Windows.Forms.Label();
             this.pbx_peseur_deconnexion = new System.Windows.Forms.PictureBox();
-            this.tbp_peseur_mesdonnees = new System.Windows.Forms.TabPage();
             this.tbc_peseur.SuspendLayout();
             this.tbp_peseur_accueil.SuspendLayout();
             this.tbp_peseur_lotspeche.SuspendLayout();
@@ -125,6 +127,7 @@
             // 
             // tbp_peseur_lotspeche
             // 
+            this.tbp_peseur_lotspeche.Controls.Add(this.lbl_peseur_lotspeche_info2);
             this.tbp_peseur_lotspeche.Controls.Add(this.lbl_peseur_lotspeche_validation);
             this.tbp_peseur_lotspeche.Controls.Add(this.rbtn_peseur_lotspeche_lotbloque);
             this.tbp_peseur_lotspeche.Controls.Add(this.rbtn_peseur_lotspeche_lotnonbloque);
@@ -151,6 +154,16 @@
             this.tbp_peseur_lotspeche.TabIndex = 1;
             this.tbp_peseur_lotspeche.Text = "Lots de pêche";
             this.tbp_peseur_lotspeche.UseVisualStyleBackColor = true;
+            // 
+            // lbl_peseur_lotspeche_info2
+            // 
+            this.lbl_peseur_lotspeche_info2.AutoSize = true;
+            this.lbl_peseur_lotspeche_info2.Location = new System.Drawing.Point(557, 76);
+            this.lbl_peseur_lotspeche_info2.Name = "lbl_peseur_lotspeche_info2";
+            this.lbl_peseur_lotspeche_info2.Size = new System.Drawing.Size(463, 68);
+            this.lbl_peseur_lotspeche_info2.TabIndex = 36;
+            this.lbl_peseur_lotspeche_info2.Text = resources.GetString("lbl_peseur_lotspeche_info2.Text");
+            this.lbl_peseur_lotspeche_info2.Visible = false;
             // 
             // lbl_peseur_lotspeche_validation
             // 
@@ -507,6 +520,16 @@
             this.lbl_peseur_lotspeche_ispeche.Text = "Il n\'y a aucune pêche enregistrée pour ce jour, veuillez contacter le réceptionni" +
     "ste.";
             // 
+            // tbp_peseur_mesdonnees
+            // 
+            this.tbp_peseur_mesdonnees.Location = new System.Drawing.Point(4, 22);
+            this.tbp_peseur_mesdonnees.Name = "tbp_peseur_mesdonnees";
+            this.tbp_peseur_mesdonnees.Padding = new System.Windows.Forms.Padding(3);
+            this.tbp_peseur_mesdonnees.Size = new System.Drawing.Size(1077, 653);
+            this.tbp_peseur_mesdonnees.TabIndex = 2;
+            this.tbp_peseur_mesdonnees.Text = "Mes données";
+            this.tbp_peseur_mesdonnees.UseVisualStyleBackColor = true;
+            // 
             // lbl_peseur_datejour
             // 
             this.lbl_peseur_datejour.AutoSize = true;
@@ -531,16 +554,6 @@
             this.pbx_peseur_deconnexion.TabIndex = 2;
             this.pbx_peseur_deconnexion.TabStop = false;
             this.pbx_peseur_deconnexion.Click += new System.EventHandler(this.pbx_peseur_deconnexion_Click);
-            // 
-            // tbp_peseur_mesdonnees
-            // 
-            this.tbp_peseur_mesdonnees.Location = new System.Drawing.Point(4, 22);
-            this.tbp_peseur_mesdonnees.Name = "tbp_peseur_mesdonnees";
-            this.tbp_peseur_mesdonnees.Padding = new System.Windows.Forms.Padding(3);
-            this.tbp_peseur_mesdonnees.Size = new System.Drawing.Size(1077, 653);
-            this.tbp_peseur_mesdonnees.TabIndex = 2;
-            this.tbp_peseur_mesdonnees.Text = "Mes données";
-            this.tbp_peseur_mesdonnees.UseVisualStyleBackColor = true;
             // 
             // AppCriee_Peseur
             // 
@@ -609,5 +622,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn poidstotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn codeEtat;
         private System.Windows.Forms.TabPage tbp_peseur_mesdonnees;
+        private System.Windows.Forms.Label lbl_peseur_lotspeche_info2;
     }
 }

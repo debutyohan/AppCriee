@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="lbl_peseur_lotspeche_info2.Text" xml:space="preserve">
+    <value>Pour bloquer/débloquer un lot, cliquer sur le lot dans le tableau des lots.
+Les lots bloquées sont matérialisées par des lignes grisées.
+Pour pouvoir bloquer un lot, il faut avoir d'abord saisi au préalable
+tous les poids des bacs composant le lot.</value>
+  </data>
   <metadata name="dataGridViewTextBoxColumn7.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
