@@ -90,7 +90,7 @@
     </Compile>
     <Compile Include="BacNotLot.cs" />
     <Compile Include="CompleteControl.cs" />
-    <Compile Include="ConnectionChain.cs" />
+    <Compile Include="DataSystem.cs" />
     <Compile Include="CURS.cs" />
     <Compile Include="Auth.cs">
       <SubType>Form</SubType>

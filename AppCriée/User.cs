@@ -14,7 +14,8 @@ namespace AppCriée
         private string _prenom;
         private int _type;
         private string _libelletype;
-        public User(int id, string login, string nom, string prenom, int type, string libelletype)
+        private string _adrMail;
+        public User(int id, string login, string nom, string prenom, int type, string libelletype, string adrMail)
         {
             _id = id;
             _login = login;
@@ -22,6 +23,7 @@ namespace AppCriée
             _prenom = prenom;
             _type = type;
             _libelletype = libelletype;
+            _adrMail = adrMail;
         }
 
         public int Id { get => _id; set => _id = value; }
@@ -30,5 +32,6 @@ namespace AppCriée
         public string Prenom { get => _prenom; set => _prenom = value; }
         public int Type { get => _type; set => _type = value; }
         public string Libelletype { get => _libelletype; set => _libelletype = value; }
+        public string AdrMail { get => _adrMail; set => _adrMail = value; }
     }
 }

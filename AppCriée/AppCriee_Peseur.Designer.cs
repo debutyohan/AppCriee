@@ -294,9 +294,9 @@
             this.lbl_peseur_lotspeche_islots.Location = new System.Drawing.Point(59, 220);
             this.lbl_peseur_lotspeche_islots.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_peseur_lotspeche_islots.Name = "lbl_peseur_lotspeche_islots";
-            this.lbl_peseur_lotspeche_islots.Size = new System.Drawing.Size(350, 24);
+            this.lbl_peseur_lotspeche_islots.Size = new System.Drawing.Size(617, 24);
             this.lbl_peseur_lotspeche_islots.TabIndex = 24;
-            this.lbl_peseur_lotspeche_islots.Text = "Pas encore de lots créés pour ce bateau";
+            this.lbl_peseur_lotspeche_islots.Text = "Pas encore de lots créés pour ce bateau, veuillez contacter le vétérinaire";
             this.lbl_peseur_lotspeche_islots.Visible = false;
             // 
             // dg_peseur_lotspeche_lotsbateau
@@ -477,6 +477,8 @@
             this.Controls.Add(this.tbc_peseur);
             this.Controls.Add(this.lbl_peseur_datejour);
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximumSize = new System.Drawing.Size(1105, 783);
+            this.MinimumSize = new System.Drawing.Size(1105, 783);
             this.Name = "AppCriee_Peseur";
             this.Text = "AppCriée (Peseur)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AppCriee_Peseur_FormClosing);

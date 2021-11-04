@@ -20,6 +20,7 @@ namespace AppCriée
         #endregion
 
         #region Procédure évènement
+
         private void btn_auth_connexion_Click(object sender, EventArgs e)
         {
             String passwdhash = new HashData(tbx_auth_passwd.Text).HashCalculate();
@@ -38,7 +39,7 @@ namespace AppCriée
             if (cs.champ("nbUser").ToString() == "1")
             {
                 lbl_auth_falseidpasswd.Hide();
-                User UserConnecte = new User(Int32.Parse(cs.champ("iduser").ToString()), cs.champ("login").ToString(), cs.champ("nomuser").ToString(), cs.champ("prenomuser").ToString(), Int32.Parse(cs.champ("idtypeuser").ToString()), cs.champ("libelle").ToString());
+                User UserConnecte = new User(Int32.Parse(cs.champ("iduser").ToString()), cs.champ("login").ToString(), cs.champ("nomuser").ToString(), cs.champ("prenomuser").ToString(), Int32.Parse(cs.champ("idtypeuser").ToString()), cs.champ("libelle").ToString(), cs.champ("adrMail").ToString()); ;
                 
                 switch (UserConnecte.Type)
                 {
@@ -77,12 +78,10 @@ namespace AppCriée
             cs.fermer();
 
         }
-
         private void btn_auth_quitter_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void chx_auth_showchar_CheckedChanged(object sender, EventArgs e)
         {
             if (chx_auth_showchar.Checked)
@@ -90,6 +89,7 @@ namespace AppCriée
             else
                 tbx_auth_passwd.UseSystemPasswordChar = true;
         }
+
         #endregion
 
     }

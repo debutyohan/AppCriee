@@ -106,9 +106,9 @@ namespace AppCriée
             this.lbl_veterinaire_lotspeche_choixbateau = new System.Windows.Forms.Label();
             this.lbl_veterinaire_lotspeche_title = new System.Windows.Forms.Label();
             this.tbp_veterinaire_touslots = new System.Windows.Forms.TabPage();
+            this.btn_veterinaire_touslots_imprimer = new System.Windows.Forms.Button();
             this.lbl_veterinaire_touslots_ok = new System.Windows.Forms.Label();
             this.lbl_veterinaire_touslots_error = new System.Windows.Forms.Label();
-            this.btn_veterinaire_touslots_imprimer = new System.Windows.Forms.Button();
             this.lbl_veterinaire_touslots_islots = new System.Windows.Forms.Label();
             this.lbl_veterinaire_touslots_ispeche = new System.Windows.Forms.Label();
             this.lbl_veterinaire_touslots_title = new System.Windows.Forms.Label();
@@ -1060,6 +1060,21 @@ namespace AppCriée
             this.tbp_veterinaire_touslots.Text = "Tous les lots de vente";
             this.tbp_veterinaire_touslots.UseVisualStyleBackColor = true;
             // 
+            // btn_veterinaire_touslots_imprimer
+            // 
+            this.btn_veterinaire_touslots_imprimer.BackColor = System.Drawing.Color.Yellow;
+            this.btn_veterinaire_touslots_imprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_veterinaire_touslots_imprimer.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btn_veterinaire_touslots_imprimer.Location = new System.Drawing.Point(762, 487);
+            this.btn_veterinaire_touslots_imprimer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_veterinaire_touslots_imprimer.Name = "btn_veterinaire_touslots_imprimer";
+            this.btn_veterinaire_touslots_imprimer.Size = new System.Drawing.Size(222, 48);
+            this.btn_veterinaire_touslots_imprimer.TabIndex = 43;
+            this.btn_veterinaire_touslots_imprimer.Text = "Imprimer les étiquettes ETQP des bacs du lot";
+            this.btn_veterinaire_touslots_imprimer.UseVisualStyleBackColor = false;
+            this.btn_veterinaire_touslots_imprimer.Visible = false;
+            this.btn_veterinaire_touslots_imprimer.Click += new System.EventHandler(this.btn_veterinaire_touslots_imprimer_Click);
+            // 
             // lbl_veterinaire_touslots_ok
             // 
             this.lbl_veterinaire_touslots_ok.AutoSize = true;
@@ -1084,21 +1099,6 @@ namespace AppCriée
             this.lbl_veterinaire_touslots_error.TabIndex = 44;
             this.lbl_veterinaire_touslots_error.Text = "Veuillez sélectionner un et un seul lot";
             this.lbl_veterinaire_touslots_error.Visible = false;
-            // 
-            // btn_veterinaire_touslots_imprimer
-            // 
-            this.btn_veterinaire_touslots_imprimer.BackColor = System.Drawing.Color.Yellow;
-            this.btn_veterinaire_touslots_imprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_veterinaire_touslots_imprimer.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btn_veterinaire_touslots_imprimer.Location = new System.Drawing.Point(762, 487);
-            this.btn_veterinaire_touslots_imprimer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn_veterinaire_touslots_imprimer.Name = "btn_veterinaire_touslots_imprimer";
-            this.btn_veterinaire_touslots_imprimer.Size = new System.Drawing.Size(222, 48);
-            this.btn_veterinaire_touslots_imprimer.TabIndex = 43;
-            this.btn_veterinaire_touslots_imprimer.Text = "Imprimer les étiquettes ETQP des bacs du lot";
-            this.btn_veterinaire_touslots_imprimer.UseVisualStyleBackColor = false;
-            this.btn_veterinaire_touslots_imprimer.Visible = false;
-            this.btn_veterinaire_touslots_imprimer.Click += new System.EventHandler(this.btn_veterinaire_touslots_imprimer_Click);
             // 
             // lbl_veterinaire_touslots_islots
             // 
@@ -1263,6 +1263,8 @@ namespace AppCriée
             this.Controls.Add(this.lbl_veterinaire_datejour);
             this.Controls.Add(this.tbc_veterinaire);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaximumSize = new System.Drawing.Size(1105, 783);
+            this.MinimumSize = new System.Drawing.Size(1105, 783);
             this.Name = "AppCriee_Veterinaire";
             this.Text = "AppCriée (Vétérinaire)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AppCriee_Veterinaire_FormClosing);

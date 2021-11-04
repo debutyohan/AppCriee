@@ -166,6 +166,8 @@ namespace AppCriée
             this.Controls.Add(this.tbx_auth_id);
             this.Controls.Add(this.btn_auth_connexion);
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximumSize = new System.Drawing.Size(878, 458);
+            this.MinimumSize = new System.Drawing.Size(878, 458);
             this.Name = "AppCriee";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AppCriée";

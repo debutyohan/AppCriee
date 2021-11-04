@@ -65,7 +65,7 @@ namespace AppCriée
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1087, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1087, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -347,6 +347,8 @@ namespace AppCriée
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximumSize = new System.Drawing.Size(1105, 783);
+            this.MinimumSize = new System.Drawing.Size(1105, 783);
             this.Name = "AppCriee_Receptionniste";
             this.Text = "AppCriée (Réceptionniste)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AppCriee_Receptionniste_FormClosing);

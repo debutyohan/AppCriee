@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Drawing;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -138,6 +141,46 @@ namespace AppCriée
             }
             cs.fermer();
             return islots;
+        }
+        public static void griseligne(DataGridViewRow line)
+        {
+            foreach(DataGridViewCell cellule in line.Cells)
+            {
+                cellule.Style.BackColor = Color.Gray;
+            }
+        }
+
+        public static bool SendMail(string adrMailTo,string objet, string contenu, out Exception iferror)
+        {
+            bool result;
+            string[] paramSMTP = DataSystem.ParamSMTP();
+            string serveurSMTP = paramSMTP[0];
+            string adrMailFrom = paramSMTP[1];
+            int portSMTP = Int32.Parse(paramSMTP[2]);
+            string passAdrMail = paramSMTP[3];
+            iferror = new Exception();
+            try
+            {
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient(serveurSMTP);
+
+                mail.From = new MailAddress(adrMailFrom);
+                mail.To.Add(adrMailTo);
+                mail.Subject = objet;
+                mail.Body = contenu;
+                SmtpServer.Port = portSMTP;
+                SmtpServer.UseDefaultCredentials = false;
+                SmtpServer.Credentials = new System.Net.NetworkCredential(adrMailFrom, passAdrMail);
+                SmtpServer.EnableSsl = true;
+                SmtpServer.Send(mail);
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                result = false;
+                iferror = ex;
+            }
+            return result;
         }
     }
 }

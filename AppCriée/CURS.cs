@@ -21,7 +21,7 @@ namespace AppCriée
         {
             try
             {
-                maconnexion = new MySqlConnection(ConnectionChain.chaineConnexion());
+                maconnexion = new MySqlConnection(DataSystem.ConnectionChain());
                 maconnexion.Open();
                 monreader = null;
             }

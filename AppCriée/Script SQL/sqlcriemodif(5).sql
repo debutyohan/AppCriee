@@ -58,3 +58,5 @@ BEGIN
     WHERE login=val1 AND pwd=val2;
 END$
 Delimiter ;
+
+ALTER TABLE utilisateur ADD adrMail VARCHAR(300);

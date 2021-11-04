@@ -19,6 +19,7 @@ namespace AppCriée
         int idLotisWeightModifing = -1;
         string idBacisWeightModifing = "";
         DataGridViewCellMouseEventArgs dernierclic;
+        DataGridViewRow ligneselect;
         int idbateau;
         AppCriee _authAccueil;
 
@@ -110,9 +111,11 @@ namespace AppCriée
             dernierclic = e;
             HiddenObject.Hide(new List<Control> { lbl_peseur_lotspeche_saisirpoids, tbx_peseur_lotspeche_saisirpoids, lbl_peseur_lotspeche_validationok, btn_peseur_lotspeche_validersaisiepoids });
             DataGridViewRow ligneselectionne = dg_peseur_lotspeche_lotsbateau.SelectedRows[0];
+            ligneselect = ligneselectionne;
             idLotisWeightModifing = Int32.Parse(ligneselectionne.Cells[0].Value.ToString().Substring(2,3));
             CompleteControl.RemplirDataGridViewByRequest(dg_peseur_lotspeche_bacs, "SELECT bac.id as idBac, idTypeBac, tare, IF(ISNULL(poidsbrutBac)OR poidsbrutBac='0.00', 'Non saisie', poidsbrutBac) as poidsbrut FROM bac INNER JOIN typebac ON typebac.id=bac.idTypeBac WHERE idDatePeche=? AND idBateau=? AND idLot=? ORDER BY bac.id", new string[] { "idBac", "idTypeBac", "tare", "poidsbrut" }, new List<object> { Datejour, idbateau, idLotisWeightModifing });
             HiddenObject.Show(new List<Control> { dg_peseur_lotspeche_bacs, btn_peseur_lotspeche_saisirpoids, lbl_peseur_lotspeche_bacdulot });
+            
         }
         private void btn_peseur_lotspeche_saisirpoids_Click(object sender, EventArgs e)
         {
@@ -139,14 +142,22 @@ namespace AppCriée
         private void btn_peseur_lotspeche_validersaisiepoids_Click(object sender, EventArgs e)
         {
             string nouvpoids = "'" + tbx_peseur_lotspeche_saisirpoids.Text + "'";
+            CURS cs = new CURS();
             if (nouvpoids == "''")
             {
-                nouvpoids = "null";
+                cs.ReqAdminPrepare("UPDATE bac SET poidsbrutbac=NULL WHERE idDatePeche=? AND idBateau=? AND idLot=? AND id=?", new List<object> { Datejour, idbateau, idLotisWeightModifing, idBacisWeightModifing });
+
+            }
+            else
+            {
+                cs.ReqAdminPrepare("UPDATE bac SET poidsbrutbac=? WHERE idDatePeche=? AND idBateau=? AND idLot=? AND id=?", new List<object> { tbx_peseur_lotspeche_saisirpoids.Text, Datejour, idbateau, idLotisWeightModifing, idBacisWeightModifing });
+
             }
             HiddenObject.Hide(new List<Control> { tbx_peseur_lotspeche_saisirpoids, lbl_peseur_lotspeche_saisirpoids, btn_peseur_lotspeche_validersaisiepoids });
-            CURS cs = new CURS();
-            cs.ReqAdminPrepare("UPDATE bac SET poidsbrutbac=? WHERE idDatePeche=? AND idBateau=? AND idLot=? AND id=?", new List<object> { nouvpoids, Datejour, idbateau, idLotisWeightModifing, idBacisWeightModifing });
             cs.fermer();
+            int index = dg_peseur_lotspeche_lotsbateau.Rows.IndexOf(ligneselect);
+            cbx_peseur_lotspeche_listebateaux_SelectionChangeCommitted(sender, e);
+            dg_peseur_lotspeche_lotsbateau.Rows[index].Selected = true;
             dg_peseur_lotspeche_lotsbateau_CellMouseClick(sender, dernierclic);
             lbl_peseur_lotspeche_validationok.Text = "Le bac a bien été modifié";
             lbl_peseur_lotspeche_validationok.ForeColor = Color.Blue;
