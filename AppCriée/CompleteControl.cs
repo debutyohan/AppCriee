@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -138,6 +139,22 @@ namespace AppCriée
             }
             cs.fermer();
             return islots;
+        }
+
+        public static void griseligne(DataGridViewRow line)
+        {
+            foreach(DataGridViewCell cellule in line.Cells)
+            {
+                cellule.Style.BackColor = Color.Gray;
+            }
+        }
+
+        public static void degriseligne(DataGridViewRow line)
+        {
+            foreach (DataGridViewCell cellule in line.Cells)
+            {
+                cellule.Style.BackColor = Color.White;
+            }
         }
     }
 }
