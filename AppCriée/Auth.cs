@@ -90,9 +90,6 @@ namespace AppCriée
                 tbx_auth_passwd.UseSystemPasswordChar = true;
         }
 
-        #endregion
-
-
         private void lbl_auth_oublimotdepasse_Click(object sender, EventArgs e)
         {
             AppCriee_RecupMotdePasse form_recupmotdepasse = new AppCriee_RecupMotdePasse(this);
@@ -102,9 +99,11 @@ namespace AppCriée
 
         private void lbl_auth_demandecreercompte_Click(object sender, EventArgs e)
         {
-            AppCriee_DemandeCreationCompte form_demandecreercompte= new AppCriee_DemandeCreationCompte(this);
+            AppCriee_DemandeCreationCompte form_demandecreercompte = new AppCriee_DemandeCreationCompte(this);
             form_demandecreercompte.Show();
             this.Hide();
         }
+        #endregion
+
     }
 }

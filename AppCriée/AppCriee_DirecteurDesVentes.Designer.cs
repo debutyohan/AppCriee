@@ -50,10 +50,12 @@ namespace AppCriée
             this.tbp_directeurdesventes_mesdonnees = new System.Windows.Forms.TabPage();
             this.pbx_directeurdesventes_deconnexion = new System.Windows.Forms.PictureBox();
             this.lbl_directeurdesventes_datejour = new System.Windows.Forms.Label();
+            this.btn_peseur_mesdonnees_supprimer = new System.Windows.Forms.Button();
             this.tbc_directeurdesventes.SuspendLayout();
             this.tbp_directeurdesventes_accueil.SuspendLayout();
             this.tbp_directeurdesventes_lotsvente.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_directeurdesventes_lotsvente_alllot)).BeginInit();
+            this.tbp_directeurdesventes_mesdonnees.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbx_directeurdesventes_deconnexion)).BeginInit();
             this.SuspendLayout();
             // 
@@ -259,6 +261,7 @@ namespace AppCriée
             // 
             // tbp_directeurdesventes_mesdonnees
             // 
+            this.tbp_directeurdesventes_mesdonnees.Controls.Add(this.btn_peseur_mesdonnees_supprimer);
             this.tbp_directeurdesventes_mesdonnees.Location = new System.Drawing.Point(4, 25);
             this.tbp_directeurdesventes_mesdonnees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbp_directeurdesventes_mesdonnees.Name = "tbp_directeurdesventes_mesdonnees";
@@ -293,6 +296,19 @@ namespace AppCriée
             this.lbl_directeurdesventes_datejour.TabIndex = 20;
             this.lbl_directeurdesventes_datejour.Text = "Date du jour : 23/10/2021";
             // 
+            // btn_peseur_mesdonnees_supprimer
+            // 
+            this.btn_peseur_mesdonnees_supprimer.BackColor = System.Drawing.Color.Red;
+            this.btn_peseur_mesdonnees_supprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_peseur_mesdonnees_supprimer.Location = new System.Drawing.Point(784, 103);
+            this.btn_peseur_mesdonnees_supprimer.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_peseur_mesdonnees_supprimer.Name = "btn_peseur_mesdonnees_supprimer";
+            this.btn_peseur_mesdonnees_supprimer.Size = new System.Drawing.Size(200, 52);
+            this.btn_peseur_mesdonnees_supprimer.TabIndex = 24;
+            this.btn_peseur_mesdonnees_supprimer.Text = "Supprimer mon compte";
+            this.btn_peseur_mesdonnees_supprimer.UseVisualStyleBackColor = false;
+            this.btn_peseur_mesdonnees_supprimer.Click += new System.EventHandler(this.btn_peseur_mesdonnees_supprimer_Click);
+            // 
             // AppCriee_DirecteurDesVentes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -313,6 +329,7 @@ namespace AppCriée
             this.tbp_directeurdesventes_lotsvente.ResumeLayout(false);
             this.tbp_directeurdesventes_lotsvente.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_directeurdesventes_lotsvente_alllot)).EndInit();
+            this.tbp_directeurdesventes_mesdonnees.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbx_directeurdesventes_deconnexion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -342,5 +359,6 @@ namespace AppCriée
         private System.Windows.Forms.DataGridViewTextBoxColumn codeEtat;
         private System.Windows.Forms.DataGridViewTextBoxColumn iddubateau;
         private System.Windows.Forms.Label lbl_directeurdesventes_lotsvente_title;
+        private System.Windows.Forms.Button btn_peseur_mesdonnees_supprimer;
     }
 }

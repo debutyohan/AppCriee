@@ -123,9 +123,10 @@ namespace AppCriée
             this.nbbac = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdduBateau = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codeEtât = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tbp_veterinaire_mesdonnees = new System.Windows.Forms.TabPage();
             this.lbl_veterinaire_datejour = new System.Windows.Forms.Label();
             this.pbx_veterinaire_deconnexion = new System.Windows.Forms.PictureBox();
-            this.tbp_veterinaire_mesdonnees = new System.Windows.Forms.TabPage();
+            this.btn_veterinaire_mesdonnees_supprimer = new System.Windows.Forms.Button();
             this.tbc_veterinaire.SuspendLayout();
             this.tbp_veterinaire_accueil.SuspendLayout();
             this.tbp_veterinaire_bacpoisson.SuspendLayout();
@@ -135,6 +136,7 @@ namespace AppCriée
             ((System.ComponentModel.ISupportInitialize)(this.dg_veterinaire_lotspeche_lotsbateau)).BeginInit();
             this.tbp_veterinaire_touslots.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_veterinaire_touslots_alllot)).BeginInit();
+            this.tbp_veterinaire_mesdonnees.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbx_veterinaire_deconnexion)).BeginInit();
             this.SuspendLayout();
             // 
@@ -1256,6 +1258,17 @@ namespace AppCriée
             this.codeEtât.ReadOnly = true;
             this.codeEtât.Width = 125;
             // 
+            // tbp_veterinaire_mesdonnees
+            // 
+            this.tbp_veterinaire_mesdonnees.Controls.Add(this.btn_veterinaire_mesdonnees_supprimer);
+            this.tbp_veterinaire_mesdonnees.Location = new System.Drawing.Point(4, 25);
+            this.tbp_veterinaire_mesdonnees.Name = "tbp_veterinaire_mesdonnees";
+            this.tbp_veterinaire_mesdonnees.Padding = new System.Windows.Forms.Padding(3);
+            this.tbp_veterinaire_mesdonnees.Size = new System.Drawing.Size(1077, 650);
+            this.tbp_veterinaire_mesdonnees.TabIndex = 4;
+            this.tbp_veterinaire_mesdonnees.Text = "Mes données";
+            this.tbp_veterinaire_mesdonnees.UseVisualStyleBackColor = true;
+            // 
             // lbl_veterinaire_datejour
             // 
             this.lbl_veterinaire_datejour.AutoSize = true;
@@ -1280,15 +1293,18 @@ namespace AppCriée
             this.pbx_veterinaire_deconnexion.TabStop = false;
             this.pbx_veterinaire_deconnexion.Click += new System.EventHandler(this.pbx_veterinaire_deconnexion_Click);
             // 
-            // tbp_veterinaire_mesdonnees
+            // btn_veterinaire_mesdonnees_supprimer
             // 
-            this.tbp_veterinaire_mesdonnees.Location = new System.Drawing.Point(4, 25);
-            this.tbp_veterinaire_mesdonnees.Name = "tbp_veterinaire_mesdonnees";
-            this.tbp_veterinaire_mesdonnees.Padding = new System.Windows.Forms.Padding(3);
-            this.tbp_veterinaire_mesdonnees.Size = new System.Drawing.Size(1077, 650);
-            this.tbp_veterinaire_mesdonnees.TabIndex = 4;
-            this.tbp_veterinaire_mesdonnees.Text = "Mes données";
-            this.tbp_veterinaire_mesdonnees.UseVisualStyleBackColor = true;
+            this.btn_veterinaire_mesdonnees_supprimer.BackColor = System.Drawing.Color.Red;
+            this.btn_veterinaire_mesdonnees_supprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_veterinaire_mesdonnees_supprimer.Location = new System.Drawing.Point(784, 103);
+            this.btn_veterinaire_mesdonnees_supprimer.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_veterinaire_mesdonnees_supprimer.Name = "btn_veterinaire_mesdonnees_supprimer";
+            this.btn_veterinaire_mesdonnees_supprimer.Size = new System.Drawing.Size(200, 52);
+            this.btn_veterinaire_mesdonnees_supprimer.TabIndex = 22;
+            this.btn_veterinaire_mesdonnees_supprimer.Text = "Supprimer mon compte";
+            this.btn_veterinaire_mesdonnees_supprimer.UseVisualStyleBackColor = false;
+            this.btn_veterinaire_mesdonnees_supprimer.Click += new System.EventHandler(this.btn_veterinaire_mesdonnees_supprimer_Click);
             // 
             // AppCriee_Veterinaire
             // 
@@ -1315,6 +1331,7 @@ namespace AppCriée
             this.tbp_veterinaire_touslots.ResumeLayout(false);
             this.tbp_veterinaire_touslots.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_veterinaire_touslots_alllot)).EndInit();
+            this.tbp_veterinaire_mesdonnees.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbx_veterinaire_deconnexion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1419,5 +1436,6 @@ namespace AppCriée
         private System.Windows.Forms.DataGridViewTextBoxColumn IdduBateau;
         private System.Windows.Forms.DataGridViewTextBoxColumn codeEtât;
         private System.Windows.Forms.TabPage tbp_veterinaire_mesdonnees;
+        private System.Windows.Forms.Button btn_veterinaire_mesdonnees_supprimer;
     }
 }

@@ -13,7 +13,14 @@ namespace AppCriée
 {
     public partial class AppCriee_DemandeCreationCompte : Form
     {
+        #region Données privées
+
         AppCriee _appCriee;
+
+        #endregion
+
+        #region Constructeur
+
         public AppCriee_DemandeCreationCompte(AppCriee appCriee)
         {
             InitializeComponent();
@@ -21,11 +28,9 @@ namespace AppCriée
             CompleteControl.RemplirCombobox(cbx_demandecreercompte_typeuser, "SELECT libelle FROM typeutilisateur", "libelle");
         }
 
-        private void AppCriee_DemandeCreationCompte_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            _appCriee.Show();
-        }
+        #endregion
 
+        #region Evènement
         private void btn_demandecreercompte_valider_Click(object sender, EventArgs e)
         {
             if (tbx_demandecreercompte_login.Text.Trim() == "" || tbx_demandecreercompte_motdepasse.Text.Trim() == "" || cbx_demandecreercompte_typeuser.Text == "")
@@ -89,7 +94,7 @@ namespace AppCriée
             bool isresult = CompleteControl.SendMail(DataSystem.AdrMailFrom(), "AppCriée : Demande de création d'un nouveau compte", contenu, out exception);
             if (!isresult)
             {
-                MessageBox.Show("Le mail n’a pu être envoyé au support technique : " + exception.Message + ", vérifier l’état de votre connexion Internet, votre pare-feu ou contacter le support informatique de l’application à l’adresse mail : " + DataSystem.AdrMailFrom(),"Echec de l'envoi du mail", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Le mail n’a pu être envoyé au support technique : " + exception.Message + ", vérifier l’état de votre connexion Internet, votre pare-feu ou contacter le support informatique de l’application à l’adresse mail : " + DataSystem.AdrMailFrom(), "Echec de l'envoi du mail", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (tbx_demandecreercompte_adrMail.Text.Trim() != "")
@@ -98,10 +103,20 @@ namespace AppCriée
             }
             else
             {
-                lbl_demandecreercompte_ok.Text = "Votre demande a bien été envoyée au support\ninformatique de l'application AppCriée.\n\nEtant donnée qu'aucune adresse mail n'a été\ncommuniqué, prenez contact avec votre\nservice informatique pour connaître les suites\nde votre demande.\n\nAdresse mail du support informatique :\n"+DataSystem.AdrMailFrom();
+                lbl_demandecreercompte_ok.Text = "Votre demande a bien été envoyée au support\ninformatique de l'application AppCriée.\n\nEtant donnée qu'aucune adresse mail n'a été\ncommuniqué, prenez contact avec votre\nservice informatique pour connaître les suites\nde votre demande.\n\nAdresse mail du support informatique :\n" + DataSystem.AdrMailFrom();
             }
             lbl_demandecreercompte_ok.Show();
-            HiddenObject.Hide(new List<Control> {lbl_demandecreercompte_login, lbl_demandecreercompte_motdepasse, lbl_demandecreercompte_nom, lbl_demandecreercompte_prenom, lbl_demandecreerompte_typeuser, lbl_demandecreercompte_adrMail, cbx_demandecreercompte_typeuser, tbx_demandecreercompte_adrMail, tbx_demandecreercompte_login, tbx_demandecreercompte_motdepasse, tbx_demandecreercompte_nom, tbx_demandecreercompte_prenom, btn_demandecreercompte_valider, lbl_demandecreercompte_champobli });
+            HiddenObject.Hide(new List<Control> { lbl_demandecreercompte_login, lbl_demandecreercompte_motdepasse, lbl_demandecreercompte_nom, lbl_demandecreercompte_prenom, lbl_demandecreerompte_typeuser, lbl_demandecreercompte_adrMail, cbx_demandecreercompte_typeuser, tbx_demandecreercompte_adrMail, tbx_demandecreercompte_login, tbx_demandecreercompte_motdepasse, tbx_demandecreercompte_nom, tbx_demandecreercompte_prenom, btn_demandecreercompte_valider, lbl_demandecreercompte_champobli });
         }
+        #endregion
+
+        #region Fermeture du formulaire
+
+        private void AppCriee_DemandeCreationCompte_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _appCriee.Show();
+        }
+
+        #endregion
     }
 }

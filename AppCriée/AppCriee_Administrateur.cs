@@ -37,34 +37,14 @@ namespace AppCriée
 
         #endregion
 
-        #region Fermture du Formulaire
-
-        private void AppCriee_Administrateur_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Confirmez-vous la déconnexion ?", "Confirmation de déconnexion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-            if (result == DialogResult.Yes)
-            {
-                _authAccueil.Show();
-            }
-            else
-            {
-                e.Cancel = true;
-            }
-        }
-        private void pbx_administrateur_deconnexion_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        #endregion
-
+        #region Changement d'onglets
         private void tbc_administrateur_Selected(object sender, TabControlEventArgs e)
         {
             _onglet = e;
             switch (e.TabPage.Name)
             {
                 case "tbp_administrateur_gestioncomptes":
-                    HiddenObject.Hide(new List<Control> { lbl_administrateur_gestioncomptes_modification, lbl_administrateur_gestioncomptes_ajout, lbl_administrateur_gestioncomptes_adrMail ,lbl_administrateur_gestioncomptes_login, lbl_administrateur_gestioncomptes_motdepasse ,lbl_administrateur_gestioncomptes_nom, lbl_administrateur_gestioncomptes_prenom, lbl_administrateur_gestioncomptes_typeuser, cbx_administrateur_gestioncomptes_typeuser, tbx_administrateur_gestioncomptes_adrMail, tbx_administrateur_gestioncomptes_login, tbx_administrateur_gestioncomptes_motdepasse, tbx_administrateur_gestioncomptes_nom, tbx_administrateur_gestioncomptes_prenom, btn_administrateur_gestioncomptes_validerajout, lbl_administrateur_gestioncomptes_validationajouterror, lbl_administrateur_gestioncomptes_champsobli, lbl_administrateur_gestioncomptes_validationajoutok, btn_administrateur_gestioncomptes_validermodif });
+                    HiddenObject.Hide(new List<Control> { lbl_administrateur_gestioncomptes_modification, lbl_administrateur_gestioncomptes_ajout, lbl_administrateur_gestioncomptes_adrMail, lbl_administrateur_gestioncomptes_login, lbl_administrateur_gestioncomptes_motdepasse, lbl_administrateur_gestioncomptes_nom, lbl_administrateur_gestioncomptes_prenom, lbl_administrateur_gestioncomptes_typeuser, cbx_administrateur_gestioncomptes_typeuser, tbx_administrateur_gestioncomptes_adrMail, tbx_administrateur_gestioncomptes_login, tbx_administrateur_gestioncomptes_motdepasse, tbx_administrateur_gestioncomptes_nom, tbx_administrateur_gestioncomptes_prenom, btn_administrateur_gestioncomptes_validerajout, lbl_administrateur_gestioncomptes_validationajouterror, lbl_administrateur_gestioncomptes_champsobli, lbl_administrateur_gestioncomptes_validationajoutok, btn_administrateur_gestioncomptes_validermodif });
                     CompleteControl.RemplirDataGridViewByRequest(dg_administrateur_gestioncomptes_listecompte, "SELECT utilisateur.id as iduser, login, nomuser, prenomuser, adrMail, libelle FROM utilisateur INNER JOIN typeutilisateur ON typeutilisateur.id=utilisateur.idtypeuser ORDER BY utilisateur.id", new string[] { "iduser", "login", "nomuser", "prenomuser", "adrMail", "libelle" });
                     foreach (DataGridViewRow ligne in dg_administrateur_gestioncomptes_listecompte.Rows)
                     {
@@ -89,13 +69,14 @@ namespace AppCriée
                     break;
             }
         }
+        #endregion
 
+        #region Onglet Gestion des comptes
 
         private void dg_administrateur_gestioncomptes_listecompte_VisibleChanged(object sender, EventArgs e)
         {
             dg_administrateur_gestioncomptes_listecompte.ClearSelection();
         }
-
         private void btn_administrateur_gestioncomptes_supprimer_Click(object sender, EventArgs e)
         {
             lbl_administrateur_gestioncomptes_validationok.Hide();
@@ -126,10 +107,9 @@ namespace AppCriée
             }
 
         }
-
         private void btn_administrateur_gestioncomptes_modifier_Click(object sender, EventArgs e)
         {
-            HiddenObject.Hide(new List<Control> { lbl_administrateur_gestioncomptes_champsobli,lbl_administrateur_gestioncomptes_ajout, lbl_administrateur_gestioncomptes_adrMail, lbl_administrateur_gestioncomptes_login, lbl_administrateur_gestioncomptes_motdepasse, lbl_administrateur_gestioncomptes_nom, lbl_administrateur_gestioncomptes_prenom, lbl_administrateur_gestioncomptes_typeuser, cbx_administrateur_gestioncomptes_typeuser, tbx_administrateur_gestioncomptes_adrMail, tbx_administrateur_gestioncomptes_login, tbx_administrateur_gestioncomptes_motdepasse, tbx_administrateur_gestioncomptes_nom, tbx_administrateur_gestioncomptes_prenom, btn_administrateur_gestioncomptes_validerajout, lbl_administrateur_gestioncomptes_modification, lbl_administrateur_gestioncomptes_validationajoutok, lbl_administrateur_gestioncomptes_validationajouterror, btn_administrateur_gestioncomptes_validermodif });
+            HiddenObject.Hide(new List<Control> { lbl_administrateur_gestioncomptes_champsobli, lbl_administrateur_gestioncomptes_ajout, lbl_administrateur_gestioncomptes_adrMail, lbl_administrateur_gestioncomptes_login, lbl_administrateur_gestioncomptes_motdepasse, lbl_administrateur_gestioncomptes_nom, lbl_administrateur_gestioncomptes_prenom, lbl_administrateur_gestioncomptes_typeuser, cbx_administrateur_gestioncomptes_typeuser, tbx_administrateur_gestioncomptes_adrMail, tbx_administrateur_gestioncomptes_login, tbx_administrateur_gestioncomptes_motdepasse, tbx_administrateur_gestioncomptes_nom, tbx_administrateur_gestioncomptes_prenom, btn_administrateur_gestioncomptes_validerajout, lbl_administrateur_gestioncomptes_modification, lbl_administrateur_gestioncomptes_validationajoutok, lbl_administrateur_gestioncomptes_validationajouterror, btn_administrateur_gestioncomptes_validermodif });
             if (dg_administrateur_gestioncomptes_listecompte.SelectedRows.Count != 1)
             {
                 lbl_administrateur_gestioncomptes_validationajouterror.Text = "Veuillez sélectionner un et un seul compte";
@@ -145,7 +125,7 @@ namespace AppCriée
             }
             CompleteControl.RemplirCombobox(cbx_administrateur_gestioncomptes_typeuser, "SELECT libelle FROM typeutilisateur", "libelle");
             tbx_administrateur_gestioncomptes_login.Text = ligneselect.Cells[1].Value.ToString();
-            if(ligneselect.Cells[2].Value.ToString().Trim()=="(Non communiqué)")
+            if (ligneselect.Cells[2].Value.ToString().Trim() == "(Non communiqué)")
             {
                 tbx_administrateur_gestioncomptes_nom.Text = "";
             }
@@ -175,11 +155,10 @@ namespace AppCriée
             idUserModified = ligneselected.Cells[0].Value.ToString();
             loginUserModified = ligneselected.Cells[1].Value.ToString();
         }
-
         private void btn_administrateur_gestioncomptes_ajout_Click(object sender, EventArgs e)
         {
             HiddenObject.Hide(new List<Control> { lbl_administrateur_gestioncomptes_modification, lbl_administrateur_gestioncomptes_validationajoutok, lbl_administrateur_gestioncomptes_validationajouterror, btn_administrateur_gestioncomptes_validermodif });
-            CompleteControl.RemplirCombobox(cbx_administrateur_gestioncomptes_typeuser,"SELECT libelle FROM typeutilisateur", "libelle");
+            CompleteControl.RemplirCombobox(cbx_administrateur_gestioncomptes_typeuser, "SELECT libelle FROM typeutilisateur", "libelle");
             tbx_administrateur_gestioncomptes_adrMail.Text = "";
             tbx_administrateur_gestioncomptes_login.Text = "";
             tbx_administrateur_gestioncomptes_motdepasse.Text = "";
@@ -187,7 +166,6 @@ namespace AppCriée
             tbx_administrateur_gestioncomptes_prenom.Text = "";
             HiddenObject.Show(new List<Control> { lbl_administrateur_gestioncomptes_ajout, lbl_administrateur_gestioncomptes_adrMail, lbl_administrateur_gestioncomptes_login, lbl_administrateur_gestioncomptes_motdepasse, lbl_administrateur_gestioncomptes_nom, lbl_administrateur_gestioncomptes_prenom, lbl_administrateur_gestioncomptes_typeuser, cbx_administrateur_gestioncomptes_typeuser, tbx_administrateur_gestioncomptes_adrMail, tbx_administrateur_gestioncomptes_login, tbx_administrateur_gestioncomptes_motdepasse, tbx_administrateur_gestioncomptes_nom, tbx_administrateur_gestioncomptes_prenom, btn_administrateur_gestioncomptes_validerajout });
         }
-
         private void btn_administrateur_gestioncomptes_validerajout_Click(object sender, EventArgs e)
         {
             if (cbx_administrateur_gestioncomptes_typeuser.Text == "" || tbx_administrateur_gestioncomptes_login.Text == "" || tbx_administrateur_gestioncomptes_motdepasse.Text == "")
@@ -196,12 +174,13 @@ namespace AppCriée
                 lbl_administrateur_gestioncomptes_validationajouterror.Show();
                 return;
             }
-            if(!(Regex.IsMatch(tbx_administrateur_gestioncomptes_motdepasse.Text, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$"))){
+            if (!(Regex.IsMatch(tbx_administrateur_gestioncomptes_motdepasse.Text, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$")))
+            {
                 lbl_administrateur_gestioncomptes_validationajouterror.Text = "Le mot de passe doit contenir au moins 10 caractères\ncomportant majuscule, minuscules, chiffres et caractères spéciaux";
                 lbl_administrateur_gestioncomptes_validationajouterror.Show();
                 return;
             }
-            if(tbx_administrateur_gestioncomptes_adrMail.Text.Trim()!=""&&!(Regex.IsMatch(tbx_administrateur_gestioncomptes_adrMail.Text,@"^(?("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))" + @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$")))
+            if (tbx_administrateur_gestioncomptes_adrMail.Text.Trim() != "" && !(Regex.IsMatch(tbx_administrateur_gestioncomptes_adrMail.Text, @"^(?("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))" + @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$")))
             {
                 lbl_administrateur_gestioncomptes_validationajouterror.Text = "L’adresse mail saisie n’est pas correcte";
                 lbl_administrateur_gestioncomptes_validationajouterror.Show();
@@ -274,7 +253,6 @@ namespace AppCriée
             }
 
         }
-
         private void btn_administrateur_gestioncomptes_validermodif_Click(object sender, EventArgs e)
         {
             if (cbx_administrateur_gestioncomptes_typeuser.Text == "" || tbx_administrateur_gestioncomptes_login.Text == "")
@@ -296,7 +274,7 @@ namespace AppCriée
                 {
                     idusermax = Int32.Parse(row.Cells[0].Value.ToString());
                 }
-                if (row.Cells[1].Value.ToString().Trim() == tbx_administrateur_gestioncomptes_login.Text&& loginUserModified!= tbx_administrateur_gestioncomptes_login.Text)
+                if (row.Cells[1].Value.ToString().Trim() == tbx_administrateur_gestioncomptes_login.Text && loginUserModified != tbx_administrateur_gestioncomptes_login.Text)
                 {
                     lbl_administrateur_gestioncomptes_validationajouterror.Text = "Le login existe déjà, veuillez en choisir un autre.";
                     lbl_administrateur_gestioncomptes_validationajouterror.Show();
@@ -327,7 +305,7 @@ namespace AppCriée
             tbc_administrateur_Selected(sender, _onglet);
             lbl_administrateur_gestioncomptes_validationajoutok.Show();
 
-            
+
             if (adresseMail != null)
             {
                 string contenu = "Votre compte de l'application AppCriée a été modifié.\n\nVoici vos données mises à jour :\n\nLogin : " + tbx_administrateur_gestioncomptes_login.Text;
@@ -367,6 +345,69 @@ namespace AppCriée
             idUserModified = null;
             loginUserModified = null;
         }
+
+        #endregion
+
+        #region Onglet Mes Données
+
+        private void btn_receptionniste_mesdonnees_supprimer_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Etes-vous sûr de vouloir supprimer votre propre compte ?\nAttention, cette action est irréversible.", "Supprimer votre compte", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                CURS cs = new CURS();
+                cs.ReqAdminPrepare("DELETE FROM utilisateur WHERE id=?", new List<object> { _useractuelle.Id });
+                cs.fermer();
+                string adrMail = _useractuelle.AdrMail.Trim();
+                string login = _useractuelle.Login;
+                _useractuelle = null;
+                _authAccueil.Show();
+                this.Close();
+                if (adrMail != "")
+                {
+                    Exception exception;
+                    bool isresult = CompleteControl.SendMail(adrMail, "AppCriée : Confirmation de la suppression de votre compte", "Votre compte '" + login + "' a été correctement supprimée\n\nSupport Informatique de l'application AppCriée\n\nPour toutes questions relatives à l'application AppCriée, veuillez nous contacter à l'adresse : " + DataSystem.AdrMailFrom(), out exception);
+                    if (!isresult)
+                    {
+                        MessageBox.Show("L'envoi du mail de confirmation n'a pas pu être envoyé\n" + exception.Message, "Echec envoi mail", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Votre compte a bien été supprimé\nUn mail vous a été envoyé", "Compte supprimé", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Votre compte a bien été supprimé", "Compte supprimé", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        #endregion
+
+        #region Fermture du Formulaire
+
+        private void AppCriee_Administrateur_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(_useractuelle != null)
+            {
+                DialogResult result = MessageBox.Show("Confirmez-vous la déconnexion ?", "Confirmation de déconnexion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (result == DialogResult.Yes)
+                {
+                    _authAccueil.Show();
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
+        private void pbx_administrateur_deconnexion_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        #endregion
+
     }
 }
 

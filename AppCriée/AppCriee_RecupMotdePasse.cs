@@ -13,21 +13,35 @@ namespace AppCriée
 {
     public partial class AppCriee_RecupMotdePasse : Form
     {
+        #region Données privées
+
         AppCriee _appCriee;
         string codegenere;
         int tentativecode = -1;
         string loginispassmodified;
+
+        #endregion
+
+        #region Constructeur
+
         public AppCriee_RecupMotdePasse(AppCriee appCriee)
         {
             InitializeComponent();
             _appCriee = appCriee;
         }
 
+        #endregion
+
+        #region Fermeture du Formulaire
+
         private void AppCriee_RecupMotdePasse_FormClosing(object sender, FormClosingEventArgs e)
         {
             _appCriee.Show();
         }
 
+        #endregion
+
+        #region Evènement
         private void btn_recupmotdepasse_reinit_Click(object sender, EventArgs e)
         {
             if(tbx_recupmotdepasse_adrMail.Text.Trim()==""&& tbx_recupmotdepasse_login.Text.Trim()=="")
@@ -181,5 +195,6 @@ namespace AppCriée
             else
                 tbx_recupmotdepasse_confirmermotdepasse.UseSystemPasswordChar = true;
         }
+        #endregion
     }
 }
