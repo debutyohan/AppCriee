@@ -67,9 +67,10 @@ namespace AppCriée
             this.lbl_administrateur_gestioncomptes_title = new System.Windows.Forms.Label();
             this.lbl_administrateur_gestioncomptes_modification = new System.Windows.Forms.Label();
             this.tbp_administrateur_mesdonnees = new System.Windows.Forms.TabPage();
+            this.lbl_administrateur_mesdonnees_ifonlyadmin = new System.Windows.Forms.Label();
+            this.btn_receptionniste_mesdonnees_supprimer = new System.Windows.Forms.Button();
             this.pbx_administrateur_deconnexion = new System.Windows.Forms.PictureBox();
             this.lbl_administrateur_datejour = new System.Windows.Forms.Label();
-            this.btn_receptionniste_mesdonnees_supprimer = new System.Windows.Forms.Button();
             this.tbc_administrateur.SuspendLayout();
             this.tbp_administrateur_accueil.SuspendLayout();
             this.tbp_administrateur_gestioncomptes.SuspendLayout();
@@ -530,6 +531,7 @@ namespace AppCriée
             // tbp_administrateur_mesdonnees
             // 
             this.tbp_administrateur_mesdonnees.Controls.Add(this.btn_receptionniste_mesdonnees_supprimer);
+            this.tbp_administrateur_mesdonnees.Controls.Add(this.lbl_administrateur_mesdonnees_ifonlyadmin);
             this.tbp_administrateur_mesdonnees.Location = new System.Drawing.Point(4, 25);
             this.tbp_administrateur_mesdonnees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbp_administrateur_mesdonnees.Name = "tbp_administrateur_mesdonnees";
@@ -538,6 +540,31 @@ namespace AppCriée
             this.tbp_administrateur_mesdonnees.TabIndex = 2;
             this.tbp_administrateur_mesdonnees.Text = "Mes données";
             this.tbp_administrateur_mesdonnees.UseVisualStyleBackColor = true;
+            // 
+            // lbl_administrateur_mesdonnees_ifonlyadmin
+            // 
+            this.lbl_administrateur_mesdonnees_ifonlyadmin.AutoSize = true;
+            this.lbl_administrateur_mesdonnees_ifonlyadmin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.lbl_administrateur_mesdonnees_ifonlyadmin.Location = new System.Drawing.Point(820, 190);
+            this.lbl_administrateur_mesdonnees_ifonlyadmin.Name = "lbl_administrateur_mesdonnees_ifonlyadmin";
+            this.lbl_administrateur_mesdonnees_ifonlyadmin.Size = new System.Drawing.Size(240, 68);
+            this.lbl_administrateur_mesdonnees_ifonlyadmin.TabIndex = 23;
+            this.lbl_administrateur_mesdonnees_ifonlyadmin.Text = "Vous ne pouvez pas supprimer votre\ncompte, puisque votre compte\nreprésente le seu" +
+    "l administrateur de\nl\'application.";
+            this.lbl_administrateur_mesdonnees_ifonlyadmin.Visible = false;
+            // 
+            // btn_receptionniste_mesdonnees_supprimer
+            // 
+            this.btn_receptionniste_mesdonnees_supprimer.BackColor = System.Drawing.Color.Red;
+            this.btn_receptionniste_mesdonnees_supprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_receptionniste_mesdonnees_supprimer.Location = new System.Drawing.Point(840, 206);
+            this.btn_receptionniste_mesdonnees_supprimer.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_receptionniste_mesdonnees_supprimer.Name = "btn_receptionniste_mesdonnees_supprimer";
+            this.btn_receptionniste_mesdonnees_supprimer.Size = new System.Drawing.Size(200, 52);
+            this.btn_receptionniste_mesdonnees_supprimer.TabIndex = 22;
+            this.btn_receptionniste_mesdonnees_supprimer.Text = "Supprimer mon compte";
+            this.btn_receptionniste_mesdonnees_supprimer.UseVisualStyleBackColor = false;
+            this.btn_receptionniste_mesdonnees_supprimer.Click += new System.EventHandler(this.btn_receptionniste_mesdonnees_supprimer_Click);
             // 
             // pbx_administrateur_deconnexion
             // 
@@ -564,19 +591,6 @@ namespace AppCriée
             this.lbl_administrateur_datejour.TabIndex = 21;
             this.lbl_administrateur_datejour.Text = "Date du jour : 23/10/2021";
             // 
-            // btn_receptionniste_mesdonnees_supprimer
-            // 
-            this.btn_receptionniste_mesdonnees_supprimer.BackColor = System.Drawing.Color.Red;
-            this.btn_receptionniste_mesdonnees_supprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_receptionniste_mesdonnees_supprimer.Location = new System.Drawing.Point(784, 103);
-            this.btn_receptionniste_mesdonnees_supprimer.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_receptionniste_mesdonnees_supprimer.Name = "btn_receptionniste_mesdonnees_supprimer";
-            this.btn_receptionniste_mesdonnees_supprimer.Size = new System.Drawing.Size(200, 52);
-            this.btn_receptionniste_mesdonnees_supprimer.TabIndex = 22;
-            this.btn_receptionniste_mesdonnees_supprimer.Text = "Supprimer mon compte";
-            this.btn_receptionniste_mesdonnees_supprimer.UseVisualStyleBackColor = false;
-            this.btn_receptionniste_mesdonnees_supprimer.Click += new System.EventHandler(this.btn_receptionniste_mesdonnees_supprimer_Click);
-            // 
             // AppCriee_Administrateur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -598,6 +612,7 @@ namespace AppCriée
             this.tbp_administrateur_gestioncomptes.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_administrateur_gestioncomptes_listecompte)).EndInit();
             this.tbp_administrateur_mesdonnees.ResumeLayout(false);
+            this.tbp_administrateur_mesdonnees.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbx_administrateur_deconnexion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -647,5 +662,6 @@ namespace AppCriée
         private System.Windows.Forms.Button btn_administrateur_gestioncomptes_validermodif;
         private System.Windows.Forms.Label lbl_administrateur_gestioncomptes_validationok;
         private System.Windows.Forms.Button btn_receptionniste_mesdonnees_supprimer;
+        private System.Windows.Forms.Label lbl_administrateur_mesdonnees_ifonlyadmin;
     }
 }

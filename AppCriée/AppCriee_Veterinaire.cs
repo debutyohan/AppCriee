@@ -57,7 +57,7 @@ namespace AppCriée
 
         private void tbc_veterinaire_Selected(object sender, TabControlEventArgs e)
         {
-            if (!(tbp_veterinaire_lotspeche.Enabled))
+            if (!(tbp_veterinaire_lotspeche.Enabled)&&(e.TabPage.Name!= "tbp_veterinaire_mesdonnees") && (e.TabPage.Name != "tbp_veterinaire_accueil"))
             {
                 tbc_veterinaire.SelectedTab = tbp_veterinaire_accueil;
             }
@@ -1002,7 +1002,7 @@ namespace AppCriée
                     bool isresult = CompleteControl.SendMail(adrMail, "AppCriée : Confirmation de la suppression de votre compte", "Votre compte '" + login + "' a été correctement supprimée\n\nSupport Informatique de l'application AppCriée\n\nPour toutes questions relatives à l'application AppCriée, veuillez nous contacter à l'adresse : " + DataSystem.AdrMailFrom(), out exception);
                     if (!isresult)
                     {
-                        MessageBox.Show("L'envoi du mail de confirmation n'a pas pu être envoyé\n" + exception.Message, "Echec envoi mail", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Votre compte a bien été supprimée\nL'envoi du mail de confirmation n'a toutefois pas pu être envoyé : \n" + exception.Message, "Compte supprimée", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {

@@ -66,9 +66,9 @@
             this.lbl_peseur_lotspeche_title = new System.Windows.Forms.Label();
             this.lbl_peseur_lotspeche_ispeche = new System.Windows.Forms.Label();
             this.tbp_peseur_mesdonnees = new System.Windows.Forms.TabPage();
+            this.btn_peseur_mesdonnees_supprimer = new System.Windows.Forms.Button();
             this.lbl_peseur_datejour = new System.Windows.Forms.Label();
             this.pbx_peseur_deconnexion = new System.Windows.Forms.PictureBox();
-            this.btn_peseur_mesdonnees_supprimer = new System.Windows.Forms.Button();
             this.tbc_peseur.SuspendLayout();
             this.tbp_peseur_accueil.SuspendLayout();
             this.tbp_peseur_lotspeche.SuspendLayout();
@@ -533,6 +533,19 @@
             this.tbp_peseur_mesdonnees.Text = "Mes données";
             this.tbp_peseur_mesdonnees.UseVisualStyleBackColor = true;
             // 
+            // btn_peseur_mesdonnees_supprimer
+            // 
+            this.btn_peseur_mesdonnees_supprimer.BackColor = System.Drawing.Color.Red;
+            this.btn_peseur_mesdonnees_supprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_peseur_mesdonnees_supprimer.Location = new System.Drawing.Point(843, 206);
+            this.btn_peseur_mesdonnees_supprimer.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_peseur_mesdonnees_supprimer.Name = "btn_peseur_mesdonnees_supprimer";
+            this.btn_peseur_mesdonnees_supprimer.Size = new System.Drawing.Size(200, 52);
+            this.btn_peseur_mesdonnees_supprimer.TabIndex = 23;
+            this.btn_peseur_mesdonnees_supprimer.Text = "Supprimer mon compte";
+            this.btn_peseur_mesdonnees_supprimer.UseVisualStyleBackColor = false;
+            this.btn_peseur_mesdonnees_supprimer.Click += new System.EventHandler(this.btn_peseur_mesdonnees_supprimer_Click);
+            // 
             // lbl_peseur_datejour
             // 
             this.lbl_peseur_datejour.AutoSize = true;
@@ -557,19 +570,6 @@
             this.pbx_peseur_deconnexion.TabIndex = 2;
             this.pbx_peseur_deconnexion.TabStop = false;
             this.pbx_peseur_deconnexion.Click += new System.EventHandler(this.pbx_peseur_deconnexion_Click);
-            // 
-            // btn_peseur_mesdonnees_supprimer
-            // 
-            this.btn_peseur_mesdonnees_supprimer.BackColor = System.Drawing.Color.Red;
-            this.btn_peseur_mesdonnees_supprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_peseur_mesdonnees_supprimer.Location = new System.Drawing.Point(784, 103);
-            this.btn_peseur_mesdonnees_supprimer.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_peseur_mesdonnees_supprimer.Name = "btn_peseur_mesdonnees_supprimer";
-            this.btn_peseur_mesdonnees_supprimer.Size = new System.Drawing.Size(200, 52);
-            this.btn_peseur_mesdonnees_supprimer.TabIndex = 23;
-            this.btn_peseur_mesdonnees_supprimer.Text = "Supprimer mon compte";
-            this.btn_peseur_mesdonnees_supprimer.UseVisualStyleBackColor = false;
-            this.btn_peseur_mesdonnees_supprimer.Click += new System.EventHandler(this.btn_peseur_mesdonnees_supprimer_Click);
             // 
             // AppCriee_Peseur
             // 

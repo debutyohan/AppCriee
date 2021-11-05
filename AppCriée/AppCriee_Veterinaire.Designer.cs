@@ -124,9 +124,9 @@ namespace AppCriée
             this.IdduBateau = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codeEtât = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbp_veterinaire_mesdonnees = new System.Windows.Forms.TabPage();
+            this.btn_veterinaire_mesdonnees_supprimer = new System.Windows.Forms.Button();
             this.lbl_veterinaire_datejour = new System.Windows.Forms.Label();
             this.pbx_veterinaire_deconnexion = new System.Windows.Forms.PictureBox();
-            this.btn_veterinaire_mesdonnees_supprimer = new System.Windows.Forms.Button();
             this.tbc_veterinaire.SuspendLayout();
             this.tbp_veterinaire_accueil.SuspendLayout();
             this.tbp_veterinaire_bacpoisson.SuspendLayout();
@@ -180,7 +180,7 @@ namespace AppCriée
             this.lbl_veterinaire_ispeche.Size = new System.Drawing.Size(700, 48);
             this.lbl_veterinaire_ispeche.TabIndex = 19;
             this.lbl_veterinaire_ispeche.Text = "Il n\'y a aucune pêche enregistrée pour ce jour, veuillez contacter le réceptionni" +
-    "ste.\nLes autres onglets sont bloqués";
+    "ste.\nLes autres onglets sont bloqués, sauf l\'onglet \'Mes Données\'";
             // 
             // lbl_veterinaire_accueil_role
             // 
@@ -1269,6 +1269,19 @@ namespace AppCriée
             this.tbp_veterinaire_mesdonnees.Text = "Mes données";
             this.tbp_veterinaire_mesdonnees.UseVisualStyleBackColor = true;
             // 
+            // btn_veterinaire_mesdonnees_supprimer
+            // 
+            this.btn_veterinaire_mesdonnees_supprimer.BackColor = System.Drawing.Color.Red;
+            this.btn_veterinaire_mesdonnees_supprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_veterinaire_mesdonnees_supprimer.Location = new System.Drawing.Point(784, 103);
+            this.btn_veterinaire_mesdonnees_supprimer.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_veterinaire_mesdonnees_supprimer.Name = "btn_veterinaire_mesdonnees_supprimer";
+            this.btn_veterinaire_mesdonnees_supprimer.Size = new System.Drawing.Size(200, 52);
+            this.btn_veterinaire_mesdonnees_supprimer.TabIndex = 22;
+            this.btn_veterinaire_mesdonnees_supprimer.Text = "Supprimer mon compte";
+            this.btn_veterinaire_mesdonnees_supprimer.UseVisualStyleBackColor = false;
+            this.btn_veterinaire_mesdonnees_supprimer.Click += new System.EventHandler(this.btn_veterinaire_mesdonnees_supprimer_Click);
+            // 
             // lbl_veterinaire_datejour
             // 
             this.lbl_veterinaire_datejour.AutoSize = true;
@@ -1292,19 +1305,6 @@ namespace AppCriée
             this.pbx_veterinaire_deconnexion.TabIndex = 21;
             this.pbx_veterinaire_deconnexion.TabStop = false;
             this.pbx_veterinaire_deconnexion.Click += new System.EventHandler(this.pbx_veterinaire_deconnexion_Click);
-            // 
-            // btn_veterinaire_mesdonnees_supprimer
-            // 
-            this.btn_veterinaire_mesdonnees_supprimer.BackColor = System.Drawing.Color.Red;
-            this.btn_veterinaire_mesdonnees_supprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_veterinaire_mesdonnees_supprimer.Location = new System.Drawing.Point(784, 103);
-            this.btn_veterinaire_mesdonnees_supprimer.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_veterinaire_mesdonnees_supprimer.Name = "btn_veterinaire_mesdonnees_supprimer";
-            this.btn_veterinaire_mesdonnees_supprimer.Size = new System.Drawing.Size(200, 52);
-            this.btn_veterinaire_mesdonnees_supprimer.TabIndex = 22;
-            this.btn_veterinaire_mesdonnees_supprimer.Text = "Supprimer mon compte";
-            this.btn_veterinaire_mesdonnees_supprimer.UseVisualStyleBackColor = false;
-            this.btn_veterinaire_mesdonnees_supprimer.Click += new System.EventHandler(this.btn_veterinaire_mesdonnees_supprimer_Click);
             // 
             // AppCriee_Veterinaire
             // 

@@ -67,6 +67,22 @@ namespace AppCriée
                     }
                     dg_administrateur_gestioncomptes_listecompte.Show();
                     break;
+                case "tbp_administrateur_mesdonnees":
+                    CURS cs = new CURS();
+                    cs.ReqSelect("SELECT count(id) as nb FROM utilisateur WHERE idtypeuser=0");
+                    string nb = cs.champ("nb").ToString();
+                    cs.fermer();
+                    if (nb == "1")
+                    {
+                        btn_receptionniste_mesdonnees_supprimer.Hide();
+                        lbl_administrateur_mesdonnees_ifonlyadmin.Show();
+                    }
+                    else
+                    {
+                        lbl_administrateur_mesdonnees_ifonlyadmin.Hide();
+                        btn_receptionniste_mesdonnees_supprimer.Show();
+                    }
+                    break;
             }
         }
         #endregion
@@ -368,7 +384,7 @@ namespace AppCriée
                     bool isresult = CompleteControl.SendMail(adrMail, "AppCriée : Confirmation de la suppression de votre compte", "Votre compte '" + login + "' a été correctement supprimée\n\nSupport Informatique de l'application AppCriée\n\nPour toutes questions relatives à l'application AppCriée, veuillez nous contacter à l'adresse : " + DataSystem.AdrMailFrom(), out exception);
                     if (!isresult)
                     {
-                        MessageBox.Show("L'envoi du mail de confirmation n'a pas pu être envoyé\n" + exception.Message, "Echec envoi mail", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Votre compte a bien été supprimée\nL'envoi du mail de confirmation n'a toutefois pas pu être envoyé : \n" + exception.Message, "Compte supprimée", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
