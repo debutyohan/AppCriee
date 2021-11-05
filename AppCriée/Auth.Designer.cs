@@ -40,6 +40,7 @@ namespace AppCriée
             this.lbl_auth_falseidpasswd = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbl_auth_oublimotdepasse = new System.Windows.Forms.Label();
+            this.lbl_auth_demandecreercompte = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -163,12 +164,26 @@ namespace AppCriée
             this.lbl_auth_oublimotdepasse.Text = "Mot de passe oublié";
             this.lbl_auth_oublimotdepasse.Click += new System.EventHandler(this.lbl_auth_oublimotdepasse_Click);
             // 
+            // lbl_auth_demandecreercompte
+            // 
+            this.lbl_auth_demandecreercompte.AutoSize = true;
+            this.lbl_auth_demandecreercompte.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_auth_demandecreercompte.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_auth_demandecreercompte.Location = new System.Drawing.Point(65, 316);
+            this.lbl_auth_demandecreercompte.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_auth_demandecreercompte.Name = "lbl_auth_demandecreercompte";
+            this.lbl_auth_demandecreercompte.Size = new System.Drawing.Size(257, 17);
+            this.lbl_auth_demandecreercompte.TabIndex = 11;
+            this.lbl_auth_demandecreercompte.Text = "Demander la création d\'un compte";
+            this.lbl_auth_demandecreercompte.Click += new System.EventHandler(this.lbl_auth_demandecreercompte_Click);
+            // 
             // AppCriee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(860, 411);
+            this.Controls.Add(this.lbl_auth_demandecreercompte);
             this.Controls.Add(this.lbl_auth_oublimotdepasse);
             this.Controls.Add(this.lbl_auth_falseidpasswd);
             this.Controls.Add(this.chx_auth_showchar);
@@ -205,6 +220,7 @@ namespace AppCriée
         private System.Windows.Forms.CheckBox chx_auth_showchar;
         private System.Windows.Forms.Label lbl_auth_falseidpasswd;
         private System.Windows.Forms.Label lbl_auth_oublimotdepasse;
+        private System.Windows.Forms.Label lbl_auth_demandecreercompte;
     }
 }
 

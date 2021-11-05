@@ -56,3 +56,4 @@ C:\Users\LENOVO\source\repos\debutyohan\AppCriee\AppCriée\obj\Debug\AppCriée.e
 C:\Users\LENOVO\source\repos\debutyohan\AppCriee\AppCriée\obj\Debug\AppCriée.pdb
 C:\Users\debut\source\repos\AppCriée\AppCriée\obj\Debug\AppCriée.AppCriee_RecupMotdePasse.resources
 C:\Users\LENOVO\source\repos\debutyohan\AppCriee\AppCriée\obj\Debug\AppCriée.AppCriee_RecupMotdePasse.resources
+C:\Users\debut\source\repos\AppCriée\AppCriée\obj\Debug\AppCriée.AppCriee_DemandeCreationCompte.resources

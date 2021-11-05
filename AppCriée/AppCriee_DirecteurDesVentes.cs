@@ -72,8 +72,6 @@ namespace AppCriée
                             lbl_directeurdesventes_lotsvente_islots.Hide();
                         }
                     }
-
-
                     break;
 
             }

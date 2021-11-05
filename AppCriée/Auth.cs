@@ -99,5 +99,12 @@ namespace AppCriée
             form_recupmotdepasse.Show();
             this.Hide();
         }
+
+        private void lbl_auth_demandecreercompte_Click(object sender, EventArgs e)
+        {
+            AppCriee_DemandeCreationCompte form_demandecreercompte= new AppCriee_DemandeCreationCompte(this);
+            form_demandecreercompte.Show();
+            this.Hide();
+        }
     }
 }

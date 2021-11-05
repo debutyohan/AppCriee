@@ -106,7 +106,7 @@ namespace AppCriée
                 lbl_administrateur_gestioncomptes_validationok.Show();
                 return;
             }
-            if (MessageBox.Show("Etes-vous sûr de vouloir supprimer ces bacs ?", "Supprimer", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Etes-vous sûr de vouloir supprimer ce compte ?", "Supprimer", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 foreach (DataGridViewRow line in dg_administrateur_gestioncomptes_listecompte.SelectedRows)
                 {
