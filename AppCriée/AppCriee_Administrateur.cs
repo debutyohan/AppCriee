@@ -98,6 +98,32 @@ namespace AppCriée
 
         private void btn_administrateur_gestioncomptes_supprimer_Click(object sender, EventArgs e)
         {
+            lbl_administrateur_gestioncomptes_validationok.Hide();
+            if (dg_administrateur_gestioncomptes_listecompte.SelectedRows.Count == 0)
+            {
+                lbl_administrateur_gestioncomptes_validationok.Text = "Veuillez sélectionner au moins un compte";
+                lbl_administrateur_gestioncomptes_validationok.ForeColor = Color.Red;
+                lbl_administrateur_gestioncomptes_validationok.Show();
+                return;
+            }
+            if (MessageBox.Show("Etes-vous sûr de vouloir supprimer ces bacs ?", "Supprimer", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                foreach (DataGridViewRow line in dg_administrateur_gestioncomptes_listecompte.SelectedRows)
+                {
+                    if (_useractuelle.Id.ToString() == line.Cells[0].Value.ToString())
+                    {
+                        lbl_administrateur_gestioncomptes_validationok.Text = "Impossible de supprimer son propre compte dans cet onglet\n Veuillez vous rendre dans l'onglet 'Mes données' si vous souhaitez supprimer votre compte.";
+                        lbl_administrateur_gestioncomptes_validationok.Show();
+                    }
+                    else
+                    {
+                        dg_administrateur_gestioncomptes_listecompte.Rows.RemoveAt(line.Index);
+                        CURS cs = new CURS();
+                        cs.ReqAdminPrepare("DELETE utilisateur FROM utilisateur WHERE id =?", new List<object> { line.Cells[0].Value });
+
+                    }
+                }
+            }
 
         }
 
