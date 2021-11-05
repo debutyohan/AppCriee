@@ -92,5 +92,12 @@ namespace AppCriée
 
         #endregion
 
+
+        private void lbl_auth_oublimotdepasse_Click(object sender, EventArgs e)
+        {
+            AppCriee_RecupMotdePasse form_recupmotdepasse = new AppCriee_RecupMotdePasse(this);
+            form_recupmotdepasse.Show();
+            this.Hide();
+        }
     }
 }

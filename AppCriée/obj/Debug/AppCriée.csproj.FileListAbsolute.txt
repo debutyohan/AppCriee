@@ -54,3 +54,4 @@ C:\Users\LENOVO\source\repos\debutyohan\AppCriee\AppCriée\obj\Debug\AppCriée.c
 C:\Users\LENOVO\source\repos\debutyohan\AppCriee\AppCriée\obj\Debug\AppCriée.csproj.CopyComplete
 C:\Users\LENOVO\source\repos\debutyohan\AppCriee\AppCriée\obj\Debug\AppCriée.exe
 C:\Users\LENOVO\source\repos\debutyohan\AppCriee\AppCriée\obj\Debug\AppCriée.pdb
+C:\Users\debut\source\repos\AppCriée\AppCriée\obj\Debug\AppCriée.AppCriee_RecupMotdePasse.resources

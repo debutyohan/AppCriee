@@ -82,6 +82,12 @@
     <Compile Include="AppCriee_Receptionniste.Designer.cs">
       <DependentUpon>AppCriee_Receptionniste.cs</DependentUpon>
     </Compile>
+    <Compile Include="AppCriee_RecupMotdePasse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppCriee_RecupMotdePasse.Designer.cs">
+      <DependentUpon>AppCriee_RecupMotdePasse.cs</DependentUpon>
+    </Compile>
     <Compile Include="AppCriee_Veterinaire.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +108,7 @@
     <Compile Include="HiddenObject.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.6.1.AssemblyAttributes.cs" />
     <Compile Include="obj\Release\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
+    <Compile Include="Outils.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
@@ -116,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AppCriee_Receptionniste.resx">
       <DependentUpon>AppCriee_Receptionniste.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppCriee_RecupMotdePasse.resx">
+      <DependentUpon>AppCriee_RecupMotdePasse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AppCriee_Veterinaire.resx">
       <DependentUpon>AppCriee_Veterinaire.cs</DependentUpon>
@@ -184,6 +194,7 @@
     <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
     <Content Include="Resources\autocollant-cadenas-muraux.jpg" />
     <Content Include="Script SQL\sqlcriemodif%285%29.sql" />
+    <Content Include="Script SQL\sqlcriemodif%286%29.sql" />
     <None Include="Resources\computer-icons-login-icon-design-exit-5abfc840bf8ca4.9038982415225180807846.png" />
     <Content Include="Resources\kisspng-padlock-logo-symbol-locker-5b22e325cc22c3.2363844015290130298362.jpg" />
     <Content Include="Script SQL\SqlCrie.sql" />

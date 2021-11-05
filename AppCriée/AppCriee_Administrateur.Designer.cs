@@ -34,6 +34,7 @@ namespace AppCriée
             this.lbl_administrateur_accueil_role = new System.Windows.Forms.Label();
             this.lbl_administrateur_accueil_bienvenue = new System.Windows.Forms.Label();
             this.tbp_administrateur_gestioncomptes = new System.Windows.Forms.TabPage();
+            this.btn_administrateur_gestioncomptes_validermodif = new System.Windows.Forms.Button();
             this.lbl_administrateur_gestioncomptes_validationajoutok = new System.Windows.Forms.Label();
             this.lbl_administrateur_gestioncomptes_champsobli = new System.Windows.Forms.Label();
             this.lbl_administrateur_gestioncomptes_validationajouterror = new System.Windows.Forms.Label();
@@ -63,9 +64,10 @@ namespace AppCriée
             this.adrmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.typeuser = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbl_administrateur_gestioncomptes_title = new System.Windows.Forms.Label();
+            this.lbl_administrateur_gestioncomptes_modification = new System.Windows.Forms.Label();
+            this.tbp_administrateur_mesdonnees = new System.Windows.Forms.TabPage();
             this.pbx_administrateur_deconnexion = new System.Windows.Forms.PictureBox();
             this.lbl_administrateur_datejour = new System.Windows.Forms.Label();
-            this.tbp_administrateur_mesdonnees = new System.Windows.Forms.TabPage();
             this.tbc_administrateur.SuspendLayout();
             this.tbp_administrateur_accueil.SuspendLayout();
             this.tbp_administrateur_gestioncomptes.SuspendLayout();
@@ -121,6 +123,7 @@ namespace AppCriée
             // 
             // tbp_administrateur_gestioncomptes
             // 
+            this.tbp_administrateur_gestioncomptes.Controls.Add(this.btn_administrateur_gestioncomptes_validermodif);
             this.tbp_administrateur_gestioncomptes.Controls.Add(this.lbl_administrateur_gestioncomptes_validationajoutok);
             this.tbp_administrateur_gestioncomptes.Controls.Add(this.lbl_administrateur_gestioncomptes_champsobli);
             this.tbp_administrateur_gestioncomptes.Controls.Add(this.lbl_administrateur_gestioncomptes_validationajouterror);
@@ -144,6 +147,7 @@ namespace AppCriée
             this.tbp_administrateur_gestioncomptes.Controls.Add(this.lbl_administrateur_gestioncomptes_info);
             this.tbp_administrateur_gestioncomptes.Controls.Add(this.dg_administrateur_gestioncomptes_listecompte);
             this.tbp_administrateur_gestioncomptes.Controls.Add(this.lbl_administrateur_gestioncomptes_title);
+            this.tbp_administrateur_gestioncomptes.Controls.Add(this.lbl_administrateur_gestioncomptes_modification);
             this.tbp_administrateur_gestioncomptes.Location = new System.Drawing.Point(4, 25);
             this.tbp_administrateur_gestioncomptes.Name = "tbp_administrateur_gestioncomptes";
             this.tbp_administrateur_gestioncomptes.Padding = new System.Windows.Forms.Padding(3);
@@ -151,6 +155,21 @@ namespace AppCriée
             this.tbp_administrateur_gestioncomptes.TabIndex = 1;
             this.tbp_administrateur_gestioncomptes.Text = "Gestion des comptes";
             this.tbp_administrateur_gestioncomptes.UseVisualStyleBackColor = true;
+            // 
+            // btn_administrateur_gestioncomptes_validermodif
+            // 
+            this.btn_administrateur_gestioncomptes_validermodif.BackColor = System.Drawing.SystemColors.Info;
+            this.btn_administrateur_gestioncomptes_validermodif.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_administrateur_gestioncomptes_validermodif.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btn_administrateur_gestioncomptes_validermodif.Location = new System.Drawing.Point(718, 520);
+            this.btn_administrateur_gestioncomptes_validermodif.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_administrateur_gestioncomptes_validermodif.Name = "btn_administrateur_gestioncomptes_validermodif";
+            this.btn_administrateur_gestioncomptes_validermodif.Size = new System.Drawing.Size(132, 33);
+            this.btn_administrateur_gestioncomptes_validermodif.TabIndex = 40;
+            this.btn_administrateur_gestioncomptes_validermodif.Text = "Valider";
+            this.btn_administrateur_gestioncomptes_validermodif.UseVisualStyleBackColor = false;
+            this.btn_administrateur_gestioncomptes_validermodif.Visible = false;
+            this.btn_administrateur_gestioncomptes_validermodif.Click += new System.EventHandler(this.btn_administrateur_gestioncomptes_validermodif_Click);
             // 
             // lbl_administrateur_gestioncomptes_validationajoutok
             // 
@@ -249,9 +268,9 @@ namespace AppCriée
             // 
             // tbx_administrateur_gestioncomptes_login
             // 
-            this.tbx_administrateur_gestioncomptes_login.Location = new System.Drawing.Point(142, 420);
+            this.tbx_administrateur_gestioncomptes_login.Location = new System.Drawing.Point(178, 420);
             this.tbx_administrateur_gestioncomptes_login.Name = "tbx_administrateur_gestioncomptes_login";
-            this.tbx_administrateur_gestioncomptes_login.Size = new System.Drawing.Size(151, 22);
+            this.tbx_administrateur_gestioncomptes_login.Size = new System.Drawing.Size(167, 22);
             this.tbx_administrateur_gestioncomptes_login.TabIndex = 28;
             this.tbx_administrateur_gestioncomptes_login.Visible = false;
             // 
@@ -471,6 +490,27 @@ namespace AppCriée
             this.lbl_administrateur_gestioncomptes_title.TabIndex = 8;
             this.lbl_administrateur_gestioncomptes_title.Text = "GESTION DES COMPTES";
             // 
+            // lbl_administrateur_gestioncomptes_modification
+            // 
+            this.lbl_administrateur_gestioncomptes_modification.AutoSize = true;
+            this.lbl_administrateur_gestioncomptes_modification.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_administrateur_gestioncomptes_modification.Location = new System.Drawing.Point(33, 358);
+            this.lbl_administrateur_gestioncomptes_modification.Name = "lbl_administrateur_gestioncomptes_modification";
+            this.lbl_administrateur_gestioncomptes_modification.Size = new System.Drawing.Size(378, 29);
+            this.lbl_administrateur_gestioncomptes_modification.TabIndex = 39;
+            this.lbl_administrateur_gestioncomptes_modification.Text = "Modification d\'un compte existant :";
+            this.lbl_administrateur_gestioncomptes_modification.Visible = false;
+            // 
+            // tbp_administrateur_mesdonnees
+            // 
+            this.tbp_administrateur_mesdonnees.Location = new System.Drawing.Point(4, 25);
+            this.tbp_administrateur_mesdonnees.Name = "tbp_administrateur_mesdonnees";
+            this.tbp_administrateur_mesdonnees.Padding = new System.Windows.Forms.Padding(3);
+            this.tbp_administrateur_mesdonnees.Size = new System.Drawing.Size(1077, 651);
+            this.tbp_administrateur_mesdonnees.TabIndex = 2;
+            this.tbp_administrateur_mesdonnees.Text = "Mes données";
+            this.tbp_administrateur_mesdonnees.UseVisualStyleBackColor = true;
+            // 
             // pbx_administrateur_deconnexion
             // 
             this.pbx_administrateur_deconnexion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -494,16 +534,6 @@ namespace AppCriée
             this.lbl_administrateur_datejour.Size = new System.Drawing.Size(217, 24);
             this.lbl_administrateur_datejour.TabIndex = 21;
             this.lbl_administrateur_datejour.Text = "Date du jour : 23/10/2021";
-            // 
-            // tbp_administrateur_mesdonnees
-            // 
-            this.tbp_administrateur_mesdonnees.Location = new System.Drawing.Point(4, 25);
-            this.tbp_administrateur_mesdonnees.Name = "tbp_administrateur_mesdonnees";
-            this.tbp_administrateur_mesdonnees.Padding = new System.Windows.Forms.Padding(3);
-            this.tbp_administrateur_mesdonnees.Size = new System.Drawing.Size(1077, 651);
-            this.tbp_administrateur_mesdonnees.TabIndex = 2;
-            this.tbp_administrateur_mesdonnees.Text = "Mes données";
-            this.tbp_administrateur_mesdonnees.UseVisualStyleBackColor = true;
             // 
             // AppCriee_Administrateur
             // 
@@ -569,5 +599,7 @@ namespace AppCriée
         private System.Windows.Forms.Label lbl_administrateur_gestioncomptes_champsobli;
         private System.Windows.Forms.Label lbl_administrateur_gestioncomptes_validationajoutok;
         private System.Windows.Forms.TabPage tbp_administrateur_mesdonnees;
+        private System.Windows.Forms.Label lbl_administrateur_gestioncomptes_modification;
+        private System.Windows.Forms.Button btn_administrateur_gestioncomptes_validermodif;
     }
 }

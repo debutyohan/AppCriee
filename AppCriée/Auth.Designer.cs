@@ -39,6 +39,7 @@ namespace AppCriée
             this.chx_auth_showchar = new System.Windows.Forms.CheckBox();
             this.lbl_auth_falseidpasswd = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lbl_auth_oublimotdepasse = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -149,12 +150,26 @@ namespace AppCriée
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             // 
+            // lbl_auth_oublimotdepasse
+            // 
+            this.lbl_auth_oublimotdepasse.AutoSize = true;
+            this.lbl_auth_oublimotdepasse.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_auth_oublimotdepasse.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_auth_oublimotdepasse.Location = new System.Drawing.Point(674, 180);
+            this.lbl_auth_oublimotdepasse.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_auth_oublimotdepasse.Name = "lbl_auth_oublimotdepasse";
+            this.lbl_auth_oublimotdepasse.Size = new System.Drawing.Size(154, 17);
+            this.lbl_auth_oublimotdepasse.TabIndex = 10;
+            this.lbl_auth_oublimotdepasse.Text = "Mot de passe oublié";
+            this.lbl_auth_oublimotdepasse.Click += new System.EventHandler(this.lbl_auth_oublimotdepasse_Click);
+            // 
             // AppCriee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(860, 411);
+            this.Controls.Add(this.lbl_auth_oublimotdepasse);
             this.Controls.Add(this.lbl_auth_falseidpasswd);
             this.Controls.Add(this.chx_auth_showchar);
             this.Controls.Add(this.pictureBox1);
@@ -189,6 +204,7 @@ namespace AppCriée
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.CheckBox chx_auth_showchar;
         private System.Windows.Forms.Label lbl_auth_falseidpasswd;
+        private System.Windows.Forms.Label lbl_auth_oublimotdepasse;
     }
 }
 
