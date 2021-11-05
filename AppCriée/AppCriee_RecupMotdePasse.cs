@@ -95,6 +95,7 @@ namespace AppCriée
                         contenu += ", "+cs.champ("login").ToString();
                         cs.suivant();
                     }
+                    cs.fermer();
                     contenu = "Vous avez demandé la réinitialisation du mot de passe.\nEtant donné que plusieurs comptes sont associés à votre adresse mail, veuillez choisir le compte spécifique où vous souhaitez réinitialiser le mot de passe\n\nVoici la liste de vos comptes :\n" + contenu;
                     Exception exception;
                     bool isresult = CompleteControl.SendMail(tbx_recupmotdepasse_adrMail.Text, "AppCriée : Réinitialisation de mot de passe",contenu, out exception);
@@ -105,7 +106,6 @@ namespace AppCriée
                     }
                     lbl_recupmotdepasse_error.Text = "L'adresse mail entrée est associé à plusieurs comptes\ndont la liste vous a été envoyé par mail.\n\nVeuillez entrer le login spécifique dans la zone de saisie au\nlieu de mettre votre adresse mail";
                     lbl_recupmotdepasse_error.Show();
-                    cs.fermer();
                     return;
                 }
                 HiddenObject.Hide(new List<Control> { lbl_recupmotdepasse_adrMail, lbl_recupmotdepasse_login, lbl_recupmotdepasse_ou, btn_recupmotdepasse_reinit, tbx_recupmotdepasse_adrMail, tbx_recupmotdepasse_login });
