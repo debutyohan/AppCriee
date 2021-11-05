@@ -106,7 +106,7 @@ namespace AppCriée
                 lbl_administrateur_gestioncomptes_validationok.Show();
                 return;
             }
-            if (MessageBox.Show("Etes-vous sûr de vouloir supprimer ces bacs ?", "Supprimer", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Etes-vous sûr de vouloir supprimer ce compte ?", "Supprimer", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 foreach (DataGridViewRow line in dg_administrateur_gestioncomptes_listecompte.SelectedRows)
                 {
@@ -117,11 +117,18 @@ namespace AppCriée
                     }
                     else
                     {
+                        if (line.Cells[6].Value.ToString() == "Administrateur")
+                        {
+                            lbl_administrateur_gestioncomptes_validationok.Text = "Il est impossible de supprimer un administrateur.";
+                            lbl_administrateur_gestioncomptes_validationok.Show();
+                        }
+
                         dg_administrateur_gestioncomptes_listecompte.Rows.RemoveAt(line.Index);
                         CURS cs = new CURS();
                         cs.ReqAdminPrepare("DELETE utilisateur FROM utilisateur WHERE id =?", new List<object> { line.Cells[0].Value });
 
                     }
+                   
                 }
             }
 
