@@ -592,11 +592,11 @@ namespace AppCriée
             }
             catch (DocumentException de)
             {
-                MessageBox.Show("error " + de.Message);
+                MessageBox.Show("Une erreur a été recontrée lors de la génération du PDF :\n" + de.Message);
             }
             catch (System.IO.IOException ioe)
             {
-                MessageBox.Show("error " + ioe.Message);
+                MessageBox.Show("Une erreur a été recontrée lors de la génération du PDF :\n" + ioe.Message);
             }
         }
     }

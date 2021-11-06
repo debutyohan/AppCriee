@@ -824,187 +824,164 @@ namespace AppCriée
             iTextSharp.text.Font font9 = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES, 9);
             iTextSharp.text.Font font10i = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES_ITALIC, 10);
 
-            Document nouveauDocument = new Document();
-            nouveauDocument.SetPageSize(iTextSharp.text.PageSize.A4.Rotate());
-            nouveauDocument.SetMargins(-15, -15, 30, 30);
-            iTextSharp.text.pdf.PdfPTable ligne = new iTextSharp.text.pdf.PdfPTable(5);
-            ligne.SetTotalWidth(new float[] { 60, 2, 60, 2, 60 });
-
-            FileStream filePDF = new FileStream("Etiquettes ETQP Lot n°" + numLot + " du bateau " + nomBateau + " " + DateTime.Now.ToString("yyyyMMdd-HHmmss") + ".pdf", FileMode.Create);
-            PdfWriter.GetInstance(nouveauDocument, filePDF);
-            nouveauDocument.Open();
-            for (int grp3 = 0; grp3 <= (int)((nbbac - 1) / 3); grp3++)
-            {
-                if ((grp3 != 0) && (grp3 % 3 == 0))
-                {
-                    nouveauDocument.NewPage();
-                }
-
-                ligne = new iTextSharp.text.pdf.PdfPTable(5);
-                ligne.SetTotalWidth(new float[] { 60, 2, 60, 2, 60 });
-                for (int bac = 3 * grp3; bac < 3 * (grp3 + 1); bac++)
-                {
-                    if (bac + 1 > nbbac)
-                    {
-                        PdfPCell vide = new PdfPCell();
-                        vide.Border = 0;
-                        vide.Padding = 0;
-                        ligne.AddCell(vide);
-                    }
-                    else
-                    {
-                        PdfPCell etiquette = new PdfPCell();
-                        etiquette.Padding = 0;
-                        etiquette.PaddingLeft = -25;
-                        etiquette.PaddingRight = -25;
-
-                        iTextSharp.text.pdf.PdfPTable etiquetteligne1 = new iTextSharp.text.pdf.PdfPTable(1);
-                        etiquetteligne1.PaddingTop = 0;
-                        PdfPCell etiquetteligne1cellule1 = new PdfPCell();
-                        etiquetteligne1cellule1.PaddingTop = 0;
-                        etiquetteligne1cellule1.PaddingLeft = 35;
-                        etiquetteligne1cellule1.Border = 0;
-
-                        iTextSharp.text.Chunk titre = new iTextSharp.text.Chunk("Criée de la Poulgoazec", font14b);
-                        etiquetteligne1cellule1.AddElement(titre);
-
-                        etiquetteligne1.AddCell(etiquetteligne1cellule1);
-                        etiquette.AddElement(etiquetteligne1);
-
-                        iTextSharp.text.pdf.PdfPTable etiquetteligne2 = new iTextSharp.text.pdf.PdfPTable(2);
-                        etiquetteligne2.SetTotalWidth(new float[] { 90, 70 });
-                        etiquetteligne2.PaddingTop = 0;
-
-                        PdfPCell etiquetteligne2cellule1 = new PdfPCell();
-                        etiquetteligne2cellule1.PaddingTop = 0;
-                        iTextSharp.text.Chunk itembateau = new iTextSharp.text.Chunk("Bateau : " + nomBateau + ", " + immatriculation, font11);
-                        iTextSharp.text.Chunk itemdate = new iTextSharp.text.Chunk("Date : " + DateTime.Today.ToString("dd/MM/yyyy"), font11);
-                        iTextSharp.text.Chunk itemnumlot = new iTextSharp.text.Chunk("N° Lot : " + numLot, font11);
-                        etiquetteligne2cellule1.AddElement(itembateau);
-                        etiquetteligne2cellule1.AddElement(itemdate);
-                        etiquetteligne2cellule1.AddElement(itemnumlot);
-                        etiquetteligne2cellule1.Border = 0;
-
-                        PdfPCell etiquetteligne2cellule2 = new PdfPCell();
-                        etiquetteligne2cellule2.PaddingTop = 0;
-                        iTextSharp.text.Chunk itemespece = new iTextSharp.text.Chunk("Espèce : " + espece, font9);
-                        iTextSharp.text.Chunk itemtaille = new iTextSharp.text.Chunk("Taille : " + taille, font9);
-                        iTextSharp.text.Chunk itemqualite = new iTextSharp.text.Chunk("Qualité : " + qualite, font9);
-                        iTextSharp.text.Chunk itempresentation = new iTextSharp.text.Chunk("Présentation : " + presentation, font9);
-                        etiquetteligne2cellule2.AddElement(itemespece);
-                        etiquetteligne2cellule2.AddElement(itemtaille);
-                        etiquetteligne2cellule2.AddElement(itemqualite);
-                        etiquetteligne2cellule2.AddElement(itempresentation);
-                        etiquetteligne2cellule2.Border = 0;
-
-                        etiquetteligne2.AddCell(etiquetteligne2cellule1);
-                        etiquetteligne2.AddCell(etiquetteligne2cellule2);
-                        etiquette.AddElement(etiquetteligne2);
-
-                        iTextSharp.text.pdf.PdfPTable etiquetteligne3 = new iTextSharp.text.pdf.PdfPTable(1);
-                        etiquetteligne3.PaddingTop = 0;
-                        PdfPCell etiquetteligne3cellule1 = new PdfPCell();
-                        etiquetteligne3cellule1.PaddingTop = 0;
-                        etiquetteligne3cellule1.PaddingLeft = 15;
-                        etiquetteligne3cellule1.Border = 0;
-
-                        font12.Color = iTextSharp.text.BaseColor.BLUE;
-                        iTextSharp.text.Chunk itemnumbac = new iTextSharp.text.Chunk("Numéro de bac : " + listebac[bac], font12);
-                        iTextSharp.text.Chunk itemtypebac = new iTextSharp.text.Chunk("Type de bac : " + listetypebac[bac], font12);
-
-                        etiquetteligne3cellule1.AddElement(itemnumbac);
-                        etiquetteligne3cellule1.AddElement(itemtypebac);
-
-                        etiquetteligne3.AddCell(etiquetteligne3cellule1);
-                        etiquette.AddElement(etiquetteligne3);
-
-
-                        iTextSharp.text.pdf.PdfPTable etiquetteligne4 = new iTextSharp.text.pdf.PdfPTable(2);
-                        etiquetteligne4.SetTotalWidth(new float[] { 50, 20 });
-                        etiquetteligne4.PaddingTop = 0;
-
-                        PdfPCell etiquetteligne4cellule1 = new PdfPCell();
-                        etiquetteligne4cellule1.PaddingTop = 0;
-                        etiquetteligne4cellule1.Border = 0;
-
-                        PdfPCell etiquetteligne4cellule2 = new PdfPCell();
-                        etiquetteligne2cellule2.PaddingTop = 0;
-                        iTextSharp.text.Chunk itemdatenow = new iTextSharp.text.Chunk(DateTime.Now.ToString("dd/MM/yyyy HH:mm"), font7);
-                        etiquetteligne4cellule2.AddElement(itemdatenow);
-                        etiquetteligne4cellule2.Border = 0;
-
-                        etiquetteligne4.AddCell(etiquetteligne4cellule1);
-                        etiquetteligne4.AddCell(etiquetteligne4cellule2);
-                        etiquette.AddElement(etiquetteligne4);
-
-                        ligne.AddCell(etiquette);
-                    }
-                    if (bac % 3 != 2)
-                    {
-                        PdfPCell vide = new PdfPCell();
-                        vide.Border = 0;
-                        ligne.AddCell(vide);
-
-                    }
-                }
-                nouveauDocument.Add(ligne);
-                nouveauDocument.Add(new Paragraph("\n"));
-            }
-            /*
-            for (int grp9 = 0; grp9 <= (int)(nbbac / 9); grp9++)
-            {
-                if (grp9 != 0)
-                {
-                    nouveauDocument.NewPage();
-                }
-                for(int bac = 9 * grp9; bac < 9 * (grp9 + 1) && bac<=nbbac; bac++)
-                {
-                    if (bac % 3 == 0)
-                    {
-                        if (bac % 9 != 0)
-                        {
-                            nouveauDocument.Add(ligne);
-                        }
-                        ligne = new iTextSharp.text.pdf.PdfPTable(5);
-                        ligne.SetTotalWidth(new float[] { 60, 10, 60, 10, 60 }) ;
-                    }
-
-                    PdfPCell ligne2sous2cell1 = new PdfPCell();
-                    ligne2sous2cell1.AddElement(new iTextSharp.text.Chunk(" OP :", font14));
-                    ligne.AddCell(ligne2sous2cell1);
-                    if (bac % 3 != 0)
-                    {
-                        PdfPCell vide = new PdfPCell();
-                        vide.AddElement(new iTextSharp.text.Chunk("VIDE", font14));
-                        ligne.AddCell(vide);
-
-                    }
-                }
-                    nouveauDocument.Add(ligne);
-            }
-            */
-            nouveauDocument.Close();
-            lbl_veterinaire_touslots_ok.Text = "Un document PDF contenant les étiquettes du lot a bien été généré :\n";
-            for (int line = 0; line <= filePDF.Name.Length / 90; line++)
-            {
-                int nbchar = 90;
-                if (line == filePDF.Name.Length / 90)
-                {
-                    nbchar = filePDF.Name.Length - 90 * line;
-                }
-                lbl_veterinaire_touslots_ok.Text += "\n" + filePDF.Name.Substring(90 * line, nbchar);
-            }
-            lbl_veterinaire_touslots_ok.Show();
             try
             {
-                System.Diagnostics.Process.Start(filePDF.Name);
+
+                Document nouveauDocument = new Document();
+                nouveauDocument.SetPageSize(iTextSharp.text.PageSize.A4.Rotate());
+                nouveauDocument.SetMargins(-15, -15, 30, 30);
+                iTextSharp.text.pdf.PdfPTable ligne = new iTextSharp.text.pdf.PdfPTable(5);
+                ligne.SetTotalWidth(new float[] { 60, 2, 60, 2, 60 });
+
+                FileStream filePDF = new FileStream("Etiquettes ETQP Lot n°" + numLot + " du bateau " + nomBateau + " " + DateTime.Now.ToString("yyyyMMdd-HHmmss") + ".pdf", FileMode.Create);
+                PdfWriter.GetInstance(nouveauDocument, filePDF);
+                nouveauDocument.Open();
+                for (int grp3 = 0; grp3 <= (int)((nbbac - 1) / 3); grp3++)
+                {
+                    if ((grp3 != 0) && (grp3 % 3 == 0))
+                    {
+                        nouveauDocument.NewPage();
+                    }
+
+                    ligne = new iTextSharp.text.pdf.PdfPTable(5);
+                    ligne.SetTotalWidth(new float[] { 60, 2, 60, 2, 60 });
+                    for (int bac = 3 * grp3; bac < 3 * (grp3 + 1); bac++)
+                    {
+                        if (bac + 1 > nbbac)
+                        {
+                            PdfPCell vide = new PdfPCell();
+                            vide.Border = 0;
+                            vide.Padding = 0;
+                            ligne.AddCell(vide);
+                        }
+                        else
+                        {
+                            PdfPCell etiquette = new PdfPCell();
+                            etiquette.Padding = 0;
+                            etiquette.PaddingLeft = -25;
+                            etiquette.PaddingRight = -25;
+
+                            iTextSharp.text.pdf.PdfPTable etiquetteligne1 = new iTextSharp.text.pdf.PdfPTable(1);
+                            etiquetteligne1.PaddingTop = 0;
+                            PdfPCell etiquetteligne1cellule1 = new PdfPCell();
+                            etiquetteligne1cellule1.PaddingTop = 0;
+                            etiquetteligne1cellule1.PaddingLeft = 35;
+                            etiquetteligne1cellule1.Border = 0;
+
+                            iTextSharp.text.Chunk titre = new iTextSharp.text.Chunk("Criée de la Poulgoazec", font14b);
+                            etiquetteligne1cellule1.AddElement(titre);
+
+                            etiquetteligne1.AddCell(etiquetteligne1cellule1);
+                            etiquette.AddElement(etiquetteligne1);
+
+                            iTextSharp.text.pdf.PdfPTable etiquetteligne2 = new iTextSharp.text.pdf.PdfPTable(2);
+                            etiquetteligne2.SetTotalWidth(new float[] { 90, 70 });
+                            etiquetteligne2.PaddingTop = 0;
+
+                            PdfPCell etiquetteligne2cellule1 = new PdfPCell();
+                            etiquetteligne2cellule1.PaddingTop = 0;
+                            iTextSharp.text.Chunk itembateau = new iTextSharp.text.Chunk("Bateau : " + nomBateau + ", " + immatriculation, font11);
+                            iTextSharp.text.Chunk itemdate = new iTextSharp.text.Chunk("Date : " + DateTime.Today.ToString("dd/MM/yyyy"), font11);
+                            iTextSharp.text.Chunk itemnumlot = new iTextSharp.text.Chunk("N° Lot : " + numLot, font11);
+                            etiquetteligne2cellule1.AddElement(itembateau);
+                            etiquetteligne2cellule1.AddElement(itemdate);
+                            etiquetteligne2cellule1.AddElement(itemnumlot);
+                            etiquetteligne2cellule1.Border = 0;
+
+                            PdfPCell etiquetteligne2cellule2 = new PdfPCell();
+                            etiquetteligne2cellule2.PaddingTop = 0;
+                            iTextSharp.text.Chunk itemespece = new iTextSharp.text.Chunk("Espèce : " + espece, font9);
+                            iTextSharp.text.Chunk itemtaille = new iTextSharp.text.Chunk("Taille : " + taille, font9);
+                            iTextSharp.text.Chunk itemqualite = new iTextSharp.text.Chunk("Qualité : " + qualite, font9);
+                            iTextSharp.text.Chunk itempresentation = new iTextSharp.text.Chunk("Présentation : " + presentation, font9);
+                            etiquetteligne2cellule2.AddElement(itemespece);
+                            etiquetteligne2cellule2.AddElement(itemtaille);
+                            etiquetteligne2cellule2.AddElement(itemqualite);
+                            etiquetteligne2cellule2.AddElement(itempresentation);
+                            etiquetteligne2cellule2.Border = 0;
+
+                            etiquetteligne2.AddCell(etiquetteligne2cellule1);
+                            etiquetteligne2.AddCell(etiquetteligne2cellule2);
+                            etiquette.AddElement(etiquetteligne2);
+
+                            iTextSharp.text.pdf.PdfPTable etiquetteligne3 = new iTextSharp.text.pdf.PdfPTable(1);
+                            etiquetteligne3.PaddingTop = 0;
+                            PdfPCell etiquetteligne3cellule1 = new PdfPCell();
+                            etiquetteligne3cellule1.PaddingTop = 0;
+                            etiquetteligne3cellule1.PaddingLeft = 15;
+                            etiquetteligne3cellule1.Border = 0;
+
+                            font12.Color = iTextSharp.text.BaseColor.BLUE;
+                            iTextSharp.text.Chunk itemnumbac = new iTextSharp.text.Chunk("Numéro de bac : " + listebac[bac], font12);
+                            iTextSharp.text.Chunk itemtypebac = new iTextSharp.text.Chunk("Type de bac : " + listetypebac[bac], font12);
+
+                            etiquetteligne3cellule1.AddElement(itemnumbac);
+                            etiquetteligne3cellule1.AddElement(itemtypebac);
+
+                            etiquetteligne3.AddCell(etiquetteligne3cellule1);
+                            etiquette.AddElement(etiquetteligne3);
+
+
+                            iTextSharp.text.pdf.PdfPTable etiquetteligne4 = new iTextSharp.text.pdf.PdfPTable(2);
+                            etiquetteligne4.SetTotalWidth(new float[] { 50, 20 });
+                            etiquetteligne4.PaddingTop = 0;
+
+                            PdfPCell etiquetteligne4cellule1 = new PdfPCell();
+                            etiquetteligne4cellule1.PaddingTop = 0;
+                            etiquetteligne4cellule1.Border = 0;
+
+                            PdfPCell etiquetteligne4cellule2 = new PdfPCell();
+                            etiquetteligne2cellule2.PaddingTop = 0;
+                            iTextSharp.text.Chunk itemdatenow = new iTextSharp.text.Chunk(DateTime.Now.ToString("dd/MM/yyyy HH:mm"), font7);
+                            etiquetteligne4cellule2.AddElement(itemdatenow);
+                            etiquetteligne4cellule2.Border = 0;
+
+                            etiquetteligne4.AddCell(etiquetteligne4cellule1);
+                            etiquetteligne4.AddCell(etiquetteligne4cellule2);
+                            etiquette.AddElement(etiquetteligne4);
+
+                            ligne.AddCell(etiquette);
+                        }
+                        if (bac % 3 != 2)
+                        {
+                            PdfPCell vide = new PdfPCell();
+                            vide.Border = 0;
+                            ligne.AddCell(vide);
+
+                        }
+                    }
+                    nouveauDocument.Add(ligne);
+                    nouveauDocument.Add(new Paragraph("\n"));
+                }
+                nouveauDocument.Close();
+                lbl_veterinaire_touslots_ok.Text = "Un document PDF contenant les étiquettes du lot a bien été généré :\n";
+                for (int line = 0; line <= filePDF.Name.Length / 90; line++)
+                {
+                    int nbchar = 90;
+                    if (line == filePDF.Name.Length / 90)
+                    {
+                        nbchar = filePDF.Name.Length - 90 * line;
+                    }
+                    lbl_veterinaire_touslots_ok.Text += "\n" + filePDF.Name.Substring(90 * line, nbchar);
+                }
+                lbl_veterinaire_touslots_ok.Show();
+                try
+                {
+                    System.Diagnostics.Process.Start(filePDF.Name);
+                }
+                catch
+                {
+                    MessageBox.Show("Impossible d'ouvrir le fichier pdf\nVous pouvez néanmoins ouvrir le fichier manuellement au chemin indiqué dans l'application", "Echec ouverture fichier", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch
+            catch (DocumentException de)
             {
-                MessageBox.Show("Impossible d'ouvrir le fichier pdf\nVous pouvez néanmoins ouvrir le fichier manuellement au chemin indiqué dans l'application", "Echec ouverture fichier", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Une erreur a été recontrée lors de la génération du PDF :\n" + de.Message);
             }
-
-
+            catch (System.IO.IOException ioe)
+            {
+                MessageBox.Show("Une erreur a été recontrée lors de la génération du PDF :\n" + ioe.Message);
+            }
         }
 
         #endregion
@@ -1042,7 +1019,6 @@ namespace AppCriée
                 }
             }
         }
-
         private void btn_veterinaire_mesdonnees_modifier_Click(object sender, EventArgs e)
         {
             HiddenObject.Show(new List<Control> { lbl_veterinaire_mesdonnees_modification, lbl_veterinaire_mesdonnees_modifieradrMail, lbl_veterinaire_mesdonnees_modifierlogin, lbl_veterinaire_mesdonnees_modifiernom, lbl_veterinaire_mesdonnees_modifierprenom, tbx_veterinaire_mesdonnees_login, tbx_veterinaire_mesdonnees_nom, tbx_veterinaire_mesdonnees_adrMail, tbx_veterinaire_mesdonnees_prenom, btn_veterinaire_mesdonnees_validermodif, lbl_veterinaire_mesdonnees_champsobli });
@@ -1073,7 +1049,6 @@ namespace AppCriée
             }
             lbl_veterinaire_mesdonnees_validationmodif.Hide();
         }
-
         private void btn_veterinaire_mesdonnees_validermodif_Click(object sender, EventArgs e)
         {
             idUserModified = _useractuelle.Id.ToString();
@@ -1126,7 +1101,7 @@ namespace AppCriée
             lbl_veterinaire_mesdonnees_validationmodif.Show();
         }
 
-            #endregion
+        #endregion
 
         #region Fermeture du formulaire
 
