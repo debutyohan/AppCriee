@@ -124,6 +124,12 @@ namespace AppCriée
             this.IdduBateau = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codeEtât = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbp_veterinaire_mesdonnees = new System.Windows.Forms.TabPage();
+            this.lbl_veterinaire_mesdonnees_typeuser = new System.Windows.Forms.Label();
+            this.lbl_veterinaire_mesdonnees_adrMail = new System.Windows.Forms.Label();
+            this.lbl_veterinaire_mesdonnees_nom = new System.Windows.Forms.Label();
+            this.lbl_veterinaire_mesdonnees_prenom = new System.Windows.Forms.Label();
+            this.lbl_veterinaire_mesdonnees_login = new System.Windows.Forms.Label();
+            this.lbl_veterinaire_mesdonnees_title = new System.Windows.Forms.Label();
             this.btn_veterinaire_mesdonnees_supprimer = new System.Windows.Forms.Button();
             this.lbl_veterinaire_datejour = new System.Windows.Forms.Label();
             this.pbx_veterinaire_deconnexion = new System.Windows.Forms.PictureBox();
@@ -148,7 +154,7 @@ namespace AppCriée
             this.tbc_veterinaire.Controls.Add(this.tbp_veterinaire_touslots);
             this.tbc_veterinaire.Controls.Add(this.tbp_veterinaire_mesdonnees);
             this.tbc_veterinaire.Location = new System.Drawing.Point(0, 0);
-            this.tbc_veterinaire.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbc_veterinaire.Margin = new System.Windows.Forms.Padding(2);
             this.tbc_veterinaire.Name = "tbc_veterinaire";
             this.tbc_veterinaire.SelectedIndex = 0;
             this.tbc_veterinaire.Size = new System.Drawing.Size(814, 552);
@@ -162,9 +168,9 @@ namespace AppCriée
             this.tbp_veterinaire_accueil.Controls.Add(this.lbl_veterinaire_accueil_role);
             this.tbp_veterinaire_accueil.Controls.Add(this.lbl_veterinaire_accueil_bienvenue);
             this.tbp_veterinaire_accueil.Location = new System.Drawing.Point(4, 22);
-            this.tbp_veterinaire_accueil.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbp_veterinaire_accueil.Margin = new System.Windows.Forms.Padding(2);
             this.tbp_veterinaire_accueil.Name = "tbp_veterinaire_accueil";
-            this.tbp_veterinaire_accueil.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbp_veterinaire_accueil.Padding = new System.Windows.Forms.Padding(2);
             this.tbp_veterinaire_accueil.Size = new System.Drawing.Size(806, 526);
             this.tbp_veterinaire_accueil.TabIndex = 0;
             this.tbp_veterinaire_accueil.Text = "Accueil";
@@ -237,9 +243,9 @@ namespace AppCriée
             this.tbp_veterinaire_bacpoisson.Controls.Add(this.lbl_veterinaire_bacpoissons_ispeche);
             this.tbp_veterinaire_bacpoisson.Controls.Add(this.lbl_veterinaire_bacpoissons_title);
             this.tbp_veterinaire_bacpoisson.Location = new System.Drawing.Point(4, 22);
-            this.tbp_veterinaire_bacpoisson.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbp_veterinaire_bacpoisson.Margin = new System.Windows.Forms.Padding(2);
             this.tbp_veterinaire_bacpoisson.Name = "tbp_veterinaire_bacpoisson";
-            this.tbp_veterinaire_bacpoisson.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbp_veterinaire_bacpoisson.Padding = new System.Windows.Forms.Padding(2);
             this.tbp_veterinaire_bacpoisson.Size = new System.Drawing.Size(806, 526);
             this.tbp_veterinaire_bacpoisson.TabIndex = 1;
             this.tbp_veterinaire_bacpoisson.Text = "Bac de poissons";
@@ -276,7 +282,7 @@ namespace AppCriée
             this.cbx_veterinaire_bacpoissons_choixlot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_veterinaire_bacpoissons_choixlot.FormattingEnabled = true;
             this.cbx_veterinaire_bacpoissons_choixlot.Location = new System.Drawing.Point(594, 81);
-            this.cbx_veterinaire_bacpoissons_choixlot.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbx_veterinaire_bacpoissons_choixlot.Margin = new System.Windows.Forms.Padding(2);
             this.cbx_veterinaire_bacpoissons_choixlot.Name = "cbx_veterinaire_bacpoissons_choixlot";
             this.cbx_veterinaire_bacpoissons_choixlot.Size = new System.Drawing.Size(158, 21);
             this.cbx_veterinaire_bacpoissons_choixlot.TabIndex = 37;
@@ -287,7 +293,7 @@ namespace AppCriée
             // 
             this.rbtn_veterinaire_bacpoissons_bacparlots.AutoSize = true;
             this.rbtn_veterinaire_bacpoissons_bacparlots.Location = new System.Drawing.Point(436, 84);
-            this.rbtn_veterinaire_bacpoissons_bacparlots.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbtn_veterinaire_bacpoissons_bacparlots.Margin = new System.Windows.Forms.Padding(2);
             this.rbtn_veterinaire_bacpoissons_bacparlots.Name = "rbtn_veterinaire_bacpoissons_bacparlots";
             this.rbtn_veterinaire_bacpoissons_bacparlots.Size = new System.Drawing.Size(81, 17);
             this.rbtn_veterinaire_bacpoissons_bacparlots.TabIndex = 36;
@@ -301,7 +307,7 @@ namespace AppCriée
             this.rbtn_veterinaire_bacpoissons_touslesbacs.AutoSize = true;
             this.rbtn_veterinaire_bacpoissons_touslesbacs.Checked = true;
             this.rbtn_veterinaire_bacpoissons_touslesbacs.Location = new System.Drawing.Point(436, 62);
-            this.rbtn_veterinaire_bacpoissons_touslesbacs.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbtn_veterinaire_bacpoissons_touslesbacs.Margin = new System.Windows.Forms.Padding(2);
             this.rbtn_veterinaire_bacpoissons_touslesbacs.Name = "rbtn_veterinaire_bacpoissons_touslesbacs";
             this.rbtn_veterinaire_bacpoissons_touslesbacs.Size = new System.Drawing.Size(91, 17);
             this.rbtn_veterinaire_bacpoissons_touslesbacs.TabIndex = 35;
@@ -317,7 +323,7 @@ namespace AppCriée
             this.btn_veterinaire_bacpoissons_modifierbacsValider.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_veterinaire_bacpoissons_modifierbacsValider.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btn_veterinaire_bacpoissons_modifierbacsValider.Location = new System.Drawing.Point(667, 386);
-            this.btn_veterinaire_bacpoissons_modifierbacsValider.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_veterinaire_bacpoissons_modifierbacsValider.Margin = new System.Windows.Forms.Padding(2);
             this.btn_veterinaire_bacpoissons_modifierbacsValider.Name = "btn_veterinaire_bacpoissons_modifierbacsValider";
             this.btn_veterinaire_bacpoissons_modifierbacsValider.Size = new System.Drawing.Size(99, 27);
             this.btn_veterinaire_bacpoissons_modifierbacsValider.TabIndex = 34;
@@ -355,7 +361,7 @@ namespace AppCriée
             this.cbx_veterinaire_bacpoissons_typebac.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_veterinaire_bacpoissons_typebac.FormattingEnabled = true;
             this.cbx_veterinaire_bacpoissons_typebac.Location = new System.Drawing.Point(580, 319);
-            this.cbx_veterinaire_bacpoissons_typebac.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbx_veterinaire_bacpoissons_typebac.Margin = new System.Windows.Forms.Padding(2);
             this.cbx_veterinaire_bacpoissons_typebac.Name = "cbx_veterinaire_bacpoissons_typebac";
             this.cbx_veterinaire_bacpoissons_typebac.Size = new System.Drawing.Size(98, 21);
             this.cbx_veterinaire_bacpoissons_typebac.TabIndex = 31;
@@ -365,7 +371,7 @@ namespace AppCriée
             this.cbx_veterinaire_bacpoissons_presentation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_veterinaire_bacpoissons_presentation.FormattingEnabled = true;
             this.cbx_veterinaire_bacpoissons_presentation.Location = new System.Drawing.Point(371, 353);
-            this.cbx_veterinaire_bacpoissons_presentation.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbx_veterinaire_bacpoissons_presentation.Margin = new System.Windows.Forms.Padding(2);
             this.cbx_veterinaire_bacpoissons_presentation.Name = "cbx_veterinaire_bacpoissons_presentation";
             this.cbx_veterinaire_bacpoissons_presentation.Size = new System.Drawing.Size(98, 21);
             this.cbx_veterinaire_bacpoissons_presentation.TabIndex = 30;
@@ -375,7 +381,7 @@ namespace AppCriée
             this.cbx_veterinaire_bacpoissons_qualite.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_veterinaire_bacpoissons_qualite.FormattingEnabled = true;
             this.cbx_veterinaire_bacpoissons_qualite.Location = new System.Drawing.Point(333, 319);
-            this.cbx_veterinaire_bacpoissons_qualite.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbx_veterinaire_bacpoissons_qualite.Margin = new System.Windows.Forms.Padding(2);
             this.cbx_veterinaire_bacpoissons_qualite.Name = "cbx_veterinaire_bacpoissons_qualite";
             this.cbx_veterinaire_bacpoissons_qualite.Size = new System.Drawing.Size(86, 21);
             this.cbx_veterinaire_bacpoissons_qualite.TabIndex = 29;
@@ -385,7 +391,7 @@ namespace AppCriée
             this.cbx_veterinaire_bacpoissons_taille.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_veterinaire_bacpoissons_taille.FormattingEnabled = true;
             this.cbx_veterinaire_bacpoissons_taille.Location = new System.Drawing.Point(108, 353);
-            this.cbx_veterinaire_bacpoissons_taille.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbx_veterinaire_bacpoissons_taille.Margin = new System.Windows.Forms.Padding(2);
             this.cbx_veterinaire_bacpoissons_taille.Name = "cbx_veterinaire_bacpoissons_taille";
             this.cbx_veterinaire_bacpoissons_taille.Size = new System.Drawing.Size(92, 21);
             this.cbx_veterinaire_bacpoissons_taille.TabIndex = 28;
@@ -395,7 +401,7 @@ namespace AppCriée
             this.cbx_veterinaire_bacpoissons_espece.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_veterinaire_bacpoissons_espece.FormattingEnabled = true;
             this.cbx_veterinaire_bacpoissons_espece.Location = new System.Drawing.Point(108, 321);
-            this.cbx_veterinaire_bacpoissons_espece.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbx_veterinaire_bacpoissons_espece.Margin = new System.Windows.Forms.Padding(2);
             this.cbx_veterinaire_bacpoissons_espece.Name = "cbx_veterinaire_bacpoissons_espece";
             this.cbx_veterinaire_bacpoissons_espece.Size = new System.Drawing.Size(126, 21);
             this.cbx_veterinaire_bacpoissons_espece.TabIndex = 27;
@@ -406,7 +412,7 @@ namespace AppCriée
             this.btn_veterinaire_bacpoissons_valider.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_veterinaire_bacpoissons_valider.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btn_veterinaire_bacpoissons_valider.Location = new System.Drawing.Point(635, 386);
-            this.btn_veterinaire_bacpoissons_valider.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_veterinaire_bacpoissons_valider.Margin = new System.Windows.Forms.Padding(2);
             this.btn_veterinaire_bacpoissons_valider.Name = "btn_veterinaire_bacpoissons_valider";
             this.btn_veterinaire_bacpoissons_valider.Size = new System.Drawing.Size(99, 27);
             this.btn_veterinaire_bacpoissons_valider.TabIndex = 26;
@@ -499,7 +505,7 @@ namespace AppCriée
             this.btn_veterinaire_bacpoissons_creerlots.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_veterinaire_bacpoissons_creerlots.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btn_veterinaire_bacpoissons_creerlots.Location = new System.Drawing.Point(625, 481);
-            this.btn_veterinaire_bacpoissons_creerlots.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_veterinaire_bacpoissons_creerlots.Margin = new System.Windows.Forms.Padding(2);
             this.btn_veterinaire_bacpoissons_creerlots.Name = "btn_veterinaire_bacpoissons_creerlots";
             this.btn_veterinaire_bacpoissons_creerlots.Size = new System.Drawing.Size(141, 27);
             this.btn_veterinaire_bacpoissons_creerlots.TabIndex = 18;
@@ -523,7 +529,7 @@ namespace AppCriée
             this.btn_veterinaire_bacpoissons_modifierbacs.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_veterinaire_bacpoissons_modifierbacs.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btn_veterinaire_bacpoissons_modifierbacs.Location = new System.Drawing.Point(530, 174);
-            this.btn_veterinaire_bacpoissons_modifierbacs.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_veterinaire_bacpoissons_modifierbacs.Margin = new System.Windows.Forms.Padding(2);
             this.btn_veterinaire_bacpoissons_modifierbacs.Name = "btn_veterinaire_bacpoissons_modifierbacs";
             this.btn_veterinaire_bacpoissons_modifierbacs.Size = new System.Drawing.Size(204, 38);
             this.btn_veterinaire_bacpoissons_modifierbacs.TabIndex = 16;
@@ -537,7 +543,7 @@ namespace AppCriée
             this.btn_veterinaire_bacpoissons_supprimerbacs.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_veterinaire_bacpoissons_supprimerbacs.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btn_veterinaire_bacpoissons_supprimerbacs.Location = new System.Drawing.Point(530, 123);
-            this.btn_veterinaire_bacpoissons_supprimerbacs.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_veterinaire_bacpoissons_supprimerbacs.Margin = new System.Windows.Forms.Padding(2);
             this.btn_veterinaire_bacpoissons_supprimerbacs.Name = "btn_veterinaire_bacpoissons_supprimerbacs";
             this.btn_veterinaire_bacpoissons_supprimerbacs.Size = new System.Drawing.Size(204, 38);
             this.btn_veterinaire_bacpoissons_supprimerbacs.TabIndex = 15;
@@ -551,7 +557,7 @@ namespace AppCriée
             this.btn_veterinaire_bacpoissons_creerbacs.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_veterinaire_bacpoissons_creerbacs.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btn_veterinaire_bacpoissons_creerbacs.Location = new System.Drawing.Point(530, 226);
-            this.btn_veterinaire_bacpoissons_creerbacs.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_veterinaire_bacpoissons_creerbacs.Margin = new System.Windows.Forms.Padding(2);
             this.btn_veterinaire_bacpoissons_creerbacs.Name = "btn_veterinaire_bacpoissons_creerbacs";
             this.btn_veterinaire_bacpoissons_creerbacs.Size = new System.Drawing.Size(204, 34);
             this.btn_veterinaire_bacpoissons_creerbacs.TabIndex = 14;
@@ -578,7 +584,7 @@ namespace AppCriée
             this.codeEtat});
             this.dg_veterinaire_bacpoissons_listebac.GridColor = System.Drawing.SystemColors.Control;
             this.dg_veterinaire_bacpoissons_listebac.Location = new System.Drawing.Point(22, 115);
-            this.dg_veterinaire_bacpoissons_listebac.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dg_veterinaire_bacpoissons_listebac.Margin = new System.Windows.Forms.Padding(2);
             this.dg_veterinaire_bacpoissons_listebac.Name = "dg_veterinaire_bacpoissons_listebac";
             this.dg_veterinaire_bacpoissons_listebac.ReadOnly = true;
             this.dg_veterinaire_bacpoissons_listebac.RowHeadersWidth = 10;
@@ -659,7 +665,7 @@ namespace AppCriée
             this.cbx_veterinaire_bacpoissons_listebateaux.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_veterinaire_bacpoissons_listebateaux.FormattingEnabled = true;
             this.cbx_veterinaire_bacpoissons_listebateaux.Location = new System.Drawing.Point(208, 71);
-            this.cbx_veterinaire_bacpoissons_listebateaux.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbx_veterinaire_bacpoissons_listebateaux.Margin = new System.Windows.Forms.Padding(2);
             this.cbx_veterinaire_bacpoissons_listebateaux.Name = "cbx_veterinaire_bacpoissons_listebateaux";
             this.cbx_veterinaire_bacpoissons_listebateaux.Size = new System.Drawing.Size(150, 21);
             this.cbx_veterinaire_bacpoissons_listebateaux.TabIndex = 11;
@@ -720,9 +726,9 @@ namespace AppCriée
             this.tbp_veterinaire_lotspeche.Controls.Add(this.lbl_veterinaire_lotspeche_choixbateau);
             this.tbp_veterinaire_lotspeche.Controls.Add(this.lbl_veterinaire_lotspeche_title);
             this.tbp_veterinaire_lotspeche.Location = new System.Drawing.Point(4, 22);
-            this.tbp_veterinaire_lotspeche.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbp_veterinaire_lotspeche.Margin = new System.Windows.Forms.Padding(2);
             this.tbp_veterinaire_lotspeche.Name = "tbp_veterinaire_lotspeche";
-            this.tbp_veterinaire_lotspeche.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbp_veterinaire_lotspeche.Padding = new System.Windows.Forms.Padding(2);
             this.tbp_veterinaire_lotspeche.Size = new System.Drawing.Size(806, 526);
             this.tbp_veterinaire_lotspeche.TabIndex = 2;
             this.tbp_veterinaire_lotspeche.Text = "Lots de pêche";
@@ -824,7 +830,7 @@ namespace AppCriée
             this.cbx_veterinaire_lotspeche_lotsbateau.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_veterinaire_lotspeche_lotsbateau.FormattingEnabled = true;
             this.cbx_veterinaire_lotspeche_lotsbateau.Location = new System.Drawing.Point(430, 417);
-            this.cbx_veterinaire_lotspeche_lotsbateau.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbx_veterinaire_lotspeche_lotsbateau.Margin = new System.Windows.Forms.Padding(2);
             this.cbx_veterinaire_lotspeche_lotsbateau.Name = "cbx_veterinaire_lotspeche_lotsbateau";
             this.cbx_veterinaire_lotspeche_lotsbateau.Size = new System.Drawing.Size(198, 21);
             this.cbx_veterinaire_lotspeche_lotsbateau.TabIndex = 27;
@@ -837,7 +843,7 @@ namespace AppCriée
             this.btn_veterinaire_lotspeche_assigneralot.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_veterinaire_lotspeche_assigneralot.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btn_veterinaire_lotspeche_assigneralot.Location = new System.Drawing.Point(654, 406);
-            this.btn_veterinaire_lotspeche_assigneralot.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_veterinaire_lotspeche_assigneralot.Margin = new System.Windows.Forms.Padding(2);
             this.btn_veterinaire_lotspeche_assigneralot.Name = "btn_veterinaire_lotspeche_assigneralot";
             this.btn_veterinaire_lotspeche_assigneralot.Size = new System.Drawing.Size(141, 39);
             this.btn_veterinaire_lotspeche_assigneralot.TabIndex = 26;
@@ -852,7 +858,7 @@ namespace AppCriée
             this.btn_veterinaire_lotspeche_creerlot.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_veterinaire_lotspeche_creerlot.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btn_veterinaire_lotspeche_creerlot.Location = new System.Drawing.Point(550, 348);
-            this.btn_veterinaire_lotspeche_creerlot.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_veterinaire_lotspeche_creerlot.Margin = new System.Windows.Forms.Padding(2);
             this.btn_veterinaire_lotspeche_creerlot.Name = "btn_veterinaire_lotspeche_creerlot";
             this.btn_veterinaire_lotspeche_creerlot.Size = new System.Drawing.Size(141, 27);
             this.btn_veterinaire_lotspeche_creerlot.TabIndex = 25;
@@ -878,7 +884,7 @@ namespace AppCriée
             this.id});
             this.dg_veterinaire_lotspeche_bacnotlot.GridColor = System.Drawing.SystemColors.Control;
             this.dg_veterinaire_lotspeche_bacnotlot.Location = new System.Drawing.Point(27, 325);
-            this.dg_veterinaire_lotspeche_bacnotlot.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dg_veterinaire_lotspeche_bacnotlot.Margin = new System.Windows.Forms.Padding(2);
             this.dg_veterinaire_lotspeche_bacnotlot.Name = "dg_veterinaire_lotspeche_bacnotlot";
             this.dg_veterinaire_lotspeche_bacnotlot.ReadOnly = true;
             this.dg_veterinaire_lotspeche_bacnotlot.RowHeadersWidth = 10;
@@ -968,7 +974,7 @@ namespace AppCriée
             this.IdduLot});
             this.dg_veterinaire_lotspeche_lotsbateau.GridColor = System.Drawing.SystemColors.Control;
             this.dg_veterinaire_lotspeche_lotsbateau.Location = new System.Drawing.Point(27, 144);
-            this.dg_veterinaire_lotspeche_lotsbateau.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dg_veterinaire_lotspeche_lotsbateau.Margin = new System.Windows.Forms.Padding(2);
             this.dg_veterinaire_lotspeche_lotsbateau.Name = "dg_veterinaire_lotspeche_lotsbateau";
             this.dg_veterinaire_lotspeche_lotsbateau.ReadOnly = true;
             this.dg_veterinaire_lotspeche_lotsbateau.RowHeadersWidth = 10;
@@ -1053,7 +1059,7 @@ namespace AppCriée
             this.cbx_veterinaire_lotspeche_listebateaux.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_veterinaire_lotspeche_listebateaux.FormattingEnabled = true;
             this.cbx_veterinaire_lotspeche_listebateaux.Location = new System.Drawing.Point(192, 71);
-            this.cbx_veterinaire_lotspeche_listebateaux.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbx_veterinaire_lotspeche_listebateaux.Margin = new System.Windows.Forms.Padding(2);
             this.cbx_veterinaire_lotspeche_listebateaux.Name = "cbx_veterinaire_lotspeche_listebateaux";
             this.cbx_veterinaire_lotspeche_listebateaux.Size = new System.Drawing.Size(150, 21);
             this.cbx_veterinaire_lotspeche_listebateaux.TabIndex = 12;
@@ -1093,9 +1099,9 @@ namespace AppCriée
             this.tbp_veterinaire_touslots.Controls.Add(this.lbl_veterinaire_touslots_title);
             this.tbp_veterinaire_touslots.Controls.Add(this.dg_veterinaire_touslots_alllot);
             this.tbp_veterinaire_touslots.Location = new System.Drawing.Point(4, 22);
-            this.tbp_veterinaire_touslots.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbp_veterinaire_touslots.Margin = new System.Windows.Forms.Padding(2);
             this.tbp_veterinaire_touslots.Name = "tbp_veterinaire_touslots";
-            this.tbp_veterinaire_touslots.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbp_veterinaire_touslots.Padding = new System.Windows.Forms.Padding(2);
             this.tbp_veterinaire_touslots.Size = new System.Drawing.Size(806, 526);
             this.tbp_veterinaire_touslots.TabIndex = 3;
             this.tbp_veterinaire_touslots.Text = "Tous les lots de vente";
@@ -1107,7 +1113,7 @@ namespace AppCriée
             this.btn_veterinaire_touslots_imprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_veterinaire_touslots_imprimer.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btn_veterinaire_touslots_imprimer.Location = new System.Drawing.Point(572, 396);
-            this.btn_veterinaire_touslots_imprimer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_veterinaire_touslots_imprimer.Margin = new System.Windows.Forms.Padding(2);
             this.btn_veterinaire_touslots_imprimer.Name = "btn_veterinaire_touslots_imprimer";
             this.btn_veterinaire_touslots_imprimer.Size = new System.Drawing.Size(166, 39);
             this.btn_veterinaire_touslots_imprimer.TabIndex = 43;
@@ -1201,7 +1207,7 @@ namespace AppCriée
             this.codeEtât});
             this.dg_veterinaire_touslots_alllot.GridColor = System.Drawing.SystemColors.Control;
             this.dg_veterinaire_touslots_alllot.Location = new System.Drawing.Point(43, 80);
-            this.dg_veterinaire_touslots_alllot.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dg_veterinaire_touslots_alllot.Margin = new System.Windows.Forms.Padding(2);
             this.dg_veterinaire_touslots_alllot.MultiSelect = false;
             this.dg_veterinaire_touslots_alllot.Name = "dg_veterinaire_touslots_alllot";
             this.dg_veterinaire_touslots_alllot.ReadOnly = true;
@@ -1288,15 +1294,81 @@ namespace AppCriée
             // 
             // tbp_veterinaire_mesdonnees
             // 
+            this.tbp_veterinaire_mesdonnees.Controls.Add(this.lbl_veterinaire_mesdonnees_typeuser);
+            this.tbp_veterinaire_mesdonnees.Controls.Add(this.lbl_veterinaire_mesdonnees_adrMail);
+            this.tbp_veterinaire_mesdonnees.Controls.Add(this.lbl_veterinaire_mesdonnees_nom);
+            this.tbp_veterinaire_mesdonnees.Controls.Add(this.lbl_veterinaire_mesdonnees_prenom);
+            this.tbp_veterinaire_mesdonnees.Controls.Add(this.lbl_veterinaire_mesdonnees_login);
+            this.tbp_veterinaire_mesdonnees.Controls.Add(this.lbl_veterinaire_mesdonnees_title);
             this.tbp_veterinaire_mesdonnees.Controls.Add(this.btn_veterinaire_mesdonnees_supprimer);
             this.tbp_veterinaire_mesdonnees.Location = new System.Drawing.Point(4, 22);
-            this.tbp_veterinaire_mesdonnees.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbp_veterinaire_mesdonnees.Margin = new System.Windows.Forms.Padding(2);
             this.tbp_veterinaire_mesdonnees.Name = "tbp_veterinaire_mesdonnees";
-            this.tbp_veterinaire_mesdonnees.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbp_veterinaire_mesdonnees.Padding = new System.Windows.Forms.Padding(2);
             this.tbp_veterinaire_mesdonnees.Size = new System.Drawing.Size(806, 526);
             this.tbp_veterinaire_mesdonnees.TabIndex = 4;
             this.tbp_veterinaire_mesdonnees.Text = "Mes données";
             this.tbp_veterinaire_mesdonnees.UseVisualStyleBackColor = true;
+            // 
+            // lbl_veterinaire_mesdonnees_typeuser
+            // 
+            this.lbl_veterinaire_mesdonnees_typeuser.AutoSize = true;
+            this.lbl_veterinaire_mesdonnees_typeuser.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_veterinaire_mesdonnees_typeuser.Location = new System.Drawing.Point(36, 252);
+            this.lbl_veterinaire_mesdonnees_typeuser.Name = "lbl_veterinaire_mesdonnees_typeuser";
+            this.lbl_veterinaire_mesdonnees_typeuser.Size = new System.Drawing.Size(329, 24);
+            this.lbl_veterinaire_mesdonnees_typeuser.TabIndex = 39;
+            this.lbl_veterinaire_mesdonnees_typeuser.Text = "Type utilisateur : [Votre type utilisateur]";
+            // 
+            // lbl_veterinaire_mesdonnees_adrMail
+            // 
+            this.lbl_veterinaire_mesdonnees_adrMail.AutoSize = true;
+            this.lbl_veterinaire_mesdonnees_adrMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_veterinaire_mesdonnees_adrMail.Location = new System.Drawing.Point(272, 175);
+            this.lbl_veterinaire_mesdonnees_adrMail.Name = "lbl_veterinaire_mesdonnees_adrMail";
+            this.lbl_veterinaire_mesdonnees_adrMail.Size = new System.Drawing.Size(300, 24);
+            this.lbl_veterinaire_mesdonnees_adrMail.TabIndex = 38;
+            this.lbl_veterinaire_mesdonnees_adrMail.Text = "Adresse mail : [Votre adresse mail]";
+            // 
+            // lbl_veterinaire_mesdonnees_nom
+            // 
+            this.lbl_veterinaire_mesdonnees_nom.AutoSize = true;
+            this.lbl_veterinaire_mesdonnees_nom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_veterinaire_mesdonnees_nom.Location = new System.Drawing.Point(36, 175);
+            this.lbl_veterinaire_mesdonnees_nom.Name = "lbl_veterinaire_mesdonnees_nom";
+            this.lbl_veterinaire_mesdonnees_nom.Size = new System.Drawing.Size(164, 24);
+            this.lbl_veterinaire_mesdonnees_nom.TabIndex = 37;
+            this.lbl_veterinaire_mesdonnees_nom.Text = "Nom : [Votre nom]";
+            // 
+            // lbl_veterinaire_mesdonnees_prenom
+            // 
+            this.lbl_veterinaire_mesdonnees_prenom.AutoSize = true;
+            this.lbl_veterinaire_mesdonnees_prenom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_veterinaire_mesdonnees_prenom.Location = new System.Drawing.Point(272, 102);
+            this.lbl_veterinaire_mesdonnees_prenom.Name = "lbl_veterinaire_mesdonnees_prenom";
+            this.lbl_veterinaire_mesdonnees_prenom.Size = new System.Drawing.Size(218, 24);
+            this.lbl_veterinaire_mesdonnees_prenom.TabIndex = 36;
+            this.lbl_veterinaire_mesdonnees_prenom.Text = "Prénom : [Votre prénom]";
+            // 
+            // lbl_veterinaire_mesdonnees_login
+            // 
+            this.lbl_veterinaire_mesdonnees_login.AutoSize = true;
+            this.lbl_veterinaire_mesdonnees_login.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_veterinaire_mesdonnees_login.Location = new System.Drawing.Point(36, 104);
+            this.lbl_veterinaire_mesdonnees_login.Name = "lbl_veterinaire_mesdonnees_login";
+            this.lbl_veterinaire_mesdonnees_login.Size = new System.Drawing.Size(173, 24);
+            this.lbl_veterinaire_mesdonnees_login.TabIndex = 35;
+            this.lbl_veterinaire_mesdonnees_login.Text = "Login : [Votre login]";
+            // 
+            // lbl_veterinaire_mesdonnees_title
+            // 
+            this.lbl_veterinaire_mesdonnees_title.AutoSize = true;
+            this.lbl_veterinaire_mesdonnees_title.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold);
+            this.lbl_veterinaire_mesdonnees_title.Location = new System.Drawing.Point(207, 33);
+            this.lbl_veterinaire_mesdonnees_title.Name = "lbl_veterinaire_mesdonnees_title";
+            this.lbl_veterinaire_mesdonnees_title.Size = new System.Drawing.Size(338, 26);
+            this.lbl_veterinaire_mesdonnees_title.TabIndex = 34;
+            this.lbl_veterinaire_mesdonnees_title.Text = "GESTION DE VOS DONNEES";
             // 
             // btn_veterinaire_mesdonnees_supprimer
             // 
@@ -1327,7 +1399,7 @@ namespace AppCriée
             this.pbx_veterinaire_deconnexion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbx_veterinaire_deconnexion.Image = global::AppCriée.Properties.Resources.computer_icons_login_icon_design_exit_5abfc840bf8ca4_9038982415225180807846;
             this.pbx_veterinaire_deconnexion.Location = new System.Drawing.Point(764, 557);
-            this.pbx_veterinaire_deconnexion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pbx_veterinaire_deconnexion.Margin = new System.Windows.Forms.Padding(2);
             this.pbx_veterinaire_deconnexion.Name = "pbx_veterinaire_deconnexion";
             this.pbx_veterinaire_deconnexion.Size = new System.Drawing.Size(34, 37);
             this.pbx_veterinaire_deconnexion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1343,7 +1415,7 @@ namespace AppCriée
             this.Controls.Add(this.pbx_veterinaire_deconnexion);
             this.Controls.Add(this.lbl_veterinaire_datejour);
             this.Controls.Add(this.tbc_veterinaire);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "AppCriee_Veterinaire";
             this.Text = "AppCriée (Vétérinaire)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AppCriee_Veterinaire_FormClosing);
@@ -1361,6 +1433,7 @@ namespace AppCriée
             this.tbp_veterinaire_touslots.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_veterinaire_touslots_alllot)).EndInit();
             this.tbp_veterinaire_mesdonnees.ResumeLayout(false);
+            this.tbp_veterinaire_mesdonnees.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbx_veterinaire_deconnexion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1466,5 +1539,11 @@ namespace AppCriée
         private System.Windows.Forms.DataGridViewTextBoxColumn codeEtât;
         private System.Windows.Forms.TabPage tbp_veterinaire_mesdonnees;
         private System.Windows.Forms.Button btn_veterinaire_mesdonnees_supprimer;
+        private System.Windows.Forms.Label lbl_veterinaire_mesdonnees_typeuser;
+        private System.Windows.Forms.Label lbl_veterinaire_mesdonnees_adrMail;
+        private System.Windows.Forms.Label lbl_veterinaire_mesdonnees_nom;
+        private System.Windows.Forms.Label lbl_veterinaire_mesdonnees_prenom;
+        private System.Windows.Forms.Label lbl_veterinaire_mesdonnees_login;
+        private System.Windows.Forms.Label lbl_veterinaire_mesdonnees_title;
     }
 }

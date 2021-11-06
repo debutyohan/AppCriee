@@ -67,8 +67,14 @@ namespace AppCriée
             this.lbl_administrateur_gestioncomptes_title = new System.Windows.Forms.Label();
             this.lbl_administrateur_gestioncomptes_modification = new System.Windows.Forms.Label();
             this.tbp_administrateur_mesdonnees = new System.Windows.Forms.TabPage();
+            this.lbl_administrateur_mesdonnees_typeuser = new System.Windows.Forms.Label();
+            this.lbl_administrateur_mesdonnees_adrMail = new System.Windows.Forms.Label();
+            this.lbl_administrateur_mesdonnees_nom = new System.Windows.Forms.Label();
+            this.lbl_administrateur_mesdonnees_prenom = new System.Windows.Forms.Label();
+            this.lbl_administrateur_mesdonnees_login = new System.Windows.Forms.Label();
+            this.lbl_administrateur_mesdonnees_title = new System.Windows.Forms.Label();
+            this.btn_administrateur_mesdonnees_supprimer = new System.Windows.Forms.Button();
             this.lbl_administrateur_mesdonnees_ifonlyadmin = new System.Windows.Forms.Label();
-            this.btn_receptionniste_mesdonnees_supprimer = new System.Windows.Forms.Button();
             this.pbx_administrateur_deconnexion = new System.Windows.Forms.PictureBox();
             this.lbl_administrateur_datejour = new System.Windows.Forms.Label();
             this.tbc_administrateur.SuspendLayout();
@@ -85,10 +91,10 @@ namespace AppCriée
             this.tbc_administrateur.Controls.Add(this.tbp_administrateur_gestioncomptes);
             this.tbc_administrateur.Controls.Add(this.tbp_administrateur_mesdonnees);
             this.tbc_administrateur.Location = new System.Drawing.Point(0, 0);
-            this.tbc_administrateur.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbc_administrateur.Margin = new System.Windows.Forms.Padding(2);
             this.tbc_administrateur.Name = "tbc_administrateur";
             this.tbc_administrateur.SelectedIndex = 0;
-            this.tbc_administrateur.Size = new System.Drawing.Size(1085, 679);
+            this.tbc_administrateur.Size = new System.Drawing.Size(814, 552);
             this.tbc_administrateur.TabIndex = 0;
             this.tbc_administrateur.Selected += new System.Windows.Forms.TabControlEventHandler(this.tbc_administrateur_Selected);
             // 
@@ -96,11 +102,11 @@ namespace AppCriée
             // 
             this.tbp_administrateur_accueil.Controls.Add(this.lbl_administrateur_accueil_role);
             this.tbp_administrateur_accueil.Controls.Add(this.lbl_administrateur_accueil_bienvenue);
-            this.tbp_administrateur_accueil.Location = new System.Drawing.Point(4, 25);
-            this.tbp_administrateur_accueil.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbp_administrateur_accueil.Location = new System.Drawing.Point(4, 22);
+            this.tbp_administrateur_accueil.Margin = new System.Windows.Forms.Padding(2);
             this.tbp_administrateur_accueil.Name = "tbp_administrateur_accueil";
-            this.tbp_administrateur_accueil.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tbp_administrateur_accueil.Size = new System.Drawing.Size(1077, 650);
+            this.tbp_administrateur_accueil.Padding = new System.Windows.Forms.Padding(2);
+            this.tbp_administrateur_accueil.Size = new System.Drawing.Size(806, 526);
             this.tbp_administrateur_accueil.TabIndex = 0;
             this.tbp_administrateur_accueil.Text = "Accueil";
             this.tbp_administrateur_accueil.UseVisualStyleBackColor = true;
@@ -109,10 +115,9 @@ namespace AppCriée
             // 
             this.lbl_administrateur_accueil_role.AutoSize = true;
             this.lbl_administrateur_accueil_role.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.lbl_administrateur_accueil_role.Location = new System.Drawing.Point(199, 242);
-            this.lbl_administrateur_accueil_role.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_administrateur_accueil_role.Location = new System.Drawing.Point(149, 197);
             this.lbl_administrateur_accueil_role.Name = "lbl_administrateur_accueil_role";
-            this.lbl_administrateur_accueil_role.Size = new System.Drawing.Size(267, 31);
+            this.lbl_administrateur_accueil_role.Size = new System.Drawing.Size(216, 26);
             this.lbl_administrateur_accueil_role.TabIndex = 20;
             this.lbl_administrateur_accueil_role.Text = "Rôle : Administrateur";
             // 
@@ -120,10 +125,9 @@ namespace AppCriée
             // 
             this.lbl_administrateur_accueil_bienvenue.AutoSize = true;
             this.lbl_administrateur_accueil_bienvenue.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.lbl_administrateur_accueil_bienvenue.Location = new System.Drawing.Point(199, 161);
-            this.lbl_administrateur_accueil_bienvenue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_administrateur_accueil_bienvenue.Location = new System.Drawing.Point(149, 131);
             this.lbl_administrateur_accueil_bienvenue.Name = "lbl_administrateur_accueil_bienvenue";
-            this.lbl_administrateur_accueil_bienvenue.Size = new System.Drawing.Size(475, 31);
+            this.lbl_administrateur_accueil_bienvenue.Size = new System.Drawing.Size(383, 26);
             this.lbl_administrateur_accueil_bienvenue.TabIndex = 3;
             this.lbl_administrateur_accueil_bienvenue.Text = "Bienvenue [Nom_user] [Prenom_user]";
             // 
@@ -155,11 +159,11 @@ namespace AppCriée
             this.tbp_administrateur_gestioncomptes.Controls.Add(this.dg_administrateur_gestioncomptes_listecompte);
             this.tbp_administrateur_gestioncomptes.Controls.Add(this.lbl_administrateur_gestioncomptes_title);
             this.tbp_administrateur_gestioncomptes.Controls.Add(this.lbl_administrateur_gestioncomptes_modification);
-            this.tbp_administrateur_gestioncomptes.Location = new System.Drawing.Point(4, 25);
-            this.tbp_administrateur_gestioncomptes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbp_administrateur_gestioncomptes.Location = new System.Drawing.Point(4, 22);
+            this.tbp_administrateur_gestioncomptes.Margin = new System.Windows.Forms.Padding(2);
             this.tbp_administrateur_gestioncomptes.Name = "tbp_administrateur_gestioncomptes";
-            this.tbp_administrateur_gestioncomptes.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tbp_administrateur_gestioncomptes.Size = new System.Drawing.Size(1077, 650);
+            this.tbp_administrateur_gestioncomptes.Padding = new System.Windows.Forms.Padding(2);
+            this.tbp_administrateur_gestioncomptes.Size = new System.Drawing.Size(806, 526);
             this.tbp_administrateur_gestioncomptes.TabIndex = 1;
             this.tbp_administrateur_gestioncomptes.Text = "Gestion des comptes";
             this.tbp_administrateur_gestioncomptes.UseVisualStyleBackColor = true;
@@ -170,10 +174,9 @@ namespace AppCriée
             this.lbl_administrateur_gestioncomptes_validationok.BackColor = System.Drawing.Color.White;
             this.lbl_administrateur_gestioncomptes_validationok.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_administrateur_gestioncomptes_validationok.ForeColor = System.Drawing.Color.Red;
-            this.lbl_administrateur_gestioncomptes_validationok.Location = new System.Drawing.Point(109, 521);
-            this.lbl_administrateur_gestioncomptes_validationok.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_administrateur_gestioncomptes_validationok.Location = new System.Drawing.Point(82, 423);
             this.lbl_administrateur_gestioncomptes_validationok.Name = "lbl_administrateur_gestioncomptes_validationok";
-            this.lbl_administrateur_gestioncomptes_validationok.Size = new System.Drawing.Size(60, 24);
+            this.lbl_administrateur_gestioncomptes_validationok.Size = new System.Drawing.Size(46, 18);
             this.lbl_administrateur_gestioncomptes_validationok.TabIndex = 41;
             this.lbl_administrateur_gestioncomptes_validationok.Text = "label1";
             this.lbl_administrateur_gestioncomptes_validationok.Visible = false;
@@ -183,10 +186,10 @@ namespace AppCriée
             this.btn_administrateur_gestioncomptes_validermodif.BackColor = System.Drawing.SystemColors.Info;
             this.btn_administrateur_gestioncomptes_validermodif.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_administrateur_gestioncomptes_validermodif.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btn_administrateur_gestioncomptes_validermodif.Location = new System.Drawing.Point(717, 519);
-            this.btn_administrateur_gestioncomptes_validermodif.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_administrateur_gestioncomptes_validermodif.Location = new System.Drawing.Point(538, 422);
+            this.btn_administrateur_gestioncomptes_validermodif.Margin = new System.Windows.Forms.Padding(2);
             this.btn_administrateur_gestioncomptes_validermodif.Name = "btn_administrateur_gestioncomptes_validermodif";
-            this.btn_administrateur_gestioncomptes_validermodif.Size = new System.Drawing.Size(132, 33);
+            this.btn_administrateur_gestioncomptes_validermodif.Size = new System.Drawing.Size(99, 27);
             this.btn_administrateur_gestioncomptes_validermodif.TabIndex = 40;
             this.btn_administrateur_gestioncomptes_validermodif.Text = "Valider";
             this.btn_administrateur_gestioncomptes_validermodif.UseVisualStyleBackColor = false;
@@ -199,10 +202,9 @@ namespace AppCriée
             this.lbl_administrateur_gestioncomptes_validationajoutok.BackColor = System.Drawing.Color.White;
             this.lbl_administrateur_gestioncomptes_validationajoutok.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_administrateur_gestioncomptes_validationajoutok.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lbl_administrateur_gestioncomptes_validationajoutok.Location = new System.Drawing.Point(103, 386);
-            this.lbl_administrateur_gestioncomptes_validationajoutok.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_administrateur_gestioncomptes_validationajoutok.Location = new System.Drawing.Point(77, 314);
             this.lbl_administrateur_gestioncomptes_validationajoutok.Name = "lbl_administrateur_gestioncomptes_validationajoutok";
-            this.lbl_administrateur_gestioncomptes_validationajoutok.Size = new System.Drawing.Size(242, 25);
+            this.lbl_administrateur_gestioncomptes_validationajoutok.Size = new System.Drawing.Size(198, 20);
             this.lbl_administrateur_gestioncomptes_validationajoutok.TabIndex = 38;
             this.lbl_administrateur_gestioncomptes_validationajoutok.Text = "L\'utilisateur a bien été crée";
             this.lbl_administrateur_gestioncomptes_validationajoutok.Visible = false;
@@ -210,9 +212,10 @@ namespace AppCriée
             // lbl_administrateur_gestioncomptes_champsobli
             // 
             this.lbl_administrateur_gestioncomptes_champsobli.AutoSize = true;
-            this.lbl_administrateur_gestioncomptes_champsobli.Location = new System.Drawing.Point(904, 528);
+            this.lbl_administrateur_gestioncomptes_champsobli.Location = new System.Drawing.Point(678, 429);
+            this.lbl_administrateur_gestioncomptes_champsobli.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_administrateur_gestioncomptes_champsobli.Name = "lbl_administrateur_gestioncomptes_champsobli";
-            this.lbl_administrateur_gestioncomptes_champsobli.Size = new System.Drawing.Size(145, 17);
+            this.lbl_administrateur_gestioncomptes_champsobli.Size = new System.Drawing.Size(108, 13);
             this.lbl_administrateur_gestioncomptes_champsobli.TabIndex = 37;
             this.lbl_administrateur_gestioncomptes_champsobli.Text = "* Champs obligatoires";
             this.lbl_administrateur_gestioncomptes_champsobli.Visible = false;
@@ -223,10 +226,9 @@ namespace AppCriée
             this.lbl_administrateur_gestioncomptes_validationajouterror.BackColor = System.Drawing.Color.White;
             this.lbl_administrateur_gestioncomptes_validationajouterror.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_administrateur_gestioncomptes_validationajouterror.ForeColor = System.Drawing.Color.Red;
-            this.lbl_administrateur_gestioncomptes_validationajouterror.Location = new System.Drawing.Point(33, 521);
-            this.lbl_administrateur_gestioncomptes_validationajouterror.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_administrateur_gestioncomptes_validationajouterror.Location = new System.Drawing.Point(25, 423);
             this.lbl_administrateur_gestioncomptes_validationajouterror.Name = "lbl_administrateur_gestioncomptes_validationajouterror";
-            this.lbl_administrateur_gestioncomptes_validationajouterror.Size = new System.Drawing.Size(64, 25);
+            this.lbl_administrateur_gestioncomptes_validationajouterror.Size = new System.Drawing.Size(51, 20);
             this.lbl_administrateur_gestioncomptes_validationajouterror.TabIndex = 36;
             this.lbl_administrateur_gestioncomptes_validationajouterror.Text = "label1";
             this.lbl_administrateur_gestioncomptes_validationajouterror.Visible = false;
@@ -236,10 +238,10 @@ namespace AppCriée
             this.btn_administrateur_gestioncomptes_validerajout.BackColor = System.Drawing.SystemColors.Info;
             this.btn_administrateur_gestioncomptes_validerajout.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_administrateur_gestioncomptes_validerajout.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btn_administrateur_gestioncomptes_validerajout.Location = new System.Drawing.Point(725, 519);
-            this.btn_administrateur_gestioncomptes_validerajout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_administrateur_gestioncomptes_validerajout.Location = new System.Drawing.Point(544, 422);
+            this.btn_administrateur_gestioncomptes_validerajout.Margin = new System.Windows.Forms.Padding(2);
             this.btn_administrateur_gestioncomptes_validerajout.Name = "btn_administrateur_gestioncomptes_validerajout";
-            this.btn_administrateur_gestioncomptes_validerajout.Size = new System.Drawing.Size(132, 33);
+            this.btn_administrateur_gestioncomptes_validerajout.Size = new System.Drawing.Size(99, 27);
             this.btn_administrateur_gestioncomptes_validerajout.TabIndex = 35;
             this.btn_administrateur_gestioncomptes_validerajout.Text = "Valider";
             this.btn_administrateur_gestioncomptes_validerajout.UseVisualStyleBackColor = false;
@@ -250,54 +252,54 @@ namespace AppCriée
             // 
             this.cbx_administrateur_gestioncomptes_typeuser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_administrateur_gestioncomptes_typeuser.FormattingEnabled = true;
-            this.cbx_administrateur_gestioncomptes_typeuser.Location = new System.Drawing.Point(879, 468);
-            this.cbx_administrateur_gestioncomptes_typeuser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbx_administrateur_gestioncomptes_typeuser.Location = new System.Drawing.Point(659, 380);
+            this.cbx_administrateur_gestioncomptes_typeuser.Margin = new System.Windows.Forms.Padding(2);
             this.cbx_administrateur_gestioncomptes_typeuser.Name = "cbx_administrateur_gestioncomptes_typeuser";
-            this.cbx_administrateur_gestioncomptes_typeuser.Size = new System.Drawing.Size(169, 24);
+            this.cbx_administrateur_gestioncomptes_typeuser.Size = new System.Drawing.Size(128, 21);
             this.cbx_administrateur_gestioncomptes_typeuser.TabIndex = 33;
             this.cbx_administrateur_gestioncomptes_typeuser.Visible = false;
             // 
             // tbx_administrateur_gestioncomptes_adrMail
             // 
-            this.tbx_administrateur_gestioncomptes_adrMail.Location = new System.Drawing.Point(849, 420);
-            this.tbx_administrateur_gestioncomptes_adrMail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbx_administrateur_gestioncomptes_adrMail.Location = new System.Drawing.Point(637, 341);
+            this.tbx_administrateur_gestioncomptes_adrMail.Margin = new System.Windows.Forms.Padding(2);
             this.tbx_administrateur_gestioncomptes_adrMail.Name = "tbx_administrateur_gestioncomptes_adrMail";
-            this.tbx_administrateur_gestioncomptes_adrMail.Size = new System.Drawing.Size(211, 22);
+            this.tbx_administrateur_gestioncomptes_adrMail.Size = new System.Drawing.Size(159, 20);
             this.tbx_administrateur_gestioncomptes_adrMail.TabIndex = 32;
             this.tbx_administrateur_gestioncomptes_adrMail.Visible = false;
             // 
             // tbx_administrateur_gestioncomptes_prenom
             // 
-            this.tbx_administrateur_gestioncomptes_prenom.Location = new System.Drawing.Point(541, 468);
-            this.tbx_administrateur_gestioncomptes_prenom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbx_administrateur_gestioncomptes_prenom.Location = new System.Drawing.Point(406, 380);
+            this.tbx_administrateur_gestioncomptes_prenom.Margin = new System.Windows.Forms.Padding(2);
             this.tbx_administrateur_gestioncomptes_prenom.Name = "tbx_administrateur_gestioncomptes_prenom";
-            this.tbx_administrateur_gestioncomptes_prenom.Size = new System.Drawing.Size(151, 22);
+            this.tbx_administrateur_gestioncomptes_prenom.Size = new System.Drawing.Size(114, 20);
             this.tbx_administrateur_gestioncomptes_prenom.TabIndex = 31;
             // 
             // tbx_administrateur_gestioncomptes_nom
             // 
-            this.tbx_administrateur_gestioncomptes_nom.Location = new System.Drawing.Point(541, 418);
-            this.tbx_administrateur_gestioncomptes_nom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbx_administrateur_gestioncomptes_nom.Location = new System.Drawing.Point(406, 340);
+            this.tbx_administrateur_gestioncomptes_nom.Margin = new System.Windows.Forms.Padding(2);
             this.tbx_administrateur_gestioncomptes_nom.Name = "tbx_administrateur_gestioncomptes_nom";
-            this.tbx_administrateur_gestioncomptes_nom.Size = new System.Drawing.Size(151, 22);
+            this.tbx_administrateur_gestioncomptes_nom.Size = new System.Drawing.Size(114, 20);
             this.tbx_administrateur_gestioncomptes_nom.TabIndex = 30;
             this.tbx_administrateur_gestioncomptes_nom.WordWrap = false;
             // 
             // tbx_administrateur_gestioncomptes_motdepasse
             // 
-            this.tbx_administrateur_gestioncomptes_motdepasse.Location = new System.Drawing.Point(280, 468);
-            this.tbx_administrateur_gestioncomptes_motdepasse.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbx_administrateur_gestioncomptes_motdepasse.Location = new System.Drawing.Point(210, 380);
+            this.tbx_administrateur_gestioncomptes_motdepasse.Margin = new System.Windows.Forms.Padding(2);
             this.tbx_administrateur_gestioncomptes_motdepasse.Name = "tbx_administrateur_gestioncomptes_motdepasse";
-            this.tbx_administrateur_gestioncomptes_motdepasse.Size = new System.Drawing.Size(147, 22);
+            this.tbx_administrateur_gestioncomptes_motdepasse.Size = new System.Drawing.Size(111, 20);
             this.tbx_administrateur_gestioncomptes_motdepasse.TabIndex = 29;
             this.tbx_administrateur_gestioncomptes_motdepasse.Visible = false;
             // 
             // tbx_administrateur_gestioncomptes_login
             // 
-            this.tbx_administrateur_gestioncomptes_login.Location = new System.Drawing.Point(179, 420);
-            this.tbx_administrateur_gestioncomptes_login.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbx_administrateur_gestioncomptes_login.Location = new System.Drawing.Point(134, 341);
+            this.tbx_administrateur_gestioncomptes_login.Margin = new System.Windows.Forms.Padding(2);
             this.tbx_administrateur_gestioncomptes_login.Name = "tbx_administrateur_gestioncomptes_login";
-            this.tbx_administrateur_gestioncomptes_login.Size = new System.Drawing.Size(167, 22);
+            this.tbx_administrateur_gestioncomptes_login.Size = new System.Drawing.Size(126, 20);
             this.tbx_administrateur_gestioncomptes_login.TabIndex = 28;
             this.tbx_administrateur_gestioncomptes_login.Visible = false;
             // 
@@ -305,9 +307,10 @@ namespace AppCriée
             // 
             this.lbl_administrateur_gestioncomptes_typeuser.AutoSize = true;
             this.lbl_administrateur_gestioncomptes_typeuser.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lbl_administrateur_gestioncomptes_typeuser.Location = new System.Drawing.Point(715, 470);
+            this.lbl_administrateur_gestioncomptes_typeuser.Location = new System.Drawing.Point(536, 382);
+            this.lbl_administrateur_gestioncomptes_typeuser.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_administrateur_gestioncomptes_typeuser.Name = "lbl_administrateur_gestioncomptes_typeuser";
-            this.lbl_administrateur_gestioncomptes_typeuser.Size = new System.Drawing.Size(144, 20);
+            this.lbl_administrateur_gestioncomptes_typeuser.Size = new System.Drawing.Size(122, 17);
             this.lbl_administrateur_gestioncomptes_typeuser.TabIndex = 27;
             this.lbl_administrateur_gestioncomptes_typeuser.Text = "Type utilisateur * :";
             this.lbl_administrateur_gestioncomptes_typeuser.Visible = false;
@@ -316,9 +319,10 @@ namespace AppCriée
             // 
             this.lbl_administrateur_gestioncomptes_adrMail.AutoSize = true;
             this.lbl_administrateur_gestioncomptes_adrMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lbl_administrateur_gestioncomptes_adrMail.Location = new System.Drawing.Point(715, 420);
+            this.lbl_administrateur_gestioncomptes_adrMail.Location = new System.Drawing.Point(536, 341);
+            this.lbl_administrateur_gestioncomptes_adrMail.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_administrateur_gestioncomptes_adrMail.Name = "lbl_administrateur_gestioncomptes_adrMail";
-            this.lbl_administrateur_gestioncomptes_adrMail.Size = new System.Drawing.Size(117, 20);
+            this.lbl_administrateur_gestioncomptes_adrMail.Size = new System.Drawing.Size(97, 17);
             this.lbl_administrateur_gestioncomptes_adrMail.TabIndex = 26;
             this.lbl_administrateur_gestioncomptes_adrMail.Text = "Adresse mail :";
             this.lbl_administrateur_gestioncomptes_adrMail.Visible = false;
@@ -327,9 +331,10 @@ namespace AppCriée
             // 
             this.lbl_administrateur_gestioncomptes_prenom.AutoSize = true;
             this.lbl_administrateur_gestioncomptes_prenom.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lbl_administrateur_gestioncomptes_prenom.Location = new System.Drawing.Point(448, 470);
+            this.lbl_administrateur_gestioncomptes_prenom.Location = new System.Drawing.Point(336, 382);
+            this.lbl_administrateur_gestioncomptes_prenom.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_administrateur_gestioncomptes_prenom.Name = "lbl_administrateur_gestioncomptes_prenom";
-            this.lbl_administrateur_gestioncomptes_prenom.Size = new System.Drawing.Size(77, 20);
+            this.lbl_administrateur_gestioncomptes_prenom.Size = new System.Drawing.Size(65, 17);
             this.lbl_administrateur_gestioncomptes_prenom.TabIndex = 25;
             this.lbl_administrateur_gestioncomptes_prenom.Text = "Prénom :";
             this.lbl_administrateur_gestioncomptes_prenom.Visible = false;
@@ -338,9 +343,10 @@ namespace AppCriée
             // 
             this.lbl_administrateur_gestioncomptes_nom.AutoSize = true;
             this.lbl_administrateur_gestioncomptes_nom.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lbl_administrateur_gestioncomptes_nom.Location = new System.Drawing.Point(448, 420);
+            this.lbl_administrateur_gestioncomptes_nom.Location = new System.Drawing.Point(336, 341);
+            this.lbl_administrateur_gestioncomptes_nom.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_administrateur_gestioncomptes_nom.Name = "lbl_administrateur_gestioncomptes_nom";
-            this.lbl_administrateur_gestioncomptes_nom.Size = new System.Drawing.Size(54, 20);
+            this.lbl_administrateur_gestioncomptes_nom.Size = new System.Drawing.Size(45, 17);
             this.lbl_administrateur_gestioncomptes_nom.TabIndex = 24;
             this.lbl_administrateur_gestioncomptes_nom.Text = "Nom :";
             this.lbl_administrateur_gestioncomptes_nom.Visible = false;
@@ -349,9 +355,10 @@ namespace AppCriée
             // 
             this.lbl_administrateur_gestioncomptes_motdepasse.AutoSize = true;
             this.lbl_administrateur_gestioncomptes_motdepasse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lbl_administrateur_gestioncomptes_motdepasse.Location = new System.Drawing.Point(35, 470);
+            this.lbl_administrateur_gestioncomptes_motdepasse.Location = new System.Drawing.Point(26, 382);
+            this.lbl_administrateur_gestioncomptes_motdepasse.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_administrateur_gestioncomptes_motdepasse.Name = "lbl_administrateur_gestioncomptes_motdepasse";
-            this.lbl_administrateur_gestioncomptes_motdepasse.Size = new System.Drawing.Size(216, 20);
+            this.lbl_administrateur_gestioncomptes_motdepasse.Size = new System.Drawing.Size(182, 17);
             this.lbl_administrateur_gestioncomptes_motdepasse.TabIndex = 23;
             this.lbl_administrateur_gestioncomptes_motdepasse.Text = "Mot de passe (provisoire)* :";
             this.lbl_administrateur_gestioncomptes_motdepasse.Visible = false;
@@ -360,9 +367,10 @@ namespace AppCriée
             // 
             this.lbl_administrateur_gestioncomptes_login.AutoSize = true;
             this.lbl_administrateur_gestioncomptes_login.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lbl_administrateur_gestioncomptes_login.Location = new System.Drawing.Point(35, 420);
+            this.lbl_administrateur_gestioncomptes_login.Location = new System.Drawing.Point(26, 341);
+            this.lbl_administrateur_gestioncomptes_login.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_administrateur_gestioncomptes_login.Name = "lbl_administrateur_gestioncomptes_login";
-            this.lbl_administrateur_gestioncomptes_login.Size = new System.Drawing.Size(71, 20);
+            this.lbl_administrateur_gestioncomptes_login.Size = new System.Drawing.Size(60, 17);
             this.lbl_administrateur_gestioncomptes_login.TabIndex = 22;
             this.lbl_administrateur_gestioncomptes_login.Text = "Login * :";
             this.lbl_administrateur_gestioncomptes_login.Visible = false;
@@ -371,9 +379,10 @@ namespace AppCriée
             // 
             this.lbl_administrateur_gestioncomptes_ajout.AutoSize = true;
             this.lbl_administrateur_gestioncomptes_ajout.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_administrateur_gestioncomptes_ajout.Location = new System.Drawing.Point(33, 358);
+            this.lbl_administrateur_gestioncomptes_ajout.Location = new System.Drawing.Point(25, 291);
+            this.lbl_administrateur_gestioncomptes_ajout.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_administrateur_gestioncomptes_ajout.Name = "lbl_administrateur_gestioncomptes_ajout";
-            this.lbl_administrateur_gestioncomptes_ajout.Size = new System.Drawing.Size(312, 29);
+            this.lbl_administrateur_gestioncomptes_ajout.Size = new System.Drawing.Size(252, 24);
             this.lbl_administrateur_gestioncomptes_ajout.TabIndex = 19;
             this.lbl_administrateur_gestioncomptes_ajout.Text = "Ajout d\'un nouveau compte :";
             this.lbl_administrateur_gestioncomptes_ajout.Visible = false;
@@ -383,10 +392,10 @@ namespace AppCriée
             this.btn_administrateur_gestioncomptes_ajout.BackColor = System.Drawing.SystemColors.Highlight;
             this.btn_administrateur_gestioncomptes_ajout.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_administrateur_gestioncomptes_ajout.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btn_administrateur_gestioncomptes_ajout.Location = new System.Drawing.Point(788, 283);
-            this.btn_administrateur_gestioncomptes_ajout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_administrateur_gestioncomptes_ajout.Location = new System.Drawing.Point(591, 230);
+            this.btn_administrateur_gestioncomptes_ajout.Margin = new System.Windows.Forms.Padding(2);
             this.btn_administrateur_gestioncomptes_ajout.Name = "btn_administrateur_gestioncomptes_ajout";
-            this.btn_administrateur_gestioncomptes_ajout.Size = new System.Drawing.Size(272, 42);
+            this.btn_administrateur_gestioncomptes_ajout.Size = new System.Drawing.Size(204, 34);
             this.btn_administrateur_gestioncomptes_ajout.TabIndex = 18;
             this.btn_administrateur_gestioncomptes_ajout.Text = "Ajouter un nouveau compte";
             this.btn_administrateur_gestioncomptes_ajout.UseVisualStyleBackColor = false;
@@ -397,10 +406,10 @@ namespace AppCriée
             this.btn_administrateur_gestioncomptes_modifier.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btn_administrateur_gestioncomptes_modifier.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_administrateur_gestioncomptes_modifier.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btn_administrateur_gestioncomptes_modifier.Location = new System.Drawing.Point(788, 196);
-            this.btn_administrateur_gestioncomptes_modifier.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_administrateur_gestioncomptes_modifier.Location = new System.Drawing.Point(591, 159);
+            this.btn_administrateur_gestioncomptes_modifier.Margin = new System.Windows.Forms.Padding(2);
             this.btn_administrateur_gestioncomptes_modifier.Name = "btn_administrateur_gestioncomptes_modifier";
-            this.btn_administrateur_gestioncomptes_modifier.Size = new System.Drawing.Size(272, 47);
+            this.btn_administrateur_gestioncomptes_modifier.Size = new System.Drawing.Size(204, 38);
             this.btn_administrateur_gestioncomptes_modifier.TabIndex = 17;
             this.btn_administrateur_gestioncomptes_modifier.Text = "Modifier un compte";
             this.btn_administrateur_gestioncomptes_modifier.UseVisualStyleBackColor = false;
@@ -411,10 +420,10 @@ namespace AppCriée
             this.btn_administrateur_gestioncomptes_supprimer.BackColor = System.Drawing.Color.Red;
             this.btn_administrateur_gestioncomptes_supprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_administrateur_gestioncomptes_supprimer.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btn_administrateur_gestioncomptes_supprimer.Location = new System.Drawing.Point(788, 114);
-            this.btn_administrateur_gestioncomptes_supprimer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_administrateur_gestioncomptes_supprimer.Location = new System.Drawing.Point(591, 93);
+            this.btn_administrateur_gestioncomptes_supprimer.Margin = new System.Windows.Forms.Padding(2);
             this.btn_administrateur_gestioncomptes_supprimer.Name = "btn_administrateur_gestioncomptes_supprimer";
-            this.btn_administrateur_gestioncomptes_supprimer.Size = new System.Drawing.Size(272, 47);
+            this.btn_administrateur_gestioncomptes_supprimer.Size = new System.Drawing.Size(204, 38);
             this.btn_administrateur_gestioncomptes_supprimer.TabIndex = 16;
             this.btn_administrateur_gestioncomptes_supprimer.Text = "Supprimer un compte";
             this.btn_administrateur_gestioncomptes_supprimer.UseVisualStyleBackColor = false;
@@ -423,9 +432,10 @@ namespace AppCriée
             // lbl_administrateur_gestioncomptes_info
             // 
             this.lbl_administrateur_gestioncomptes_info.AutoSize = true;
-            this.lbl_administrateur_gestioncomptes_info.Location = new System.Drawing.Point(48, 596);
+            this.lbl_administrateur_gestioncomptes_info.Location = new System.Drawing.Point(36, 484);
+            this.lbl_administrateur_gestioncomptes_info.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_administrateur_gestioncomptes_info.Name = "lbl_administrateur_gestioncomptes_info";
-            this.lbl_administrateur_gestioncomptes_info.Size = new System.Drawing.Size(407, 34);
+            this.lbl_administrateur_gestioncomptes_info.Size = new System.Drawing.Size(304, 26);
             this.lbl_administrateur_gestioncomptes_info.TabIndex = 14;
             this.lbl_administrateur_gestioncomptes_info.Text = "La ligne grisée correspond à l’utilisateur connecté.\nVous ne pouvez modifier/supp" +
     "rimer qu\'un seul compte à la fois.";
@@ -446,15 +456,15 @@ namespace AppCriée
             this.adrmail,
             this.typeuser});
             this.dg_administrateur_gestioncomptes_listecompte.GridColor = System.Drawing.SystemColors.Control;
-            this.dg_administrateur_gestioncomptes_listecompte.Location = new System.Drawing.Point(29, 94);
-            this.dg_administrateur_gestioncomptes_listecompte.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dg_administrateur_gestioncomptes_listecompte.Location = new System.Drawing.Point(22, 76);
+            this.dg_administrateur_gestioncomptes_listecompte.Margin = new System.Windows.Forms.Padding(2);
             this.dg_administrateur_gestioncomptes_listecompte.MultiSelect = false;
             this.dg_administrateur_gestioncomptes_listecompte.Name = "dg_administrateur_gestioncomptes_listecompte";
             this.dg_administrateur_gestioncomptes_listecompte.ReadOnly = true;
             this.dg_administrateur_gestioncomptes_listecompte.RowHeadersWidth = 10;
             this.dg_administrateur_gestioncomptes_listecompte.RowTemplate.Height = 24;
             this.dg_administrateur_gestioncomptes_listecompte.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dg_administrateur_gestioncomptes_listecompte.Size = new System.Drawing.Size(723, 245);
+            this.dg_administrateur_gestioncomptes_listecompte.Size = new System.Drawing.Size(542, 199);
             this.dg_administrateur_gestioncomptes_listecompte.TabIndex = 13;
             this.dg_administrateur_gestioncomptes_listecompte.Visible = false;
             this.dg_administrateur_gestioncomptes_listecompte.VisibleChanged += new System.EventHandler(this.dg_administrateur_gestioncomptes_listecompte_VisibleChanged);
@@ -511,9 +521,10 @@ namespace AppCriée
             // 
             this.lbl_administrateur_gestioncomptes_title.AutoSize = true;
             this.lbl_administrateur_gestioncomptes_title.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_administrateur_gestioncomptes_title.Location = new System.Drawing.Point(347, 39);
+            this.lbl_administrateur_gestioncomptes_title.Location = new System.Drawing.Point(260, 32);
+            this.lbl_administrateur_gestioncomptes_title.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_administrateur_gestioncomptes_title.Name = "lbl_administrateur_gestioncomptes_title";
-            this.lbl_administrateur_gestioncomptes_title.Size = new System.Drawing.Size(371, 32);
+            this.lbl_administrateur_gestioncomptes_title.Size = new System.Drawing.Size(295, 26);
             this.lbl_administrateur_gestioncomptes_title.TabIndex = 8;
             this.lbl_administrateur_gestioncomptes_title.Text = "GESTION DES COMPTES";
             // 
@@ -521,60 +532,126 @@ namespace AppCriée
             // 
             this.lbl_administrateur_gestioncomptes_modification.AutoSize = true;
             this.lbl_administrateur_gestioncomptes_modification.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_administrateur_gestioncomptes_modification.Location = new System.Drawing.Point(33, 358);
+            this.lbl_administrateur_gestioncomptes_modification.Location = new System.Drawing.Point(25, 291);
+            this.lbl_administrateur_gestioncomptes_modification.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_administrateur_gestioncomptes_modification.Name = "lbl_administrateur_gestioncomptes_modification";
-            this.lbl_administrateur_gestioncomptes_modification.Size = new System.Drawing.Size(378, 29);
+            this.lbl_administrateur_gestioncomptes_modification.Size = new System.Drawing.Size(298, 24);
             this.lbl_administrateur_gestioncomptes_modification.TabIndex = 39;
             this.lbl_administrateur_gestioncomptes_modification.Text = "Modification d\'un compte existant :";
             this.lbl_administrateur_gestioncomptes_modification.Visible = false;
             // 
             // tbp_administrateur_mesdonnees
             // 
-            this.tbp_administrateur_mesdonnees.Controls.Add(this.btn_receptionniste_mesdonnees_supprimer);
+            this.tbp_administrateur_mesdonnees.Controls.Add(this.lbl_administrateur_mesdonnees_typeuser);
+            this.tbp_administrateur_mesdonnees.Controls.Add(this.lbl_administrateur_mesdonnees_adrMail);
+            this.tbp_administrateur_mesdonnees.Controls.Add(this.lbl_administrateur_mesdonnees_nom);
+            this.tbp_administrateur_mesdonnees.Controls.Add(this.lbl_administrateur_mesdonnees_prenom);
+            this.tbp_administrateur_mesdonnees.Controls.Add(this.lbl_administrateur_mesdonnees_login);
+            this.tbp_administrateur_mesdonnees.Controls.Add(this.lbl_administrateur_mesdonnees_title);
+            this.tbp_administrateur_mesdonnees.Controls.Add(this.btn_administrateur_mesdonnees_supprimer);
             this.tbp_administrateur_mesdonnees.Controls.Add(this.lbl_administrateur_mesdonnees_ifonlyadmin);
-            this.tbp_administrateur_mesdonnees.Location = new System.Drawing.Point(4, 25);
-            this.tbp_administrateur_mesdonnees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbp_administrateur_mesdonnees.Location = new System.Drawing.Point(4, 22);
+            this.tbp_administrateur_mesdonnees.Margin = new System.Windows.Forms.Padding(2);
             this.tbp_administrateur_mesdonnees.Name = "tbp_administrateur_mesdonnees";
-            this.tbp_administrateur_mesdonnees.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tbp_administrateur_mesdonnees.Size = new System.Drawing.Size(1077, 650);
+            this.tbp_administrateur_mesdonnees.Padding = new System.Windows.Forms.Padding(2);
+            this.tbp_administrateur_mesdonnees.Size = new System.Drawing.Size(806, 526);
             this.tbp_administrateur_mesdonnees.TabIndex = 2;
             this.tbp_administrateur_mesdonnees.Text = "Mes données";
             this.tbp_administrateur_mesdonnees.UseVisualStyleBackColor = true;
+            // 
+            // lbl_administrateur_mesdonnees_typeuser
+            // 
+            this.lbl_administrateur_mesdonnees_typeuser.AutoSize = true;
+            this.lbl_administrateur_mesdonnees_typeuser.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_administrateur_mesdonnees_typeuser.Location = new System.Drawing.Point(40, 253);
+            this.lbl_administrateur_mesdonnees_typeuser.Name = "lbl_administrateur_mesdonnees_typeuser";
+            this.lbl_administrateur_mesdonnees_typeuser.Size = new System.Drawing.Size(329, 24);
+            this.lbl_administrateur_mesdonnees_typeuser.TabIndex = 51;
+            this.lbl_administrateur_mesdonnees_typeuser.Text = "Type utilisateur : [Votre type utilisateur]";
+            // 
+            // lbl_administrateur_mesdonnees_adrMail
+            // 
+            this.lbl_administrateur_mesdonnees_adrMail.AutoSize = true;
+            this.lbl_administrateur_mesdonnees_adrMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_administrateur_mesdonnees_adrMail.Location = new System.Drawing.Point(276, 176);
+            this.lbl_administrateur_mesdonnees_adrMail.Name = "lbl_administrateur_mesdonnees_adrMail";
+            this.lbl_administrateur_mesdonnees_adrMail.Size = new System.Drawing.Size(300, 24);
+            this.lbl_administrateur_mesdonnees_adrMail.TabIndex = 50;
+            this.lbl_administrateur_mesdonnees_adrMail.Text = "Adresse mail : [Votre adresse mail]";
+            // 
+            // lbl_administrateur_mesdonnees_nom
+            // 
+            this.lbl_administrateur_mesdonnees_nom.AutoSize = true;
+            this.lbl_administrateur_mesdonnees_nom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_administrateur_mesdonnees_nom.Location = new System.Drawing.Point(40, 176);
+            this.lbl_administrateur_mesdonnees_nom.Name = "lbl_administrateur_mesdonnees_nom";
+            this.lbl_administrateur_mesdonnees_nom.Size = new System.Drawing.Size(164, 24);
+            this.lbl_administrateur_mesdonnees_nom.TabIndex = 49;
+            this.lbl_administrateur_mesdonnees_nom.Text = "Nom : [Votre nom]";
+            // 
+            // lbl_administrateur_mesdonnees_prenom
+            // 
+            this.lbl_administrateur_mesdonnees_prenom.AutoSize = true;
+            this.lbl_administrateur_mesdonnees_prenom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_administrateur_mesdonnees_prenom.Location = new System.Drawing.Point(276, 103);
+            this.lbl_administrateur_mesdonnees_prenom.Name = "lbl_administrateur_mesdonnees_prenom";
+            this.lbl_administrateur_mesdonnees_prenom.Size = new System.Drawing.Size(218, 24);
+            this.lbl_administrateur_mesdonnees_prenom.TabIndex = 48;
+            this.lbl_administrateur_mesdonnees_prenom.Text = "Prénom : [Votre prénom]";
+            // 
+            // lbl_administrateur_mesdonnees_login
+            // 
+            this.lbl_administrateur_mesdonnees_login.AutoSize = true;
+            this.lbl_administrateur_mesdonnees_login.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_administrateur_mesdonnees_login.Location = new System.Drawing.Point(40, 105);
+            this.lbl_administrateur_mesdonnees_login.Name = "lbl_administrateur_mesdonnees_login";
+            this.lbl_administrateur_mesdonnees_login.Size = new System.Drawing.Size(173, 24);
+            this.lbl_administrateur_mesdonnees_login.TabIndex = 47;
+            this.lbl_administrateur_mesdonnees_login.Text = "Login : [Votre login]";
+            // 
+            // lbl_administrateur_mesdonnees_title
+            // 
+            this.lbl_administrateur_mesdonnees_title.AutoSize = true;
+            this.lbl_administrateur_mesdonnees_title.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold);
+            this.lbl_administrateur_mesdonnees_title.Location = new System.Drawing.Point(211, 34);
+            this.lbl_administrateur_mesdonnees_title.Name = "lbl_administrateur_mesdonnees_title";
+            this.lbl_administrateur_mesdonnees_title.Size = new System.Drawing.Size(338, 26);
+            this.lbl_administrateur_mesdonnees_title.TabIndex = 46;
+            this.lbl_administrateur_mesdonnees_title.Text = "GESTION DE VOS DONNEES";
+            // 
+            // btn_administrateur_mesdonnees_supprimer
+            // 
+            this.btn_administrateur_mesdonnees_supprimer.BackColor = System.Drawing.Color.Red;
+            this.btn_administrateur_mesdonnees_supprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_administrateur_mesdonnees_supprimer.Location = new System.Drawing.Point(630, 167);
+            this.btn_administrateur_mesdonnees_supprimer.Name = "btn_administrateur_mesdonnees_supprimer";
+            this.btn_administrateur_mesdonnees_supprimer.Size = new System.Drawing.Size(150, 42);
+            this.btn_administrateur_mesdonnees_supprimer.TabIndex = 22;
+            this.btn_administrateur_mesdonnees_supprimer.Text = "Supprimer mon compte";
+            this.btn_administrateur_mesdonnees_supprimer.UseVisualStyleBackColor = false;
             // 
             // lbl_administrateur_mesdonnees_ifonlyadmin
             // 
             this.lbl_administrateur_mesdonnees_ifonlyadmin.AutoSize = true;
             this.lbl_administrateur_mesdonnees_ifonlyadmin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.lbl_administrateur_mesdonnees_ifonlyadmin.Location = new System.Drawing.Point(820, 190);
+            this.lbl_administrateur_mesdonnees_ifonlyadmin.Location = new System.Drawing.Point(615, 154);
+            this.lbl_administrateur_mesdonnees_ifonlyadmin.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_administrateur_mesdonnees_ifonlyadmin.Name = "lbl_administrateur_mesdonnees_ifonlyadmin";
-            this.lbl_administrateur_mesdonnees_ifonlyadmin.Size = new System.Drawing.Size(240, 68);
+            this.lbl_administrateur_mesdonnees_ifonlyadmin.Size = new System.Drawing.Size(179, 52);
             this.lbl_administrateur_mesdonnees_ifonlyadmin.TabIndex = 23;
             this.lbl_administrateur_mesdonnees_ifonlyadmin.Text = "Vous ne pouvez pas supprimer votre\ncompte, puisque votre compte\nreprésente le seu" +
     "l administrateur de\nl\'application.";
             this.lbl_administrateur_mesdonnees_ifonlyadmin.Visible = false;
-            // 
-            // btn_receptionniste_mesdonnees_supprimer
-            // 
-            this.btn_receptionniste_mesdonnees_supprimer.BackColor = System.Drawing.Color.Red;
-            this.btn_receptionniste_mesdonnees_supprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_receptionniste_mesdonnees_supprimer.Location = new System.Drawing.Point(840, 206);
-            this.btn_receptionniste_mesdonnees_supprimer.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_receptionniste_mesdonnees_supprimer.Name = "btn_receptionniste_mesdonnees_supprimer";
-            this.btn_receptionniste_mesdonnees_supprimer.Size = new System.Drawing.Size(200, 52);
-            this.btn_receptionniste_mesdonnees_supprimer.TabIndex = 22;
-            this.btn_receptionniste_mesdonnees_supprimer.Text = "Supprimer mon compte";
-            this.btn_receptionniste_mesdonnees_supprimer.UseVisualStyleBackColor = false;
-            this.btn_receptionniste_mesdonnees_supprimer.Click += new System.EventHandler(this.btn_receptionniste_mesdonnees_supprimer_Click);
             // 
             // pbx_administrateur_deconnexion
             // 
             this.pbx_administrateur_deconnexion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pbx_administrateur_deconnexion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbx_administrateur_deconnexion.Image = global::AppCriée.Properties.Resources.computer_icons_login_icon_design_exit_5abfc840bf8ca4_9038982415225180807846;
-            this.pbx_administrateur_deconnexion.Location = new System.Drawing.Point(1019, 686);
-            this.pbx_administrateur_deconnexion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pbx_administrateur_deconnexion.Location = new System.Drawing.Point(764, 557);
+            this.pbx_administrateur_deconnexion.Margin = new System.Windows.Forms.Padding(2);
             this.pbx_administrateur_deconnexion.Name = "pbx_administrateur_deconnexion";
-            this.pbx_administrateur_deconnexion.Size = new System.Drawing.Size(45, 46);
+            this.pbx_administrateur_deconnexion.Size = new System.Drawing.Size(34, 37);
             this.pbx_administrateur_deconnexion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbx_administrateur_deconnexion.TabIndex = 21;
             this.pbx_administrateur_deconnexion.TabStop = false;
@@ -584,24 +661,23 @@ namespace AppCriée
             // 
             this.lbl_administrateur_datejour.AutoSize = true;
             this.lbl_administrateur_datejour.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_administrateur_datejour.Location = new System.Drawing.Point(771, 693);
-            this.lbl_administrateur_datejour.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_administrateur_datejour.Location = new System.Drawing.Point(578, 563);
             this.lbl_administrateur_datejour.Name = "lbl_administrateur_datejour";
-            this.lbl_administrateur_datejour.Size = new System.Drawing.Size(217, 24);
+            this.lbl_administrateur_datejour.Size = new System.Drawing.Size(172, 18);
             this.lbl_administrateur_datejour.TabIndex = 21;
             this.lbl_administrateur_datejour.Text = "Date du jour : 23/10/2021";
             // 
             // AppCriee_Administrateur
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1087, 734);
+            this.ClientSize = new System.Drawing.Size(817, 596);
             this.Controls.Add(this.lbl_administrateur_datejour);
             this.Controls.Add(this.pbx_administrateur_deconnexion);
             this.Controls.Add(this.tbc_administrateur);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MaximumSize = new System.Drawing.Size(1105, 781);
-            this.MinimumSize = new System.Drawing.Size(1105, 724);
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximumSize = new System.Drawing.Size(833, 642);
+            this.MinimumSize = new System.Drawing.Size(833, 596);
             this.Name = "AppCriee_Administrateur";
             this.Text = "AppCriée (Administrateur)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AppCriee_Administrateur_FormClosing);
@@ -661,7 +737,13 @@ namespace AppCriée
         private System.Windows.Forms.Label lbl_administrateur_gestioncomptes_modification;
         private System.Windows.Forms.Button btn_administrateur_gestioncomptes_validermodif;
         private System.Windows.Forms.Label lbl_administrateur_gestioncomptes_validationok;
-        private System.Windows.Forms.Button btn_receptionniste_mesdonnees_supprimer;
+        private System.Windows.Forms.Button btn_administrateur_mesdonnees_supprimer;
         private System.Windows.Forms.Label lbl_administrateur_mesdonnees_ifonlyadmin;
+        private System.Windows.Forms.Label lbl_administrateur_mesdonnees_typeuser;
+        private System.Windows.Forms.Label lbl_administrateur_mesdonnees_adrMail;
+        private System.Windows.Forms.Label lbl_administrateur_mesdonnees_nom;
+        private System.Windows.Forms.Label lbl_administrateur_mesdonnees_prenom;
+        private System.Windows.Forms.Label lbl_administrateur_mesdonnees_login;
+        private System.Windows.Forms.Label lbl_administrateur_mesdonnees_title;
     }
 }
