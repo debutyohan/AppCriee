@@ -293,6 +293,8 @@ namespace AppCriée
             this.Controls.Add(this.lbl_recupmotdepasse_nouveaumotdepasse);
             this.Controls.Add(this.lbl_recupmotdepasse_confirmermotdepasse);
             this.Controls.Add(this.lbl_recupmotdepasse_ok);
+            this.MaximumSize = new System.Drawing.Size(774, 637);
+            this.MinimumSize = new System.Drawing.Size(774, 637);
             this.Name = "AppCriee_RecupMotdePasse";
             this.Text = "AppCriée (Réinitialisation de mot de passe)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AppCriee_RecupMotdePasse_FormClosing);

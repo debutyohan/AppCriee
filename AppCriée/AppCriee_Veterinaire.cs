@@ -27,6 +27,7 @@ namespace AppCriée
         string idLotTabIsModifing = "";
         string Datejour = DateTime.Today.ToString("yyyy-MM-dd");
         AppCriee _authAccueil;
+        User _useractuelle;
 
         #endregion
 
@@ -36,6 +37,7 @@ namespace AppCriée
         {
             InitializeComponent();
             _authAccueil = authAccueil;
+            _useractuelle = unutilisateur;
             lbl_veterinaire_accueil_bienvenue.Text = "Bienvenue " + unutilisateur.Nom + " " + unutilisateur.Prenom;
             lbl_veterinaire_datejour.Text = "Date du jour : " + DateTime.Today.ToString("dd/MM/yyyy");
             HiddenObject.Hide(new List<Control> { lbl_veterinaire_bacpoissons_choixbateau, cbx_veterinaire_bacpoissons_listebateaux, btn_veterinaire_bacpoissons_creerbacs, btn_veterinaire_bacpoissons_creerlots, btn_veterinaire_bacpoissons_modifierbacs, btn_veterinaire_bacpoissons_supprimerbacs, dg_veterinaire_bacpoissons_listebac, lbl_veterinaire_bacpoissons_isbac, lbl_veterinaire_bacpoissons_creationbac, lbl_veterinaire_bacpoissons_espece, lbl_veterinaire_bacpoissons_presentation, lbl_veterinaire_bacpoissons_taille, lbl_veterinaire_bacpoissons_qualite, lbl_veterinaire_bacpoissons_typebac, cbx_veterinaire_bacpoissons_espece, cbx_veterinaire_bacpoissons_presentation, cbx_veterinaire_bacpoissons_taille, cbx_veterinaire_bacpoissons_qualite, cbx_veterinaire_bacpoissons_typebac, btn_veterinaire_bacpoissons_valider, lbl_veterinaire_bacpoissons_validationok });
@@ -55,7 +57,7 @@ namespace AppCriée
 
         private void tbc_veterinaire_Selected(object sender, TabControlEventArgs e)
         {
-            if (!(tbp_veterinaire_lotspeche.Enabled))
+            if (!(tbp_veterinaire_lotspeche.Enabled)&&(e.TabPage.Name!= "tbp_veterinaire_mesdonnees") && (e.TabPage.Name != "tbp_veterinaire_accueil"))
             {
                 tbc_veterinaire.SelectedTab = tbp_veterinaire_accueil;
             }
@@ -534,7 +536,6 @@ namespace AppCriée
             }
         }
         
-
         #endregion
 
         #region Onglet Lots de peche
@@ -741,7 +742,7 @@ namespace AppCriée
 
         #endregion
 
-        #region Tous les lots de vente
+        #region Onglet Tous les lots de vente
 
         private void btn_veterinaire_touslots_imprimer_Click(object sender, EventArgs e)
         {
@@ -981,32 +982,71 @@ namespace AppCriée
 
         #endregion
 
+        #region Onglet Mes Données
+
+        private void btn_veterinaire_mesdonnees_supprimer_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Etes-vous sûr de vouloir supprimer votre propre compte ?\nAttention, cette action est irréversible.", "Supprimer votre compte", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                CURS cs = new CURS();
+                cs.ReqAdminPrepare("DELETE FROM utilisateur WHERE id=?", new List<object> { _useractuelle.Id });
+                cs.fermer();
+                string adrMail = _useractuelle.AdrMail.Trim();
+                string login = _useractuelle.Login;
+                _useractuelle = null;
+                _authAccueil.Show();
+                this.Close();
+                if (adrMail != "")
+                {
+                    Exception exception;
+                    bool isresult = CompleteControl.SendMail(adrMail, "AppCriée : Confirmation de la suppression de votre compte", "Votre compte '" + login + "' a été correctement supprimée\n\nSupport Informatique de l'application AppCriée\n\nPour toutes questions relatives à l'application AppCriée, veuillez nous contacter à l'adresse : " + DataSystem.AdrMailFrom(), out exception);
+                    if (!isresult)
+                    {
+                        MessageBox.Show("Votre compte a bien été supprimée\nL'envoi du mail de confirmation n'a toutefois pas pu être envoyé : \n" + exception.Message, "Compte supprimée", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Votre compte a bien été supprimé\nUn mail vous a été envoyé", "Compte supprimé", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Votre compte a bien été supprimé", "Compte supprimé", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        #endregion
+
         #region Fermeture du formulaire
 
         private void AppCriee_Veterinaire_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (listebacnotlot.Count != 0)
+            if(_useractuelle != null)
             {
-                DialogResult result = MessageBox.Show("Des bacs ont été crée sans être associer à un lot, ces bacs ne seront pas sauvegardées\nVoulez-vous vraiment quitter ?", "Attention", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                if (result == DialogResult.Yes)
+                if (listebacnotlot.Count != 0)
                 {
-                    _authAccueil.Show();
+                    DialogResult result = MessageBox.Show("Des bacs ont été crée sans être associer à un lot, ces bacs ne seront pas sauvegardées\nVoulez-vous vraiment quitter ?", "Attention", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                    if (result == DialogResult.Yes)
+                    {
+                        _authAccueil.Show();
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
                 }
                 else
                 {
-                    e.Cancel = true;
-                }
-            }
-            else
-            {
-                DialogResult result = MessageBox.Show("Confirmez-vous la déconnexion ?", "Confirmation de déconnexion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                if (result == DialogResult.Yes)
-                {
-                    _authAccueil.Show();
-                }
-                else
-                {
-                    e.Cancel = true;
+                    DialogResult result = MessageBox.Show("Confirmez-vous la déconnexion ?", "Confirmation de déconnexion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    if (result == DialogResult.Yes)
+                    {
+                        _authAccueil.Show();
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
                 }
             }
         }

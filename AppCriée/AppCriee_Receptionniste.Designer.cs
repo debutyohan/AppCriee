@@ -50,13 +50,15 @@ namespace AppCriée
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbl_title = new System.Windows.Forms.Label();
+            this.tbp_receptionniste_mesdonnees = new System.Windows.Forms.TabPage();
             this.lbl_receptionniste_datejour = new System.Windows.Forms.Label();
             this.pbx_receptionniste_deconnexion = new System.Windows.Forms.PictureBox();
-            this.tbp_receptionniste_mesdonnees = new System.Windows.Forms.TabPage();
+            this.btn_receptionniste_mesdonnees_supprimer = new System.Windows.Forms.Button();
             this.tbc_receptionniste.SuspendLayout();
             this.tabAccueil.SuspendLayout();
             this.tabPeche.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_pechejour)).BeginInit();
+            this.tbp_receptionniste_mesdonnees.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbx_receptionniste_deconnexion)).BeginInit();
             this.SuspendLayout();
             // 
@@ -315,6 +317,17 @@ namespace AppCriée
             this.lbl_title.TabIndex = 7;
             this.lbl_title.Text = "GESTION DES PECHES DU JOUR";
             // 
+            // tbp_receptionniste_mesdonnees
+            // 
+            this.tbp_receptionniste_mesdonnees.Controls.Add(this.btn_receptionniste_mesdonnees_supprimer);
+            this.tbp_receptionniste_mesdonnees.Location = new System.Drawing.Point(4, 25);
+            this.tbp_receptionniste_mesdonnees.Name = "tbp_receptionniste_mesdonnees";
+            this.tbp_receptionniste_mesdonnees.Padding = new System.Windows.Forms.Padding(3);
+            this.tbp_receptionniste_mesdonnees.Size = new System.Drawing.Size(1077, 651);
+            this.tbp_receptionniste_mesdonnees.TabIndex = 2;
+            this.tbp_receptionniste_mesdonnees.Text = "Mes données";
+            this.tbp_receptionniste_mesdonnees.UseVisualStyleBackColor = true;
+            // 
             // lbl_receptionniste_datejour
             // 
             this.lbl_receptionniste_datejour.AutoSize = true;
@@ -338,15 +351,18 @@ namespace AppCriée
             this.pbx_receptionniste_deconnexion.TabStop = false;
             this.pbx_receptionniste_deconnexion.Click += new System.EventHandler(this.pbx_receptionniste_deconnexion_Click);
             // 
-            // tbp_receptionniste_mesdonnees
+            // btn_receptionniste_mesdonnees_supprimer
             // 
-            this.tbp_receptionniste_mesdonnees.Location = new System.Drawing.Point(4, 25);
-            this.tbp_receptionniste_mesdonnees.Name = "tbp_receptionniste_mesdonnees";
-            this.tbp_receptionniste_mesdonnees.Padding = new System.Windows.Forms.Padding(3);
-            this.tbp_receptionniste_mesdonnees.Size = new System.Drawing.Size(1077, 651);
-            this.tbp_receptionniste_mesdonnees.TabIndex = 2;
-            this.tbp_receptionniste_mesdonnees.Text = "Mes données";
-            this.tbp_receptionniste_mesdonnees.UseVisualStyleBackColor = true;
+            this.btn_receptionniste_mesdonnees_supprimer.BackColor = System.Drawing.Color.Red;
+            this.btn_receptionniste_mesdonnees_supprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_receptionniste_mesdonnees_supprimer.Location = new System.Drawing.Point(784, 103);
+            this.btn_receptionniste_mesdonnees_supprimer.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_receptionniste_mesdonnees_supprimer.Name = "btn_receptionniste_mesdonnees_supprimer";
+            this.btn_receptionniste_mesdonnees_supprimer.Size = new System.Drawing.Size(200, 52);
+            this.btn_receptionniste_mesdonnees_supprimer.TabIndex = 21;
+            this.btn_receptionniste_mesdonnees_supprimer.Text = "Supprimer mon compte";
+            this.btn_receptionniste_mesdonnees_supprimer.UseVisualStyleBackColor = false;
+            this.btn_receptionniste_mesdonnees_supprimer.Click += new System.EventHandler(this.btn_receptionniste_mesdonnees_supprimer_Click);
             // 
             // AppCriee_Receptionniste
             // 
@@ -370,6 +386,7 @@ namespace AppCriée
             this.tabPeche.ResumeLayout(false);
             this.tabPeche.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_pechejour)).EndInit();
+            this.tbp_receptionniste_mesdonnees.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbx_receptionniste_deconnexion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -401,5 +418,6 @@ namespace AppCriée
         private System.Windows.Forms.Label lbl_receptionniste_datejour;
         private System.Windows.Forms.PictureBox pbx_receptionniste_deconnexion;
         private System.Windows.Forms.TabPage tbp_receptionniste_mesdonnees;
+        private System.Windows.Forms.Button btn_receptionniste_mesdonnees_supprimer;
     }
 }
