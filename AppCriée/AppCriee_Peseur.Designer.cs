@@ -142,12 +142,12 @@
             this.tbp_peseur_lotspeche.Controls.Add(this.dg_peseur_lotspeche_bacs);
             this.tbp_peseur_lotspeche.Controls.Add(this.lbl_peseur_lotspeche_bacdulot);
             this.tbp_peseur_lotspeche.Controls.Add(this.lbl_peseur_lotspeche_islots);
-            this.tbp_peseur_lotspeche.Controls.Add(this.dg_peseur_lotspeche_lotsbateau);
             this.tbp_peseur_lotspeche.Controls.Add(this.lbl_peseur_lotspeche_lotsbateau);
             this.tbp_peseur_lotspeche.Controls.Add(this.cbx_peseur_lotspeche_listebateaux);
             this.tbp_peseur_lotspeche.Controls.Add(this.lbl_peseur_lotspeche_choixbateau);
             this.tbp_peseur_lotspeche.Controls.Add(this.lbl_peseur_lotspeche_title);
             this.tbp_peseur_lotspeche.Controls.Add(this.lbl_peseur_lotspeche_ispeche);
+            this.tbp_peseur_lotspeche.Controls.Add(this.dg_peseur_lotspeche_lotsbateau);
             this.tbp_peseur_lotspeche.Location = new System.Drawing.Point(4, 22);
             this.tbp_peseur_lotspeche.Margin = new System.Windows.Forms.Padding(4);
             this.tbp_peseur_lotspeche.Name = "tbp_peseur_lotspeche";
