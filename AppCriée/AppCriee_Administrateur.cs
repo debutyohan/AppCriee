@@ -124,10 +124,11 @@ namespace AppCriée
                     }
                     else
                     {
-                        if (line.Cells[7].Value.ToString() == "Administrateur")
+                        if (line.Cells[5].Value.ToString() == "Administrateur")
                         {
                             lbl_administrateur_gestioncomptes_validationok.Text = "Il est impossible de supprimer un administrateur.";
                             lbl_administrateur_gestioncomptes_validationok.Show();
+                            return;
                         }
 
                         dg_administrateur_gestioncomptes_listecompte.Rows.RemoveAt(line.Index);
@@ -441,7 +442,6 @@ namespace AppCriée
 
 
         #endregion
-
 
     }
 }
