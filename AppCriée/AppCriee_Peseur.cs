@@ -103,9 +103,13 @@ namespace AppCriée
         {
             idLotisWeightModifing = -1;
             idBacisWeightModifing = "";
-            HiddenObject.Show(new List<Control> { lbl_peseur_lotspeche_lotsbateau });
-            HiddenObject.Hide(new List<Control> { lbl_peseur_lotspeche_info, lbl_peseur_lotspeche_info2, rbtn_peseur_lotspeche_lotnonbloque, rbtn_peseur_lotspeche_lotbloque, lbl_peseur_lotspeche_validation, lbl_peseur_lotspeche_saisirpoids, tbx_peseur_lotspeche_saisirpoids, lbl_peseur_lotspeche_validationok, btn_peseur_lotspeche_validersaisiepoids, dg_peseur_lotspeche_bacs, btn_peseur_lotspeche_saisirpoids, lbl_peseur_lotspeche_bacdulot });
             String elmt_bateau = cbx_peseur_lotspeche_listebateaux.Text;
+            if (elmt_bateau.Trim() == "")
+            {
+                return;
+            }
+            HiddenObject.Hide(new List<Control> { btn_peseur_lotspeche_imprimerticketlot, lbl_peseur_lotspeche_info, lbl_peseur_lotspeche_info2, rbtn_peseur_lotspeche_lotnonbloque, rbtn_peseur_lotspeche_lotbloque, lbl_peseur_lotspeche_validation, lbl_peseur_lotspeche_saisirpoids, tbx_peseur_lotspeche_saisirpoids, lbl_peseur_lotspeche_validationok, btn_peseur_lotspeche_validersaisiepoids, dg_peseur_lotspeche_bacs, btn_peseur_lotspeche_saisirpoids, lbl_peseur_lotspeche_bacdulot });
+            HiddenObject.Show(new List<Control> { lbl_peseur_lotspeche_lotsbateau });
             int char_bateau = elmt_bateau.IndexOf("(");
             String imma = elmt_bateau.Substring(char_bateau + 1, elmt_bateau.Length - char_bateau - 2);
             CURS cs = new CURS();
@@ -147,7 +151,6 @@ namespace AppCriée
                 lbl_peseur_lotspeche_islots.Show();
             }
         }
-
         private void dg_peseur_lotspeche_lotsbateau_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             btn_peseur_lotspeche_imprimerticketlot.Hide();
@@ -247,7 +250,6 @@ namespace AppCriée
             e.Handled = result;
 
         }
-
         private void rbtn_peseur_lotspeche_ChangedBloqueLot_CheckedChanged(object sender, EventArgs e)
         {
             DataGridViewRow ligneselectionne = dg_peseur_lotspeche_lotsbateau.SelectedRows[0];
@@ -274,6 +276,183 @@ namespace AppCriée
             cs.fermer();
             lbl_peseur_lotspeche_validation.Show();
         }
+        private void btn_peseur_lotspeche_imprimerticketlot_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow ligneselectionne = dg_peseur_lotspeche_lotsbateau.SelectedRows[0];
+            string numeroLot = ligneselectionne.Cells[0].Value.ToString();
+            string idbateau = Int32.Parse(ligneselectionne.Cells[0].Value.ToString().Substring(0, 2)).ToString();
+            string idlot = Int32.Parse(ligneselectionne.Cells[0].Value.ToString().Substring(2, 3)).ToString();
+            CURS cs = new CURS();
+            cs.ReqSelectPrepare("SELECT nomScientifique, nomCourt, espece.nom as NomEspece, bateau.nom as NomBateau, idTaille, idPresentation, idQualite FROM lot INNER JOIN espece ON espece.id=lot.idEspece INNER JOIN bateau ON bateau.id=lot.idBateau WHERE idDatePeche=? AND idBateau=? AND lot.id=?", new List<object> { Datejour, idbateau, idlot });
+            string nomScientifique = cs.champ("nomScientifique").ToString();
+            string nomCourt = cs.champ("nomCourt").ToString();
+            string nomBateau = cs.champ("NomBateau").ToString();
+            string nomEspece = cs.champ("NomEspece").ToString();
+            string idTaille = cs.champ("idTaille").ToString();
+            string idPresentation = cs.champ("idPresentation").ToString();
+            string idQualite = cs.champ("idQualite").ToString();
+            int nbbac = Int32.Parse(ligneselectionne.Cells[5].Value.ToString());
+            double poidstotalsanstare = Double.Parse(ligneselectionne.Cells[6].Value.ToString());
+
+            cs.fermer();
+            cs = new CURS();
+            cs.ReqSelect("SELECT id, tare FROM typebac");
+            Dictionary<string, string> typebac = new Dictionary<string, string>();
+            Dictionary<string, int> typebacnb = new Dictionary<string, int>();
+            while (!cs.Fin())
+            {
+                typebac.Add(cs.champ("id").ToString(), cs.champ("tare").ToString());
+                typebacnb.Add(cs.champ("id").ToString(), 0);
+                cs.suivant();
+
+            }
+            Double taretotal = 0;
+            string descriptiftype = "";
+            foreach (DataGridViewRow ligne in dg_peseur_lotspeche_bacs.Rows)
+            {
+                typebacnb[ligne.Cells[1].Value.ToString()]++;
+            }
+            foreach (string typedebac in typebac.Keys)
+            {
+                taretotal += Double.Parse(typebac[typedebac]) * ((double)typebacnb[typedebac]);
+                descriptiftype += typebacnb[typedebac] + " " + typedebac + ", ";
+            }
+            descriptiftype = descriptiftype.Substring(0, descriptiftype.Length - 2);
+            string Dateticket = DateTime.Now.ToString("dd/MM/yy");
+            string Heureticket = DateTime.Now.ToString("HH:mm:ss");
+
+            double poidstotal = poidstotalsanstare + taretotal;
+
+            iTextSharp.text.Font font10b = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES_BOLD, 9);
+            iTextSharp.text.Font font50 = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES_BOLD, 50);
+            iTextSharp.text.Font font42 = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES_BOLD, 42);
+            iTextSharp.text.Font font24 = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES_BOLD, 24);
+            iTextSharp.text.Font font18 = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES, 18);
+            iTextSharp.text.Font font14 = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES, 14);
+            iTextSharp.text.Font font12 = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES, 12);
+            iTextSharp.text.Font font10 = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES, 10);
+            iTextSharp.text.Font font10i = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES_ITALIC, 10);
+
+            Document nouveauDocument = new Document();
+            nouveauDocument.SetPageSize(iTextSharp.text.PageSize.A4.Rotate());
+            nouveauDocument.SetMargins(0f, 0f, 0f, 0f);
+            try
+            {
+                FileStream filePDF = new FileStream("Ticket Avant-Vente du lot n°" + numeroLot + " du bateau " + nomBateau + " " + DateTime.Now.ToString("yyyyMMdd-HHmmss") + ".pdf", FileMode.Create);
+                PdfWriter.GetInstance(nouveauDocument, filePDF);
+                nouveauDocument.Open();
+                nouveauDocument.Add(new Paragraph("\n\n\n\n"));
+                iTextSharp.text.pdf.PdfPTable ligne1 = new iTextSharp.text.pdf.PdfPTable(4);
+                ligne1.SetTotalWidth(new float[] { 50, 20, 70, 50 });
+                PdfPCell cell = new PdfPCell();
+                cell.AddElement(new iTextSharp.text.Chunk(" F-29.197.500-CE", font12));
+                cell.AddElement(new iTextSharp.text.Chunk(" Audierne", font12));
+                cell.BorderWidthRight = 0;
+                ligne1.AddCell(cell);
+                PdfPCell cell2 = new PdfPCell();
+                cell2.AddElement(new iTextSharp.text.Chunk(Dateticket, font12));
+                cell2.AddElement(new iTextSharp.text.Chunk(Heureticket, font12));
+                cell2.BorderWidthLeft = 0;
+                ligne1.AddCell(cell2);
+                PdfPCell cell3 = new PdfPCell();
+                cell3.AddElement(new iTextSharp.text.Chunk(nomBateau.ToUpper(), font24));
+                cell3.BorderWidthRight = 0;
+                cell3.PaddingBottom = 15;
+                ligne1.AddCell(cell3);
+                PdfPCell cell4 = new PdfPCell();
+                cell4.AddElement(new iTextSharp.text.Chunk(" PECHE ATLANTIQUE", font12));
+                cell4.AddElement(new iTextSharp.text.Chunk(" NORD EST", font12));
+                cell4.BorderWidthLeft = 0;
+                ligne1.AddCell(cell4);
+                nouveauDocument.Add(ligne1);
+                iTextSharp.text.pdf.PdfPTable ligne2 = new iTextSharp.text.pdf.PdfPTable(2);
+                ligne2.SetTotalWidth(new float[] { 70, 120 });
+
+                iTextSharp.text.pdf.PdfPTable ligne2sous1 = new iTextSharp.text.pdf.PdfPTable(2);
+                ligne2sous1.SetTotalWidth(new float[] { 50, 50 });
+                PdfPCell ligne2sous1cell1 = new PdfPCell();
+                ligne2sous1cell1.Border = 0;
+                ligne2sous1cell1.AddElement(new iTextSharp.text.Chunk(" OP : O.P.O.B", font14));
+                ligne2sous1cell1.AddElement(new iTextSharp.text.Chunk(" Qu : " + idQualite, font14));
+                ligne2sous1cell1.AddElement(new iTextSharp.text.Chunk(" Bacs : " + descriptiftype, font14));
+                iTextSharp.text.pdf.PdfPTable ligne2sous1cell1sous1 = new iTextSharp.text.pdf.PdfPTable(2);
+                ligne2sous1cell1sous1.SetTotalWidth(new float[] { 50, 50 });
+                PdfPCell ligne2sous1cell1sous1cell1 = new PdfPCell();
+                ligne2sous1cell1sous1cell1.PaddingLeft = -12;
+                ligne2sous1cell1sous1cell1.Border = 0;
+                ligne2sous1cell1sous1cell1.PaddingTop = 20;
+                ligne2sous1cell1sous1cell1.AddElement(new iTextSharp.text.Chunk(" Nbre : ", font14).setLineHeight(24));
+                ligne2sous1cell1sous1.AddCell(ligne2sous1cell1sous1cell1);
+                PdfPCell ligne2sous1cell1sous1cell2 = new PdfPCell();
+                ligne2sous1cell1sous1cell2.Border = 0;
+                ligne2sous1cell1sous1cell2.PaddingTop = 20;
+                ligne2sous1cell1sous1cell2.AddElement(new iTextSharp.text.Chunk(" " + nbbac, font24).setLineHeight(24));
+                ligne2sous1cell1sous1.AddCell(ligne2sous1cell1sous1cell2);
+                ligne2sous1cell1.AddElement(ligne2sous1cell1sous1);
+                ligne2sous1cell1.AddElement(new iTextSharp.text.Chunk(" Pal. :", font14));
+                ligne2sous1cell1.AddElement(new iTextSharp.text.Chunk(" Brut :", font14));
+                ligne2sous1cell1.AddElement(new iTextSharp.text.Chunk(" Tare :", font14));
+                ligne2sous1.AddCell(ligne2sous1cell1);
+                PdfPCell ligne2sous1cell2 = new PdfPCell();
+                ligne2sous1cell2.Border = 0;
+                ligne2sous1cell2.AddElement(new iTextSharp.text.Chunk("\n", font14));
+                ligne2sous1cell2.AddElement(new iTextSharp.text.Chunk("Pr : " + idPresentation, font14));
+                ligne2sous1cell2.AddElement(new iTextSharp.text.Chunk("\n\n", font14));
+                iTextSharp.text.pdf.PdfPTable ligne2sous1cell2sous1 = new iTextSharp.text.pdf.PdfPTable(1);
+                PdfPCell ligne2sous1cell2sous1cell1 = new PdfPCell();
+                ligne2sous1cell2sous1cell1.PaddingLeft = -12;
+                ligne2sous1cell2sous1cell1.Border = 0;
+                ligne2sous1cell2sous1cell1.PaddingTop = 23;
+                ligne2sous1cell2sous1cell1.AddElement(new iTextSharp.text.Chunk("\n", font14));
+                ligne2sous1cell2sous1.AddCell(ligne2sous1cell2sous1cell1);
+                ligne2sous1cell2.AddElement(ligne2sous1cell2sous1);
+                ligne2sous1cell2.AddElement(new iTextSharp.text.Chunk(poidstotal.ToString("F2") + "kg", font14));
+                ligne2sous1cell2.AddElement(new iTextSharp.text.Chunk(taretotal.ToString("F2") + "kg", font14));
+                ligne2sous1.AddCell(ligne2sous1cell2);
+
+                iTextSharp.text.pdf.PdfPTable ligne2sous2 = new iTextSharp.text.pdf.PdfPTable(2);
+                ligne2sous2.DefaultCell.Border = iTextSharp.text.Rectangle.NO_BORDER;
+                ligne2sous2.SetTotalWidth(new float[] { 30, 70 });
+                PdfPCell ligne2sous2cell1 = new PdfPCell();
+                ligne2sous2cell1.Border = 0;
+                ligne2sous1cell1.PaddingTop = -150;
+                ligne2sous2cell1.AddElement(new iTextSharp.text.Chunk(" Lot :", font14));
+                ligne2sous2cell1.AddElement(new iTextSharp.text.Chunk(" " + nomCourt, font24).setLineHeight(50));
+                ligne2sous2cell1.AddElement(new iTextSharp.text.Chunk(" " + nomScientifique, font12));
+                ligne2sous2cell1.AddElement(new iTextSharp.text.Chunk(" " + nomEspece, font12));
+                ligne2sous2.AddCell(ligne2sous2cell1);
+                PdfPCell ligne2sous2cell2 = new PdfPCell();
+                ligne2sous2cell2.Padding = 0;
+                ligne2sous2cell2.Border = 0;
+                ligne2sous2cell2.AddElement(new iTextSharp.text.Chunk(numeroLot, font50).setLineHeight(40));
+                ligne2sous2cell2.AddElement(new iTextSharp.text.Chunk("   " + idTaille, font24).setLineHeight(32));
+                ligne2sous2cell2.AddElement(new iTextSharp.text.Chunk("\n", font24));
+                ligne2sous2cell2.AddElement(new iTextSharp.text.Chunk("   " + poidstotalsanstare.ToString("F2") + "kg", font42));
+                ligne2sous2.AddCell(ligne2sous2cell2);
+                ligne2.AddCell(ligne2sous1);
+                ligne2.AddCell(ligne2sous2);
+                nouveauDocument.Add(ligne2);
+                nouveauDocument.Close();
+                MessageBox.Show("Un document PDF contenant les étiquettes du lot a bien été généré : " + filePDF.Name, "Ticket généré", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                try
+                {
+                    System.Diagnostics.Process.Start(filePDF.Name);
+                }
+                catch
+                {
+                    MessageBox.Show("Impossible d'ouvrir le fichier pdf\nVous pouvez néanmoins ouvrir le fichier manuellement au chemin indiqué dans l'application", "Echec ouverture fichier", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (DocumentException de)
+            {
+                MessageBox.Show("Une erreur a été recontrée lors de la génération du PDF :\n" + de.Message, "Echec génération fichier PDF", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (System.IO.IOException ioe)
+            {
+                MessageBox.Show("Une erreur a été recontrée lors de la génération du PDF :\n" + ioe.Message, "Echec génération fichier PDF", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         #endregion
 
         #region Onglet Mes Données
@@ -423,181 +602,5 @@ namespace AppCriée
 
         #endregion
 
-        private void btn_peseur_lotspeche_imprimerticketlot_Click(object sender, EventArgs e)
-        {
-            DataGridViewRow ligneselectionne = dg_peseur_lotspeche_lotsbateau.SelectedRows[0];
-            string numeroLot = ligneselectionne.Cells[0].Value.ToString();
-            string idbateau = Int32.Parse(ligneselectionne.Cells[0].Value.ToString().Substring(0, 2)).ToString();
-            string idlot = Int32.Parse(ligneselectionne.Cells[0].Value.ToString().Substring(2, 3)).ToString();
-            CURS cs = new CURS();
-            cs.ReqSelectPrepare("SELECT nomScientifique, nomCourt, espece.nom as NomEspece, bateau.nom as NomBateau, idTaille, idPresentation, idQualite FROM lot INNER JOIN espece ON espece.id=lot.idEspece INNER JOIN bateau ON bateau.id=lot.idBateau WHERE idDatePeche=? AND idBateau=? AND lot.id=?", new List<object> {Datejour, idbateau, idlot });
-            string nomScientifique = cs.champ("nomScientifique").ToString();
-            string nomCourt = cs.champ("nomCourt").ToString();
-            string nomBateau = cs.champ("NomBateau").ToString();
-            string nomEspece = cs.champ("NomEspece").ToString();
-            string idTaille = cs.champ("idTaille").ToString();
-            string idPresentation = cs.champ("idPresentation").ToString();
-            string idQualite = cs.champ("idQualite").ToString();
-            int nbbac = Int32.Parse(ligneselectionne.Cells[5].Value.ToString());
-            double poidstotalsanstare = Double.Parse(ligneselectionne.Cells[6].Value.ToString());
-
-            cs.fermer();
-            cs = new CURS();
-            cs.ReqSelect("SELECT id, tare FROM typebac");
-            Dictionary<string, string> typebac = new Dictionary<string, string>();
-            Dictionary<string, int> typebacnb = new Dictionary<string, int>();
-            while (!cs.Fin())
-            {
-                typebac.Add(cs.champ("id").ToString(), cs.champ("tare").ToString());
-                typebacnb.Add(cs.champ("id").ToString(),0);
-                cs.suivant();
-
-            }
-            Double taretotal = 0;
-            string descriptiftype = "";
-            foreach(DataGridViewRow ligne in dg_peseur_lotspeche_bacs.Rows)
-            {
-                typebacnb[ligne.Cells[1].Value.ToString()]++;
-            }
-            foreach(string typedebac in typebac.Keys)
-            {
-                taretotal += Double.Parse(typebac[typedebac]) * ((double)typebacnb[typedebac]);
-                descriptiftype += typebacnb[typedebac] + " " + typedebac + ", ";
-            }
-            descriptiftype = descriptiftype.Substring(0, descriptiftype.Length - 2);
-            string Dateticket = DateTime.Now.ToString("dd/MM/yy");
-            string Heureticket = DateTime.Now.ToString("HH:mm:ss");
-
-            double poidstotal = poidstotalsanstare + taretotal;
-
-            iTextSharp.text.Font font10b = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES_BOLD, 9);
-            iTextSharp.text.Font font50 = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES_BOLD, 50);
-            iTextSharp.text.Font font42 = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES_BOLD, 42);
-            iTextSharp.text.Font font24 = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES_BOLD, 24);
-            iTextSharp.text.Font font18 = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES, 18);
-            iTextSharp.text.Font font14 = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES, 14);
-            iTextSharp.text.Font font12 = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES, 12);
-            iTextSharp.text.Font font10 = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES, 10);
-            iTextSharp.text.Font font10i = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.TIMES_ITALIC, 10);
-
-            Document nouveauDocument = new Document();
-            nouveauDocument.SetPageSize(iTextSharp.text.PageSize.A4.Rotate());
-            nouveauDocument.SetMargins(0f, 0f, 0f, 0f);
-            try
-            {
-                FileStream filePDF = new FileStream("Ticket Avant-Vente du lot n°"+numeroLot+" du bateau " + nomBateau + " " + DateTime.Now.ToString("yyyyMMdd-HHmmss") + ".pdf", FileMode.Create);
-                PdfWriter.GetInstance(nouveauDocument, filePDF);
-                nouveauDocument.Open();
-                nouveauDocument.Add(new Paragraph("\n\n\n\n"));
-                iTextSharp.text.pdf.PdfPTable ligne1 = new iTextSharp.text.pdf.PdfPTable(4);
-                ligne1.SetTotalWidth(new float[] { 50, 20, 70, 50 });
-                PdfPCell cell = new PdfPCell();
-                cell.AddElement(new iTextSharp.text.Chunk(" F-29.197.500-CE", font12));
-                cell.AddElement(new iTextSharp.text.Chunk(" Audierne", font12));
-                cell.BorderWidthRight = 0;
-                ligne1.AddCell(cell);
-                PdfPCell cell2 = new PdfPCell();
-                cell2.AddElement(new iTextSharp.text.Chunk(Dateticket, font12));
-                cell2.AddElement(new iTextSharp.text.Chunk(Heureticket, font12));
-                cell2.BorderWidthLeft = 0;
-                ligne1.AddCell(cell2);
-                PdfPCell cell3 = new PdfPCell();
-                cell3.AddElement(new iTextSharp.text.Chunk(nomBateau.ToUpper(), font24));
-                cell3.BorderWidthRight = 0;
-                cell3.PaddingBottom = 15;
-                ligne1.AddCell(cell3);
-                PdfPCell cell4 = new PdfPCell();
-                cell4.AddElement(new iTextSharp.text.Chunk(" PECHE ATLANTIQUE", font12));
-                cell4.AddElement(new iTextSharp.text.Chunk(" NORD EST", font12));
-                cell4.BorderWidthLeft = 0;
-                ligne1.AddCell(cell4);
-                nouveauDocument.Add(ligne1);
-                iTextSharp.text.pdf.PdfPTable ligne2 = new iTextSharp.text.pdf.PdfPTable(2);
-                ligne2.SetTotalWidth(new float[] { 70, 120 });
-
-                iTextSharp.text.pdf.PdfPTable ligne2sous1 = new iTextSharp.text.pdf.PdfPTable(2);
-                ligne2sous1.SetTotalWidth(new float[] { 50, 50 });
-                PdfPCell ligne2sous1cell1 = new PdfPCell();
-                ligne2sous1cell1.Border = 0;
-                ligne2sous1cell1.AddElement(new iTextSharp.text.Chunk(" OP : O.P.O.B", font14));
-                ligne2sous1cell1.AddElement(new iTextSharp.text.Chunk(" Qu : " + idQualite, font14));
-                ligne2sous1cell1.AddElement(new iTextSharp.text.Chunk(" Bacs : " + descriptiftype, font14));
-                iTextSharp.text.pdf.PdfPTable ligne2sous1cell1sous1 = new iTextSharp.text.pdf.PdfPTable(2);
-                ligne2sous1cell1sous1.SetTotalWidth(new float[] { 50, 50 });
-                PdfPCell ligne2sous1cell1sous1cell1 = new PdfPCell();
-                ligne2sous1cell1sous1cell1.PaddingLeft = -12;
-                ligne2sous1cell1sous1cell1.Border = 0;
-                ligne2sous1cell1sous1cell1.PaddingTop = 20;
-                ligne2sous1cell1sous1cell1.AddElement(new iTextSharp.text.Chunk(" Nbre : ", font14).setLineHeight(24));
-                ligne2sous1cell1sous1.AddCell(ligne2sous1cell1sous1cell1);
-                PdfPCell ligne2sous1cell1sous1cell2 = new PdfPCell();
-                ligne2sous1cell1sous1cell2.Border = 0;
-                ligne2sous1cell1sous1cell2.PaddingTop = 20;
-                ligne2sous1cell1sous1cell2.AddElement(new iTextSharp.text.Chunk(" "+nbbac, font24).setLineHeight(24));
-                ligne2sous1cell1sous1.AddCell(ligne2sous1cell1sous1cell2);
-                ligne2sous1cell1.AddElement(ligne2sous1cell1sous1);
-                ligne2sous1cell1.AddElement(new iTextSharp.text.Chunk(" Pal. :", font14));
-                ligne2sous1cell1.AddElement(new iTextSharp.text.Chunk(" Brut :", font14));
-                ligne2sous1cell1.AddElement(new iTextSharp.text.Chunk(" Tare :", font14));
-                ligne2sous1.AddCell(ligne2sous1cell1);
-                PdfPCell ligne2sous1cell2 = new PdfPCell();
-                ligne2sous1cell2.Border = 0;
-                ligne2sous1cell2.AddElement(new iTextSharp.text.Chunk("\n", font14));
-                ligne2sous1cell2.AddElement(new iTextSharp.text.Chunk("Pr : " + idPresentation, font14));
-                ligne2sous1cell2.AddElement(new iTextSharp.text.Chunk("\n\n", font14));
-                iTextSharp.text.pdf.PdfPTable ligne2sous1cell2sous1 = new iTextSharp.text.pdf.PdfPTable(1);
-                PdfPCell ligne2sous1cell2sous1cell1 = new PdfPCell();
-                ligne2sous1cell2sous1cell1.PaddingLeft = -12;
-                ligne2sous1cell2sous1cell1.Border = 0;
-                ligne2sous1cell2sous1cell1.PaddingTop = 23;
-                ligne2sous1cell2sous1cell1.AddElement(new iTextSharp.text.Chunk("\n", font14));
-                ligne2sous1cell2sous1.AddCell(ligne2sous1cell2sous1cell1);
-                ligne2sous1cell2.AddElement(ligne2sous1cell2sous1);
-                ligne2sous1cell2.AddElement(new iTextSharp.text.Chunk(poidstotal.ToString("F2") + "kg", font14));
-                ligne2sous1cell2.AddElement(new iTextSharp.text.Chunk(taretotal.ToString("F2") + "kg", font14));
-                ligne2sous1.AddCell(ligne2sous1cell2);
-
-                iTextSharp.text.pdf.PdfPTable ligne2sous2 = new iTextSharp.text.pdf.PdfPTable(2);
-                ligne2sous2.DefaultCell.Border = iTextSharp.text.Rectangle.NO_BORDER;
-                ligne2sous2.SetTotalWidth(new float[] { 30, 70 });
-                PdfPCell ligne2sous2cell1 = new PdfPCell();
-                ligne2sous2cell1.Border = 0;
-                ligne2sous1cell1.PaddingTop = -150;
-                ligne2sous2cell1.AddElement(new iTextSharp.text.Chunk(" Lot :", font14));
-                ligne2sous2cell1.AddElement(new iTextSharp.text.Chunk(" "+ nomCourt, font24).setLineHeight(50));
-                ligne2sous2cell1.AddElement(new iTextSharp.text.Chunk(" " + nomScientifique, font12));
-                ligne2sous2cell1.AddElement(new iTextSharp.text.Chunk(" " + nomEspece, font12));
-                ligne2sous2.AddCell(ligne2sous2cell1);
-                PdfPCell ligne2sous2cell2 = new PdfPCell();
-                ligne2sous2cell2.Padding = 0;
-                ligne2sous2cell2.Border = 0;
-                ligne2sous2cell2.AddElement(new iTextSharp.text.Chunk(numeroLot, font50).setLineHeight(40));
-                ligne2sous2cell2.AddElement(new iTextSharp.text.Chunk("   "+idTaille, font24).setLineHeight(32));
-                ligne2sous2cell2.AddElement(new iTextSharp.text.Chunk("\n", font24));
-                ligne2sous2cell2.AddElement(new iTextSharp.text.Chunk("   "+poidstotalsanstare.ToString("F2")+"kg", font42));
-                ligne2sous2.AddCell(ligne2sous2cell2);
-                ligne2.AddCell(ligne2sous1);
-                ligne2.AddCell(ligne2sous2);
-                nouveauDocument.Add(ligne2);
-                nouveauDocument.Close();
-                MessageBox.Show("Un document PDF contenant les étiquettes du lot a bien été généré : " + filePDF.Name, "Ticket généré", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                try
-                {
-                    System.Diagnostics.Process.Start(filePDF.Name);
-                }
-                catch
-                {
-                    MessageBox.Show("Impossible d'ouvrir le fichier pdf\nVous pouvez néanmoins ouvrir le fichier manuellement au chemin indiqué dans l'application", "Echec ouverture fichier", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            catch (DocumentException de)
-            {
-                MessageBox.Show("Une erreur a été recontrée lors de la génération du PDF :\n" + de.Message);
-            }
-            catch (System.IO.IOException ioe)
-            {
-                MessageBox.Show("Une erreur a été recontrée lors de la génération du PDF :\n" + ioe.Message);
-            }
-        }
     }
 }

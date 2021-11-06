@@ -179,9 +179,13 @@ namespace AppCriée
 
         private void cbx_veterinaire_bacpoissons_listebateaux_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            String elmt_bateau = cbx_veterinaire_bacpoissons_listebateaux.SelectedItem.ToString();
+            if (elmt_bateau == "")
+            {
+                return;
+            }
             bool isbateau = false;
             HiddenObject.Hide(new List<Control> { btn_veterinaire_bacpoissons_modifierbacsValider, lbl_veterinaire_bacpoissons_modifierbacs, lbl_veterinaire_bacpoissons_creationbac, lbl_veterinaire_bacpoissons_espece, lbl_veterinaire_bacpoissons_taille, lbl_veterinaire_bacpoissons_qualite, lbl_veterinaire_bacpoissons_presentation, lbl_veterinaire_bacpoissons_typebac, cbx_veterinaire_bacpoissons_espece, cbx_veterinaire_bacpoissons_taille, cbx_veterinaire_bacpoissons_qualite, cbx_veterinaire_bacpoissons_presentation, cbx_veterinaire_bacpoissons_typebac, btn_veterinaire_bacpoissons_valider, lbl_veterinaire_bacpoissons_validationok, rbtn_veterinaire_bacpoissons_bacparlots, rbtn_veterinaire_bacpoissons_touslesbacs, lbl_veterinaire_bacpoissons_choixlot, cbx_veterinaire_bacpoissons_choixlot, lbl_veterinaire_bacpoissons_plusbacs });
-            String elmt_bateau = cbx_veterinaire_bacpoissons_listebateaux.SelectedItem.ToString();
             int char_bateau = elmt_bateau.IndexOf("(");
             String imma = elmt_bateau.Substring(char_bateau + 1, elmt_bateau.Length - char_bateau - 2);
             CURS cs = new CURS();
@@ -569,9 +573,13 @@ namespace AppCriée
 
         private void cbx_veterinaire_lotspeche_listebateaux_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            String elmt_bateau = cbx_veterinaire_lotspeche_listebateaux.Text;
+            if (elmt_bateau == "")
+            {
+                return;
+            }
             HiddenObject.Hide(new List<Control> { btn_veterinaire_bacpoissons_modifierbacsValider, lbl_veterinaire_lotspeche_assignerlot, cbx_veterinaire_lotspeche_lotsbateau, lbl_veterinaire_lotspeche_isokcreerlot, cbx_veterinaire_lotspeche_lotsbateau, btn_veterinaire_lotspeche_assigneralot, btn_veterinaire_lotspeche_creerlot, dg_veterinaire_lotspeche_bacnotlot, dg_veterinaire_lotspeche_lotsbateau, lbl_veterinaire_lotspeche_isbacs, lbl_veterinaire_lotspeche_assignerlot, btn_veterinaire_lotspeche_assigneralot });
             HiddenObject.Show(new List<Control> { lbl_veterinaire_lotspeche_isbacsnotlot, lbl_veterinaire_lotspeche_lotsbateau, lbl_veterinaire_lotspeche_bacnotlot, lbl_veterinaire_lotspeche_islots });
-            String elmt_bateau = cbx_veterinaire_lotspeche_listebateaux.Text;
             int char_bateau = elmt_bateau.IndexOf("(");
             String imma = elmt_bateau.Substring(char_bateau + 1, elmt_bateau.Length - char_bateau - 2);
             lbl_veterinaire_lotspeche_bacnotlot.Text = "Liste des Bacs non assignées à un lot du Bateau '" + elmt_bateau.Substring(0, char_bateau) + "' :";
@@ -976,11 +984,11 @@ namespace AppCriée
             }
             catch (DocumentException de)
             {
-                MessageBox.Show("Une erreur a été recontrée lors de la génération du PDF :\n" + de.Message);
+                MessageBox.Show("Une erreur a été recontrée lors de la génération du PDF :\n" + de.Message, "Echec génération fichier PDF", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (System.IO.IOException ioe)
             {
-                MessageBox.Show("Une erreur a été recontrée lors de la génération du PDF :\n" + ioe.Message);
+                MessageBox.Show("Une erreur a été recontrée lors de la génération du PDF :\n" + ioe.Message, "Echec génération fichier PDF", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
