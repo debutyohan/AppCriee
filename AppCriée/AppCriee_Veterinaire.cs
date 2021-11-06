@@ -28,6 +28,8 @@ namespace AppCriée
         string Datejour = DateTime.Today.ToString("yyyy-MM-dd");
         AppCriee _authAccueil;
         User _useractuelle;
+        TabControlEventArgs _onglet;
+        string idUserModified;
 
         #endregion
 
@@ -49,15 +51,7 @@ namespace AppCriée
                 lbl_veterinaire_ispeche.Hide();
             }
             tbc_veterinaire.Appearance = 0;
-            lbl_veterinaire_mesdonnees_login.Text = "Login : " + unutilisateur.Login;
-            lbl_veterinaire_mesdonnees_prenom.Text = "Prénom : " + unutilisateur.Prenom;
-            lbl_veterinaire_mesdonnees_nom.Text = "Nom : " + unutilisateur.Nom;
-            lbl_veterinaire_mesdonnees_adrMail.Text = "Adresse Mail : " + unutilisateur.AdrMail;
-            lbl_veterinaire_mesdonnees_typeuser.Text = "Type utilisateur : " + unutilisateur.Libelletype;
-            if (unutilisateur.AdrMail == "")
-            {
-                lbl_veterinaire_mesdonnees_adrMail.Text = "Adresse Mail : (Non communiquée)";
-            }
+           
         }
 
         #endregion
@@ -70,8 +64,12 @@ namespace AppCriée
             {
                 tbc_veterinaire.SelectedTab = tbp_veterinaire_accueil;
             }
+            _onglet = e;
             switch (e.TabPage.Name)
             {
+                case "tbp_veterinaire_accueil":
+                    lbl_veterinaire_accueil_bienvenue.Text = "Bienvenue " + _useractuelle.Nom + " " + _useractuelle.Prenom;
+                    break;
                 case "tbp_veterinaire_bacpoisson":
                     if (cbx_veterinaire_bacpoissons_listebateaux.SelectedItem is null)
                     {
@@ -150,6 +148,26 @@ namespace AppCriée
                             HiddenObject.Show(new List<Control> { lbl_veterinaire_touslots_islots });
                             HiddenObject.Hide(new List<Control> { dg_veterinaire_touslots_alllot, lbl_veterinaire_touslots_ispeche, btn_veterinaire_touslots_imprimer });
                         }
+                    }
+                    break;
+                case "tbp_veterinaire_mesdonnees":
+                    HiddenObject.Hide(new List<Control> { lbl_veterinaire_mesdonnees_validationmodiferreur, lbl_veterinaire_mesdonnees_modification, lbl_veterinaire_mesdonnees_modifieradrMail, lbl_veterinaire_mesdonnees_modifierlogin, lbl_veterinaire_mesdonnees_modifiernom, lbl_veterinaire_mesdonnees_modifierprenom, tbx_veterinaire_mesdonnees_login, tbx_veterinaire_mesdonnees_nom, tbx_veterinaire_mesdonnees_adrMail, tbx_veterinaire_mesdonnees_prenom, btn_veterinaire_mesdonnees_validermodif, lbl_veterinaire_mesdonnees_champsobli, lbl_veterinaire_mesdonnees_validationmodif, lbl_veterinaire_mesdonnees_validationmodiferreur, });
+                    lbl_veterinaire_mesdonnees_login.Text = "Login : " + _useractuelle.Login;
+                    lbl_veterinaire_mesdonnees_prenom.Text = "Prénom : " + _useractuelle.Prenom;
+                    lbl_veterinaire_mesdonnees_nom.Text = "Nom : " + _useractuelle.Nom;
+                    lbl_veterinaire_mesdonnees_adrMail.Text = "Adresse Mail : " + _useractuelle.AdrMail;
+                    lbl_veterinaire_mesdonnees_typeuser.Text = "Type utilisateur : " + _useractuelle.Libelletype;
+                    if (_useractuelle.AdrMail == "")
+                    {
+                        lbl_veterinaire_mesdonnees_adrMail.Text = "Adresse Mail : (Non communiquée)";
+                    }
+                    if (_useractuelle.Nom == "")
+                    {
+                        lbl_veterinaire_mesdonnees_nom.Text = "Nom : (Non communiquée)";
+                    }
+                    if (_useractuelle.Prenom == "")
+                    {
+                        lbl_veterinaire_mesdonnees_prenom.Text = "Prénom : (Non communiquée)";
                     }
                     break;
             }
@@ -1025,11 +1043,94 @@ namespace AppCriée
             }
         }
 
-        #endregion
+        private void btn_veterinaire_mesdonnees_modifier_Click(object sender, EventArgs e)
+        {
+            HiddenObject.Show(new List<Control> { lbl_veterinaire_mesdonnees_modification, lbl_veterinaire_mesdonnees_modifieradrMail, lbl_veterinaire_mesdonnees_modifierlogin, lbl_veterinaire_mesdonnees_modifiernom, lbl_veterinaire_mesdonnees_modifierprenom, tbx_veterinaire_mesdonnees_login, tbx_veterinaire_mesdonnees_nom, tbx_veterinaire_mesdonnees_adrMail, tbx_veterinaire_mesdonnees_prenom, btn_veterinaire_mesdonnees_validermodif, lbl_veterinaire_mesdonnees_champsobli });
+            tbx_veterinaire_mesdonnees_login.Text = _useractuelle.Login;
+            if (_useractuelle.Nom.ToString().Trim() == "(Non communiqué)")
+            {
+                tbx_veterinaire_mesdonnees_nom.Text = "";
+            }
+            else
+            {
+                tbx_veterinaire_mesdonnees_nom.Text = _useractuelle.Nom.ToString().Trim();
+            }
+            if (_useractuelle.Prenom.ToString().Trim() == "(Non communiqué)")
+            {
+                tbx_veterinaire_mesdonnees_prenom.Text = "";
+            }
+            else
+            {
+                tbx_veterinaire_mesdonnees_prenom.Text = _useractuelle.Prenom.ToString();
+            }
+            if (_useractuelle.AdrMail.ToString().Trim() == "(Non communiquée)")
+            {
+                tbx_veterinaire_mesdonnees_adrMail.Text = "";
+            }
+            else
+            {
+                tbx_veterinaire_mesdonnees_adrMail.Text = _useractuelle.AdrMail.ToString();
+            }
+            lbl_veterinaire_mesdonnees_validationmodif.Hide();
+        }
+
+        private void btn_veterinaire_mesdonnees_validermodif_Click(object sender, EventArgs e)
+        {
+            idUserModified = _useractuelle.Id.ToString();
+            if (tbx_veterinaire_mesdonnees_login.Text == "")
+            {
+                lbl_veterinaire_mesdonnees_validationmodiferreur.Text = "Tous les champs obligatoires doivent être remplis";
+                lbl_veterinaire_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+            if (tbx_veterinaire_mesdonnees_adrMail.Text.Trim() != "" && !(Regex.IsMatch(tbx_veterinaire_mesdonnees_adrMail.Text, @"^(?("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))" + @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$")))
+            {
+                lbl_veterinaire_mesdonnees_validationmodiferreur.Text = "L’adresse mail saisie n’est pas correcte";
+                lbl_veterinaire_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+
+            object adrMail = tbx_veterinaire_mesdonnees_adrMail.Text;
+            if (adrMail.ToString().Trim() == "")
+            {
+                adrMail = null;
+            }
+            object nomModif = tbx_veterinaire_mesdonnees_nom.Text;
+            if (nomModif.ToString().Trim() == "")
+            {
+                nomModif = null;
+            }
+            object prenomModif = tbx_veterinaire_mesdonnees_prenom.Text;
+            if (prenomModif.ToString().Trim() == "")
+            {
+                prenomModif = null;
+            }
+
+            CURS cs = new CURS();
+            cs.ReqAdminPrepare("UPDATE utilisateur SET login=?, nomuser=?, prenomuser=?, adrMail=? WHERE id=?", new List<object> { tbx_veterinaire_mesdonnees_login.Text, nomModif, prenomModif, adrMail, idUserModified });
+            cs.fermer();
+            lbl_veterinaire_mesdonnees_validationmodif.Text = "Vos données ont bien été modifiées.\n";
+            HiddenObject.Hide(new List<Control> { lbl_veterinaire_mesdonnees_validationmodiferreur, lbl_veterinaire_mesdonnees_modification, lbl_veterinaire_mesdonnees_modifieradrMail, lbl_veterinaire_mesdonnees_modifierlogin, lbl_veterinaire_mesdonnees_modifiernom, lbl_veterinaire_mesdonnees_modifierprenom, tbx_veterinaire_mesdonnees_login, tbx_veterinaire_mesdonnees_nom, tbx_veterinaire_mesdonnees_adrMail, tbx_veterinaire_mesdonnees_prenom, btn_veterinaire_mesdonnees_validermodif, lbl_veterinaire_mesdonnees_champsobli });
+
+            _useractuelle.Login = tbx_veterinaire_mesdonnees_login.Text;
+            _useractuelle.Nom = tbx_veterinaire_mesdonnees_nom.Text.Trim();
+            _useractuelle.Prenom = tbx_veterinaire_mesdonnees_prenom.Text.Trim();
+            _useractuelle.AdrMail = tbx_veterinaire_mesdonnees_adrMail.Text.Trim();
+
+            lbl_veterinaire_mesdonnees_login.Text = "Login : " + _useractuelle.Login.ToString();
+            lbl_veterinaire_mesdonnees_nom.Text = "Nom : " + _useractuelle.Nom.ToString();
+            lbl_veterinaire_mesdonnees_prenom.Text = "Prénom : " + _useractuelle.Prenom.ToString();
+            lbl_veterinaire_mesdonnees_adrMail.Text = "Adresse Mail : " + _useractuelle.AdrMail.ToString();
+
+            tbc_veterinaire_Selected(sender, _onglet);
+            lbl_veterinaire_mesdonnees_validationmodif.Show();
+        }
+
+            #endregion
 
         #region Fermeture du formulaire
 
-        private void AppCriee_Veterinaire_FormClosing(object sender, FormClosingEventArgs e)
+            private void AppCriee_Veterinaire_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (_useractuelle != null)
             {
@@ -1088,7 +1189,6 @@ namespace AppCriée
             }
             tbc_veterinaire.Appearance = 0;
         }
-
 
     }
 }

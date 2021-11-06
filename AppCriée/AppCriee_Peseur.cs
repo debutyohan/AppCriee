@@ -23,6 +23,8 @@ namespace AppCriée
         int idbateau;
         AppCriee _authAccueil;
         User _useractuelle;
+        TabControlEventArgs _onglet;
+        string idUserModified;
 
         #endregion
 
@@ -35,22 +37,14 @@ namespace AppCriée
             lbl_peseur_accueil_bienvenue.Text = "Bienvenue " + unutilisateur.Nom + " " + unutilisateur.Prenom;
             lbl_peseur_datejour.Text = "Date du jour : " + DateTime.Today.ToString("dd/MM/yyyy");
             HiddenObject.Hide(new List<Control> { lbl_peseur_lotspeche_choixbateau });
-            lbl_peseur_mesdonnees_login.Text = "Login : " + unutilisateur.Login;
-            lbl_peseur_mesdonnees_prenom.Text = "Prénom : " + unutilisateur.Prenom;
-            lbl_peseur_mesdonnees_nom.Text = "Nom : " + unutilisateur.Nom;
-            lbl_peseur_mesdonnees_adrMail.Text = "Adresse Mail : " + unutilisateur.AdrMail;
-            lbl_peseur_mesdonnees_typeuser.Text = "Type utilisateur : " + unutilisateur.Libelletype;
-            if (unutilisateur.AdrMail == "")
-            {
-                lbl_peseur_mesdonnees_adrMail.Text = "Adresse Mail : (Non communiquée)";
-            }
+           
         }
 
         #endregion
 
         #region Changement d'onglet
 
-        private void tbc_peseur_SelectedIndexChanged(object sender, EventArgs e)
+        private void tbc_peseur_Selected(object sender, TabControlEventArgs e)
         {
             if (cbx_peseur_lotspeche_listebateaux.SelectedItem is null)
             {
@@ -67,6 +61,35 @@ namespace AppCriée
                     cbx_peseur_lotspeche_listebateaux_SelectionChangeCommitted(sender, e);
                 }
             }
+            _onglet = e;
+            switch (e.TabPage.Name)
+            {
+                case "tbp_peseur_accueil":
+                    lbl_peseur_accueil_bienvenue.Text = "Bienvenue " + _useractuelle.Nom + " " + _useractuelle.Prenom;
+                    break;
+                case "tbp_peseur_mesdonnees":
+                    HiddenObject.Hide(new List<Control> { lbl_peseur_mesdonnees_validationmodiferreur, lbl_peseur_mesdonnees_modification, lbl_peseur_mesdonnees_modifieradrMail, lbl_peseur_mesdonnees_modifierlogin, lbl_peseur_mesdonnees_modifiernom, lbl_peseur_mesdonnees_modifierprenom, tbx_peseur_mesdonnees_login, tbx_peseur_mesdonnees_nom, tbx_peseur_mesdonnees_adrMail, tbx_peseur_mesdonnees_prenom, btn_peseur_mesdonnees_validermodif, lbl_peseur_mesdonnees_champsobli, lbl_peseur_mesdonnees_validationmodif, lbl_peseur_mesdonnees_validationmodiferreur, });
+                    lbl_peseur_mesdonnees_login.Text = "Login : " + _useractuelle.Login;
+                    lbl_peseur_mesdonnees_prenom.Text = "Prénom : " + _useractuelle.Prenom;
+                    lbl_peseur_mesdonnees_nom.Text = "Nom : " + _useractuelle.Nom;
+                    lbl_peseur_mesdonnees_adrMail.Text = "Adresse Mail : " + _useractuelle.AdrMail;
+                    lbl_peseur_mesdonnees_typeuser.Text = "Type utilisateur : " + _useractuelle.Libelletype;
+                    if (_useractuelle.AdrMail == "")
+                    {
+                        lbl_peseur_mesdonnees_adrMail.Text = "Adresse Mail : (Non communiquée)";
+                    }
+                    if (_useractuelle.Nom == "")
+                    {
+                        lbl_peseur_mesdonnees_nom.Text = "Nom : (Non communiquée)";
+                    }
+                    if (_useractuelle.Prenom == "")
+                    {
+                        lbl_peseur_mesdonnees_prenom.Text = "Prénom : (Non communiquée)";
+                    }
+                    break;
+            }
+            
+                
         }
 
         #endregion
@@ -281,6 +304,89 @@ namespace AppCriée
             }
         }
 
+        private void btn_peseur_mesdonnees_modifier_Click(object sender, EventArgs e)
+        {
+            HiddenObject.Show(new List<Control> { lbl_peseur_mesdonnees_modification, lbl_peseur_mesdonnees_modifieradrMail, lbl_peseur_mesdonnees_modifierlogin, lbl_peseur_mesdonnees_modifiernom, lbl_peseur_mesdonnees_modifierprenom, tbx_peseur_mesdonnees_login, tbx_peseur_mesdonnees_nom, tbx_peseur_mesdonnees_adrMail, tbx_peseur_mesdonnees_prenom, btn_peseur_mesdonnees_validermodif, lbl_peseur_mesdonnees_champsobli });
+            tbx_peseur_mesdonnees_login.Text = _useractuelle.Login;
+            if (_useractuelle.Nom.ToString().Trim() == "(Non communiqué)")
+            {
+                tbx_peseur_mesdonnees_nom.Text = "";
+            }
+            else
+            {
+                tbx_peseur_mesdonnees_nom.Text = _useractuelle.Nom.ToString().Trim();
+            }
+            if (_useractuelle.Prenom.ToString().Trim() == "(Non communiqué)")
+            {
+                tbx_peseur_mesdonnees_prenom.Text = "";
+            }
+            else
+            {
+                tbx_peseur_mesdonnees_prenom.Text = _useractuelle.Prenom.ToString();
+            }
+            if (_useractuelle.AdrMail.ToString().Trim() == "(Non communiquée)")
+            {
+                tbx_peseur_mesdonnees_adrMail.Text = "";
+            }
+            else
+            {
+                tbx_peseur_mesdonnees_adrMail.Text = _useractuelle.AdrMail.ToString();
+            }
+            lbl_peseur_mesdonnees_validationmodif.Hide();
+        }
+
+        private void btn_peseur_mesdonnees_validermodif_Click(object sender, EventArgs e)
+        {
+            idUserModified = _useractuelle.Id.ToString();
+            if (tbx_peseur_mesdonnees_login.Text == "")
+            {
+                lbl_peseur_mesdonnees_validationmodiferreur.Text = "Tous les champs obligatoires doivent être remplis";
+                lbl_peseur_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+            if (tbx_peseur_mesdonnees_adrMail.Text.Trim() != "" && !(Regex.IsMatch(tbx_peseur_mesdonnees_adrMail.Text, @"^(?("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))" + @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$")))
+            {
+                lbl_peseur_mesdonnees_validationmodiferreur.Text = "L’adresse mail saisie n’est pas correcte";
+                lbl_peseur_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+
+            object adrMail = tbx_peseur_mesdonnees_adrMail.Text;
+            if (adrMail.ToString().Trim() == "")
+            {
+                adrMail = null;
+            }
+            object nomModif = tbx_peseur_mesdonnees_nom.Text;
+            if (nomModif.ToString().Trim() == "")
+            {
+                nomModif = null;
+            }
+            object prenomModif = tbx_peseur_mesdonnees_prenom.Text;
+            if (prenomModif.ToString().Trim() == "")
+            {
+                prenomModif = null;
+            }
+
+            CURS cs = new CURS();
+            cs.ReqAdminPrepare("UPDATE utilisateur SET login=?, nomuser=?, prenomuser=?, adrMail=? WHERE id=?", new List<object> { tbx_peseur_mesdonnees_login.Text, nomModif, prenomModif, adrMail, idUserModified });
+            cs.fermer();
+            lbl_peseur_mesdonnees_validationmodif.Text = "Vos données ont bien été modifiées.\n";
+            HiddenObject.Hide(new List<Control> { lbl_peseur_mesdonnees_validationmodiferreur, lbl_peseur_mesdonnees_modification, lbl_peseur_mesdonnees_modifieradrMail, lbl_peseur_mesdonnees_modifierlogin, lbl_peseur_mesdonnees_modifiernom, lbl_peseur_mesdonnees_modifierprenom, tbx_peseur_mesdonnees_login, tbx_peseur_mesdonnees_nom, tbx_peseur_mesdonnees_adrMail, tbx_peseur_mesdonnees_prenom, btn_peseur_mesdonnees_validermodif, lbl_peseur_mesdonnees_champsobli });
+
+            _useractuelle.Login = tbx_peseur_mesdonnees_login.Text;
+            _useractuelle.Nom = tbx_peseur_mesdonnees_nom.Text.Trim();
+            _useractuelle.Prenom = tbx_peseur_mesdonnees_prenom.Text.Trim();
+            _useractuelle.AdrMail = tbx_peseur_mesdonnees_adrMail.Text.Trim();
+
+            lbl_peseur_mesdonnees_login.Text = "Login : " + _useractuelle.Login.ToString();
+            lbl_peseur_mesdonnees_nom.Text = "Nom : " + _useractuelle.Nom.ToString();
+            lbl_peseur_mesdonnees_prenom.Text = "Prénom : " + _useractuelle.Prenom.ToString();
+            lbl_peseur_mesdonnees_adrMail.Text = "Adresse Mail : " + _useractuelle.AdrMail.ToString();
+
+            tbc_peseur_Selected(sender, _onglet);
+            lbl_peseur_mesdonnees_validationmodif.Show();
+        }
+
         #endregion
 
         #region Fermeture du formulaire
@@ -304,6 +410,10 @@ namespace AppCriée
                 }
             }
         }
+
+
+
+
 
         #endregion
 

@@ -51,6 +51,11 @@
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbl_peseur_lotspeche_bacdulot = new System.Windows.Forms.Label();
             this.lbl_peseur_lotspeche_islots = new System.Windows.Forms.Label();
+            this.lbl_peseur_lotspeche_lotsbateau = new System.Windows.Forms.Label();
+            this.cbx_peseur_lotspeche_listebateaux = new System.Windows.Forms.ComboBox();
+            this.lbl_peseur_lotspeche_choixbateau = new System.Windows.Forms.Label();
+            this.lbl_peseur_lotspeche_title = new System.Windows.Forms.Label();
+            this.lbl_peseur_lotspeche_ispeche = new System.Windows.Forms.Label();
             this.dg_peseur_lotspeche_lotsbateau = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,21 +65,30 @@
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.poidstotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codeEtat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lbl_peseur_lotspeche_lotsbateau = new System.Windows.Forms.Label();
-            this.cbx_peseur_lotspeche_listebateaux = new System.Windows.Forms.ComboBox();
-            this.lbl_peseur_lotspeche_choixbateau = new System.Windows.Forms.Label();
-            this.lbl_peseur_lotspeche_title = new System.Windows.Forms.Label();
-            this.lbl_peseur_lotspeche_ispeche = new System.Windows.Forms.Label();
             this.tbp_peseur_mesdonnees = new System.Windows.Forms.TabPage();
-            this.btn_peseur_mesdonnees_supprimer = new System.Windows.Forms.Button();
-            this.lbl_peseur_datejour = new System.Windows.Forms.Label();
-            this.pbx_peseur_deconnexion = new System.Windows.Forms.PictureBox();
+            this.lbl_peseur_mesdonnees_validationmodiferreur = new System.Windows.Forms.Label();
+            this.lbl_peseur_mesdonnees_modification = new System.Windows.Forms.Label();
+            this.btn_peseur_mesdonnees_modifier = new System.Windows.Forms.Button();
+            this.lbl_peseur_mesdonnees_validationmodif = new System.Windows.Forms.Label();
+            this.btn_peseur_mesdonnees_validermodif = new System.Windows.Forms.Button();
+            this.lbl_peseur_mesdonnees_champsobli = new System.Windows.Forms.Label();
+            this.tbx_peseur_mesdonnees_adrMail = new System.Windows.Forms.TextBox();
+            this.tbx_peseur_mesdonnees_prenom = new System.Windows.Forms.TextBox();
+            this.tbx_peseur_mesdonnees_nom = new System.Windows.Forms.TextBox();
+            this.tbx_peseur_mesdonnees_login = new System.Windows.Forms.TextBox();
+            this.lbl_peseur_mesdonnees_modifieradrMail = new System.Windows.Forms.Label();
+            this.lbl_peseur_mesdonnees_modifierprenom = new System.Windows.Forms.Label();
+            this.lbl_peseur_mesdonnees_modifiernom = new System.Windows.Forms.Label();
+            this.lbl_peseur_mesdonnees_modifierlogin = new System.Windows.Forms.Label();
             this.lbl_peseur_mesdonnees_typeuser = new System.Windows.Forms.Label();
             this.lbl_peseur_mesdonnees_adrMail = new System.Windows.Forms.Label();
             this.lbl_peseur_mesdonnees_nom = new System.Windows.Forms.Label();
             this.lbl_peseur_mesdonnees_prenom = new System.Windows.Forms.Label();
             this.lbl_peseur_mesdonnees_login = new System.Windows.Forms.Label();
             this.lbl_peseur_mesdonnees_title = new System.Windows.Forms.Label();
+            this.btn_peseur_mesdonnees_supprimer = new System.Windows.Forms.Button();
+            this.lbl_peseur_datejour = new System.Windows.Forms.Label();
+            this.pbx_peseur_deconnexion = new System.Windows.Forms.PictureBox();
             this.tbc_peseur.SuspendLayout();
             this.tbp_peseur_accueil.SuspendLayout();
             this.tbp_peseur_lotspeche.SuspendLayout();
@@ -111,12 +125,12 @@
             this.tbc_peseur.Controls.Add(this.tbp_peseur_mesdonnees);
             this.tbc_peseur.ItemSize = new System.Drawing.Size(47, 18);
             this.tbc_peseur.Location = new System.Drawing.Point(0, 0);
-            this.tbc_peseur.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbc_peseur.Margin = new System.Windows.Forms.Padding(2);
             this.tbc_peseur.Name = "tbc_peseur";
             this.tbc_peseur.SelectedIndex = 0;
             this.tbc_peseur.Size = new System.Drawing.Size(814, 552);
             this.tbc_peseur.TabIndex = 2;
-            this.tbc_peseur.SelectedIndexChanged += new System.EventHandler(this.tbc_peseur_SelectedIndexChanged);
+            this.tbc_peseur.Selected += new System.Windows.Forms.TabControlEventHandler(this.tbc_peseur_Selected);
             // 
             // tbp_peseur_accueil
             // 
@@ -124,7 +138,7 @@
             this.tbp_peseur_accueil.Controls.Add(this.lbl_peseur_accueil_role);
             this.tbp_peseur_accueil.Location = new System.Drawing.Point(4, 22);
             this.tbp_peseur_accueil.Name = "tbp_peseur_accueil";
-            this.tbp_peseur_accueil.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbp_peseur_accueil.Padding = new System.Windows.Forms.Padding(3);
             this.tbp_peseur_accueil.Size = new System.Drawing.Size(806, 526);
             this.tbp_peseur_accueil.TabIndex = 0;
             this.tbp_peseur_accueil.Text = "Accueil";
@@ -153,7 +167,7 @@
             this.tbp_peseur_lotspeche.Controls.Add(this.dg_peseur_lotspeche_lotsbateau);
             this.tbp_peseur_lotspeche.Location = new System.Drawing.Point(4, 22);
             this.tbp_peseur_lotspeche.Name = "tbp_peseur_lotspeche";
-            this.tbp_peseur_lotspeche.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbp_peseur_lotspeche.Padding = new System.Windows.Forms.Padding(3);
             this.tbp_peseur_lotspeche.Size = new System.Drawing.Size(806, 526);
             this.tbp_peseur_lotspeche.TabIndex = 1;
             this.tbp_peseur_lotspeche.Text = "Lots de pêche";
@@ -228,7 +242,7 @@
             this.btn_peseur_lotspeche_validersaisiepoids.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_peseur_lotspeche_validersaisiepoids.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btn_peseur_lotspeche_validersaisiepoids.Location = new System.Drawing.Point(504, 435);
-            this.btn_peseur_lotspeche_validersaisiepoids.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_peseur_lotspeche_validersaisiepoids.Margin = new System.Windows.Forms.Padding(2);
             this.btn_peseur_lotspeche_validersaisiepoids.Name = "btn_peseur_lotspeche_validersaisiepoids";
             this.btn_peseur_lotspeche_validersaisiepoids.Size = new System.Drawing.Size(120, 27);
             this.btn_peseur_lotspeche_validersaisiepoids.TabIndex = 31;
@@ -240,7 +254,7 @@
             // tbx_peseur_lotspeche_saisirpoids
             // 
             this.tbx_peseur_lotspeche_saisirpoids.Location = new System.Drawing.Point(590, 399);
-            this.tbx_peseur_lotspeche_saisirpoids.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbx_peseur_lotspeche_saisirpoids.Margin = new System.Windows.Forms.Padding(2);
             this.tbx_peseur_lotspeche_saisirpoids.Name = "tbx_peseur_lotspeche_saisirpoids";
             this.tbx_peseur_lotspeche_saisirpoids.Size = new System.Drawing.Size(116, 20);
             this.tbx_peseur_lotspeche_saisirpoids.TabIndex = 30;
@@ -264,7 +278,7 @@
             this.btn_peseur_lotspeche_saisirpoids.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_peseur_lotspeche_saisirpoids.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btn_peseur_lotspeche_saisirpoids.Location = new System.Drawing.Point(488, 321);
-            this.btn_peseur_lotspeche_saisirpoids.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_peseur_lotspeche_saisirpoids.Margin = new System.Windows.Forms.Padding(2);
             this.btn_peseur_lotspeche_saisirpoids.Name = "btn_peseur_lotspeche_saisirpoids";
             this.btn_peseur_lotspeche_saisirpoids.Size = new System.Drawing.Size(148, 46);
             this.btn_peseur_lotspeche_saisirpoids.TabIndex = 28;
@@ -300,7 +314,7 @@
             this.dataGridViewTextBoxColumn12});
             this.dg_peseur_lotspeche_bacs.GridColor = System.Drawing.SystemColors.Control;
             this.dg_peseur_lotspeche_bacs.Location = new System.Drawing.Point(27, 336);
-            this.dg_peseur_lotspeche_bacs.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dg_peseur_lotspeche_bacs.Margin = new System.Windows.Forms.Padding(2);
             this.dg_peseur_lotspeche_bacs.MultiSelect = false;
             this.dg_peseur_lotspeche_bacs.Name = "dg_peseur_lotspeche_bacs";
             this.dg_peseur_lotspeche_bacs.ReadOnly = true;
@@ -366,6 +380,63 @@
             this.lbl_peseur_lotspeche_islots.Text = "Pas encore de lots créés pour ce bateau, veuillez contacter le vétérinaire";
             this.lbl_peseur_lotspeche_islots.Visible = false;
             // 
+            // lbl_peseur_lotspeche_lotsbateau
+            // 
+            this.lbl_peseur_lotspeche_lotsbateau.AutoSize = true;
+            this.lbl_peseur_lotspeche_lotsbateau.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_peseur_lotspeche_lotsbateau.Location = new System.Drawing.Point(23, 110);
+            this.lbl_peseur_lotspeche_lotsbateau.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_peseur_lotspeche_lotsbateau.Name = "lbl_peseur_lotspeche_lotsbateau";
+            this.lbl_peseur_lotspeche_lotsbateau.Size = new System.Drawing.Size(159, 24);
+            this.lbl_peseur_lotspeche_lotsbateau.TabIndex = 13;
+            this.lbl_peseur_lotspeche_lotsbateau.Text = "Lots de la pêche :";
+            this.lbl_peseur_lotspeche_lotsbateau.Visible = false;
+            // 
+            // cbx_peseur_lotspeche_listebateaux
+            // 
+            this.cbx_peseur_lotspeche_listebateaux.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_peseur_lotspeche_listebateaux.DropDownWidth = 150;
+            this.cbx_peseur_lotspeche_listebateaux.FormattingEnabled = true;
+            this.cbx_peseur_lotspeche_listebateaux.Location = new System.Drawing.Point(202, 71);
+            this.cbx_peseur_lotspeche_listebateaux.Margin = new System.Windows.Forms.Padding(2);
+            this.cbx_peseur_lotspeche_listebateaux.Name = "cbx_peseur_lotspeche_listebateaux";
+            this.cbx_peseur_lotspeche_listebateaux.Size = new System.Drawing.Size(150, 21);
+            this.cbx_peseur_lotspeche_listebateaux.TabIndex = 12;
+            this.cbx_peseur_lotspeche_listebateaux.Visible = false;
+            this.cbx_peseur_lotspeche_listebateaux.SelectionChangeCommitted += new System.EventHandler(this.cbx_peseur_lotspeche_listebateaux_SelectionChangeCommitted);
+            // 
+            // lbl_peseur_lotspeche_choixbateau
+            // 
+            this.lbl_peseur_lotspeche_choixbateau.AutoSize = true;
+            this.lbl_peseur_lotspeche_choixbateau.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_peseur_lotspeche_choixbateau.Location = new System.Drawing.Point(37, 71);
+            this.lbl_peseur_lotspeche_choixbateau.Name = "lbl_peseur_lotspeche_choixbateau";
+            this.lbl_peseur_lotspeche_choixbateau.Size = new System.Drawing.Size(131, 18);
+            this.lbl_peseur_lotspeche_choixbateau.TabIndex = 2;
+            this.lbl_peseur_lotspeche_choixbateau.Text = "Choisir un bateau :";
+            // 
+            // lbl_peseur_lotspeche_title
+            // 
+            this.lbl_peseur_lotspeche_title.AutoSize = true;
+            this.lbl_peseur_lotspeche_title.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_peseur_lotspeche_title.Location = new System.Drawing.Point(276, 23);
+            this.lbl_peseur_lotspeche_title.Name = "lbl_peseur_lotspeche_title";
+            this.lbl_peseur_lotspeche_title.Size = new System.Drawing.Size(168, 29);
+            this.lbl_peseur_lotspeche_title.TabIndex = 0;
+            this.lbl_peseur_lotspeche_title.Text = "Liste des lots";
+            // 
+            // lbl_peseur_lotspeche_ispeche
+            // 
+            this.lbl_peseur_lotspeche_ispeche.AutoSize = true;
+            this.lbl_peseur_lotspeche_ispeche.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_peseur_lotspeche_ispeche.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lbl_peseur_lotspeche_ispeche.Location = new System.Drawing.Point(56, 163);
+            this.lbl_peseur_lotspeche_ispeche.Name = "lbl_peseur_lotspeche_ispeche";
+            this.lbl_peseur_lotspeche_ispeche.Size = new System.Drawing.Size(541, 18);
+            this.lbl_peseur_lotspeche_ispeche.TabIndex = 23;
+            this.lbl_peseur_lotspeche_ispeche.Text = "Il n\'y a aucune pêche enregistrée pour ce jour, veuillez contacter le réceptionni" +
+    "ste.";
+            // 
             // dg_peseur_lotspeche_lotsbateau
             // 
             this.dg_peseur_lotspeche_lotsbateau.AllowUserToAddRows = false;
@@ -385,7 +456,7 @@
             this.codeEtat});
             this.dg_peseur_lotspeche_lotsbateau.GridColor = System.Drawing.SystemColors.Control;
             this.dg_peseur_lotspeche_lotsbateau.Location = new System.Drawing.Point(27, 144);
-            this.dg_peseur_lotspeche_lotsbateau.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dg_peseur_lotspeche_lotsbateau.Margin = new System.Windows.Forms.Padding(2);
             this.dg_peseur_lotspeche_lotsbateau.MultiSelect = false;
             this.dg_peseur_lotspeche_lotsbateau.Name = "dg_peseur_lotspeche_lotsbateau";
             this.dg_peseur_lotspeche_lotsbateau.ReadOnly = true;
@@ -462,65 +533,22 @@
             this.codeEtat.Visible = false;
             this.codeEtat.Width = 125;
             // 
-            // lbl_peseur_lotspeche_lotsbateau
-            // 
-            this.lbl_peseur_lotspeche_lotsbateau.AutoSize = true;
-            this.lbl_peseur_lotspeche_lotsbateau.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_peseur_lotspeche_lotsbateau.Location = new System.Drawing.Point(23, 110);
-            this.lbl_peseur_lotspeche_lotsbateau.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lbl_peseur_lotspeche_lotsbateau.Name = "lbl_peseur_lotspeche_lotsbateau";
-            this.lbl_peseur_lotspeche_lotsbateau.Size = new System.Drawing.Size(159, 24);
-            this.lbl_peseur_lotspeche_lotsbateau.TabIndex = 13;
-            this.lbl_peseur_lotspeche_lotsbateau.Text = "Lots de la pêche :";
-            this.lbl_peseur_lotspeche_lotsbateau.Visible = false;
-            // 
-            // cbx_peseur_lotspeche_listebateaux
-            // 
-            this.cbx_peseur_lotspeche_listebateaux.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_peseur_lotspeche_listebateaux.DropDownWidth = 150;
-            this.cbx_peseur_lotspeche_listebateaux.FormattingEnabled = true;
-            this.cbx_peseur_lotspeche_listebateaux.Location = new System.Drawing.Point(202, 71);
-            this.cbx_peseur_lotspeche_listebateaux.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.cbx_peseur_lotspeche_listebateaux.Name = "cbx_peseur_lotspeche_listebateaux";
-            this.cbx_peseur_lotspeche_listebateaux.Size = new System.Drawing.Size(150, 21);
-            this.cbx_peseur_lotspeche_listebateaux.TabIndex = 12;
-            this.cbx_peseur_lotspeche_listebateaux.Visible = false;
-            this.cbx_peseur_lotspeche_listebateaux.SelectionChangeCommitted += new System.EventHandler(this.cbx_peseur_lotspeche_listebateaux_SelectionChangeCommitted);
-            // 
-            // lbl_peseur_lotspeche_choixbateau
-            // 
-            this.lbl_peseur_lotspeche_choixbateau.AutoSize = true;
-            this.lbl_peseur_lotspeche_choixbateau.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_peseur_lotspeche_choixbateau.Location = new System.Drawing.Point(37, 71);
-            this.lbl_peseur_lotspeche_choixbateau.Name = "lbl_peseur_lotspeche_choixbateau";
-            this.lbl_peseur_lotspeche_choixbateau.Size = new System.Drawing.Size(131, 18);
-            this.lbl_peseur_lotspeche_choixbateau.TabIndex = 2;
-            this.lbl_peseur_lotspeche_choixbateau.Text = "Choisir un bateau :";
-            // 
-            // lbl_peseur_lotspeche_title
-            // 
-            this.lbl_peseur_lotspeche_title.AutoSize = true;
-            this.lbl_peseur_lotspeche_title.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_peseur_lotspeche_title.Location = new System.Drawing.Point(276, 23);
-            this.lbl_peseur_lotspeche_title.Name = "lbl_peseur_lotspeche_title";
-            this.lbl_peseur_lotspeche_title.Size = new System.Drawing.Size(168, 29);
-            this.lbl_peseur_lotspeche_title.TabIndex = 0;
-            this.lbl_peseur_lotspeche_title.Text = "Liste des lots";
-            // 
-            // lbl_peseur_lotspeche_ispeche
-            // 
-            this.lbl_peseur_lotspeche_ispeche.AutoSize = true;
-            this.lbl_peseur_lotspeche_ispeche.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_peseur_lotspeche_ispeche.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lbl_peseur_lotspeche_ispeche.Location = new System.Drawing.Point(56, 163);
-            this.lbl_peseur_lotspeche_ispeche.Name = "lbl_peseur_lotspeche_ispeche";
-            this.lbl_peseur_lotspeche_ispeche.Size = new System.Drawing.Size(541, 18);
-            this.lbl_peseur_lotspeche_ispeche.TabIndex = 23;
-            this.lbl_peseur_lotspeche_ispeche.Text = "Il n\'y a aucune pêche enregistrée pour ce jour, veuillez contacter le réceptionni" +
-    "ste.";
-            // 
             // tbp_peseur_mesdonnees
             // 
+            this.tbp_peseur_mesdonnees.Controls.Add(this.lbl_peseur_mesdonnees_validationmodiferreur);
+            this.tbp_peseur_mesdonnees.Controls.Add(this.lbl_peseur_mesdonnees_modification);
+            this.tbp_peseur_mesdonnees.Controls.Add(this.btn_peseur_mesdonnees_modifier);
+            this.tbp_peseur_mesdonnees.Controls.Add(this.lbl_peseur_mesdonnees_validationmodif);
+            this.tbp_peseur_mesdonnees.Controls.Add(this.btn_peseur_mesdonnees_validermodif);
+            this.tbp_peseur_mesdonnees.Controls.Add(this.lbl_peseur_mesdonnees_champsobli);
+            this.tbp_peseur_mesdonnees.Controls.Add(this.tbx_peseur_mesdonnees_adrMail);
+            this.tbp_peseur_mesdonnees.Controls.Add(this.tbx_peseur_mesdonnees_prenom);
+            this.tbp_peseur_mesdonnees.Controls.Add(this.tbx_peseur_mesdonnees_nom);
+            this.tbp_peseur_mesdonnees.Controls.Add(this.tbx_peseur_mesdonnees_login);
+            this.tbp_peseur_mesdonnees.Controls.Add(this.lbl_peseur_mesdonnees_modifieradrMail);
+            this.tbp_peseur_mesdonnees.Controls.Add(this.lbl_peseur_mesdonnees_modifierprenom);
+            this.tbp_peseur_mesdonnees.Controls.Add(this.lbl_peseur_mesdonnees_modifiernom);
+            this.tbp_peseur_mesdonnees.Controls.Add(this.lbl_peseur_mesdonnees_modifierlogin);
             this.tbp_peseur_mesdonnees.Controls.Add(this.lbl_peseur_mesdonnees_typeuser);
             this.tbp_peseur_mesdonnees.Controls.Add(this.lbl_peseur_mesdonnees_adrMail);
             this.tbp_peseur_mesdonnees.Controls.Add(this.lbl_peseur_mesdonnees_nom);
@@ -529,19 +557,240 @@
             this.tbp_peseur_mesdonnees.Controls.Add(this.lbl_peseur_mesdonnees_title);
             this.tbp_peseur_mesdonnees.Controls.Add(this.btn_peseur_mesdonnees_supprimer);
             this.tbp_peseur_mesdonnees.Location = new System.Drawing.Point(4, 22);
-            this.tbp_peseur_mesdonnees.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbp_peseur_mesdonnees.Margin = new System.Windows.Forms.Padding(2);
             this.tbp_peseur_mesdonnees.Name = "tbp_peseur_mesdonnees";
-            this.tbp_peseur_mesdonnees.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbp_peseur_mesdonnees.Padding = new System.Windows.Forms.Padding(2);
             this.tbp_peseur_mesdonnees.Size = new System.Drawing.Size(806, 526);
             this.tbp_peseur_mesdonnees.TabIndex = 2;
             this.tbp_peseur_mesdonnees.Text = "Mes données";
             this.tbp_peseur_mesdonnees.UseVisualStyleBackColor = true;
             // 
+            // lbl_peseur_mesdonnees_validationmodiferreur
+            // 
+            this.lbl_peseur_mesdonnees_validationmodiferreur.AutoSize = true;
+            this.lbl_peseur_mesdonnees_validationmodiferreur.BackColor = System.Drawing.Color.White;
+            this.lbl_peseur_mesdonnees_validationmodiferreur.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_peseur_mesdonnees_validationmodiferreur.ForeColor = System.Drawing.Color.Red;
+            this.lbl_peseur_mesdonnees_validationmodiferreur.Location = new System.Drawing.Point(434, 382);
+            this.lbl_peseur_mesdonnees_validationmodiferreur.Name = "lbl_peseur_mesdonnees_validationmodiferreur";
+            this.lbl_peseur_mesdonnees_validationmodiferreur.Size = new System.Drawing.Size(51, 20);
+            this.lbl_peseur_mesdonnees_validationmodiferreur.TabIndex = 93;
+            this.lbl_peseur_mesdonnees_validationmodiferreur.Text = "label1";
+            this.lbl_peseur_mesdonnees_validationmodiferreur.Visible = false;
+            // 
+            // lbl_peseur_mesdonnees_modification
+            // 
+            this.lbl_peseur_mesdonnees_modification.AutoSize = true;
+            this.lbl_peseur_mesdonnees_modification.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_peseur_mesdonnees_modification.Location = new System.Drawing.Point(25, 252);
+            this.lbl_peseur_mesdonnees_modification.Name = "lbl_peseur_mesdonnees_modification";
+            this.lbl_peseur_mesdonnees_modification.Size = new System.Drawing.Size(236, 24);
+            this.lbl_peseur_mesdonnees_modification.TabIndex = 92;
+            this.lbl_peseur_mesdonnees_modification.Text = "Modification des données :";
+            this.lbl_peseur_mesdonnees_modification.Visible = false;
+            // 
+            // btn_peseur_mesdonnees_modifier
+            // 
+            this.btn_peseur_mesdonnees_modifier.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btn_peseur_mesdonnees_modifier.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_peseur_mesdonnees_modifier.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btn_peseur_mesdonnees_modifier.Location = new System.Drawing.Point(633, 125);
+            this.btn_peseur_mesdonnees_modifier.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_peseur_mesdonnees_modifier.Name = "btn_peseur_mesdonnees_modifier";
+            this.btn_peseur_mesdonnees_modifier.Size = new System.Drawing.Size(150, 38);
+            this.btn_peseur_mesdonnees_modifier.TabIndex = 91;
+            this.btn_peseur_mesdonnees_modifier.Text = "Modifier mon compte";
+            this.btn_peseur_mesdonnees_modifier.UseVisualStyleBackColor = false;
+            this.btn_peseur_mesdonnees_modifier.Click += new System.EventHandler(this.btn_peseur_mesdonnees_modifier_Click);
+            // 
+            // lbl_peseur_mesdonnees_validationmodif
+            // 
+            this.lbl_peseur_mesdonnees_validationmodif.AutoSize = true;
+            this.lbl_peseur_mesdonnees_validationmodif.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_peseur_mesdonnees_validationmodif.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lbl_peseur_mesdonnees_validationmodif.Location = new System.Drawing.Point(267, 241);
+            this.lbl_peseur_mesdonnees_validationmodif.Name = "lbl_peseur_mesdonnees_validationmodif";
+            this.lbl_peseur_mesdonnees_validationmodif.Size = new System.Drawing.Size(51, 20);
+            this.lbl_peseur_mesdonnees_validationmodif.TabIndex = 90;
+            this.lbl_peseur_mesdonnees_validationmodif.Text = "label1";
+            this.lbl_peseur_mesdonnees_validationmodif.Visible = false;
+            // 
+            // btn_peseur_mesdonnees_validermodif
+            // 
+            this.btn_peseur_mesdonnees_validermodif.BackColor = System.Drawing.SystemColors.Info;
+            this.btn_peseur_mesdonnees_validermodif.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_peseur_mesdonnees_validermodif.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btn_peseur_mesdonnees_validermodif.Location = new System.Drawing.Point(553, 310);
+            this.btn_peseur_mesdonnees_validermodif.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_peseur_mesdonnees_validermodif.Name = "btn_peseur_mesdonnees_validermodif";
+            this.btn_peseur_mesdonnees_validermodif.Size = new System.Drawing.Size(99, 27);
+            this.btn_peseur_mesdonnees_validermodif.TabIndex = 89;
+            this.btn_peseur_mesdonnees_validermodif.Text = "Valider";
+            this.btn_peseur_mesdonnees_validermodif.UseVisualStyleBackColor = false;
+            this.btn_peseur_mesdonnees_validermodif.Visible = false;
+            this.btn_peseur_mesdonnees_validermodif.Click += new System.EventHandler(this.btn_peseur_mesdonnees_validermodif_Click);
+            // 
+            // lbl_peseur_mesdonnees_champsobli
+            // 
+            this.lbl_peseur_mesdonnees_champsobli.AutoSize = true;
+            this.lbl_peseur_mesdonnees_champsobli.Location = new System.Drawing.Point(675, 317);
+            this.lbl_peseur_mesdonnees_champsobli.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_peseur_mesdonnees_champsobli.Name = "lbl_peseur_mesdonnees_champsobli";
+            this.lbl_peseur_mesdonnees_champsobli.Size = new System.Drawing.Size(108, 13);
+            this.lbl_peseur_mesdonnees_champsobli.TabIndex = 88;
+            this.lbl_peseur_mesdonnees_champsobli.Text = "* Champs obligatoires";
+            this.lbl_peseur_mesdonnees_champsobli.Visible = false;
+            // 
+            // tbx_peseur_mesdonnees_adrMail
+            // 
+            this.tbx_peseur_mesdonnees_adrMail.Location = new System.Drawing.Point(127, 339);
+            this.tbx_peseur_mesdonnees_adrMail.Margin = new System.Windows.Forms.Padding(2);
+            this.tbx_peseur_mesdonnees_adrMail.Name = "tbx_peseur_mesdonnees_adrMail";
+            this.tbx_peseur_mesdonnees_adrMail.Size = new System.Drawing.Size(159, 20);
+            this.tbx_peseur_mesdonnees_adrMail.TabIndex = 87;
+            this.tbx_peseur_mesdonnees_adrMail.Visible = false;
+            // 
+            // tbx_peseur_mesdonnees_prenom
+            // 
+            this.tbx_peseur_mesdonnees_prenom.Location = new System.Drawing.Point(399, 292);
+            this.tbx_peseur_mesdonnees_prenom.Margin = new System.Windows.Forms.Padding(2);
+            this.tbx_peseur_mesdonnees_prenom.Name = "tbx_peseur_mesdonnees_prenom";
+            this.tbx_peseur_mesdonnees_prenom.Size = new System.Drawing.Size(114, 20);
+            this.tbx_peseur_mesdonnees_prenom.TabIndex = 86;
+            this.tbx_peseur_mesdonnees_prenom.Visible = false;
+            // 
+            // tbx_peseur_mesdonnees_nom
+            // 
+            this.tbx_peseur_mesdonnees_nom.Location = new System.Drawing.Point(406, 339);
+            this.tbx_peseur_mesdonnees_nom.Margin = new System.Windows.Forms.Padding(2);
+            this.tbx_peseur_mesdonnees_nom.Name = "tbx_peseur_mesdonnees_nom";
+            this.tbx_peseur_mesdonnees_nom.Size = new System.Drawing.Size(114, 20);
+            this.tbx_peseur_mesdonnees_nom.TabIndex = 85;
+            this.tbx_peseur_mesdonnees_nom.Visible = false;
+            this.tbx_peseur_mesdonnees_nom.WordWrap = false;
+            // 
+            // tbx_peseur_mesdonnees_login
+            // 
+            this.tbx_peseur_mesdonnees_login.Location = new System.Drawing.Point(100, 294);
+            this.tbx_peseur_mesdonnees_login.Margin = new System.Windows.Forms.Padding(2);
+            this.tbx_peseur_mesdonnees_login.Name = "tbx_peseur_mesdonnees_login";
+            this.tbx_peseur_mesdonnees_login.Size = new System.Drawing.Size(126, 20);
+            this.tbx_peseur_mesdonnees_login.TabIndex = 84;
+            this.tbx_peseur_mesdonnees_login.Visible = false;
+            // 
+            // lbl_peseur_mesdonnees_modifieradrMail
+            // 
+            this.lbl_peseur_mesdonnees_modifieradrMail.AutoSize = true;
+            this.lbl_peseur_mesdonnees_modifieradrMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lbl_peseur_mesdonnees_modifieradrMail.Location = new System.Drawing.Point(26, 339);
+            this.lbl_peseur_mesdonnees_modifieradrMail.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_peseur_mesdonnees_modifieradrMail.Name = "lbl_peseur_mesdonnees_modifieradrMail";
+            this.lbl_peseur_mesdonnees_modifieradrMail.Size = new System.Drawing.Size(97, 17);
+            this.lbl_peseur_mesdonnees_modifieradrMail.TabIndex = 83;
+            this.lbl_peseur_mesdonnees_modifieradrMail.Text = "Adresse mail :";
+            this.lbl_peseur_mesdonnees_modifieradrMail.Visible = false;
+            // 
+            // lbl_peseur_mesdonnees_modifierprenom
+            // 
+            this.lbl_peseur_mesdonnees_modifierprenom.AutoSize = true;
+            this.lbl_peseur_mesdonnees_modifierprenom.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lbl_peseur_mesdonnees_modifierprenom.Location = new System.Drawing.Point(329, 294);
+            this.lbl_peseur_mesdonnees_modifierprenom.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_peseur_mesdonnees_modifierprenom.Name = "lbl_peseur_mesdonnees_modifierprenom";
+            this.lbl_peseur_mesdonnees_modifierprenom.Size = new System.Drawing.Size(65, 17);
+            this.lbl_peseur_mesdonnees_modifierprenom.TabIndex = 82;
+            this.lbl_peseur_mesdonnees_modifierprenom.Text = "Prénom :";
+            this.lbl_peseur_mesdonnees_modifierprenom.Visible = false;
+            // 
+            // lbl_peseur_mesdonnees_modifiernom
+            // 
+            this.lbl_peseur_mesdonnees_modifiernom.AutoSize = true;
+            this.lbl_peseur_mesdonnees_modifiernom.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lbl_peseur_mesdonnees_modifiernom.Location = new System.Drawing.Point(336, 340);
+            this.lbl_peseur_mesdonnees_modifiernom.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_peseur_mesdonnees_modifiernom.Name = "lbl_peseur_mesdonnees_modifiernom";
+            this.lbl_peseur_mesdonnees_modifiernom.Size = new System.Drawing.Size(45, 17);
+            this.lbl_peseur_mesdonnees_modifiernom.TabIndex = 81;
+            this.lbl_peseur_mesdonnees_modifiernom.Text = "Nom :";
+            this.lbl_peseur_mesdonnees_modifiernom.Visible = false;
+            // 
+            // lbl_peseur_mesdonnees_modifierlogin
+            // 
+            this.lbl_peseur_mesdonnees_modifierlogin.AutoSize = true;
+            this.lbl_peseur_mesdonnees_modifierlogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lbl_peseur_mesdonnees_modifierlogin.Location = new System.Drawing.Point(26, 295);
+            this.lbl_peseur_mesdonnees_modifierlogin.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_peseur_mesdonnees_modifierlogin.Name = "lbl_peseur_mesdonnees_modifierlogin";
+            this.lbl_peseur_mesdonnees_modifierlogin.Size = new System.Drawing.Size(60, 17);
+            this.lbl_peseur_mesdonnees_modifierlogin.TabIndex = 80;
+            this.lbl_peseur_mesdonnees_modifierlogin.Text = "Login * :";
+            this.lbl_peseur_mesdonnees_modifierlogin.Visible = false;
+            // 
+            // lbl_peseur_mesdonnees_typeuser
+            // 
+            this.lbl_peseur_mesdonnees_typeuser.AutoSize = true;
+            this.lbl_peseur_mesdonnees_typeuser.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_peseur_mesdonnees_typeuser.Location = new System.Drawing.Point(25, 196);
+            this.lbl_peseur_mesdonnees_typeuser.Name = "lbl_peseur_mesdonnees_typeuser";
+            this.lbl_peseur_mesdonnees_typeuser.Size = new System.Drawing.Size(329, 24);
+            this.lbl_peseur_mesdonnees_typeuser.TabIndex = 45;
+            this.lbl_peseur_mesdonnees_typeuser.Text = "Type utilisateur : [Votre type utilisateur]";
+            // 
+            // lbl_peseur_mesdonnees_adrMail
+            // 
+            this.lbl_peseur_mesdonnees_adrMail.AutoSize = true;
+            this.lbl_peseur_mesdonnees_adrMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_peseur_mesdonnees_adrMail.Location = new System.Drawing.Point(267, 151);
+            this.lbl_peseur_mesdonnees_adrMail.Name = "lbl_peseur_mesdonnees_adrMail";
+            this.lbl_peseur_mesdonnees_adrMail.Size = new System.Drawing.Size(300, 24);
+            this.lbl_peseur_mesdonnees_adrMail.TabIndex = 44;
+            this.lbl_peseur_mesdonnees_adrMail.Text = "Adresse mail : [Votre adresse mail]";
+            // 
+            // lbl_peseur_mesdonnees_nom
+            // 
+            this.lbl_peseur_mesdonnees_nom.AutoSize = true;
+            this.lbl_peseur_mesdonnees_nom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_peseur_mesdonnees_nom.Location = new System.Drawing.Point(25, 151);
+            this.lbl_peseur_mesdonnees_nom.Name = "lbl_peseur_mesdonnees_nom";
+            this.lbl_peseur_mesdonnees_nom.Size = new System.Drawing.Size(164, 24);
+            this.lbl_peseur_mesdonnees_nom.TabIndex = 43;
+            this.lbl_peseur_mesdonnees_nom.Text = "Nom : [Votre nom]";
+            // 
+            // lbl_peseur_mesdonnees_prenom
+            // 
+            this.lbl_peseur_mesdonnees_prenom.AutoSize = true;
+            this.lbl_peseur_mesdonnees_prenom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_peseur_mesdonnees_prenom.Location = new System.Drawing.Point(267, 98);
+            this.lbl_peseur_mesdonnees_prenom.Name = "lbl_peseur_mesdonnees_prenom";
+            this.lbl_peseur_mesdonnees_prenom.Size = new System.Drawing.Size(218, 24);
+            this.lbl_peseur_mesdonnees_prenom.TabIndex = 42;
+            this.lbl_peseur_mesdonnees_prenom.Text = "Prénom : [Votre prénom]";
+            // 
+            // lbl_peseur_mesdonnees_login
+            // 
+            this.lbl_peseur_mesdonnees_login.AutoSize = true;
+            this.lbl_peseur_mesdonnees_login.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_peseur_mesdonnees_login.Location = new System.Drawing.Point(25, 98);
+            this.lbl_peseur_mesdonnees_login.Name = "lbl_peseur_mesdonnees_login";
+            this.lbl_peseur_mesdonnees_login.Size = new System.Drawing.Size(173, 24);
+            this.lbl_peseur_mesdonnees_login.TabIndex = 41;
+            this.lbl_peseur_mesdonnees_login.Text = "Login : [Votre login]";
+            // 
+            // lbl_peseur_mesdonnees_title
+            // 
+            this.lbl_peseur_mesdonnees_title.AutoSize = true;
+            this.lbl_peseur_mesdonnees_title.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold);
+            this.lbl_peseur_mesdonnees_title.Location = new System.Drawing.Point(206, 25);
+            this.lbl_peseur_mesdonnees_title.Name = "lbl_peseur_mesdonnees_title";
+            this.lbl_peseur_mesdonnees_title.Size = new System.Drawing.Size(338, 26);
+            this.lbl_peseur_mesdonnees_title.TabIndex = 40;
+            this.lbl_peseur_mesdonnees_title.Text = "GESTION DE VOS DONNEES";
+            // 
             // btn_peseur_mesdonnees_supprimer
             // 
             this.btn_peseur_mesdonnees_supprimer.BackColor = System.Drawing.Color.Red;
             this.btn_peseur_mesdonnees_supprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_peseur_mesdonnees_supprimer.Location = new System.Drawing.Point(632, 167);
+            this.btn_peseur_mesdonnees_supprimer.Location = new System.Drawing.Point(633, 178);
             this.btn_peseur_mesdonnees_supprimer.Name = "btn_peseur_mesdonnees_supprimer";
             this.btn_peseur_mesdonnees_supprimer.Size = new System.Drawing.Size(150, 42);
             this.btn_peseur_mesdonnees_supprimer.TabIndex = 23;
@@ -565,73 +814,13 @@
             this.pbx_peseur_deconnexion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbx_peseur_deconnexion.Image = global::AppCriée.Properties.Resources.computer_icons_login_icon_design_exit_5abfc840bf8ca4_9038982415225180807846;
             this.pbx_peseur_deconnexion.Location = new System.Drawing.Point(764, 557);
-            this.pbx_peseur_deconnexion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pbx_peseur_deconnexion.Margin = new System.Windows.Forms.Padding(2);
             this.pbx_peseur_deconnexion.Name = "pbx_peseur_deconnexion";
             this.pbx_peseur_deconnexion.Size = new System.Drawing.Size(34, 37);
             this.pbx_peseur_deconnexion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbx_peseur_deconnexion.TabIndex = 2;
             this.pbx_peseur_deconnexion.TabStop = false;
             this.pbx_peseur_deconnexion.Click += new System.EventHandler(this.pbx_peseur_deconnexion_Click);
-            // 
-            // lbl_peseur_mesdonnees_typeuser
-            // 
-            this.lbl_peseur_mesdonnees_typeuser.AutoSize = true;
-            this.lbl_peseur_mesdonnees_typeuser.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_peseur_mesdonnees_typeuser.Location = new System.Drawing.Point(38, 262);
-            this.lbl_peseur_mesdonnees_typeuser.Name = "lbl_peseur_mesdonnees_typeuser";
-            this.lbl_peseur_mesdonnees_typeuser.Size = new System.Drawing.Size(329, 24);
-            this.lbl_peseur_mesdonnees_typeuser.TabIndex = 45;
-            this.lbl_peseur_mesdonnees_typeuser.Text = "Type utilisateur : [Votre type utilisateur]";
-            // 
-            // lbl_peseur_mesdonnees_adrMail
-            // 
-            this.lbl_peseur_mesdonnees_adrMail.AutoSize = true;
-            this.lbl_peseur_mesdonnees_adrMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_peseur_mesdonnees_adrMail.Location = new System.Drawing.Point(274, 185);
-            this.lbl_peseur_mesdonnees_adrMail.Name = "lbl_peseur_mesdonnees_adrMail";
-            this.lbl_peseur_mesdonnees_adrMail.Size = new System.Drawing.Size(300, 24);
-            this.lbl_peseur_mesdonnees_adrMail.TabIndex = 44;
-            this.lbl_peseur_mesdonnees_adrMail.Text = "Adresse mail : [Votre adresse mail]";
-            // 
-            // lbl_peseur_mesdonnees_nom
-            // 
-            this.lbl_peseur_mesdonnees_nom.AutoSize = true;
-            this.lbl_peseur_mesdonnees_nom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_peseur_mesdonnees_nom.Location = new System.Drawing.Point(38, 185);
-            this.lbl_peseur_mesdonnees_nom.Name = "lbl_peseur_mesdonnees_nom";
-            this.lbl_peseur_mesdonnees_nom.Size = new System.Drawing.Size(164, 24);
-            this.lbl_peseur_mesdonnees_nom.TabIndex = 43;
-            this.lbl_peseur_mesdonnees_nom.Text = "Nom : [Votre nom]";
-            // 
-            // lbl_peseur_mesdonnees_prenom
-            // 
-            this.lbl_peseur_mesdonnees_prenom.AutoSize = true;
-            this.lbl_peseur_mesdonnees_prenom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_peseur_mesdonnees_prenom.Location = new System.Drawing.Point(274, 112);
-            this.lbl_peseur_mesdonnees_prenom.Name = "lbl_peseur_mesdonnees_prenom";
-            this.lbl_peseur_mesdonnees_prenom.Size = new System.Drawing.Size(218, 24);
-            this.lbl_peseur_mesdonnees_prenom.TabIndex = 42;
-            this.lbl_peseur_mesdonnees_prenom.Text = "Prénom : [Votre prénom]";
-            // 
-            // lbl_peseur_mesdonnees_login
-            // 
-            this.lbl_peseur_mesdonnees_login.AutoSize = true;
-            this.lbl_peseur_mesdonnees_login.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_peseur_mesdonnees_login.Location = new System.Drawing.Point(38, 114);
-            this.lbl_peseur_mesdonnees_login.Name = "lbl_peseur_mesdonnees_login";
-            this.lbl_peseur_mesdonnees_login.Size = new System.Drawing.Size(173, 24);
-            this.lbl_peseur_mesdonnees_login.TabIndex = 41;
-            this.lbl_peseur_mesdonnees_login.Text = "Login : [Votre login]";
-            // 
-            // lbl_peseur_mesdonnees_title
-            // 
-            this.lbl_peseur_mesdonnees_title.AutoSize = true;
-            this.lbl_peseur_mesdonnees_title.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold);
-            this.lbl_peseur_mesdonnees_title.Location = new System.Drawing.Point(209, 43);
-            this.lbl_peseur_mesdonnees_title.Name = "lbl_peseur_mesdonnees_title";
-            this.lbl_peseur_mesdonnees_title.Size = new System.Drawing.Size(338, 26);
-            this.lbl_peseur_mesdonnees_title.TabIndex = 40;
-            this.lbl_peseur_mesdonnees_title.Text = "GESTION DE VOS DONNEES";
             // 
             // AppCriee_Peseur
             // 
@@ -641,7 +830,7 @@
             this.Controls.Add(this.pbx_peseur_deconnexion);
             this.Controls.Add(this.tbc_peseur);
             this.Controls.Add(this.lbl_peseur_datejour);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximumSize = new System.Drawing.Size(833, 643);
             this.MinimumSize = new System.Drawing.Size(833, 597);
             this.Name = "AppCriee_Peseur";
@@ -710,5 +899,19 @@
         private System.Windows.Forms.Label lbl_peseur_mesdonnees_prenom;
         private System.Windows.Forms.Label lbl_peseur_mesdonnees_login;
         private System.Windows.Forms.Label lbl_peseur_mesdonnees_title;
+        private System.Windows.Forms.Label lbl_peseur_mesdonnees_validationmodiferreur;
+        private System.Windows.Forms.Label lbl_peseur_mesdonnees_modification;
+        private System.Windows.Forms.Button btn_peseur_mesdonnees_modifier;
+        private System.Windows.Forms.Label lbl_peseur_mesdonnees_validationmodif;
+        private System.Windows.Forms.Button btn_peseur_mesdonnees_validermodif;
+        private System.Windows.Forms.Label lbl_peseur_mesdonnees_champsobli;
+        private System.Windows.Forms.TextBox tbx_peseur_mesdonnees_adrMail;
+        private System.Windows.Forms.TextBox tbx_peseur_mesdonnees_prenom;
+        private System.Windows.Forms.TextBox tbx_peseur_mesdonnees_nom;
+        private System.Windows.Forms.TextBox tbx_peseur_mesdonnees_login;
+        private System.Windows.Forms.Label lbl_peseur_mesdonnees_modifieradrMail;
+        private System.Windows.Forms.Label lbl_peseur_mesdonnees_modifierprenom;
+        private System.Windows.Forms.Label lbl_peseur_mesdonnees_modifiernom;
+        private System.Windows.Forms.Label lbl_peseur_mesdonnees_modifierlogin;
     }
 }
