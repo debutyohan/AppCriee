@@ -553,8 +553,8 @@ namespace AppCriée
                 ligne2sous1cell2sous1cell1.AddElement(new iTextSharp.text.Chunk("\n", font14));
                 ligne2sous1cell2sous1.AddCell(ligne2sous1cell2sous1cell1);
                 ligne2sous1cell2.AddElement(ligne2sous1cell2sous1);
-                ligne2sous1cell2.AddElement(new iTextSharp.text.Chunk(Math.Round(poidstotal, 2)+ "kg", font14));
-                ligne2sous1cell2.AddElement(new iTextSharp.text.Chunk(Math.Round(taretotal, 2) + "kg", font14));
+                ligne2sous1cell2.AddElement(new iTextSharp.text.Chunk(poidstotal.ToString("F2") + "kg", font14));
+                ligne2sous1cell2.AddElement(new iTextSharp.text.Chunk(taretotal.ToString("F2") + "kg", font14));
                 ligne2sous1.AddCell(ligne2sous1cell2);
 
                 iTextSharp.text.pdf.PdfPTable ligne2sous2 = new iTextSharp.text.pdf.PdfPTable(2);
@@ -574,7 +574,7 @@ namespace AppCriée
                 ligne2sous2cell2.AddElement(new iTextSharp.text.Chunk(numeroLot, font50).setLineHeight(40));
                 ligne2sous2cell2.AddElement(new iTextSharp.text.Chunk("   "+idTaille, font24).setLineHeight(32));
                 ligne2sous2cell2.AddElement(new iTextSharp.text.Chunk("\n", font24));
-                ligne2sous2cell2.AddElement(new iTextSharp.text.Chunk("   "+Math.Round(poidstotalsanstare, 2)+"kg", font42));
+                ligne2sous2cell2.AddElement(new iTextSharp.text.Chunk("   "+poidstotalsanstare.ToString("F2")+"kg", font42));
                 ligne2sous2.AddCell(ligne2sous2cell2);
                 ligne2.AddCell(ligne2sous1);
                 ligne2.AddCell(ligne2sous2);
