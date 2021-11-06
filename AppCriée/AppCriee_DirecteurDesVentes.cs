@@ -29,6 +29,15 @@ namespace AppCriée
             _useractuelle = unutilisateur;
             lbl_directeurdesventes_accueil_bienvenue.Text = "Bienvenue " + unutilisateur.Nom + " " + unutilisateur.Prenom;
             lbl_directeurdesventes_datejour.Text = "Date du jour : " + DateTime.Today.ToString("dd/MM/yyyy");
+            lbl_directeurdesventes_mesdonnees_login.Text = "Login : " + unutilisateur.Login;
+            lbl_directeurdesventes_mesdonnees_prenom.Text = "Prénom : " + unutilisateur.Prenom;
+            lbl_directeurdesventes_mesdonnees_nom.Text = "Nom : " + unutilisateur.Nom;
+            lbl_directeurdesventes_mesdonnees_adrMail.Text = "Adresse Mail : " + unutilisateur.AdrMail;
+            lbl_directeurdesventes_mesdonnees_typeuser.Text = "Type utilisateur : " + unutilisateur.Libelletype;
+            if (unutilisateur.AdrMail == "")
+            {
+                lbl_directeurdesventes_mesdonnees_adrMail.Text = "Adresse Mail : (Non communiquée)";
+            }
         }
 
         #endregion
@@ -121,7 +130,7 @@ namespace AppCriée
 
         private void AppCriee_DirecteurDesVentes_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(_useractuelle != null)
+            if (_useractuelle != null)
             {
                 DialogResult result = MessageBox.Show("Confirmez-vous la déconnexion ?", "Confirmation de déconnexion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (result == DialogResult.Yes)

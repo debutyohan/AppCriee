@@ -35,6 +35,15 @@ namespace AppCriée
             lbl_peseur_accueil_bienvenue.Text = "Bienvenue " + unutilisateur.Nom + " " + unutilisateur.Prenom;
             lbl_peseur_datejour.Text = "Date du jour : " + DateTime.Today.ToString("dd/MM/yyyy");
             HiddenObject.Hide(new List<Control> { lbl_peseur_lotspeche_choixbateau });
+            lbl_peseur_mesdonnees_login.Text = "Login : " + unutilisateur.Login;
+            lbl_peseur_mesdonnees_prenom.Text = "Prénom : " + unutilisateur.Prenom;
+            lbl_peseur_mesdonnees_nom.Text = "Nom : " + unutilisateur.Nom;
+            lbl_peseur_mesdonnees_adrMail.Text = "Adresse Mail : " + unutilisateur.AdrMail;
+            lbl_peseur_mesdonnees_typeuser.Text = "Type utilisateur : " + unutilisateur.Libelletype;
+            if (unutilisateur.AdrMail == "")
+            {
+                lbl_peseur_mesdonnees_adrMail.Text = "Adresse Mail : (Non communiquée)";
+            }
         }
 
         #endregion
@@ -69,7 +78,7 @@ namespace AppCriée
             idLotisWeightModifing = -1;
             idBacisWeightModifing = "";
             HiddenObject.Show(new List<Control> { lbl_peseur_lotspeche_lotsbateau });
-            HiddenObject.Hide(new List<Control> {lbl_peseur_lotspeche_info, lbl_peseur_lotspeche_info2 ,rbtn_peseur_lotspeche_lotnonbloque, rbtn_peseur_lotspeche_lotbloque, lbl_peseur_lotspeche_validation, lbl_peseur_lotspeche_saisirpoids, tbx_peseur_lotspeche_saisirpoids, lbl_peseur_lotspeche_validationok, btn_peseur_lotspeche_validersaisiepoids, dg_peseur_lotspeche_bacs, btn_peseur_lotspeche_saisirpoids, lbl_peseur_lotspeche_bacdulot });
+            HiddenObject.Hide(new List<Control> { lbl_peseur_lotspeche_info, lbl_peseur_lotspeche_info2, rbtn_peseur_lotspeche_lotnonbloque, rbtn_peseur_lotspeche_lotbloque, lbl_peseur_lotspeche_validation, lbl_peseur_lotspeche_saisirpoids, tbx_peseur_lotspeche_saisirpoids, lbl_peseur_lotspeche_validationok, btn_peseur_lotspeche_validersaisiepoids, dg_peseur_lotspeche_bacs, btn_peseur_lotspeche_saisirpoids, lbl_peseur_lotspeche_bacdulot });
             String elmt_bateau = cbx_peseur_lotspeche_listebateaux.Text;
             int char_bateau = elmt_bateau.IndexOf("(");
             String imma = elmt_bateau.Substring(char_bateau + 1, elmt_bateau.Length - char_bateau - 2);
@@ -77,10 +86,10 @@ namespace AppCriée
             cs.ReqSelectPrepare("SELECT id FROM bateau WHERE immatriculation ='" + imma + "'", new List<object> { imma });
             idbateau = Int32.Parse(cs.champ("id").ToString());
             lbl_peseur_lotspeche_lotsbateau.Text = "Liste de tous les lots du Bateau '" + elmt_bateau.Substring(0, char_bateau) + "' :";
-            bool islots = CompleteControl.RemplirDataGridViewByRequest(dg_peseur_lotspeche_lotsbateau, "SELECT idLot, count(idLot) as nbbac, espece.nom as nomEspece, idTaille, idPresentation, idQualite, SUM(poidsbrutBac) as poidstotal, codeEtat FROM bac INNER JOIN lot ON bac.idDatePeche=lot.idDatePeche AND bac.idBateau=lot.idBateau AND bac.idLot=lot.id INNER JOIN espece ON espece.id=lot.idEspece INNER JOIN bateau ON bateau.id=lot.idBateau AND bateau.id=bac.idBateau WHERE bac.idDatePeche=? AND immatriculation=? GROUP BY idLot", new string[] { "idLot", "nomEspece", "idTaille", "idQualite", "idPresentation", "nbbac"  ,"poidstotal", "codeEtat"}, new List<object> {Datejour, imma });
+            bool islots = CompleteControl.RemplirDataGridViewByRequest(dg_peseur_lotspeche_lotsbateau, "SELECT idLot, count(idLot) as nbbac, espece.nom as nomEspece, idTaille, idPresentation, idQualite, SUM(poidsbrutBac) as poidstotal, codeEtat FROM bac INNER JOIN lot ON bac.idDatePeche=lot.idDatePeche AND bac.idBateau=lot.idBateau AND bac.idLot=lot.id INNER JOIN espece ON espece.id=lot.idEspece INNER JOIN bateau ON bateau.id=lot.idBateau AND bateau.id=bac.idBateau WHERE bac.idDatePeche=? AND immatriculation=? GROUP BY idLot", new string[] { "idLot", "nomEspece", "idTaille", "idQualite", "idPresentation", "nbbac", "poidstotal", "codeEtat" }, new List<object> { Datejour, imma });
             if (islots == true)
             {
-                foreach(DataGridViewRow ligne in dg_peseur_lotspeche_lotsbateau.Rows)
+                foreach (DataGridViewRow ligne in dg_peseur_lotspeche_lotsbateau.Rows)
                 {
                     string numLotLot = ligne.Cells[0].Value.ToString();
                     string numLotBateau = idbateau.ToString();
@@ -108,14 +117,14 @@ namespace AppCriée
             }
             else
             {
-                HiddenObject.Hide(new List<Control> { dg_peseur_lotspeche_lotsbateau, lbl_peseur_lotspeche_lotsbateau,  });
+                HiddenObject.Hide(new List<Control> { dg_peseur_lotspeche_lotsbateau, lbl_peseur_lotspeche_lotsbateau, });
                 lbl_peseur_lotspeche_islots.Show();
             }
         }
         private void dg_peseur_lotspeche_lotsbateau_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             dernierclic = e;
-            HiddenObject.Hide(new List<Control> { rbtn_peseur_lotspeche_lotnonbloque, rbtn_peseur_lotspeche_lotbloque, lbl_peseur_lotspeche_validation ,lbl_peseur_lotspeche_saisirpoids, tbx_peseur_lotspeche_saisirpoids, lbl_peseur_lotspeche_validationok, btn_peseur_lotspeche_validersaisiepoids });
+            HiddenObject.Hide(new List<Control> { rbtn_peseur_lotspeche_lotnonbloque, rbtn_peseur_lotspeche_lotbloque, lbl_peseur_lotspeche_validation, lbl_peseur_lotspeche_saisirpoids, tbx_peseur_lotspeche_saisirpoids, lbl_peseur_lotspeche_validationok, btn_peseur_lotspeche_validersaisiepoids });
             if (dg_peseur_lotspeche_lotsbateau.SelectedRows.Count == 1)
             {
                 DataGridViewRow ligneselectionne = dg_peseur_lotspeche_lotsbateau.SelectedRows[0];
@@ -126,7 +135,7 @@ namespace AppCriée
                 foreach (DataGridViewRow ligne in dg_peseur_lotspeche_bacs.Rows)
                 {
                     string poidsBac = ligne.Cells[3].Value.ToString().ToLower();
-                    if (poidsBac == "non saisie" || (int) Double.Parse(poidsBac.Replace('.', ',')) == 0)
+                    if (poidsBac == "non saisie" || (int)Double.Parse(poidsBac.Replace('.', ',')) == 0)
                     {
                         return;
                     }
@@ -141,9 +150,9 @@ namespace AppCriée
                 }
 
                 HiddenObject.Show(new List<Control> { rbtn_peseur_lotspeche_lotnonbloque, rbtn_peseur_lotspeche_lotbloque });
-                
-                }
-           
+
+            }
+
 
         }
         private void btn_peseur_lotspeche_saisirpoids_Click(object sender, EventArgs e)
@@ -171,10 +180,10 @@ namespace AppCriée
         private void btn_peseur_lotspeche_validersaisiepoids_Click(object sender, EventArgs e)
         {
             CURS cs = new CURS();
-            
+
             string nouvpoids = "'" + tbx_peseur_lotspeche_saisirpoids.Text + "'";
             if (nouvpoids == "''")
-            {              
+            {
                 cs.ReqAdminPrepare("UPDATE bac SET poidsbrutbac=NULL WHERE idDatePeche=? AND idBateau=? AND idLot=? AND id=?", new List<object> { Datejour, idbateau, idLotisWeightModifing, idBacisWeightModifing });
 
             }
@@ -184,7 +193,7 @@ namespace AppCriée
 
             }
             HiddenObject.Hide(new List<Control> { tbx_peseur_lotspeche_saisirpoids, lbl_peseur_lotspeche_saisirpoids, btn_peseur_lotspeche_validersaisiepoids });
-           
+
             cs.fermer();
             int index = dg_peseur_lotspeche_lotsbateau.Rows.IndexOf(ligneselect);
             cbx_peseur_lotspeche_listebateaux_SelectionChangeCommitted(sender, e);
@@ -282,7 +291,7 @@ namespace AppCriée
         }
         private void AppCriee_Peseur_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(_useractuelle != null)
+            if (_useractuelle != null)
             {
                 DialogResult result = MessageBox.Show("Confirmez-vous la déconnexion ?", "Confirmation de déconnexion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (result == DialogResult.Yes)
