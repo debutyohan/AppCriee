@@ -33,15 +33,7 @@ namespace AppCriée
             _useractuelle = unutilisateur;
             lbl_administrateur_accueil_bienvenue.Text = "Bienvenue " + unutilisateur.Nom + " " + unutilisateur.Prenom;
             lbl_administrateur_datejour.Text = "Date du jour : " + DateTime.Today.ToString("dd/MM/yyyy");
-            lbl_administrateur_mesdonnees_login.Text = "Login : " + unutilisateur.Login;
-            lbl_administrateur_mesdonnees_prenom.Text = "Prénom : " + unutilisateur.Prenom;
-            lbl_administrateur_mesdonnees_nom.Text = "Nom : " + unutilisateur.Nom;
-            lbl_administrateur_mesdonnees_adrMail.Text = "Adresse Mail : " + unutilisateur.AdrMail;
-            lbl_administrateur_mesdonnees_typeuser.Text = "Type utilisateur : " + unutilisateur.Libelletype;
-            if (unutilisateur.AdrMail == "")
-            {
-                lbl_administrateur_mesdonnees_adrMail.Text = "Adresse Mail : (Non communiquée)";
-            }
+            
         }
 
         #endregion
@@ -52,6 +44,9 @@ namespace AppCriée
             _onglet = e;
             switch (e.TabPage.Name)
             {
+                case "tbp_administrateur_accueil":
+                    lbl_administrateur_accueil_bienvenue.Text = "Bienvenue " + _useractuelle.Nom + " " + _useractuelle.Prenom;
+                    break;
                 case "tbp_administrateur_gestioncomptes":
                     HiddenObject.Hide(new List<Control> { lbl_administrateur_gestioncomptes_modification, lbl_administrateur_gestioncomptes_ajout, lbl_administrateur_gestioncomptes_adrMail, lbl_administrateur_gestioncomptes_login, lbl_administrateur_gestioncomptes_motdepasse, lbl_administrateur_gestioncomptes_nom, lbl_administrateur_gestioncomptes_prenom, lbl_administrateur_gestioncomptes_typeuser, cbx_administrateur_gestioncomptes_typeuser, tbx_administrateur_gestioncomptes_adrMail, tbx_administrateur_gestioncomptes_login, tbx_administrateur_gestioncomptes_motdepasse, tbx_administrateur_gestioncomptes_nom, tbx_administrateur_gestioncomptes_prenom, btn_administrateur_gestioncomptes_validerajout, lbl_administrateur_gestioncomptes_validationajouterror, lbl_administrateur_gestioncomptes_champsobli, lbl_administrateur_gestioncomptes_validationajoutok, btn_administrateur_gestioncomptes_validermodif });
                     CompleteControl.RemplirDataGridViewByRequest(dg_administrateur_gestioncomptes_listecompte, "SELECT utilisateur.id as iduser, login, nomuser, prenomuser, adrMail, libelle FROM utilisateur INNER JOIN typeutilisateur ON typeutilisateur.id=utilisateur.idtypeuser ORDER BY utilisateur.id", new string[] { "iduser", "login", "nomuser", "prenomuser", "adrMail", "libelle" });
@@ -77,6 +72,24 @@ namespace AppCriée
                     dg_administrateur_gestioncomptes_listecompte.Show();
                     break;
                 case "tbp_administrateur_mesdonnees":
+                    HiddenObject.Hide(new List<Control> { lbl_administrateur_mesdonnees_validationmodiferreur, lbl_administrateur_mesdonnees_modification, lbl_administrateur_mesdonnees_modifieradrMail, lbl_administrateur_mesdonnees_modifierlogin, lbl_administrateur_mesdonnees_modifiernom, lbl_administrateur_mesdonnees_modifierprenom, tbx_administrateur_mesdonnees_login, tbx_administrateur_mesdonnees_nom, tbx_administrateur_mesdonnees_adrMail, tbx_administrateur_mesdonnees_prenom, btn_administrateur_mesdonnees_validermodif, lbl_administrateur_mesdonnees_champsobli, lbl_administrateur_mesdonnees_validationmodif, lbl_administrateur_mesdonnees_validationmodiferreur,  });
+                    lbl_administrateur_mesdonnees_login.Text = "Login : " + _useractuelle.Login;
+                    lbl_administrateur_mesdonnees_prenom.Text = "Prénom : " + _useractuelle.Prenom;
+                    lbl_administrateur_mesdonnees_nom.Text = "Nom : " + _useractuelle.Nom;
+                    lbl_administrateur_mesdonnees_adrMail.Text = "Adresse Mail : " + _useractuelle.AdrMail;
+                    lbl_administrateur_mesdonnees_typeuser.Text = "Type utilisateur : " + _useractuelle.Libelletype;
+                    if (_useractuelle.AdrMail == "")
+                    {
+                        lbl_administrateur_mesdonnees_adrMail.Text = "Adresse Mail : (Non communiquée)";
+                    }
+                    if (_useractuelle.Nom == "")
+                    {
+                        lbl_administrateur_mesdonnees_nom.Text = "Nom : (Non communiquée)";
+                    }
+                    if (_useractuelle.Prenom == "")
+                    {
+                        lbl_administrateur_mesdonnees_prenom.Text = "Prénom : (Non communiquée)";
+                    }
                     CURS cs = new CURS();
                     cs.ReqSelect("SELECT count(id) as nb FROM utilisateur WHERE idtypeuser=0");
                     string nb = cs.champ("nb").ToString();
@@ -379,6 +392,7 @@ namespace AppCriée
             idUserModified = null;
             loginUserModified = null;
         }
+        
 
         #endregion
 
@@ -416,6 +430,90 @@ namespace AppCriée
             }
         }
 
+        private void btn_administrateur_mesdonnees_modifier_Click(object sender, EventArgs e)
+        {
+            HiddenObject.Show(new List<Control> { lbl_administrateur_mesdonnees_modification, lbl_administrateur_mesdonnees_modifieradrMail, lbl_administrateur_mesdonnees_modifierlogin, lbl_administrateur_mesdonnees_modifiernom, lbl_administrateur_mesdonnees_modifierprenom, tbx_administrateur_mesdonnees_login, tbx_administrateur_mesdonnees_nom, tbx_administrateur_mesdonnees_adrMail, tbx_administrateur_mesdonnees_prenom, btn_administrateur_mesdonnees_validermodif, lbl_administrateur_mesdonnees_champsobli });
+            tbx_administrateur_mesdonnees_login.Text = _useractuelle.Login; 
+            if (_useractuelle.Nom.ToString().Trim() == "(Non communiqué)")
+            {
+                tbx_administrateur_mesdonnees_nom.Text = "";
+            }
+            else
+            {
+                tbx_administrateur_mesdonnees_nom.Text = _useractuelle.Nom.ToString().Trim();
+            }
+            if (_useractuelle.Prenom.ToString().Trim() == "(Non communiqué)")
+            {
+                tbx_administrateur_mesdonnees_prenom.Text = "";
+            }
+            else
+            {
+                tbx_administrateur_mesdonnees_prenom.Text = _useractuelle.Prenom.ToString();
+            }
+            if (_useractuelle.AdrMail.ToString().Trim() == "(Non communiquée)")
+            {
+                tbx_administrateur_mesdonnees_adrMail.Text = "";
+            }
+            else
+            {
+                tbx_administrateur_mesdonnees_adrMail.Text = _useractuelle.AdrMail.ToString();
+            }
+            lbl_administrateur_mesdonnees_validationmodif.Hide();
+        }
+
+        private void btn_administrateur_mesdonnees_validermodif_Click(object sender, EventArgs e)
+        {
+            idUserModified = _useractuelle.Id.ToString();
+            if (tbx_administrateur_mesdonnees_login.Text == "")
+            {
+                lbl_administrateur_mesdonnees_validationmodiferreur.Text = "Tous les champs obligatoires doivent être remplis";
+                lbl_administrateur_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+            if (tbx_administrateur_mesdonnees_adrMail.Text.Trim() != "" && !(Regex.IsMatch(tbx_administrateur_mesdonnees_adrMail.Text, @"^(?("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))" + @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$")))
+            {
+                lbl_administrateur_mesdonnees_validationmodiferreur.Text = "L’adresse mail saisie n’est pas correcte";
+                lbl_administrateur_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+
+            object adrMail = tbx_administrateur_mesdonnees_adrMail.Text;
+            if (adrMail.ToString().Trim() == "")
+            {
+                adrMail = null;
+            }
+            object nomModif = tbx_administrateur_mesdonnees_nom.Text;
+            if (nomModif.ToString().Trim() == "")
+            {
+                nomModif = null;
+            }
+            object prenomModif = tbx_administrateur_mesdonnees_prenom.Text;
+            if (prenomModif.ToString().Trim() == "")
+            {
+                prenomModif = null;
+            }
+
+            CURS cs = new CURS();
+            cs.ReqAdminPrepare("UPDATE utilisateur SET login=?, nomuser=?, prenomuser=?, adrMail=? WHERE id=?", new List<object> { tbx_administrateur_mesdonnees_login.Text, nomModif, prenomModif, adrMail, idUserModified });
+            cs.fermer();
+            lbl_administrateur_mesdonnees_validationmodif.Text = "Vos données ont bien été modifiées.\n";
+            HiddenObject.Hide(new List<Control> { lbl_administrateur_mesdonnees_validationmodiferreur, lbl_administrateur_mesdonnees_modification, lbl_administrateur_mesdonnees_modifieradrMail, lbl_administrateur_mesdonnees_modifierlogin, lbl_administrateur_mesdonnees_modifiernom, lbl_administrateur_mesdonnees_modifierprenom, tbx_administrateur_mesdonnees_login, tbx_administrateur_mesdonnees_nom, tbx_administrateur_mesdonnees_adrMail, tbx_administrateur_mesdonnees_prenom, btn_administrateur_mesdonnees_validermodif, lbl_administrateur_mesdonnees_champsobli });
+
+            _useractuelle.Login = tbx_administrateur_mesdonnees_login.Text;
+            _useractuelle.Nom = tbx_administrateur_mesdonnees_nom.Text.Trim();
+            _useractuelle.Prenom = tbx_administrateur_mesdonnees_prenom.Text.Trim();
+            _useractuelle.AdrMail = tbx_administrateur_mesdonnees_adrMail.Text.Trim();
+
+            lbl_administrateur_mesdonnees_login.Text = "Login : " + _useractuelle.Login.ToString();
+            lbl_administrateur_mesdonnees_nom.Text = "Nom : " + _useractuelle.Nom.ToString();
+            lbl_administrateur_mesdonnees_prenom.Text = "Prénom : " + _useractuelle.Prenom.ToString();
+            lbl_administrateur_mesdonnees_adrMail.Text = "Adresse Mail : " + _useractuelle.AdrMail.ToString();
+
+            tbc_administrateur_Selected(sender, _onglet);
+            lbl_administrateur_mesdonnees_validationmodif.Show();
+
+        }
+
         #endregion
 
         #region Fermture du Formulaire
@@ -439,6 +537,11 @@ namespace AppCriée
         {
             this.Close();
         }
+
+
+
+
+
 
 
         #endregion

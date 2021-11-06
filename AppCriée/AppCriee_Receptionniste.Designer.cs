@@ -51,6 +51,20 @@ namespace AppCriée
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbl_title = new System.Windows.Forms.Label();
             this.tbp_receptionniste_mesdonnees = new System.Windows.Forms.TabPage();
+            this.lbl_receptionniste_mesdonnees_validationmodiferreur = new System.Windows.Forms.Label();
+            this.lbl_receptionniste_mesdonnees_modification = new System.Windows.Forms.Label();
+            this.btn_receptionniste_mesdonnees_modifier = new System.Windows.Forms.Button();
+            this.lbl_receptionniste_mesdonnees_validationmodif = new System.Windows.Forms.Label();
+            this.btn_receptionniste_mesdonnees_validermodif = new System.Windows.Forms.Button();
+            this.lbl_receptionniste_mesdonnees_champsobli = new System.Windows.Forms.Label();
+            this.tbx_receptionniste_mesdonnees_adrMail = new System.Windows.Forms.TextBox();
+            this.tbx_receptionniste_mesdonnees_prenom = new System.Windows.Forms.TextBox();
+            this.tbx_receptionniste_mesdonnees_nom = new System.Windows.Forms.TextBox();
+            this.tbx_receptionniste_mesdonnees_login = new System.Windows.Forms.TextBox();
+            this.lbl_receptionniste_mesdonnees_modifieradrMail = new System.Windows.Forms.Label();
+            this.lbl_receptionniste_mesdonnees_modifierprenom = new System.Windows.Forms.Label();
+            this.lbl_receptionniste_mesdonnees_modifiernom = new System.Windows.Forms.Label();
+            this.lbl_receptionniste_mesdonnees_modifierlogin = new System.Windows.Forms.Label();
             this.lbl_receptionniste_mesdonnees_typeuser = new System.Windows.Forms.Label();
             this.lbl_receptionniste_mesdonnees_adrMail = new System.Windows.Forms.Label();
             this.lbl_receptionniste_mesdonnees_nom = new System.Windows.Forms.Label();
@@ -88,7 +102,7 @@ namespace AppCriée
             this.tbc_receptionniste.SelectedIndex = 0;
             this.tbc_receptionniste.Size = new System.Drawing.Size(814, 552);
             this.tbc_receptionniste.TabIndex = 18;
-            this.tbc_receptionniste.SelectedIndexChanged += new System.EventHandler(this.tbc_receptionniste_SelectedIndexChanged);
+            this.tbc_receptionniste.Selected += new System.Windows.Forms.TabControlEventHandler(this.tbc_receptionniste_Selected);
             // 
             // tabAccueil
             // 
@@ -323,6 +337,20 @@ namespace AppCriée
             // 
             // tbp_receptionniste_mesdonnees
             // 
+            this.tbp_receptionniste_mesdonnees.Controls.Add(this.lbl_receptionniste_mesdonnees_validationmodiferreur);
+            this.tbp_receptionniste_mesdonnees.Controls.Add(this.lbl_receptionniste_mesdonnees_modification);
+            this.tbp_receptionniste_mesdonnees.Controls.Add(this.btn_receptionniste_mesdonnees_modifier);
+            this.tbp_receptionniste_mesdonnees.Controls.Add(this.lbl_receptionniste_mesdonnees_validationmodif);
+            this.tbp_receptionniste_mesdonnees.Controls.Add(this.btn_receptionniste_mesdonnees_validermodif);
+            this.tbp_receptionniste_mesdonnees.Controls.Add(this.lbl_receptionniste_mesdonnees_champsobli);
+            this.tbp_receptionniste_mesdonnees.Controls.Add(this.tbx_receptionniste_mesdonnees_adrMail);
+            this.tbp_receptionniste_mesdonnees.Controls.Add(this.tbx_receptionniste_mesdonnees_prenom);
+            this.tbp_receptionniste_mesdonnees.Controls.Add(this.tbx_receptionniste_mesdonnees_nom);
+            this.tbp_receptionniste_mesdonnees.Controls.Add(this.tbx_receptionniste_mesdonnees_login);
+            this.tbp_receptionniste_mesdonnees.Controls.Add(this.lbl_receptionniste_mesdonnees_modifieradrMail);
+            this.tbp_receptionniste_mesdonnees.Controls.Add(this.lbl_receptionniste_mesdonnees_modifierprenom);
+            this.tbp_receptionniste_mesdonnees.Controls.Add(this.lbl_receptionniste_mesdonnees_modifiernom);
+            this.tbp_receptionniste_mesdonnees.Controls.Add(this.lbl_receptionniste_mesdonnees_modifierlogin);
             this.tbp_receptionniste_mesdonnees.Controls.Add(this.lbl_receptionniste_mesdonnees_typeuser);
             this.tbp_receptionniste_mesdonnees.Controls.Add(this.lbl_receptionniste_mesdonnees_adrMail);
             this.tbp_receptionniste_mesdonnees.Controls.Add(this.lbl_receptionniste_mesdonnees_nom);
@@ -339,11 +367,172 @@ namespace AppCriée
             this.tbp_receptionniste_mesdonnees.Text = "Mes données";
             this.tbp_receptionniste_mesdonnees.UseVisualStyleBackColor = true;
             // 
+            // lbl_receptionniste_mesdonnees_validationmodiferreur
+            // 
+            this.lbl_receptionniste_mesdonnees_validationmodiferreur.AutoSize = true;
+            this.lbl_receptionniste_mesdonnees_validationmodiferreur.BackColor = System.Drawing.Color.White;
+            this.lbl_receptionniste_mesdonnees_validationmodiferreur.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_receptionniste_mesdonnees_validationmodiferreur.ForeColor = System.Drawing.Color.Red;
+            this.lbl_receptionniste_mesdonnees_validationmodiferreur.Location = new System.Drawing.Point(434, 371);
+            this.lbl_receptionniste_mesdonnees_validationmodiferreur.Name = "lbl_receptionniste_mesdonnees_validationmodiferreur";
+            this.lbl_receptionniste_mesdonnees_validationmodiferreur.Size = new System.Drawing.Size(51, 20);
+            this.lbl_receptionniste_mesdonnees_validationmodiferreur.TabIndex = 93;
+            this.lbl_receptionniste_mesdonnees_validationmodiferreur.Text = "label1";
+            this.lbl_receptionniste_mesdonnees_validationmodiferreur.Visible = false;
+            // 
+            // lbl_receptionniste_mesdonnees_modification
+            // 
+            this.lbl_receptionniste_mesdonnees_modification.AutoSize = true;
+            this.lbl_receptionniste_mesdonnees_modification.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_receptionniste_mesdonnees_modification.Location = new System.Drawing.Point(25, 241);
+            this.lbl_receptionniste_mesdonnees_modification.Name = "lbl_receptionniste_mesdonnees_modification";
+            this.lbl_receptionniste_mesdonnees_modification.Size = new System.Drawing.Size(236, 24);
+            this.lbl_receptionniste_mesdonnees_modification.TabIndex = 92;
+            this.lbl_receptionniste_mesdonnees_modification.Text = "Modification des données :";
+            this.lbl_receptionniste_mesdonnees_modification.Visible = false;
+            // 
+            // btn_receptionniste_mesdonnees_modifier
+            // 
+            this.btn_receptionniste_mesdonnees_modifier.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btn_receptionniste_mesdonnees_modifier.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_receptionniste_mesdonnees_modifier.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btn_receptionniste_mesdonnees_modifier.Location = new System.Drawing.Point(633, 112);
+            this.btn_receptionniste_mesdonnees_modifier.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_receptionniste_mesdonnees_modifier.Name = "btn_receptionniste_mesdonnees_modifier";
+            this.btn_receptionniste_mesdonnees_modifier.Size = new System.Drawing.Size(150, 38);
+            this.btn_receptionniste_mesdonnees_modifier.TabIndex = 91;
+            this.btn_receptionniste_mesdonnees_modifier.Text = "Modifier mon compte";
+            this.btn_receptionniste_mesdonnees_modifier.UseVisualStyleBackColor = false;
+            this.btn_receptionniste_mesdonnees_modifier.Click += new System.EventHandler(this.btn_receptionniste_mesdonnees_modifier_Click);
+            // 
+            // lbl_receptionniste_mesdonnees_validationmodif
+            // 
+            this.lbl_receptionniste_mesdonnees_validationmodif.AutoSize = true;
+            this.lbl_receptionniste_mesdonnees_validationmodif.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_receptionniste_mesdonnees_validationmodif.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lbl_receptionniste_mesdonnees_validationmodif.Location = new System.Drawing.Point(267, 230);
+            this.lbl_receptionniste_mesdonnees_validationmodif.Name = "lbl_receptionniste_mesdonnees_validationmodif";
+            this.lbl_receptionniste_mesdonnees_validationmodif.Size = new System.Drawing.Size(51, 20);
+            this.lbl_receptionniste_mesdonnees_validationmodif.TabIndex = 90;
+            this.lbl_receptionniste_mesdonnees_validationmodif.Text = "label1";
+            this.lbl_receptionniste_mesdonnees_validationmodif.Visible = false;
+            // 
+            // btn_receptionniste_mesdonnees_validermodif
+            // 
+            this.btn_receptionniste_mesdonnees_validermodif.BackColor = System.Drawing.SystemColors.Info;
+            this.btn_receptionniste_mesdonnees_validermodif.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_receptionniste_mesdonnees_validermodif.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btn_receptionniste_mesdonnees_validermodif.Location = new System.Drawing.Point(553, 299);
+            this.btn_receptionniste_mesdonnees_validermodif.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_receptionniste_mesdonnees_validermodif.Name = "btn_receptionniste_mesdonnees_validermodif";
+            this.btn_receptionniste_mesdonnees_validermodif.Size = new System.Drawing.Size(99, 27);
+            this.btn_receptionniste_mesdonnees_validermodif.TabIndex = 89;
+            this.btn_receptionniste_mesdonnees_validermodif.Text = "Valider";
+            this.btn_receptionniste_mesdonnees_validermodif.UseVisualStyleBackColor = false;
+            this.btn_receptionniste_mesdonnees_validermodif.Visible = false;
+            this.btn_receptionniste_mesdonnees_validermodif.Click += new System.EventHandler(this.btn_receptionniste_mesdonnees_validermodif_Click);
+            // 
+            // lbl_receptionniste_mesdonnees_champsobli
+            // 
+            this.lbl_receptionniste_mesdonnees_champsobli.AutoSize = true;
+            this.lbl_receptionniste_mesdonnees_champsobli.Location = new System.Drawing.Point(675, 306);
+            this.lbl_receptionniste_mesdonnees_champsobli.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_receptionniste_mesdonnees_champsobli.Name = "lbl_receptionniste_mesdonnees_champsobli";
+            this.lbl_receptionniste_mesdonnees_champsobli.Size = new System.Drawing.Size(108, 13);
+            this.lbl_receptionniste_mesdonnees_champsobli.TabIndex = 88;
+            this.lbl_receptionniste_mesdonnees_champsobli.Text = "* Champs obligatoires";
+            this.lbl_receptionniste_mesdonnees_champsobli.Visible = false;
+            // 
+            // tbx_receptionniste_mesdonnees_adrMail
+            // 
+            this.tbx_receptionniste_mesdonnees_adrMail.Location = new System.Drawing.Point(127, 328);
+            this.tbx_receptionniste_mesdonnees_adrMail.Margin = new System.Windows.Forms.Padding(2);
+            this.tbx_receptionniste_mesdonnees_adrMail.Name = "tbx_receptionniste_mesdonnees_adrMail";
+            this.tbx_receptionniste_mesdonnees_adrMail.Size = new System.Drawing.Size(159, 20);
+            this.tbx_receptionniste_mesdonnees_adrMail.TabIndex = 87;
+            this.tbx_receptionniste_mesdonnees_adrMail.Visible = false;
+            // 
+            // tbx_receptionniste_mesdonnees_prenom
+            // 
+            this.tbx_receptionniste_mesdonnees_prenom.Location = new System.Drawing.Point(399, 281);
+            this.tbx_receptionniste_mesdonnees_prenom.Margin = new System.Windows.Forms.Padding(2);
+            this.tbx_receptionniste_mesdonnees_prenom.Name = "tbx_receptionniste_mesdonnees_prenom";
+            this.tbx_receptionniste_mesdonnees_prenom.Size = new System.Drawing.Size(114, 20);
+            this.tbx_receptionniste_mesdonnees_prenom.TabIndex = 86;
+            this.tbx_receptionniste_mesdonnees_prenom.Visible = false;
+            // 
+            // tbx_receptionniste_mesdonnees_nom
+            // 
+            this.tbx_receptionniste_mesdonnees_nom.Location = new System.Drawing.Point(406, 328);
+            this.tbx_receptionniste_mesdonnees_nom.Margin = new System.Windows.Forms.Padding(2);
+            this.tbx_receptionniste_mesdonnees_nom.Name = "tbx_receptionniste_mesdonnees_nom";
+            this.tbx_receptionniste_mesdonnees_nom.Size = new System.Drawing.Size(114, 20);
+            this.tbx_receptionniste_mesdonnees_nom.TabIndex = 85;
+            this.tbx_receptionniste_mesdonnees_nom.Visible = false;
+            this.tbx_receptionniste_mesdonnees_nom.WordWrap = false;
+            // 
+            // tbx_receptionniste_mesdonnees_login
+            // 
+            this.tbx_receptionniste_mesdonnees_login.Location = new System.Drawing.Point(134, 284);
+            this.tbx_receptionniste_mesdonnees_login.Margin = new System.Windows.Forms.Padding(2);
+            this.tbx_receptionniste_mesdonnees_login.Name = "tbx_receptionniste_mesdonnees_login";
+            this.tbx_receptionniste_mesdonnees_login.Size = new System.Drawing.Size(126, 20);
+            this.tbx_receptionniste_mesdonnees_login.TabIndex = 84;
+            this.tbx_receptionniste_mesdonnees_login.Visible = false;
+            // 
+            // lbl_receptionniste_mesdonnees_modifieradrMail
+            // 
+            this.lbl_receptionniste_mesdonnees_modifieradrMail.AutoSize = true;
+            this.lbl_receptionniste_mesdonnees_modifieradrMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lbl_receptionniste_mesdonnees_modifieradrMail.Location = new System.Drawing.Point(26, 328);
+            this.lbl_receptionniste_mesdonnees_modifieradrMail.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_receptionniste_mesdonnees_modifieradrMail.Name = "lbl_receptionniste_mesdonnees_modifieradrMail";
+            this.lbl_receptionniste_mesdonnees_modifieradrMail.Size = new System.Drawing.Size(97, 17);
+            this.lbl_receptionniste_mesdonnees_modifieradrMail.TabIndex = 83;
+            this.lbl_receptionniste_mesdonnees_modifieradrMail.Text = "Adresse mail :";
+            this.lbl_receptionniste_mesdonnees_modifieradrMail.Visible = false;
+            // 
+            // lbl_receptionniste_mesdonnees_modifierprenom
+            // 
+            this.lbl_receptionniste_mesdonnees_modifierprenom.AutoSize = true;
+            this.lbl_receptionniste_mesdonnees_modifierprenom.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lbl_receptionniste_mesdonnees_modifierprenom.Location = new System.Drawing.Point(329, 283);
+            this.lbl_receptionniste_mesdonnees_modifierprenom.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_receptionniste_mesdonnees_modifierprenom.Name = "lbl_receptionniste_mesdonnees_modifierprenom";
+            this.lbl_receptionniste_mesdonnees_modifierprenom.Size = new System.Drawing.Size(65, 17);
+            this.lbl_receptionniste_mesdonnees_modifierprenom.TabIndex = 82;
+            this.lbl_receptionniste_mesdonnees_modifierprenom.Text = "Prénom :";
+            this.lbl_receptionniste_mesdonnees_modifierprenom.Visible = false;
+            // 
+            // lbl_receptionniste_mesdonnees_modifiernom
+            // 
+            this.lbl_receptionniste_mesdonnees_modifiernom.AutoSize = true;
+            this.lbl_receptionniste_mesdonnees_modifiernom.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lbl_receptionniste_mesdonnees_modifiernom.Location = new System.Drawing.Point(336, 329);
+            this.lbl_receptionniste_mesdonnees_modifiernom.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_receptionniste_mesdonnees_modifiernom.Name = "lbl_receptionniste_mesdonnees_modifiernom";
+            this.lbl_receptionniste_mesdonnees_modifiernom.Size = new System.Drawing.Size(45, 17);
+            this.lbl_receptionniste_mesdonnees_modifiernom.TabIndex = 81;
+            this.lbl_receptionniste_mesdonnees_modifiernom.Text = "Nom :";
+            this.lbl_receptionniste_mesdonnees_modifiernom.Visible = false;
+            // 
+            // lbl_receptionniste_mesdonnees_modifierlogin
+            // 
+            this.lbl_receptionniste_mesdonnees_modifierlogin.AutoSize = true;
+            this.lbl_receptionniste_mesdonnees_modifierlogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lbl_receptionniste_mesdonnees_modifierlogin.Location = new System.Drawing.Point(26, 284);
+            this.lbl_receptionniste_mesdonnees_modifierlogin.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_receptionniste_mesdonnees_modifierlogin.Name = "lbl_receptionniste_mesdonnees_modifierlogin";
+            this.lbl_receptionniste_mesdonnees_modifierlogin.Size = new System.Drawing.Size(60, 17);
+            this.lbl_receptionniste_mesdonnees_modifierlogin.TabIndex = 80;
+            this.lbl_receptionniste_mesdonnees_modifierlogin.Text = "Login * :";
+            this.lbl_receptionniste_mesdonnees_modifierlogin.Visible = false;
+            // 
             // lbl_receptionniste_mesdonnees_typeuser
             // 
             this.lbl_receptionniste_mesdonnees_typeuser.AutoSize = true;
             this.lbl_receptionniste_mesdonnees_typeuser.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_receptionniste_mesdonnees_typeuser.Location = new System.Drawing.Point(41, 245);
+            this.lbl_receptionniste_mesdonnees_typeuser.Location = new System.Drawing.Point(25, 186);
             this.lbl_receptionniste_mesdonnees_typeuser.Name = "lbl_receptionniste_mesdonnees_typeuser";
             this.lbl_receptionniste_mesdonnees_typeuser.Size = new System.Drawing.Size(329, 24);
             this.lbl_receptionniste_mesdonnees_typeuser.TabIndex = 45;
@@ -353,7 +542,7 @@ namespace AppCriée
             // 
             this.lbl_receptionniste_mesdonnees_adrMail.AutoSize = true;
             this.lbl_receptionniste_mesdonnees_adrMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_receptionniste_mesdonnees_adrMail.Location = new System.Drawing.Point(277, 168);
+            this.lbl_receptionniste_mesdonnees_adrMail.Location = new System.Drawing.Point(276, 135);
             this.lbl_receptionniste_mesdonnees_adrMail.Name = "lbl_receptionniste_mesdonnees_adrMail";
             this.lbl_receptionniste_mesdonnees_adrMail.Size = new System.Drawing.Size(300, 24);
             this.lbl_receptionniste_mesdonnees_adrMail.TabIndex = 44;
@@ -363,7 +552,7 @@ namespace AppCriée
             // 
             this.lbl_receptionniste_mesdonnees_nom.AutoSize = true;
             this.lbl_receptionniste_mesdonnees_nom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_receptionniste_mesdonnees_nom.Location = new System.Drawing.Point(41, 168);
+            this.lbl_receptionniste_mesdonnees_nom.Location = new System.Drawing.Point(25, 135);
             this.lbl_receptionniste_mesdonnees_nom.Name = "lbl_receptionniste_mesdonnees_nom";
             this.lbl_receptionniste_mesdonnees_nom.Size = new System.Drawing.Size(164, 24);
             this.lbl_receptionniste_mesdonnees_nom.TabIndex = 43;
@@ -373,7 +562,7 @@ namespace AppCriée
             // 
             this.lbl_receptionniste_mesdonnees_prenom.AutoSize = true;
             this.lbl_receptionniste_mesdonnees_prenom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_receptionniste_mesdonnees_prenom.Location = new System.Drawing.Point(277, 95);
+            this.lbl_receptionniste_mesdonnees_prenom.Location = new System.Drawing.Point(276, 78);
             this.lbl_receptionniste_mesdonnees_prenom.Name = "lbl_receptionniste_mesdonnees_prenom";
             this.lbl_receptionniste_mesdonnees_prenom.Size = new System.Drawing.Size(218, 24);
             this.lbl_receptionniste_mesdonnees_prenom.TabIndex = 42;
@@ -383,7 +572,7 @@ namespace AppCriée
             // 
             this.lbl_receptionniste_mesdonnees_login.AutoSize = true;
             this.lbl_receptionniste_mesdonnees_login.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_receptionniste_mesdonnees_login.Location = new System.Drawing.Point(41, 95);
+            this.lbl_receptionniste_mesdonnees_login.Location = new System.Drawing.Point(25, 78);
             this.lbl_receptionniste_mesdonnees_login.Name = "lbl_receptionniste_mesdonnees_login";
             this.lbl_receptionniste_mesdonnees_login.Size = new System.Drawing.Size(173, 24);
             this.lbl_receptionniste_mesdonnees_login.TabIndex = 41;
@@ -403,7 +592,7 @@ namespace AppCriée
             // 
             this.btn_receptionniste_mesdonnees_supprimer.BackColor = System.Drawing.Color.Red;
             this.btn_receptionniste_mesdonnees_supprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_receptionniste_mesdonnees_supprimer.Location = new System.Drawing.Point(588, 84);
+            this.btn_receptionniste_mesdonnees_supprimer.Location = new System.Drawing.Point(633, 168);
             this.btn_receptionniste_mesdonnees_supprimer.Name = "btn_receptionniste_mesdonnees_supprimer";
             this.btn_receptionniste_mesdonnees_supprimer.Size = new System.Drawing.Size(150, 42);
             this.btn_receptionniste_mesdonnees_supprimer.TabIndex = 21;
@@ -497,5 +686,19 @@ namespace AppCriée
         private System.Windows.Forms.Label lbl_receptionniste_mesdonnees_prenom;
         private System.Windows.Forms.Label lbl_receptionniste_mesdonnees_login;
         private System.Windows.Forms.Label lbl_receptionniste_mesdonnees_title;
+        private System.Windows.Forms.Label lbl_receptionniste_mesdonnees_validationmodiferreur;
+        private System.Windows.Forms.Label lbl_receptionniste_mesdonnees_modification;
+        private System.Windows.Forms.Button btn_receptionniste_mesdonnees_modifier;
+        private System.Windows.Forms.Label lbl_receptionniste_mesdonnees_validationmodif;
+        private System.Windows.Forms.Button btn_receptionniste_mesdonnees_validermodif;
+        private System.Windows.Forms.Label lbl_receptionniste_mesdonnees_champsobli;
+        private System.Windows.Forms.TextBox tbx_receptionniste_mesdonnees_adrMail;
+        private System.Windows.Forms.TextBox tbx_receptionniste_mesdonnees_prenom;
+        private System.Windows.Forms.TextBox tbx_receptionniste_mesdonnees_nom;
+        private System.Windows.Forms.TextBox tbx_receptionniste_mesdonnees_login;
+        private System.Windows.Forms.Label lbl_receptionniste_mesdonnees_modifieradrMail;
+        private System.Windows.Forms.Label lbl_receptionniste_mesdonnees_modifierprenom;
+        private System.Windows.Forms.Label lbl_receptionniste_mesdonnees_modifiernom;
+        private System.Windows.Forms.Label lbl_receptionniste_mesdonnees_modifierlogin;
     }
 }

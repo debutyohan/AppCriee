@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,6 +18,8 @@ namespace AppCriée
         string Datejour = DateTime.Today.ToString("yyyy-MM-dd");
         AppCriee _authAccueil;
         User _useractuelle;
+        TabControlEventArgs _onglet;
+        string idUserModified;
 
         #endregion
 
@@ -30,27 +33,22 @@ namespace AppCriée
             lbl_accueil_bienvenue.Text = "Bienvenue " + unutilisateur.Nom + " " + unutilisateur.Prenom;
             lbl_receptionniste_datejour.Text = "Date du jour : " + DateTime.Today.ToString("dd/MM/yyyy");
             HiddenObject.Hide(new List<Control> { lbl_pechejour_allpeche, dg_pechejour, lbl_ajoutpeche_creerpeche_nombateau, cbx_ajoutpeche_creerpeche_nombateau, btn_pechejour_creerpeche_valider, lbl_pechejour_pecheok });
-            lbl_receptionniste_mesdonnees_login.Text = "Login : " + unutilisateur.Login;
-            lbl_receptionniste_mesdonnees_prenom.Text = "Prénom : " + unutilisateur.Prenom;
-            lbl_receptionniste_mesdonnees_nom.Text = "Nom : " + unutilisateur.Nom;
-            lbl_receptionniste_mesdonnees_adrMail.Text = "Adresse Mail : " + unutilisateur.AdrMail;
-            lbl_receptionniste_mesdonnees_typeuser.Text = "Type utilisateur : " + unutilisateur.Libelletype;
-            if (unutilisateur.AdrMail == "")
-            {
-                lbl_receptionniste_mesdonnees_adrMail.Text = "Adresse Mail : (Non communiquée)";
-            }
-
-
+           
         }
 
         #endregion
 
         #region Changement d'onglet
-        private void tbc_receptionniste_SelectedIndexChanged(object sender, EventArgs e)
+        private void tbc_receptionniste_Selected(object sender, TabControlEventArgs e)
         {
             lbl_pechejour_pecheok.Hide();
-            if (tbc_receptionniste.SelectedTab == tabPeche)
+            _onglet = e;
+            switch (e.TabPage.Name)
             {
+                case "tabAccueil":
+                    lbl_accueil_bienvenue.Text = "Bienvenue " + _useractuelle.Nom + " " + _useractuelle.Prenom;
+                    break;
+                case "tabPeche":
                 CURS cs = new CURS();
                 cs.ReqSelectPrepare("SELECT count(id) as nbnotpeche FROM bateau WHERE id NOT IN(SELECT DISTINCT idBateau FROM peche WHERE datePeche=?)", new List<object> { Datejour });
                 if (cs.champ("nbnotpeche").ToString() == "0")
@@ -68,7 +66,29 @@ namespace AppCriée
                 {
                     HiddenObject.Hide(new List<Control> { dg_pechejour, btn_receptionniste_peche_supprimer });
                 }
+                    break;                     
+                case "tbp_receptionniste_mesdonnees":
+                    HiddenObject.Hide(new List<Control> { lbl_receptionniste_mesdonnees_validationmodiferreur, lbl_receptionniste_mesdonnees_modification, lbl_receptionniste_mesdonnees_modifieradrMail, lbl_receptionniste_mesdonnees_modifierlogin, lbl_receptionniste_mesdonnees_modifiernom, lbl_receptionniste_mesdonnees_modifierprenom, tbx_receptionniste_mesdonnees_login, tbx_receptionniste_mesdonnees_nom, tbx_receptionniste_mesdonnees_adrMail, tbx_receptionniste_mesdonnees_prenom, btn_receptionniste_mesdonnees_validermodif, lbl_receptionniste_mesdonnees_champsobli, lbl_receptionniste_mesdonnees_validationmodif, lbl_receptionniste_mesdonnees_validationmodiferreur, });
+                    lbl_receptionniste_mesdonnees_login.Text = "Login : " + _useractuelle.Login;
+                    lbl_receptionniste_mesdonnees_prenom.Text = "Prénom : " + _useractuelle.Prenom;
+                    lbl_receptionniste_mesdonnees_nom.Text = "Nom : " + _useractuelle.Nom;
+                    lbl_receptionniste_mesdonnees_adrMail.Text = "Adresse Mail : " + _useractuelle.AdrMail;
+                    lbl_receptionniste_mesdonnees_typeuser.Text = "Type utilisateur : " + _useractuelle.Libelletype;
+                    if (_useractuelle.AdrMail == "")
+                    {
+                        lbl_receptionniste_mesdonnees_adrMail.Text = "Adresse Mail : (Non communiquée)";
+                    }
+                    if (_useractuelle.Nom == "")
+                    {
+                        lbl_receptionniste_mesdonnees_nom.Text = "Nom : (Non communiquée)";
+                    }
+                    if (_useractuelle.Prenom == "")
+                    {
+                        lbl_receptionniste_mesdonnees_prenom.Text = "Prénom : (Non communiquée)";
+                    }
+                        break;
             }
+             
         }
 
         #endregion
@@ -183,6 +203,89 @@ namespace AppCriée
                 }
             }
         }
+        private void btn_receptionniste_mesdonnees_modifier_Click(object sender, EventArgs e)
+        {
+            HiddenObject.Show(new List<Control> { lbl_receptionniste_mesdonnees_modification, lbl_receptionniste_mesdonnees_modifieradrMail, lbl_receptionniste_mesdonnees_modifierlogin, lbl_receptionniste_mesdonnees_modifiernom, lbl_receptionniste_mesdonnees_modifierprenom, tbx_receptionniste_mesdonnees_login, tbx_receptionniste_mesdonnees_nom, tbx_receptionniste_mesdonnees_adrMail, tbx_receptionniste_mesdonnees_prenom, btn_receptionniste_mesdonnees_validermodif, lbl_receptionniste_mesdonnees_champsobli });
+            tbx_receptionniste_mesdonnees_login.Text = _useractuelle.Login;
+            if (_useractuelle.Nom.ToString().Trim() == "(Non communiqué)")
+            {
+                tbx_receptionniste_mesdonnees_nom.Text = "";
+            }
+            else
+            {
+                tbx_receptionniste_mesdonnees_nom.Text = _useractuelle.Nom.ToString().Trim();
+            }
+            if (_useractuelle.Prenom.ToString().Trim() == "(Non communiqué)")
+            {
+                tbx_receptionniste_mesdonnees_prenom.Text = "";
+            }
+            else
+            {
+                tbx_receptionniste_mesdonnees_prenom.Text = _useractuelle.Prenom.ToString();
+            }
+            if (_useractuelle.AdrMail.ToString().Trim() == "(Non communiquée)")
+            {
+                tbx_receptionniste_mesdonnees_adrMail.Text = "";
+            }
+            else
+            {
+                tbx_receptionniste_mesdonnees_adrMail.Text = _useractuelle.AdrMail.ToString();
+            }
+            lbl_receptionniste_mesdonnees_validationmodif.Hide();
+        }
+
+        private void btn_receptionniste_mesdonnees_validermodif_Click(object sender, EventArgs e)
+        {
+            idUserModified = _useractuelle.Id.ToString();
+            if (tbx_receptionniste_mesdonnees_login.Text == "")
+            {
+                lbl_receptionniste_mesdonnees_validationmodiferreur.Text = "Tous les champs obligatoires doivent être remplis";
+                lbl_receptionniste_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+            if (tbx_receptionniste_mesdonnees_adrMail.Text.Trim() != "" && !(Regex.IsMatch(tbx_receptionniste_mesdonnees_adrMail.Text, @"^(?("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))" + @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$")))
+            {
+                lbl_receptionniste_mesdonnees_validationmodiferreur.Text = "L’adresse mail saisie n’est pas correcte";
+                lbl_receptionniste_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+
+            object adrMail = tbx_receptionniste_mesdonnees_adrMail.Text;
+            if (adrMail.ToString().Trim() == "")
+            {
+                adrMail = null;
+            }
+            object nomModif = tbx_receptionniste_mesdonnees_nom.Text;
+            if (nomModif.ToString().Trim() == "")
+            {
+                nomModif = null;
+            }
+            object prenomModif = tbx_receptionniste_mesdonnees_prenom.Text;
+            if (prenomModif.ToString().Trim() == "")
+            {
+                prenomModif = null;
+            }
+
+            CURS cs = new CURS();
+            cs.ReqAdminPrepare("UPDATE utilisateur SET login=?, nomuser=?, prenomuser=?, adrMail=? WHERE id=?", new List<object> { tbx_receptionniste_mesdonnees_login.Text, nomModif, prenomModif, adrMail, idUserModified });
+            cs.fermer();
+            lbl_receptionniste_mesdonnees_validationmodif.Text = "Vos données ont bien été modifiées.\n";
+            HiddenObject.Hide(new List<Control> { lbl_receptionniste_mesdonnees_validationmodiferreur, lbl_receptionniste_mesdonnees_modification, lbl_receptionniste_mesdonnees_modifieradrMail, lbl_receptionniste_mesdonnees_modifierlogin, lbl_receptionniste_mesdonnees_modifiernom, lbl_receptionniste_mesdonnees_modifierprenom, tbx_receptionniste_mesdonnees_login, tbx_receptionniste_mesdonnees_nom, tbx_receptionniste_mesdonnees_adrMail, tbx_receptionniste_mesdonnees_prenom, btn_receptionniste_mesdonnees_validermodif, lbl_receptionniste_mesdonnees_champsobli });
+
+            _useractuelle.Login = tbx_receptionniste_mesdonnees_login.Text;
+            _useractuelle.Nom = tbx_receptionniste_mesdonnees_nom.Text.Trim();
+            _useractuelle.Prenom = tbx_receptionniste_mesdonnees_prenom.Text.Trim();
+            _useractuelle.AdrMail = tbx_receptionniste_mesdonnees_adrMail.Text.Trim();
+
+            lbl_receptionniste_mesdonnees_login.Text = "Login : " + _useractuelle.Login.ToString();
+            lbl_receptionniste_mesdonnees_nom.Text = "Nom : " + _useractuelle.Nom.ToString();
+            lbl_receptionniste_mesdonnees_prenom.Text = "Prénom : " + _useractuelle.Prenom.ToString();
+            lbl_receptionniste_mesdonnees_adrMail.Text = "Adresse Mail : " + _useractuelle.AdrMail.ToString();
+
+            tbc_receptionniste_Selected(sender, _onglet);
+            lbl_receptionniste_mesdonnees_validationmodif.Show();
+        }
+
         #endregion
 
         #region Fermeture du Formulaire
@@ -208,9 +311,13 @@ namespace AppCriée
 
 
 
+
+
+
+
         #endregion
 
-     
+
     }
 
 }
