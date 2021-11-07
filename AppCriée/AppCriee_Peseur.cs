@@ -71,7 +71,7 @@ namespace AppCriée
                     lbl_peseur_accueil_bienvenue.Text = "Bienvenue " + _useractuelle.Nom + " " + _useractuelle.Prenom;
                     break;
                 case "tbp_peseur_mesdonnees":
-                    HiddenObject.Hide(new List<Control> { lbl_peseur_mesdonnees_validationmodiferreur, lbl_peseur_mesdonnees_modification, lbl_peseur_mesdonnees_modifieradrMail, lbl_peseur_mesdonnees_modifierlogin, lbl_peseur_mesdonnees_modifiernom, lbl_peseur_mesdonnees_modifierprenom, tbx_peseur_mesdonnees_login, tbx_peseur_mesdonnees_nom, tbx_peseur_mesdonnees_adrMail, tbx_peseur_mesdonnees_prenom, btn_peseur_mesdonnees_validermodif, lbl_peseur_mesdonnees_champsobli, lbl_peseur_mesdonnees_validationmodif, lbl_peseur_mesdonnees_validationmodiferreur, });
+                    HiddenObject.Hide(new List<Control> { lbl_peseur_mesdonnees_modificationmdp, lbl_peseur_mesdonnees_validationmodif, lbl_peseur_mesdonnees_mdpactuel, tbx_peseur_mesdonnees_mdpactuel, lbl_peseur_mesdonnees_newmdp, tbx_peseur_mesdonnees_newmdp, lbl_peseur_mesdonnees_confirmationnewmdp, tbx_peseur_mesdonnees_confirmationnewmdp, btn_peseur_mesdonnees_validermodifmdp, lbl_peseur_mesdonnees_validationmodiferreur, lbl_peseur_mesdonnees_modification, lbl_peseur_mesdonnees_modifieradrMail, lbl_peseur_mesdonnees_modifierlogin, lbl_peseur_mesdonnees_modifiernom, lbl_peseur_mesdonnees_modifierprenom, tbx_peseur_mesdonnees_login, tbx_peseur_mesdonnees_nom, tbx_peseur_mesdonnees_adrMail, tbx_peseur_mesdonnees_prenom, btn_peseur_mesdonnees_validermodif, lbl_peseur_mesdonnees_champsobli, lbl_peseur_mesdonnees_validationmodif, lbl_peseur_mesdonnees_validationmodiferreur, });
                     lbl_peseur_mesdonnees_login.Text = "Login : " + _useractuelle.Login;
                     lbl_peseur_mesdonnees_prenom.Text = "Prénom : " + _useractuelle.Prenom;
                     lbl_peseur_mesdonnees_nom.Text = "Nom : " + _useractuelle.Nom;
@@ -492,6 +492,8 @@ namespace AppCriée
         private void btn_peseur_mesdonnees_modifier_Click(object sender, EventArgs e)
         {
             HiddenObject.Show(new List<Control> { lbl_peseur_mesdonnees_modification, lbl_peseur_mesdonnees_modifieradrMail, lbl_peseur_mesdonnees_modifierlogin, lbl_peseur_mesdonnees_modifiernom, lbl_peseur_mesdonnees_modifierprenom, tbx_peseur_mesdonnees_login, tbx_peseur_mesdonnees_nom, tbx_peseur_mesdonnees_adrMail, tbx_peseur_mesdonnees_prenom, btn_peseur_mesdonnees_validermodif, lbl_peseur_mesdonnees_champsobli });
+            HiddenObject.Hide(new List<Control> { btn_peseur_mesdonnees_validermodifmdp, lbl_peseur_mesdonnees_mdpactuel, tbx_peseur_mesdonnees_mdpactuel, lbl_peseur_mesdonnees_newmdp, tbx_peseur_mesdonnees_newmdp, lbl_peseur_mesdonnees_confirmationnewmdp, tbx_peseur_mesdonnees_confirmationnewmdp, lbl_peseur_mesdonnees_modificationmdp });
+
             tbx_peseur_mesdonnees_login.Text = _useractuelle.Login;
             if (_useractuelle.Nom.ToString().Trim() == "(Non communiqué)")
             {
@@ -556,7 +558,7 @@ namespace AppCriée
             cs.ReqAdminPrepare("UPDATE utilisateur SET login=?, nomuser=?, prenomuser=?, adrMail=? WHERE id=?", new List<object> { tbx_peseur_mesdonnees_login.Text, nomModif, prenomModif, adrMail, idUserModified });
             cs.fermer();
             lbl_peseur_mesdonnees_validationmodif.Text = "Vos données ont bien été modifiées.\n";
-            HiddenObject.Hide(new List<Control> { lbl_peseur_mesdonnees_validationmodiferreur, lbl_peseur_mesdonnees_modification, lbl_peseur_mesdonnees_modifieradrMail, lbl_peseur_mesdonnees_modifierlogin, lbl_peseur_mesdonnees_modifiernom, lbl_peseur_mesdonnees_modifierprenom, tbx_peseur_mesdonnees_login, tbx_peseur_mesdonnees_nom, tbx_peseur_mesdonnees_adrMail, tbx_peseur_mesdonnees_prenom, btn_peseur_mesdonnees_validermodif, lbl_peseur_mesdonnees_champsobli });
+            HiddenObject.Hide(new List<Control> { lbl_peseur_mesdonnees_modificationmdp, lbl_peseur_mesdonnees_validationmodiferreur, lbl_peseur_mesdonnees_modification, lbl_peseur_mesdonnees_modifieradrMail, lbl_peseur_mesdonnees_modifierlogin, lbl_peseur_mesdonnees_modifiernom, lbl_peseur_mesdonnees_modifierprenom, tbx_peseur_mesdonnees_login, tbx_peseur_mesdonnees_nom, tbx_peseur_mesdonnees_adrMail, tbx_peseur_mesdonnees_prenom, btn_peseur_mesdonnees_validermodif, lbl_peseur_mesdonnees_champsobli });
 
             _useractuelle.Login = tbx_peseur_mesdonnees_login.Text;
             _useractuelle.Nom = tbx_peseur_mesdonnees_nom.Text.Trim();
@@ -570,6 +572,72 @@ namespace AppCriée
 
             tbc_peseur_Selected(sender, _onglet);
             lbl_peseur_mesdonnees_validationmodif.Show();
+        }
+
+        private void btn_peseur_mesdonnees_modifiermdp_Click(object sender, EventArgs e)
+        {
+            HiddenObject.Hide(new List<Control> { lbl_peseur_mesdonnees_modifieradrMail, lbl_peseur_mesdonnees_modifierlogin, lbl_peseur_mesdonnees_modifiernom, lbl_peseur_mesdonnees_modifierprenom, tbx_peseur_mesdonnees_login, tbx_peseur_mesdonnees_nom, tbx_peseur_mesdonnees_prenom, tbx_peseur_mesdonnees_adrMail, lbl_peseur_mesdonnees_modification, btn_peseur_mesdonnees_validermodif, lbl_peseur_mesdonnees_champsobli, lbl_peseur_mesdonnees_validationmodif, lbl_peseur_mesdonnees_validationmodiferreur });
+            HiddenObject.Show(new List<Control> { lbl_peseur_mesdonnees_modificationmdp, lbl_peseur_mesdonnees_mdpactuel, tbx_peseur_mesdonnees_mdpactuel, lbl_peseur_mesdonnees_newmdp, tbx_peseur_mesdonnees_newmdp, lbl_peseur_mesdonnees_confirmationnewmdp, tbx_peseur_mesdonnees_confirmationnewmdp, btn_peseur_mesdonnees_validermodifmdp });
+            tbx_peseur_mesdonnees_mdpactuel.Text = "";
+            tbx_peseur_mesdonnees_newmdp.Text = "";
+            tbx_peseur_mesdonnees_confirmationnewmdp.Text = "";
+        }
+
+        private void btn_peseur_mesdonnees_validermodifmdp_Click(object sender, EventArgs e)
+        {
+            idUserModified = _useractuelle.Id.ToString();
+            String passwdhash = new HashData(tbx_peseur_mesdonnees_mdpactuel.Text).HashCalculate();
+            if (tbx_peseur_mesdonnees_mdpactuel.Text == "")
+            {
+                lbl_peseur_mesdonnees_validationmodiferreur.Text = "Tous les champs obligatoires doivent être remplis";
+                lbl_peseur_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+            if (tbx_peseur_mesdonnees_newmdp.Text == "")
+            {
+                lbl_peseur_mesdonnees_validationmodiferreur.Text = "Tous les champs obligatoires doivent être remplis";
+                lbl_peseur_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+            if (tbx_peseur_mesdonnees_confirmationnewmdp.Text == "")
+            {
+                lbl_peseur_mesdonnees_validationmodiferreur.Text = "Tous les champs obligatoires doivent être remplis";
+                lbl_peseur_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+
+            CURS cs = new CURS();
+            cs.ReqSelectPrepare("CALL Auth(?,?)", new List<object> { _useractuelle.Login, passwdhash });
+            if (cs.champ("nbUser").ToString() == "0")
+            {
+                lbl_peseur_mesdonnees_validationmodiferreur.Text = "Votre mot de passe actuel est incorrect.";
+                lbl_peseur_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+            cs.fermer();
+
+            if (!(Regex.IsMatch(tbx_peseur_mesdonnees_newmdp.Text, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$")))
+            {
+                lbl_peseur_mesdonnees_validationmodiferreur.Text = "Le mot de passe doit contenir au moins 10 caractères\ncomportant majuscule, minuscules, chiffres et caractères spéciaux";
+                lbl_peseur_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+
+            if (tbx_peseur_mesdonnees_newmdp.Text != tbx_peseur_mesdonnees_confirmationnewmdp.Text)
+            {
+                lbl_peseur_mesdonnees_validationmodiferreur.Text = "Les mots de passes ne correspondent pas, veuillez réessayer.";
+                lbl_peseur_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+
+            string motdepassehash = new HashData(tbx_peseur_mesdonnees_newmdp.Text).HashCalculate();
+            CURS csm = new CURS();
+            csm.ReqAdminPrepare("UPDATE utilisateur SET pwd=? WHERE id=? ", new List<object> { motdepassehash, idUserModified });
+            csm.fermer();
+            lbl_peseur_mesdonnees_validationmodif.Text = "Votre mot de passe a bien été modifié.";
+            lbl_peseur_mesdonnees_validationmodif.Show();
+            HiddenObject.Hide(new List<Control> { lbl_peseur_mesdonnees_modificationmdp, lbl_peseur_mesdonnees_validationmodiferreur, lbl_peseur_mesdonnees_mdpactuel, tbx_peseur_mesdonnees_mdpactuel, lbl_peseur_mesdonnees_newmdp, tbx_peseur_mesdonnees_newmdp, lbl_peseur_mesdonnees_confirmationnewmdp, tbx_peseur_mesdonnees_confirmationnewmdp, btn_peseur_mesdonnees_validermodifmdp });
+
         }
 
         #endregion
@@ -600,7 +668,12 @@ namespace AppCriée
 
 
 
+
+
+
+
         #endregion
+
 
     }
 }

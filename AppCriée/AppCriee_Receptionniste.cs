@@ -68,7 +68,7 @@ namespace AppCriée
                 }
                     break;                     
                 case "tbp_receptionniste_mesdonnees":
-                    HiddenObject.Hide(new List<Control> { lbl_receptionniste_mesdonnees_validationmodiferreur, lbl_receptionniste_mesdonnees_modification, lbl_receptionniste_mesdonnees_modifieradrMail, lbl_receptionniste_mesdonnees_modifierlogin, lbl_receptionniste_mesdonnees_modifiernom, lbl_receptionniste_mesdonnees_modifierprenom, tbx_receptionniste_mesdonnees_login, tbx_receptionniste_mesdonnees_nom, tbx_receptionniste_mesdonnees_adrMail, tbx_receptionniste_mesdonnees_prenom, btn_receptionniste_mesdonnees_validermodif, lbl_receptionniste_mesdonnees_champsobli, lbl_receptionniste_mesdonnees_validationmodif, lbl_receptionniste_mesdonnees_validationmodiferreur, });
+                    HiddenObject.Hide(new List<Control> { lbl_receptionniste_mesdonnees_modificationmdp, lbl_receptionniste_mesdonnees_validationmodif, lbl_receptionniste_mesdonnees_mdpactuel, tbx_receptionniste_mesdonnees_mdpactuel, lbl_receptionniste_mesdonnees_newmdp, tbx_receptionniste_mesdonnees_newmdp, lbl_receptionniste_mesdonnees_confirmationnewmdp, tbx_receptionniste_mesdonnees_confirmationnewmdp, btn_receptionniste_mesdonnees_validermodifmdp, lbl_receptionniste_mesdonnees_validationmodiferreur, lbl_receptionniste_mesdonnees_modification, lbl_receptionniste_mesdonnees_modifieradrMail, lbl_receptionniste_mesdonnees_modifierlogin, lbl_receptionniste_mesdonnees_modifiernom, lbl_receptionniste_mesdonnees_modifierprenom, tbx_receptionniste_mesdonnees_login, tbx_receptionniste_mesdonnees_nom, tbx_receptionniste_mesdonnees_adrMail, tbx_receptionniste_mesdonnees_prenom, btn_receptionniste_mesdonnees_validermodif, lbl_receptionniste_mesdonnees_champsobli, lbl_receptionniste_mesdonnees_validationmodif, lbl_receptionniste_mesdonnees_validationmodiferreur, });
                     lbl_receptionniste_mesdonnees_login.Text = "Login : " + _useractuelle.Login;
                     lbl_receptionniste_mesdonnees_prenom.Text = "Prénom : " + _useractuelle.Prenom;
                     lbl_receptionniste_mesdonnees_nom.Text = "Nom : " + _useractuelle.Nom;
@@ -206,6 +206,7 @@ namespace AppCriée
         private void btn_receptionniste_mesdonnees_modifier_Click(object sender, EventArgs e)
         {
             HiddenObject.Show(new List<Control> { lbl_receptionniste_mesdonnees_modification, lbl_receptionniste_mesdonnees_modifieradrMail, lbl_receptionniste_mesdonnees_modifierlogin, lbl_receptionniste_mesdonnees_modifiernom, lbl_receptionniste_mesdonnees_modifierprenom, tbx_receptionniste_mesdonnees_login, tbx_receptionniste_mesdonnees_nom, tbx_receptionniste_mesdonnees_adrMail, tbx_receptionniste_mesdonnees_prenom, btn_receptionniste_mesdonnees_validermodif, lbl_receptionniste_mesdonnees_champsobli });
+            HiddenObject.Hide(new List<Control> { btn_receptionniste_mesdonnees_validermodifmdp, lbl_receptionniste_mesdonnees_mdpactuel, tbx_receptionniste_mesdonnees_mdpactuel, lbl_receptionniste_mesdonnees_newmdp, tbx_receptionniste_mesdonnees_newmdp, lbl_receptionniste_mesdonnees_confirmationnewmdp, tbx_receptionniste_mesdonnees_confirmationnewmdp, lbl_receptionniste_mesdonnees_modificationmdp });
             tbx_receptionniste_mesdonnees_login.Text = _useractuelle.Login;
             if (_useractuelle.Nom.ToString().Trim() == "(Non communiqué)")
             {
@@ -286,6 +287,72 @@ namespace AppCriée
             lbl_receptionniste_mesdonnees_validationmodif.Show();
         }
 
+        private void btn_receptionniste_mesdonnees_modifiermdp_Click(object sender, EventArgs e)
+        {
+            HiddenObject.Hide(new List<Control> { lbl_receptionniste_mesdonnees_modifieradrMail, lbl_receptionniste_mesdonnees_modifierlogin, lbl_receptionniste_mesdonnees_modifiernom, lbl_receptionniste_mesdonnees_modifierprenom, tbx_receptionniste_mesdonnees_login, tbx_receptionniste_mesdonnees_nom, tbx_receptionniste_mesdonnees_prenom, tbx_receptionniste_mesdonnees_adrMail, lbl_receptionniste_mesdonnees_modification, btn_receptionniste_mesdonnees_validermodif, lbl_receptionniste_mesdonnees_champsobli, lbl_receptionniste_mesdonnees_validationmodif, lbl_receptionniste_mesdonnees_validationmodiferreur });
+            HiddenObject.Show(new List<Control> { lbl_receptionniste_mesdonnees_modificationmdp, lbl_receptionniste_mesdonnees_mdpactuel, tbx_receptionniste_mesdonnees_mdpactuel, lbl_receptionniste_mesdonnees_newmdp, tbx_receptionniste_mesdonnees_newmdp, lbl_receptionniste_mesdonnees_confirmationnewmdp, tbx_receptionniste_mesdonnees_confirmationnewmdp, btn_receptionniste_mesdonnees_validermodifmdp });
+            tbx_receptionniste_mesdonnees_mdpactuel.Text = "";
+            tbx_receptionniste_mesdonnees_newmdp.Text = "";
+            tbx_receptionniste_mesdonnees_confirmationnewmdp.Text = "";
+        }
+
+        private void btn_receptionniste_mesdonnees_validermodifmdp_Click(object sender, EventArgs e)
+        {
+            idUserModified = _useractuelle.Id.ToString();
+            String passwdhash = new HashData(tbx_receptionniste_mesdonnees_mdpactuel.Text).HashCalculate();
+            if (tbx_receptionniste_mesdonnees_mdpactuel.Text == "")
+            {
+                lbl_receptionniste_mesdonnees_validationmodiferreur.Text = "Tous les champs obligatoires doivent être remplis";
+                lbl_receptionniste_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+            if (tbx_receptionniste_mesdonnees_newmdp.Text == "")
+            {
+                lbl_receptionniste_mesdonnees_validationmodiferreur.Text = "Tous les champs obligatoires doivent être remplis";
+                lbl_receptionniste_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+            if (tbx_receptionniste_mesdonnees_confirmationnewmdp.Text == "")
+            {
+                lbl_receptionniste_mesdonnees_validationmodiferreur.Text = "Tous les champs obligatoires doivent être remplis";
+                lbl_receptionniste_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+
+            CURS cs = new CURS();
+            cs.ReqSelectPrepare("CALL Auth(?,?)", new List<object> { _useractuelle.Login, passwdhash });
+            if (cs.champ("nbUser").ToString() == "0")
+            {
+                lbl_receptionniste_mesdonnees_validationmodiferreur.Text = "Votre mot de passe actuel est incorrect.";
+                lbl_receptionniste_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+            cs.fermer();
+
+            if (!(Regex.IsMatch(tbx_receptionniste_mesdonnees_newmdp.Text, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$")))
+            {
+                lbl_receptionniste_mesdonnees_validationmodiferreur.Text = "Le mot de passe doit contenir au moins 10 caractères\ncomportant majuscule, minuscules, chiffres et caractères spéciaux";
+                lbl_receptionniste_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+
+            if (tbx_receptionniste_mesdonnees_newmdp.Text != tbx_receptionniste_mesdonnees_confirmationnewmdp.Text)
+            {
+                lbl_receptionniste_mesdonnees_validationmodiferreur.Text = "Les mots de passes ne correspondent pas, veuillez réessayer.";
+                lbl_receptionniste_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+
+            string motdepassehash = new HashData(tbx_receptionniste_mesdonnees_newmdp.Text).HashCalculate();
+            CURS csm = new CURS();
+            csm.ReqAdminPrepare("UPDATE utilisateur SET pwd=? WHERE id=? ", new List<object> { motdepassehash, idUserModified });
+            csm.fermer();
+            lbl_receptionniste_mesdonnees_validationmodif.Text = "Votre mot de passe a bien été modifié.";
+            lbl_receptionniste_mesdonnees_validationmodif.Show();
+            HiddenObject.Hide(new List<Control> { lbl_receptionniste_mesdonnees_modificationmdp, lbl_receptionniste_mesdonnees_validationmodiferreur, lbl_receptionniste_mesdonnees_mdpactuel, tbx_receptionniste_mesdonnees_mdpactuel, lbl_receptionniste_mesdonnees_newmdp, tbx_receptionniste_mesdonnees_newmdp, lbl_receptionniste_mesdonnees_confirmationnewmdp, tbx_receptionniste_mesdonnees_confirmationnewmdp, btn_receptionniste_mesdonnees_validermodifmdp });
+
+        }
+
         #endregion
 
         #region Fermeture du Formulaire
@@ -315,8 +382,9 @@ namespace AppCriée
 
 
 
-        #endregion
 
+
+        #endregion
 
     }
 

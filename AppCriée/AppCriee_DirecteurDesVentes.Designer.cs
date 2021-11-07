@@ -48,15 +48,14 @@ namespace AppCriée
             this.iddubateau = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbl_directeurdesventes_lotsvente_title = new System.Windows.Forms.Label();
             this.tbp_directeurdesventes_mesdonnees = new System.Windows.Forms.TabPage();
-            this.lbl_directeurdesventes_mesdonnees_typeuser = new System.Windows.Forms.Label();
-            this.lbl_directeurdesventes_mesdonnees_adrMail = new System.Windows.Forms.Label();
-            this.lbl_directeurdesventes_mesdonnees_nom = new System.Windows.Forms.Label();
-            this.lbl_directeurdesventes_mesdonnees_prenom = new System.Windows.Forms.Label();
-            this.lbl_directeurdesventes_mesdonnees_login = new System.Windows.Forms.Label();
-            this.lbl_directeurdesventes_mesdonnees_title = new System.Windows.Forms.Label();
-            this.btn_directeurdesventes_mesdonnees_supprimer = new System.Windows.Forms.Button();
-            this.pbx_directeurdesventes_deconnexion = new System.Windows.Forms.PictureBox();
-            this.lbl_directeurdesventes_datejour = new System.Windows.Forms.Label();
+            this.btn_directeurdesventes_mesdonnees_validermodifmdp = new System.Windows.Forms.Button();
+            this.btn_directeurdesventes_mesdonnees_modifiermdp = new System.Windows.Forms.Button();
+            this.lbl_directeurdesventes_mesdonnees_mdpactuel = new System.Windows.Forms.Label();
+            this.tbx_directeurdesventes_mesdonnees_mdpactuel = new System.Windows.Forms.TextBox();
+            this.tbx_directeurdesventes_mesdonnees_newmdp = new System.Windows.Forms.TextBox();
+            this.lbl_directeurdesventes_mesdonnees_newmdp = new System.Windows.Forms.Label();
+            this.lbl_directeurdesventes_mesdonnees_confirmationnewmdp = new System.Windows.Forms.Label();
+            this.tbx_directeurdesventes_mesdonnees_confirmationnewmdp = new System.Windows.Forms.TextBox();
             this.lbl_directeurdesventes_mesdonnees_validationmodiferreur = new System.Windows.Forms.Label();
             this.lbl_directeurdesventes_mesdonnees_modification = new System.Windows.Forms.Label();
             this.btn_directeurdesventes_mesdonnees_modifier = new System.Windows.Forms.Button();
@@ -71,6 +70,16 @@ namespace AppCriée
             this.lbl_directeurdesventes_mesdonnees_modifierprenom = new System.Windows.Forms.Label();
             this.lbl_directeurdesventes_mesdonnees_modifiernom = new System.Windows.Forms.Label();
             this.lbl_directeurdesventes_mesdonnees_modifierlogin = new System.Windows.Forms.Label();
+            this.lbl_directeurdesventes_mesdonnees_typeuser = new System.Windows.Forms.Label();
+            this.lbl_directeurdesventes_mesdonnees_adrMail = new System.Windows.Forms.Label();
+            this.lbl_directeurdesventes_mesdonnees_nom = new System.Windows.Forms.Label();
+            this.lbl_directeurdesventes_mesdonnees_prenom = new System.Windows.Forms.Label();
+            this.lbl_directeurdesventes_mesdonnees_login = new System.Windows.Forms.Label();
+            this.lbl_directeurdesventes_mesdonnees_title = new System.Windows.Forms.Label();
+            this.btn_directeurdesventes_mesdonnees_supprimer = new System.Windows.Forms.Button();
+            this.lbl_directeurdesventes_mesdonnees_modificationmdp = new System.Windows.Forms.Label();
+            this.pbx_directeurdesventes_deconnexion = new System.Windows.Forms.PictureBox();
+            this.lbl_directeurdesventes_datejour = new System.Windows.Forms.Label();
             this.tbc_directeurdesventes.SuspendLayout();
             this.tbp_directeurdesventes_accueil.SuspendLayout();
             this.tbp_directeurdesventes_lotsvente.SuspendLayout();
@@ -277,6 +286,14 @@ namespace AppCriée
             // 
             // tbp_directeurdesventes_mesdonnees
             // 
+            this.tbp_directeurdesventes_mesdonnees.Controls.Add(this.btn_directeurdesventes_mesdonnees_validermodifmdp);
+            this.tbp_directeurdesventes_mesdonnees.Controls.Add(this.btn_directeurdesventes_mesdonnees_modifiermdp);
+            this.tbp_directeurdesventes_mesdonnees.Controls.Add(this.lbl_directeurdesventes_mesdonnees_mdpactuel);
+            this.tbp_directeurdesventes_mesdonnees.Controls.Add(this.tbx_directeurdesventes_mesdonnees_mdpactuel);
+            this.tbp_directeurdesventes_mesdonnees.Controls.Add(this.tbx_directeurdesventes_mesdonnees_newmdp);
+            this.tbp_directeurdesventes_mesdonnees.Controls.Add(this.lbl_directeurdesventes_mesdonnees_newmdp);
+            this.tbp_directeurdesventes_mesdonnees.Controls.Add(this.lbl_directeurdesventes_mesdonnees_confirmationnewmdp);
+            this.tbp_directeurdesventes_mesdonnees.Controls.Add(this.tbx_directeurdesventes_mesdonnees_confirmationnewmdp);
             this.tbp_directeurdesventes_mesdonnees.Controls.Add(this.lbl_directeurdesventes_mesdonnees_validationmodiferreur);
             this.tbp_directeurdesventes_mesdonnees.Controls.Add(this.lbl_directeurdesventes_mesdonnees_modification);
             this.tbp_directeurdesventes_mesdonnees.Controls.Add(this.btn_directeurdesventes_mesdonnees_modifier);
@@ -298,6 +315,7 @@ namespace AppCriée
             this.tbp_directeurdesventes_mesdonnees.Controls.Add(this.lbl_directeurdesventes_mesdonnees_login);
             this.tbp_directeurdesventes_mesdonnees.Controls.Add(this.lbl_directeurdesventes_mesdonnees_title);
             this.tbp_directeurdesventes_mesdonnees.Controls.Add(this.btn_directeurdesventes_mesdonnees_supprimer);
+            this.tbp_directeurdesventes_mesdonnees.Controls.Add(this.lbl_directeurdesventes_mesdonnees_modificationmdp);
             this.tbp_directeurdesventes_mesdonnees.Location = new System.Drawing.Point(4, 22);
             this.tbp_directeurdesventes_mesdonnees.Margin = new System.Windows.Forms.Padding(2);
             this.tbp_directeurdesventes_mesdonnees.Name = "tbp_directeurdesventes_mesdonnees";
@@ -307,111 +325,107 @@ namespace AppCriée
             this.tbp_directeurdesventes_mesdonnees.Text = "Mes données";
             this.tbp_directeurdesventes_mesdonnees.UseVisualStyleBackColor = true;
             // 
-            // lbl_directeurdesventes_mesdonnees_typeuser
+            // btn_directeurdesventes_mesdonnees_validermodifmdp
             // 
-            this.lbl_directeurdesventes_mesdonnees_typeuser.AutoSize = true;
-            this.lbl_directeurdesventes_mesdonnees_typeuser.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_directeurdesventes_mesdonnees_typeuser.Location = new System.Drawing.Point(17, 208);
-            this.lbl_directeurdesventes_mesdonnees_typeuser.Name = "lbl_directeurdesventes_mesdonnees_typeuser";
-            this.lbl_directeurdesventes_mesdonnees_typeuser.Size = new System.Drawing.Size(329, 24);
-            this.lbl_directeurdesventes_mesdonnees_typeuser.TabIndex = 51;
-            this.lbl_directeurdesventes_mesdonnees_typeuser.Text = "Type utilisateur : [Votre type utilisateur]";
+            this.btn_directeurdesventes_mesdonnees_validermodifmdp.BackColor = System.Drawing.SystemColors.Info;
+            this.btn_directeurdesventes_mesdonnees_validermodifmdp.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_directeurdesventes_mesdonnees_validermodifmdp.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btn_directeurdesventes_mesdonnees_validermodifmdp.Location = new System.Drawing.Point(398, 437);
+            this.btn_directeurdesventes_mesdonnees_validermodifmdp.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_directeurdesventes_mesdonnees_validermodifmdp.Name = "btn_directeurdesventes_mesdonnees_validermodifmdp";
+            this.btn_directeurdesventes_mesdonnees_validermodifmdp.Size = new System.Drawing.Size(99, 27);
+            this.btn_directeurdesventes_mesdonnees_validermodifmdp.TabIndex = 116;
+            this.btn_directeurdesventes_mesdonnees_validermodifmdp.Text = "Valider";
+            this.btn_directeurdesventes_mesdonnees_validermodifmdp.UseVisualStyleBackColor = false;
+            this.btn_directeurdesventes_mesdonnees_validermodifmdp.Visible = false;
+            this.btn_directeurdesventes_mesdonnees_validermodifmdp.Click += new System.EventHandler(this.btn_directeurdesventes_mesdonnees_validermodifmdp_Click);
             // 
-            // lbl_directeurdesventes_mesdonnees_adrMail
+            // btn_directeurdesventes_mesdonnees_modifiermdp
             // 
-            this.lbl_directeurdesventes_mesdonnees_adrMail.AutoSize = true;
-            this.lbl_directeurdesventes_mesdonnees_adrMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_directeurdesventes_mesdonnees_adrMail.Location = new System.Drawing.Point(247, 154);
-            this.lbl_directeurdesventes_mesdonnees_adrMail.Name = "lbl_directeurdesventes_mesdonnees_adrMail";
-            this.lbl_directeurdesventes_mesdonnees_adrMail.Size = new System.Drawing.Size(300, 24);
-            this.lbl_directeurdesventes_mesdonnees_adrMail.TabIndex = 50;
-            this.lbl_directeurdesventes_mesdonnees_adrMail.Text = "Adresse mail : [Votre adresse mail]";
+            this.btn_directeurdesventes_mesdonnees_modifiermdp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btn_directeurdesventes_mesdonnees_modifiermdp.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_directeurdesventes_mesdonnees_modifiermdp.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btn_directeurdesventes_mesdonnees_modifiermdp.Location = new System.Drawing.Point(21, 431);
+            this.btn_directeurdesventes_mesdonnees_modifiermdp.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_directeurdesventes_mesdonnees_modifiermdp.Name = "btn_directeurdesventes_mesdonnees_modifiermdp";
+            this.btn_directeurdesventes_mesdonnees_modifiermdp.Size = new System.Drawing.Size(178, 38);
+            this.btn_directeurdesventes_mesdonnees_modifiermdp.TabIndex = 108;
+            this.btn_directeurdesventes_mesdonnees_modifiermdp.Text = "Modifier mon mot de passe";
+            this.btn_directeurdesventes_mesdonnees_modifiermdp.UseVisualStyleBackColor = false;
+            this.btn_directeurdesventes_mesdonnees_modifiermdp.Click += new System.EventHandler(this.btn_directeurdesventes_mesdonnees_modifiermdp_Click);
             // 
-            // lbl_directeurdesventes_mesdonnees_nom
+            // lbl_directeurdesventes_mesdonnees_mdpactuel
             // 
-            this.lbl_directeurdesventes_mesdonnees_nom.AutoSize = true;
-            this.lbl_directeurdesventes_mesdonnees_nom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_directeurdesventes_mesdonnees_nom.Location = new System.Drawing.Point(17, 154);
-            this.lbl_directeurdesventes_mesdonnees_nom.Name = "lbl_directeurdesventes_mesdonnees_nom";
-            this.lbl_directeurdesventes_mesdonnees_nom.Size = new System.Drawing.Size(164, 24);
-            this.lbl_directeurdesventes_mesdonnees_nom.TabIndex = 49;
-            this.lbl_directeurdesventes_mesdonnees_nom.Text = "Nom : [Votre nom]";
+            this.lbl_directeurdesventes_mesdonnees_mdpactuel.AutoSize = true;
+            this.lbl_directeurdesventes_mesdonnees_mdpactuel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lbl_directeurdesventes_mesdonnees_mdpactuel.Location = new System.Drawing.Point(5, 314);
+            this.lbl_directeurdesventes_mesdonnees_mdpactuel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_directeurdesventes_mesdonnees_mdpactuel.Name = "lbl_directeurdesventes_mesdonnees_mdpactuel";
+            this.lbl_directeurdesventes_mesdonnees_mdpactuel.Size = new System.Drawing.Size(143, 17);
+            this.lbl_directeurdesventes_mesdonnees_mdpactuel.TabIndex = 110;
+            this.lbl_directeurdesventes_mesdonnees_mdpactuel.Text = "Mot de passe actuel :";
+            this.lbl_directeurdesventes_mesdonnees_mdpactuel.Visible = false;
             // 
-            // lbl_directeurdesventes_mesdonnees_prenom
+            // tbx_directeurdesventes_mesdonnees_mdpactuel
             // 
-            this.lbl_directeurdesventes_mesdonnees_prenom.AutoSize = true;
-            this.lbl_directeurdesventes_mesdonnees_prenom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_directeurdesventes_mesdonnees_prenom.Location = new System.Drawing.Point(247, 97);
-            this.lbl_directeurdesventes_mesdonnees_prenom.Name = "lbl_directeurdesventes_mesdonnees_prenom";
-            this.lbl_directeurdesventes_mesdonnees_prenom.Size = new System.Drawing.Size(218, 24);
-            this.lbl_directeurdesventes_mesdonnees_prenom.TabIndex = 48;
-            this.lbl_directeurdesventes_mesdonnees_prenom.Text = "Prénom : [Votre prénom]";
+            this.tbx_directeurdesventes_mesdonnees_mdpactuel.Location = new System.Drawing.Point(152, 312);
+            this.tbx_directeurdesventes_mesdonnees_mdpactuel.Margin = new System.Windows.Forms.Padding(2);
+            this.tbx_directeurdesventes_mesdonnees_mdpactuel.Name = "tbx_directeurdesventes_mesdonnees_mdpactuel";
+            this.tbx_directeurdesventes_mesdonnees_mdpactuel.Size = new System.Drawing.Size(114, 20);
+            this.tbx_directeurdesventes_mesdonnees_mdpactuel.TabIndex = 111;
+            this.tbx_directeurdesventes_mesdonnees_mdpactuel.Visible = false;
             // 
-            // lbl_directeurdesventes_mesdonnees_login
+            // tbx_directeurdesventes_mesdonnees_newmdp
             // 
-            this.lbl_directeurdesventes_mesdonnees_login.AutoSize = true;
-            this.lbl_directeurdesventes_mesdonnees_login.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_directeurdesventes_mesdonnees_login.Location = new System.Drawing.Point(17, 97);
-            this.lbl_directeurdesventes_mesdonnees_login.Name = "lbl_directeurdesventes_mesdonnees_login";
-            this.lbl_directeurdesventes_mesdonnees_login.Size = new System.Drawing.Size(173, 24);
-            this.lbl_directeurdesventes_mesdonnees_login.TabIndex = 47;
-            this.lbl_directeurdesventes_mesdonnees_login.Text = "Login : [Votre login]";
+            this.tbx_directeurdesventes_mesdonnees_newmdp.Location = new System.Drawing.Point(455, 313);
+            this.tbx_directeurdesventes_mesdonnees_newmdp.Margin = new System.Windows.Forms.Padding(2);
+            this.tbx_directeurdesventes_mesdonnees_newmdp.Name = "tbx_directeurdesventes_mesdonnees_newmdp";
+            this.tbx_directeurdesventes_mesdonnees_newmdp.Size = new System.Drawing.Size(114, 20);
+            this.tbx_directeurdesventes_mesdonnees_newmdp.TabIndex = 113;
+            this.tbx_directeurdesventes_mesdonnees_newmdp.Visible = false;
             // 
-            // lbl_directeurdesventes_mesdonnees_title
+            // lbl_directeurdesventes_mesdonnees_newmdp
             // 
-            this.lbl_directeurdesventes_mesdonnees_title.AutoSize = true;
-            this.lbl_directeurdesventes_mesdonnees_title.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold);
-            this.lbl_directeurdesventes_mesdonnees_title.Location = new System.Drawing.Point(197, 32);
-            this.lbl_directeurdesventes_mesdonnees_title.Name = "lbl_directeurdesventes_mesdonnees_title";
-            this.lbl_directeurdesventes_mesdonnees_title.Size = new System.Drawing.Size(338, 26);
-            this.lbl_directeurdesventes_mesdonnees_title.TabIndex = 46;
-            this.lbl_directeurdesventes_mesdonnees_title.Text = "GESTION DE VOS DONNEES";
+            this.lbl_directeurdesventes_mesdonnees_newmdp.AutoSize = true;
+            this.lbl_directeurdesventes_mesdonnees_newmdp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lbl_directeurdesventes_mesdonnees_newmdp.Location = new System.Drawing.Point(289, 314);
+            this.lbl_directeurdesventes_mesdonnees_newmdp.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_directeurdesventes_mesdonnees_newmdp.Name = "lbl_directeurdesventes_mesdonnees_newmdp";
+            this.lbl_directeurdesventes_mesdonnees_newmdp.Size = new System.Drawing.Size(162, 17);
+            this.lbl_directeurdesventes_mesdonnees_newmdp.TabIndex = 112;
+            this.lbl_directeurdesventes_mesdonnees_newmdp.Text = "Nouveau mot de passe :";
+            this.lbl_directeurdesventes_mesdonnees_newmdp.Visible = false;
             // 
-            // btn_directeurdesventes_mesdonnees_supprimer
+            // lbl_directeurdesventes_mesdonnees_confirmationnewmdp
             // 
-            this.btn_directeurdesventes_mesdonnees_supprimer.BackColor = System.Drawing.Color.Red;
-            this.btn_directeurdesventes_mesdonnees_supprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_directeurdesventes_mesdonnees_supprimer.Location = new System.Drawing.Point(625, 190);
-            this.btn_directeurdesventes_mesdonnees_supprimer.Name = "btn_directeurdesventes_mesdonnees_supprimer";
-            this.btn_directeurdesventes_mesdonnees_supprimer.Size = new System.Drawing.Size(150, 42);
-            this.btn_directeurdesventes_mesdonnees_supprimer.TabIndex = 24;
-            this.btn_directeurdesventes_mesdonnees_supprimer.Text = "Supprimer mon compte";
-            this.btn_directeurdesventes_mesdonnees_supprimer.UseVisualStyleBackColor = false;
-            this.btn_directeurdesventes_mesdonnees_supprimer.Click += new System.EventHandler(this.btn_peseur_mesdonnees_supprimer_Click);
+            this.lbl_directeurdesventes_mesdonnees_confirmationnewmdp.AutoSize = true;
+            this.lbl_directeurdesventes_mesdonnees_confirmationnewmdp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lbl_directeurdesventes_mesdonnees_confirmationnewmdp.Location = new System.Drawing.Point(5, 360);
+            this.lbl_directeurdesventes_mesdonnees_confirmationnewmdp.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_directeurdesventes_mesdonnees_confirmationnewmdp.Name = "lbl_directeurdesventes_mesdonnees_confirmationnewmdp";
+            this.lbl_directeurdesventes_mesdonnees_confirmationnewmdp.Size = new System.Drawing.Size(240, 17);
+            this.lbl_directeurdesventes_mesdonnees_confirmationnewmdp.TabIndex = 114;
+            this.lbl_directeurdesventes_mesdonnees_confirmationnewmdp.Text = "Confirmer le nouveau mot de passe :";
+            this.lbl_directeurdesventes_mesdonnees_confirmationnewmdp.Visible = false;
             // 
-            // pbx_directeurdesventes_deconnexion
+            // tbx_directeurdesventes_mesdonnees_confirmationnewmdp
             // 
-            this.pbx_directeurdesventes_deconnexion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pbx_directeurdesventes_deconnexion.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbx_directeurdesventes_deconnexion.Image = global::AppCriée.Properties.Resources.computer_icons_login_icon_design_exit_5abfc840bf8ca4_9038982415225180807846;
-            this.pbx_directeurdesventes_deconnexion.Location = new System.Drawing.Point(764, 557);
-            this.pbx_directeurdesventes_deconnexion.Margin = new System.Windows.Forms.Padding(2);
-            this.pbx_directeurdesventes_deconnexion.Name = "pbx_directeurdesventes_deconnexion";
-            this.pbx_directeurdesventes_deconnexion.Size = new System.Drawing.Size(34, 37);
-            this.pbx_directeurdesventes_deconnexion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbx_directeurdesventes_deconnexion.TabIndex = 20;
-            this.pbx_directeurdesventes_deconnexion.TabStop = false;
-            this.pbx_directeurdesventes_deconnexion.Click += new System.EventHandler(this.pbx_directeurdesventes_deconnexion_Click);
-            // 
-            // lbl_directeurdesventes_datejour
-            // 
-            this.lbl_directeurdesventes_datejour.AutoSize = true;
-            this.lbl_directeurdesventes_datejour.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_directeurdesventes_datejour.Location = new System.Drawing.Point(578, 563);
-            this.lbl_directeurdesventes_datejour.Name = "lbl_directeurdesventes_datejour";
-            this.lbl_directeurdesventes_datejour.Size = new System.Drawing.Size(172, 18);
-            this.lbl_directeurdesventes_datejour.TabIndex = 20;
-            this.lbl_directeurdesventes_datejour.Text = "Date du jour : 23/10/2021";
+            this.tbx_directeurdesventes_mesdonnees_confirmationnewmdp.Location = new System.Drawing.Point(249, 359);
+            this.tbx_directeurdesventes_mesdonnees_confirmationnewmdp.Margin = new System.Windows.Forms.Padding(2);
+            this.tbx_directeurdesventes_mesdonnees_confirmationnewmdp.Name = "tbx_directeurdesventes_mesdonnees_confirmationnewmdp";
+            this.tbx_directeurdesventes_mesdonnees_confirmationnewmdp.Size = new System.Drawing.Size(114, 20);
+            this.tbx_directeurdesventes_mesdonnees_confirmationnewmdp.TabIndex = 115;
+            this.tbx_directeurdesventes_mesdonnees_confirmationnewmdp.Visible = false;
             // 
             // lbl_directeurdesventes_mesdonnees_validationmodiferreur
             // 
             this.lbl_directeurdesventes_mesdonnees_validationmodiferreur.AutoSize = true;
             this.lbl_directeurdesventes_mesdonnees_validationmodiferreur.BackColor = System.Drawing.Color.White;
-            this.lbl_directeurdesventes_mesdonnees_validationmodiferreur.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_directeurdesventes_mesdonnees_validationmodiferreur.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_directeurdesventes_mesdonnees_validationmodiferreur.ForeColor = System.Drawing.Color.Red;
-            this.lbl_directeurdesventes_mesdonnees_validationmodiferreur.Location = new System.Drawing.Point(426, 402);
+            this.lbl_directeurdesventes_mesdonnees_validationmodiferreur.Location = new System.Drawing.Point(327, 391);
             this.lbl_directeurdesventes_mesdonnees_validationmodiferreur.Name = "lbl_directeurdesventes_mesdonnees_validationmodiferreur";
-            this.lbl_directeurdesventes_mesdonnees_validationmodiferreur.Size = new System.Drawing.Size(51, 20);
+            this.lbl_directeurdesventes_mesdonnees_validationmodiferreur.Size = new System.Drawing.Size(46, 18);
             this.lbl_directeurdesventes_mesdonnees_validationmodiferreur.TabIndex = 107;
             this.lbl_directeurdesventes_mesdonnees_validationmodiferreur.Text = "label1";
             this.lbl_directeurdesventes_mesdonnees_validationmodiferreur.Visible = false;
@@ -499,7 +513,7 @@ namespace AppCriée
             // 
             // tbx_directeurdesventes_mesdonnees_nom
             // 
-            this.tbx_directeurdesventes_mesdonnees_nom.Location = new System.Drawing.Point(398, 359);
+            this.tbx_directeurdesventes_mesdonnees_nom.Location = new System.Drawing.Point(377, 359);
             this.tbx_directeurdesventes_mesdonnees_nom.Margin = new System.Windows.Forms.Padding(2);
             this.tbx_directeurdesventes_mesdonnees_nom.Name = "tbx_directeurdesventes_mesdonnees_nom";
             this.tbx_directeurdesventes_mesdonnees_nom.Size = new System.Drawing.Size(114, 20);
@@ -563,6 +577,113 @@ namespace AppCriée
             this.lbl_directeurdesventes_mesdonnees_modifierlogin.TabIndex = 94;
             this.lbl_directeurdesventes_mesdonnees_modifierlogin.Text = "Login * :";
             this.lbl_directeurdesventes_mesdonnees_modifierlogin.Visible = false;
+            // 
+            // lbl_directeurdesventes_mesdonnees_typeuser
+            // 
+            this.lbl_directeurdesventes_mesdonnees_typeuser.AutoSize = true;
+            this.lbl_directeurdesventes_mesdonnees_typeuser.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_directeurdesventes_mesdonnees_typeuser.Location = new System.Drawing.Point(17, 208);
+            this.lbl_directeurdesventes_mesdonnees_typeuser.Name = "lbl_directeurdesventes_mesdonnees_typeuser";
+            this.lbl_directeurdesventes_mesdonnees_typeuser.Size = new System.Drawing.Size(329, 24);
+            this.lbl_directeurdesventes_mesdonnees_typeuser.TabIndex = 51;
+            this.lbl_directeurdesventes_mesdonnees_typeuser.Text = "Type utilisateur : [Votre type utilisateur]";
+            // 
+            // lbl_directeurdesventes_mesdonnees_adrMail
+            // 
+            this.lbl_directeurdesventes_mesdonnees_adrMail.AutoSize = true;
+            this.lbl_directeurdesventes_mesdonnees_adrMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_directeurdesventes_mesdonnees_adrMail.Location = new System.Drawing.Point(247, 154);
+            this.lbl_directeurdesventes_mesdonnees_adrMail.Name = "lbl_directeurdesventes_mesdonnees_adrMail";
+            this.lbl_directeurdesventes_mesdonnees_adrMail.Size = new System.Drawing.Size(300, 24);
+            this.lbl_directeurdesventes_mesdonnees_adrMail.TabIndex = 50;
+            this.lbl_directeurdesventes_mesdonnees_adrMail.Text = "Adresse mail : [Votre adresse mail]";
+            // 
+            // lbl_directeurdesventes_mesdonnees_nom
+            // 
+            this.lbl_directeurdesventes_mesdonnees_nom.AutoSize = true;
+            this.lbl_directeurdesventes_mesdonnees_nom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_directeurdesventes_mesdonnees_nom.Location = new System.Drawing.Point(17, 154);
+            this.lbl_directeurdesventes_mesdonnees_nom.Name = "lbl_directeurdesventes_mesdonnees_nom";
+            this.lbl_directeurdesventes_mesdonnees_nom.Size = new System.Drawing.Size(164, 24);
+            this.lbl_directeurdesventes_mesdonnees_nom.TabIndex = 49;
+            this.lbl_directeurdesventes_mesdonnees_nom.Text = "Nom : [Votre nom]";
+            // 
+            // lbl_directeurdesventes_mesdonnees_prenom
+            // 
+            this.lbl_directeurdesventes_mesdonnees_prenom.AutoSize = true;
+            this.lbl_directeurdesventes_mesdonnees_prenom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_directeurdesventes_mesdonnees_prenom.Location = new System.Drawing.Point(247, 97);
+            this.lbl_directeurdesventes_mesdonnees_prenom.Name = "lbl_directeurdesventes_mesdonnees_prenom";
+            this.lbl_directeurdesventes_mesdonnees_prenom.Size = new System.Drawing.Size(218, 24);
+            this.lbl_directeurdesventes_mesdonnees_prenom.TabIndex = 48;
+            this.lbl_directeurdesventes_mesdonnees_prenom.Text = "Prénom : [Votre prénom]";
+            // 
+            // lbl_directeurdesventes_mesdonnees_login
+            // 
+            this.lbl_directeurdesventes_mesdonnees_login.AutoSize = true;
+            this.lbl_directeurdesventes_mesdonnees_login.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_directeurdesventes_mesdonnees_login.Location = new System.Drawing.Point(17, 97);
+            this.lbl_directeurdesventes_mesdonnees_login.Name = "lbl_directeurdesventes_mesdonnees_login";
+            this.lbl_directeurdesventes_mesdonnees_login.Size = new System.Drawing.Size(173, 24);
+            this.lbl_directeurdesventes_mesdonnees_login.TabIndex = 47;
+            this.lbl_directeurdesventes_mesdonnees_login.Text = "Login : [Votre login]";
+            // 
+            // lbl_directeurdesventes_mesdonnees_title
+            // 
+            this.lbl_directeurdesventes_mesdonnees_title.AutoSize = true;
+            this.lbl_directeurdesventes_mesdonnees_title.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold);
+            this.lbl_directeurdesventes_mesdonnees_title.Location = new System.Drawing.Point(197, 32);
+            this.lbl_directeurdesventes_mesdonnees_title.Name = "lbl_directeurdesventes_mesdonnees_title";
+            this.lbl_directeurdesventes_mesdonnees_title.Size = new System.Drawing.Size(338, 26);
+            this.lbl_directeurdesventes_mesdonnees_title.TabIndex = 46;
+            this.lbl_directeurdesventes_mesdonnees_title.Text = "GESTION DE VOS DONNEES";
+            // 
+            // btn_directeurdesventes_mesdonnees_supprimer
+            // 
+            this.btn_directeurdesventes_mesdonnees_supprimer.BackColor = System.Drawing.Color.Red;
+            this.btn_directeurdesventes_mesdonnees_supprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_directeurdesventes_mesdonnees_supprimer.Location = new System.Drawing.Point(625, 190);
+            this.btn_directeurdesventes_mesdonnees_supprimer.Name = "btn_directeurdesventes_mesdonnees_supprimer";
+            this.btn_directeurdesventes_mesdonnees_supprimer.Size = new System.Drawing.Size(150, 42);
+            this.btn_directeurdesventes_mesdonnees_supprimer.TabIndex = 24;
+            this.btn_directeurdesventes_mesdonnees_supprimer.Text = "Supprimer mon compte";
+            this.btn_directeurdesventes_mesdonnees_supprimer.UseVisualStyleBackColor = false;
+            this.btn_directeurdesventes_mesdonnees_supprimer.Click += new System.EventHandler(this.btn_peseur_mesdonnees_supprimer_Click);
+            // 
+            // lbl_directeurdesventes_mesdonnees_modificationmdp
+            // 
+            this.lbl_directeurdesventes_mesdonnees_modificationmdp.AutoSize = true;
+            this.lbl_directeurdesventes_mesdonnees_modificationmdp.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_directeurdesventes_mesdonnees_modificationmdp.Location = new System.Drawing.Point(13, 272);
+            this.lbl_directeurdesventes_mesdonnees_modificationmdp.Name = "lbl_directeurdesventes_mesdonnees_modificationmdp";
+            this.lbl_directeurdesventes_mesdonnees_modificationmdp.Size = new System.Drawing.Size(265, 24);
+            this.lbl_directeurdesventes_mesdonnees_modificationmdp.TabIndex = 109;
+            this.lbl_directeurdesventes_mesdonnees_modificationmdp.Text = "Modification du mot de passe :";
+            this.lbl_directeurdesventes_mesdonnees_modificationmdp.Visible = false;
+            // 
+            // pbx_directeurdesventes_deconnexion
+            // 
+            this.pbx_directeurdesventes_deconnexion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pbx_directeurdesventes_deconnexion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbx_directeurdesventes_deconnexion.Image = global::AppCriée.Properties.Resources.computer_icons_login_icon_design_exit_5abfc840bf8ca4_9038982415225180807846;
+            this.pbx_directeurdesventes_deconnexion.Location = new System.Drawing.Point(764, 557);
+            this.pbx_directeurdesventes_deconnexion.Margin = new System.Windows.Forms.Padding(2);
+            this.pbx_directeurdesventes_deconnexion.Name = "pbx_directeurdesventes_deconnexion";
+            this.pbx_directeurdesventes_deconnexion.Size = new System.Drawing.Size(34, 37);
+            this.pbx_directeurdesventes_deconnexion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbx_directeurdesventes_deconnexion.TabIndex = 20;
+            this.pbx_directeurdesventes_deconnexion.TabStop = false;
+            this.pbx_directeurdesventes_deconnexion.Click += new System.EventHandler(this.pbx_directeurdesventes_deconnexion_Click);
+            // 
+            // lbl_directeurdesventes_datejour
+            // 
+            this.lbl_directeurdesventes_datejour.AutoSize = true;
+            this.lbl_directeurdesventes_datejour.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_directeurdesventes_datejour.Location = new System.Drawing.Point(578, 563);
+            this.lbl_directeurdesventes_datejour.Name = "lbl_directeurdesventes_datejour";
+            this.lbl_directeurdesventes_datejour.Size = new System.Drawing.Size(172, 18);
+            this.lbl_directeurdesventes_datejour.TabIndex = 20;
+            this.lbl_directeurdesventes_datejour.Text = "Date du jour : 23/10/2021";
             // 
             // AppCriee_DirecteurDesVentes
             // 
@@ -636,5 +757,14 @@ namespace AppCriée
         private System.Windows.Forms.Label lbl_directeurdesventes_mesdonnees_modifierprenom;
         private System.Windows.Forms.Label lbl_directeurdesventes_mesdonnees_modifiernom;
         private System.Windows.Forms.Label lbl_directeurdesventes_mesdonnees_modifierlogin;
+        private System.Windows.Forms.Button btn_directeurdesventes_mesdonnees_validermodifmdp;
+        private System.Windows.Forms.Button btn_directeurdesventes_mesdonnees_modifiermdp;
+        private System.Windows.Forms.Label lbl_directeurdesventes_mesdonnees_mdpactuel;
+        private System.Windows.Forms.TextBox tbx_directeurdesventes_mesdonnees_mdpactuel;
+        private System.Windows.Forms.TextBox tbx_directeurdesventes_mesdonnees_newmdp;
+        private System.Windows.Forms.Label lbl_directeurdesventes_mesdonnees_newmdp;
+        private System.Windows.Forms.Label lbl_directeurdesventes_mesdonnees_modificationmdp;
+        private System.Windows.Forms.Label lbl_directeurdesventes_mesdonnees_confirmationnewmdp;
+        private System.Windows.Forms.TextBox tbx_directeurdesventes_mesdonnees_confirmationnewmdp;
     }
 }

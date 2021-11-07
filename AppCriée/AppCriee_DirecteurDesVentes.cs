@@ -42,6 +42,7 @@ namespace AppCriée
 
         private void tbc_directeurdesventes_Selected(object sender, TabControlEventArgs e)
         {
+            _onglet = e;
             switch (e.TabPage.Name)
             {
                 case "tbp_directeurdesventes_accueil":
@@ -83,7 +84,7 @@ namespace AppCriée
                     }
                     break;
                 case "tbp_directeurdesventes_mesdonnees":
-                    HiddenObject.Hide(new List<Control> { lbl_directeurdesventes_mesdonnees_validationmodiferreur, lbl_directeurdesventes_mesdonnees_modification, lbl_directeurdesventes_mesdonnees_modifieradrMail, lbl_directeurdesventes_mesdonnees_modifierlogin, lbl_directeurdesventes_mesdonnees_modifiernom, lbl_directeurdesventes_mesdonnees_modifierprenom, tbx_directeurdesventes_mesdonnees_login, tbx_directeurdesventes_mesdonnees_nom, tbx_directeurdesventes_mesdonnees_adrMail, tbx_directeurdesventes_mesdonnees_prenom, btn_directeurdesventes_mesdonnees_validermodif, lbl_directeurdesventes_mesdonnees_champsobli, lbl_directeurdesventes_mesdonnees_validationmodif, lbl_directeurdesventes_mesdonnees_validationmodiferreur, });
+                    HiddenObject.Hide(new List<Control> { lbl_directeurdesventes_mesdonnees_modificationmdp, lbl_directeurdesventes_mesdonnees_validationmodif, lbl_directeurdesventes_mesdonnees_mdpactuel, tbx_directeurdesventes_mesdonnees_mdpactuel, lbl_directeurdesventes_mesdonnees_newmdp, tbx_directeurdesventes_mesdonnees_newmdp, lbl_directeurdesventes_mesdonnees_confirmationnewmdp, tbx_directeurdesventes_mesdonnees_confirmationnewmdp, btn_directeurdesventes_mesdonnees_validermodifmdp, lbl_directeurdesventes_mesdonnees_validationmodiferreur, lbl_directeurdesventes_mesdonnees_modification, lbl_directeurdesventes_mesdonnees_modifieradrMail, lbl_directeurdesventes_mesdonnees_modifierlogin, lbl_directeurdesventes_mesdonnees_modifiernom, lbl_directeurdesventes_mesdonnees_modifierprenom, tbx_directeurdesventes_mesdonnees_login, tbx_directeurdesventes_mesdonnees_nom, tbx_directeurdesventes_mesdonnees_adrMail, tbx_directeurdesventes_mesdonnees_prenom, btn_directeurdesventes_mesdonnees_validermodif, lbl_directeurdesventes_mesdonnees_champsobli, lbl_directeurdesventes_mesdonnees_validationmodif, lbl_directeurdesventes_mesdonnees_validationmodiferreur, });
                     lbl_directeurdesventes_mesdonnees_login.Text = "Login : " + _useractuelle.Login;
                     lbl_directeurdesventes_mesdonnees_prenom.Text = "Prénom : " + _useractuelle.Prenom;
                     lbl_directeurdesventes_mesdonnees_nom.Text = "Nom : " + _useractuelle.Nom;
@@ -145,6 +146,7 @@ namespace AppCriée
         private void btn_directeurdesventes_mesdonnees_modifier_Click(object sender, EventArgs e)
         {
             HiddenObject.Show(new List<Control> { lbl_directeurdesventes_mesdonnees_modification, lbl_directeurdesventes_mesdonnees_modifieradrMail, lbl_directeurdesventes_mesdonnees_modifierlogin, lbl_directeurdesventes_mesdonnees_modifiernom, lbl_directeurdesventes_mesdonnees_modifierprenom, tbx_directeurdesventes_mesdonnees_login, tbx_directeurdesventes_mesdonnees_nom, tbx_directeurdesventes_mesdonnees_adrMail, tbx_directeurdesventes_mesdonnees_prenom, btn_directeurdesventes_mesdonnees_validermodif, lbl_directeurdesventes_mesdonnees_champsobli });
+            HiddenObject.Hide(new List<Control> { btn_directeurdesventes_mesdonnees_validermodifmdp, lbl_directeurdesventes_mesdonnees_mdpactuel, tbx_directeurdesventes_mesdonnees_mdpactuel, lbl_directeurdesventes_mesdonnees_newmdp, tbx_directeurdesventes_mesdonnees_newmdp, lbl_directeurdesventes_mesdonnees_confirmationnewmdp, tbx_directeurdesventes_mesdonnees_confirmationnewmdp, lbl_directeurdesventes_mesdonnees_modificationmdp });
             tbx_directeurdesventes_mesdonnees_login.Text = _useractuelle.Login;
             if (_useractuelle.Nom.ToString().Trim() == "(Non communiqué)")
             {
@@ -209,7 +211,7 @@ namespace AppCriée
             cs.ReqAdminPrepare("UPDATE utilisateur SET login=?, nomuser=?, prenomuser=?, adrMail=? WHERE id=?", new List<object> { tbx_directeurdesventes_mesdonnees_login.Text, nomModif, prenomModif, adrMail, idUserModified });
             cs.fermer();
             lbl_directeurdesventes_mesdonnees_validationmodif.Text = "Vos données ont bien été modifiées.\n";
-            HiddenObject.Hide(new List<Control> { lbl_directeurdesventes_mesdonnees_validationmodiferreur, lbl_directeurdesventes_mesdonnees_modification, lbl_directeurdesventes_mesdonnees_modifieradrMail, lbl_directeurdesventes_mesdonnees_modifierlogin, lbl_directeurdesventes_mesdonnees_modifiernom, lbl_directeurdesventes_mesdonnees_modifierprenom, tbx_directeurdesventes_mesdonnees_login, tbx_directeurdesventes_mesdonnees_nom, tbx_directeurdesventes_mesdonnees_adrMail, tbx_directeurdesventes_mesdonnees_prenom, btn_directeurdesventes_mesdonnees_validermodif, lbl_directeurdesventes_mesdonnees_champsobli });
+            HiddenObject.Hide(new List<Control> { lbl_directeurdesventes_mesdonnees_modificationmdp, lbl_directeurdesventes_mesdonnees_validationmodiferreur, lbl_directeurdesventes_mesdonnees_modification, lbl_directeurdesventes_mesdonnees_modifieradrMail, lbl_directeurdesventes_mesdonnees_modifierlogin, lbl_directeurdesventes_mesdonnees_modifiernom, lbl_directeurdesventes_mesdonnees_modifierprenom, tbx_directeurdesventes_mesdonnees_login, tbx_directeurdesventes_mesdonnees_nom, tbx_directeurdesventes_mesdonnees_adrMail, tbx_directeurdesventes_mesdonnees_prenom, btn_directeurdesventes_mesdonnees_validermodif, lbl_directeurdesventes_mesdonnees_champsobli });
 
             _useractuelle.Login = tbx_directeurdesventes_mesdonnees_login.Text;
             _useractuelle.Nom = tbx_directeurdesventes_mesdonnees_nom.Text.Trim();
@@ -225,6 +227,71 @@ namespace AppCriée
             lbl_directeurdesventes_mesdonnees_validationmodif.Show();
         }
 
+        private void btn_directeurdesventes_mesdonnees_modifiermdp_Click(object sender, EventArgs e)
+        {
+            HiddenObject.Hide(new List<Control> { lbl_directeurdesventes_mesdonnees_modifieradrMail, lbl_directeurdesventes_mesdonnees_modifierlogin, lbl_directeurdesventes_mesdonnees_modifiernom, lbl_directeurdesventes_mesdonnees_modifierprenom, tbx_directeurdesventes_mesdonnees_login, tbx_directeurdesventes_mesdonnees_nom, tbx_directeurdesventes_mesdonnees_prenom, tbx_directeurdesventes_mesdonnees_adrMail, lbl_directeurdesventes_mesdonnees_modification, btn_directeurdesventes_mesdonnees_validermodif, lbl_directeurdesventes_mesdonnees_champsobli, lbl_directeurdesventes_mesdonnees_validationmodif, lbl_directeurdesventes_mesdonnees_validationmodiferreur });
+            HiddenObject.Show(new List<Control> { lbl_directeurdesventes_mesdonnees_modificationmdp, lbl_directeurdesventes_mesdonnees_mdpactuel, tbx_directeurdesventes_mesdonnees_mdpactuel, lbl_directeurdesventes_mesdonnees_newmdp, tbx_directeurdesventes_mesdonnees_newmdp, lbl_directeurdesventes_mesdonnees_confirmationnewmdp, tbx_directeurdesventes_mesdonnees_confirmationnewmdp, btn_directeurdesventes_mesdonnees_validermodifmdp });
+            tbx_directeurdesventes_mesdonnees_mdpactuel.Text = "";
+            tbx_directeurdesventes_mesdonnees_newmdp.Text = "";
+            tbx_directeurdesventes_mesdonnees_confirmationnewmdp.Text = "";
+        }
+
+        private void btn_directeurdesventes_mesdonnees_validermodifmdp_Click(object sender, EventArgs e)
+        {
+            idUserModified = _useractuelle.Id.ToString();
+            String passwdhash = new HashData(tbx_directeurdesventes_mesdonnees_mdpactuel.Text).HashCalculate();
+            if (tbx_directeurdesventes_mesdonnees_mdpactuel.Text == "")
+            {
+                lbl_directeurdesventes_mesdonnees_validationmodiferreur.Text = "Tous les champs obligatoires doivent être remplis";
+                lbl_directeurdesventes_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+            if (tbx_directeurdesventes_mesdonnees_newmdp.Text == "")
+            {
+                lbl_directeurdesventes_mesdonnees_validationmodiferreur.Text = "Tous les champs obligatoires doivent être remplis";
+                lbl_directeurdesventes_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+            if (tbx_directeurdesventes_mesdonnees_confirmationnewmdp.Text == "")
+            {
+                lbl_directeurdesventes_mesdonnees_validationmodiferreur.Text = "Tous les champs obligatoires doivent être remplis";
+                lbl_directeurdesventes_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+
+            CURS cs = new CURS();
+            cs.ReqSelectPrepare("CALL Auth(?,?)", new List<object> { _useractuelle.Login, passwdhash });
+            if (cs.champ("nbUser").ToString() == "0")
+            {
+                lbl_directeurdesventes_mesdonnees_validationmodiferreur.Text = "Votre mot de passe actuel est incorrect.";
+                lbl_directeurdesventes_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+            cs.fermer();
+
+            if (!(Regex.IsMatch(tbx_directeurdesventes_mesdonnees_newmdp.Text, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$")))
+            {
+                lbl_directeurdesventes_mesdonnees_validationmodiferreur.Text = "Le mot de passe doit contenir au moins 10 caractères\ncomportant majuscule, minuscules, chiffres et caractères spéciaux";
+                lbl_directeurdesventes_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+
+            if (tbx_directeurdesventes_mesdonnees_newmdp.Text != tbx_directeurdesventes_mesdonnees_confirmationnewmdp.Text)
+            {
+                lbl_directeurdesventes_mesdonnees_validationmodiferreur.Text = "Les mots de passes ne correspondent pas, veuillez réessayer.";
+                lbl_directeurdesventes_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+
+            string motdepassehash = new HashData(tbx_directeurdesventes_mesdonnees_newmdp.Text).HashCalculate();
+            CURS csm = new CURS();
+            csm.ReqAdminPrepare("UPDATE utilisateur SET pwd=? WHERE id=? ", new List<object> { motdepassehash, idUserModified });
+            csm.fermer();
+            lbl_directeurdesventes_mesdonnees_validationmodif.Text = "Votre mot de passe a bien été modifié.";
+            lbl_directeurdesventes_mesdonnees_validationmodif.Show();
+            HiddenObject.Hide(new List<Control> { lbl_directeurdesventes_mesdonnees_modificationmdp, lbl_directeurdesventes_mesdonnees_validationmodiferreur, lbl_directeurdesventes_mesdonnees_mdpactuel, tbx_directeurdesventes_mesdonnees_mdpactuel, lbl_directeurdesventes_mesdonnees_newmdp, tbx_directeurdesventes_mesdonnees_newmdp, lbl_directeurdesventes_mesdonnees_confirmationnewmdp, tbx_directeurdesventes_mesdonnees_confirmationnewmdp, btn_directeurdesventes_mesdonnees_validermodifmdp });
+
+        }
         #endregion
 
         #region Fermeture du Formulaire
@@ -251,8 +318,11 @@ namespace AppCriée
 
 
 
+
+
+
         #endregion
 
-        
+
     }
 }

@@ -72,7 +72,7 @@ namespace AppCriée
                     dg_administrateur_gestioncomptes_listecompte.Show();
                     break;
                 case "tbp_administrateur_mesdonnees":
-                    HiddenObject.Hide(new List<Control> { lbl_administrateur_mesdonnees_validationmodiferreur, lbl_administrateur_mesdonnees_modification, lbl_administrateur_mesdonnees_modifieradrMail, lbl_administrateur_mesdonnees_modifierlogin, lbl_administrateur_mesdonnees_modifiernom, lbl_administrateur_mesdonnees_modifierprenom, tbx_administrateur_mesdonnees_login, tbx_administrateur_mesdonnees_nom, tbx_administrateur_mesdonnees_adrMail, tbx_administrateur_mesdonnees_prenom, btn_administrateur_mesdonnees_validermodif, lbl_administrateur_mesdonnees_champsobli, lbl_administrateur_mesdonnees_validationmodif, lbl_administrateur_mesdonnees_validationmodiferreur,  });
+                    HiddenObject.Hide(new List<Control> { lbl_administrateur_mesdonnees_modificationmdp, lbl_administrateur_mesdonnees_validationmodif, lbl_administrateur_mesdonnees_mdpactuel, tbx_administrateur_mesdonnees_mdpactuel, lbl_administrateur_mesdonnees_newmdp, tbx_administrateur_mesdonnees_newmdp, lbl_administrateur_mesdonnees_confirmationnewmdp, tbx_administrateur_mesdonnees_confirmationnewmdp, btn_administrateur_mesdonnees_validermodifmdp, lbl_administrateur_mesdonnees_validationmodiferreur, lbl_administrateur_mesdonnees_modification, lbl_administrateur_mesdonnees_modifieradrMail, lbl_administrateur_mesdonnees_modifierlogin, lbl_administrateur_mesdonnees_modifiernom, lbl_administrateur_mesdonnees_modifierprenom, tbx_administrateur_mesdonnees_login, tbx_administrateur_mesdonnees_nom, tbx_administrateur_mesdonnees_adrMail, tbx_administrateur_mesdonnees_prenom, btn_administrateur_mesdonnees_validermodif, lbl_administrateur_mesdonnees_champsobli, lbl_administrateur_mesdonnees_validationmodif, lbl_administrateur_mesdonnees_validationmodiferreur,  });
                     lbl_administrateur_mesdonnees_login.Text = "Login : " + _useractuelle.Login;
                     lbl_administrateur_mesdonnees_prenom.Text = "Prénom : " + _useractuelle.Prenom;
                     lbl_administrateur_mesdonnees_nom.Text = "Nom : " + _useractuelle.Nom;
@@ -433,6 +433,7 @@ namespace AppCriée
         private void btn_administrateur_mesdonnees_modifier_Click(object sender, EventArgs e)
         {
             HiddenObject.Show(new List<Control> { lbl_administrateur_mesdonnees_modification, lbl_administrateur_mesdonnees_modifieradrMail, lbl_administrateur_mesdonnees_modifierlogin, lbl_administrateur_mesdonnees_modifiernom, lbl_administrateur_mesdonnees_modifierprenom, tbx_administrateur_mesdonnees_login, tbx_administrateur_mesdonnees_nom, tbx_administrateur_mesdonnees_adrMail, tbx_administrateur_mesdonnees_prenom, btn_administrateur_mesdonnees_validermodif, lbl_administrateur_mesdonnees_champsobli });
+            HiddenObject.Hide(new List<Control> { btn_administrateur_mesdonnees_validermodifmdp, lbl_administrateur_mesdonnees_mdpactuel, tbx_administrateur_mesdonnees_mdpactuel, lbl_administrateur_mesdonnees_newmdp, tbx_administrateur_mesdonnees_newmdp, lbl_administrateur_mesdonnees_confirmationnewmdp, tbx_administrateur_mesdonnees_confirmationnewmdp, lbl_administrateur_mesdonnees_modificationmdp });
             tbx_administrateur_mesdonnees_login.Text = _useractuelle.Login; 
             if (_useractuelle.Nom.ToString().Trim() == "(Non communiqué)")
             {
@@ -514,6 +515,73 @@ namespace AppCriée
 
         }
 
+        private void btn_administrateur_mesdonnees_modifiermdp_Click(object sender, EventArgs e)
+        {
+            HiddenObject.Hide(new List<Control> { lbl_administrateur_mesdonnees_modifieradrMail, lbl_administrateur_mesdonnees_modifierlogin, lbl_administrateur_mesdonnees_modifiernom, lbl_administrateur_mesdonnees_modifierprenom, tbx_administrateur_mesdonnees_login, tbx_administrateur_mesdonnees_nom, tbx_administrateur_mesdonnees_prenom, tbx_administrateur_mesdonnees_adrMail, lbl_administrateur_mesdonnees_modification, btn_administrateur_mesdonnees_validermodif, lbl_administrateur_mesdonnees_champsobli, lbl_administrateur_mesdonnees_validationmodif, lbl_administrateur_mesdonnees_validationmodiferreur });
+            HiddenObject.Show(new List<Control> { lbl_administrateur_mesdonnees_modificationmdp, lbl_administrateur_mesdonnees_mdpactuel, tbx_administrateur_mesdonnees_mdpactuel, lbl_administrateur_mesdonnees_newmdp, tbx_administrateur_mesdonnees_newmdp, lbl_administrateur_mesdonnees_confirmationnewmdp, tbx_administrateur_mesdonnees_confirmationnewmdp, btn_administrateur_mesdonnees_validermodifmdp });
+            tbx_administrateur_mesdonnees_mdpactuel.Text = "";
+            tbx_administrateur_mesdonnees_newmdp.Text = "";
+            tbx_administrateur_mesdonnees_confirmationnewmdp.Text = "";
+        }
+
+        private void btn_administrateur_mesdonnees_validermodifmdp_Click(object sender, EventArgs e)
+        {
+            idUserModified = _useractuelle.Id.ToString();
+            String passwdhash = new HashData(tbx_administrateur_mesdonnees_mdpactuel.Text).HashCalculate();
+            if (tbx_administrateur_mesdonnees_mdpactuel.Text == "")
+            {
+                lbl_administrateur_mesdonnees_validationmodiferreur.Text = "Tous les champs obligatoires doivent être remplis";
+                lbl_administrateur_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+            if (tbx_administrateur_mesdonnees_newmdp.Text == "")
+            {
+                lbl_administrateur_mesdonnees_validationmodiferreur.Text = "Tous les champs obligatoires doivent être remplis";
+                lbl_administrateur_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+            if (tbx_administrateur_mesdonnees_confirmationnewmdp.Text == "")
+            {
+                lbl_administrateur_mesdonnees_validationmodiferreur.Text = "Tous les champs obligatoires doivent être remplis";
+                lbl_administrateur_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+
+            CURS cs = new CURS();
+            cs.ReqSelectPrepare("CALL Auth(?,?)", new List<object> { _useractuelle.Login, passwdhash });
+            if (cs.champ("nbUser").ToString() == "0")
+            {
+                lbl_administrateur_mesdonnees_validationmodiferreur.Text = "Votre mot de passe actuel est incorrect.";
+                lbl_administrateur_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+            cs.fermer();
+
+            if (!(Regex.IsMatch(tbx_administrateur_mesdonnees_newmdp.Text, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$")))
+            {
+                lbl_administrateur_mesdonnees_validationmodiferreur.Text = "Le mot de passe doit contenir au moins 10 caractères\ncomportant majuscule, minuscules, chiffres et caractères spéciaux";
+                lbl_administrateur_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+
+            if (tbx_administrateur_mesdonnees_newmdp.Text != tbx_administrateur_mesdonnees_confirmationnewmdp.Text)
+            {
+                lbl_administrateur_mesdonnees_validationmodiferreur.Text = "Les mots de passes ne correspondent pas, veuillez réessayer.";
+                lbl_administrateur_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+
+            string motdepassehash = new HashData(tbx_administrateur_mesdonnees_newmdp.Text).HashCalculate();
+            CURS csm = new CURS();
+            csm.ReqAdminPrepare("UPDATE utilisateur SET pwd=? WHERE id=? ", new List<object> { motdepassehash, idUserModified });
+            csm.fermer();
+            lbl_administrateur_mesdonnees_validationmodif.Text = "Votre mot de passe a bien été modifié.";
+            lbl_administrateur_mesdonnees_validationmodif.Show();
+            HiddenObject.Hide(new List<Control> { lbl_administrateur_mesdonnees_modificationmdp, lbl_administrateur_mesdonnees_validationmodiferreur, lbl_administrateur_mesdonnees_mdpactuel, tbx_administrateur_mesdonnees_mdpactuel, lbl_administrateur_mesdonnees_newmdp, tbx_administrateur_mesdonnees_newmdp, lbl_administrateur_mesdonnees_confirmationnewmdp, tbx_administrateur_mesdonnees_confirmationnewmdp, btn_administrateur_mesdonnees_validermodifmdp });
+
+        }
+
+
         #endregion
 
         #region Fermture du Formulaire
@@ -537,6 +605,7 @@ namespace AppCriée
         {
             this.Close();
         }
+
 
 
 

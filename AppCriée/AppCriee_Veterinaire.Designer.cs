@@ -124,6 +124,8 @@ namespace AppCriée
             this.IdduBateau = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codeEtât = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbp_veterinaire_mesdonnees = new System.Windows.Forms.TabPage();
+            this.btn_veterinaire_mesdonnees_validermodifmdp = new System.Windows.Forms.Button();
+            this.btn_veterinaire_mesdonnees_modifiermdp = new System.Windows.Forms.Button();
             this.lbl_veterinaire_mesdonnees_validationmodiferreur = new System.Windows.Forms.Label();
             this.lbl_veterinaire_mesdonnees_modification = new System.Windows.Forms.Label();
             this.btn_veterinaire_mesdonnees_modifier = new System.Windows.Forms.Button();
@@ -145,6 +147,13 @@ namespace AppCriée
             this.lbl_veterinaire_mesdonnees_login = new System.Windows.Forms.Label();
             this.lbl_veterinaire_mesdonnees_title = new System.Windows.Forms.Label();
             this.btn_veterinaire_mesdonnees_supprimer = new System.Windows.Forms.Button();
+            this.lbl_veterinaire_mesdonnees_mdpactuel = new System.Windows.Forms.Label();
+            this.tbx_veterinaire_mesdonnees_mdpactuel = new System.Windows.Forms.TextBox();
+            this.tbx_veterinaire_mesdonnees_newmdp = new System.Windows.Forms.TextBox();
+            this.lbl_veterinaire_mesdonnees_newmdp = new System.Windows.Forms.Label();
+            this.lbl_veterinaire_mesdonnees_modificationmdp = new System.Windows.Forms.Label();
+            this.lbl_veterinaire_mesdonnees_confirmationnewmdp = new System.Windows.Forms.Label();
+            this.tbx_veterinaire_mesdonnees_confirmationnewmdp = new System.Windows.Forms.TextBox();
             this.lbl_veterinaire_datejour = new System.Windows.Forms.Label();
             this.pbx_veterinaire_deconnexion = new System.Windows.Forms.PictureBox();
             this.tbc_veterinaire.SuspendLayout();
@@ -1308,6 +1317,8 @@ namespace AppCriée
             // 
             // tbp_veterinaire_mesdonnees
             // 
+            this.tbp_veterinaire_mesdonnees.Controls.Add(this.btn_veterinaire_mesdonnees_validermodifmdp);
+            this.tbp_veterinaire_mesdonnees.Controls.Add(this.btn_veterinaire_mesdonnees_modifiermdp);
             this.tbp_veterinaire_mesdonnees.Controls.Add(this.lbl_veterinaire_mesdonnees_validationmodiferreur);
             this.tbp_veterinaire_mesdonnees.Controls.Add(this.lbl_veterinaire_mesdonnees_modification);
             this.tbp_veterinaire_mesdonnees.Controls.Add(this.btn_veterinaire_mesdonnees_modifier);
@@ -1329,6 +1340,13 @@ namespace AppCriée
             this.tbp_veterinaire_mesdonnees.Controls.Add(this.lbl_veterinaire_mesdonnees_login);
             this.tbp_veterinaire_mesdonnees.Controls.Add(this.lbl_veterinaire_mesdonnees_title);
             this.tbp_veterinaire_mesdonnees.Controls.Add(this.btn_veterinaire_mesdonnees_supprimer);
+            this.tbp_veterinaire_mesdonnees.Controls.Add(this.lbl_veterinaire_mesdonnees_mdpactuel);
+            this.tbp_veterinaire_mesdonnees.Controls.Add(this.tbx_veterinaire_mesdonnees_mdpactuel);
+            this.tbp_veterinaire_mesdonnees.Controls.Add(this.tbx_veterinaire_mesdonnees_newmdp);
+            this.tbp_veterinaire_mesdonnees.Controls.Add(this.lbl_veterinaire_mesdonnees_newmdp);
+            this.tbp_veterinaire_mesdonnees.Controls.Add(this.lbl_veterinaire_mesdonnees_modificationmdp);
+            this.tbp_veterinaire_mesdonnees.Controls.Add(this.lbl_veterinaire_mesdonnees_confirmationnewmdp);
+            this.tbp_veterinaire_mesdonnees.Controls.Add(this.tbx_veterinaire_mesdonnees_confirmationnewmdp);
             this.tbp_veterinaire_mesdonnees.Location = new System.Drawing.Point(4, 22);
             this.tbp_veterinaire_mesdonnees.Margin = new System.Windows.Forms.Padding(2);
             this.tbp_veterinaire_mesdonnees.Name = "tbp_veterinaire_mesdonnees";
@@ -1338,15 +1356,44 @@ namespace AppCriée
             this.tbp_veterinaire_mesdonnees.Text = "Mes données";
             this.tbp_veterinaire_mesdonnees.UseVisualStyleBackColor = true;
             // 
+            // btn_veterinaire_mesdonnees_validermodifmdp
+            // 
+            this.btn_veterinaire_mesdonnees_validermodifmdp.BackColor = System.Drawing.SystemColors.Info;
+            this.btn_veterinaire_mesdonnees_validermodifmdp.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_veterinaire_mesdonnees_validermodifmdp.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btn_veterinaire_mesdonnees_validermodifmdp.Location = new System.Drawing.Point(417, 433);
+            this.btn_veterinaire_mesdonnees_validermodifmdp.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_veterinaire_mesdonnees_validermodifmdp.Name = "btn_veterinaire_mesdonnees_validermodifmdp";
+            this.btn_veterinaire_mesdonnees_validermodifmdp.Size = new System.Drawing.Size(99, 27);
+            this.btn_veterinaire_mesdonnees_validermodifmdp.TabIndex = 88;
+            this.btn_veterinaire_mesdonnees_validermodifmdp.Text = "Valider";
+            this.btn_veterinaire_mesdonnees_validermodifmdp.UseVisualStyleBackColor = false;
+            this.btn_veterinaire_mesdonnees_validermodifmdp.Visible = false;
+            this.btn_veterinaire_mesdonnees_validermodifmdp.Click += new System.EventHandler(this.btn_veterinaire_mesdonnees_validermodifmdp_Click);
+            // 
+            // btn_veterinaire_mesdonnees_modifiermdp
+            // 
+            this.btn_veterinaire_mesdonnees_modifiermdp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btn_veterinaire_mesdonnees_modifiermdp.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_veterinaire_mesdonnees_modifiermdp.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btn_veterinaire_mesdonnees_modifiermdp.Location = new System.Drawing.Point(40, 427);
+            this.btn_veterinaire_mesdonnees_modifiermdp.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_veterinaire_mesdonnees_modifiermdp.Name = "btn_veterinaire_mesdonnees_modifiermdp";
+            this.btn_veterinaire_mesdonnees_modifiermdp.Size = new System.Drawing.Size(178, 38);
+            this.btn_veterinaire_mesdonnees_modifiermdp.TabIndex = 80;
+            this.btn_veterinaire_mesdonnees_modifiermdp.Text = "Modifier mon mot de passe";
+            this.btn_veterinaire_mesdonnees_modifiermdp.UseVisualStyleBackColor = false;
+            this.btn_veterinaire_mesdonnees_modifiermdp.Click += new System.EventHandler(this.btn_veterinaire_mesdonnees_modifiermdp_Click);
+            // 
             // lbl_veterinaire_mesdonnees_validationmodiferreur
             // 
             this.lbl_veterinaire_mesdonnees_validationmodiferreur.AutoSize = true;
             this.lbl_veterinaire_mesdonnees_validationmodiferreur.BackColor = System.Drawing.Color.White;
-            this.lbl_veterinaire_mesdonnees_validationmodiferreur.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_veterinaire_mesdonnees_validationmodiferreur.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.lbl_veterinaire_mesdonnees_validationmodiferreur.ForeColor = System.Drawing.Color.Red;
-            this.lbl_veterinaire_mesdonnees_validationmodiferreur.Location = new System.Drawing.Point(445, 396);
+            this.lbl_veterinaire_mesdonnees_validationmodiferreur.Location = new System.Drawing.Point(340, 386);
             this.lbl_veterinaire_mesdonnees_validationmodiferreur.Name = "lbl_veterinaire_mesdonnees_validationmodiferreur";
-            this.lbl_veterinaire_mesdonnees_validationmodiferreur.Size = new System.Drawing.Size(51, 20);
+            this.lbl_veterinaire_mesdonnees_validationmodiferreur.Size = new System.Drawing.Size(46, 18);
             this.lbl_veterinaire_mesdonnees_validationmodiferreur.TabIndex = 79;
             this.lbl_veterinaire_mesdonnees_validationmodiferreur.Text = "label1";
             this.lbl_veterinaire_mesdonnees_validationmodiferreur.Visible = false;
@@ -1355,7 +1402,7 @@ namespace AppCriée
             // 
             this.lbl_veterinaire_mesdonnees_modification.AutoSize = true;
             this.lbl_veterinaire_mesdonnees_modification.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_veterinaire_mesdonnees_modification.Location = new System.Drawing.Point(36, 266);
+            this.lbl_veterinaire_mesdonnees_modification.Location = new System.Drawing.Point(36, 251);
             this.lbl_veterinaire_mesdonnees_modification.Name = "lbl_veterinaire_mesdonnees_modification";
             this.lbl_veterinaire_mesdonnees_modification.Size = new System.Drawing.Size(236, 24);
             this.lbl_veterinaire_mesdonnees_modification.TabIndex = 78;
@@ -1434,7 +1481,7 @@ namespace AppCriée
             // 
             // tbx_veterinaire_mesdonnees_nom
             // 
-            this.tbx_veterinaire_mesdonnees_nom.Location = new System.Drawing.Point(417, 353);
+            this.tbx_veterinaire_mesdonnees_nom.Location = new System.Drawing.Point(402, 354);
             this.tbx_veterinaire_mesdonnees_nom.Margin = new System.Windows.Forms.Padding(2);
             this.tbx_veterinaire_mesdonnees_nom.Name = "tbx_veterinaire_mesdonnees_nom";
             this.tbx_veterinaire_mesdonnees_nom.Size = new System.Drawing.Size(114, 20);
@@ -1444,7 +1491,7 @@ namespace AppCriée
             // 
             // tbx_veterinaire_mesdonnees_login
             // 
-            this.tbx_veterinaire_mesdonnees_login.Location = new System.Drawing.Point(118, 309);
+            this.tbx_veterinaire_mesdonnees_login.Location = new System.Drawing.Point(101, 310);
             this.tbx_veterinaire_mesdonnees_login.Margin = new System.Windows.Forms.Padding(2);
             this.tbx_veterinaire_mesdonnees_login.Name = "tbx_veterinaire_mesdonnees_login";
             this.tbx_veterinaire_mesdonnees_login.Size = new System.Drawing.Size(126, 20);
@@ -1570,6 +1617,80 @@ namespace AppCriée
             this.btn_veterinaire_mesdonnees_supprimer.Text = "Supprimer mon compte";
             this.btn_veterinaire_mesdonnees_supprimer.UseVisualStyleBackColor = false;
             this.btn_veterinaire_mesdonnees_supprimer.Click += new System.EventHandler(this.btn_veterinaire_mesdonnees_supprimer_Click);
+            // 
+            // lbl_veterinaire_mesdonnees_mdpactuel
+            // 
+            this.lbl_veterinaire_mesdonnees_mdpactuel.AutoSize = true;
+            this.lbl_veterinaire_mesdonnees_mdpactuel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lbl_veterinaire_mesdonnees_mdpactuel.Location = new System.Drawing.Point(24, 310);
+            this.lbl_veterinaire_mesdonnees_mdpactuel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_veterinaire_mesdonnees_mdpactuel.Name = "lbl_veterinaire_mesdonnees_mdpactuel";
+            this.lbl_veterinaire_mesdonnees_mdpactuel.Size = new System.Drawing.Size(143, 17);
+            this.lbl_veterinaire_mesdonnees_mdpactuel.TabIndex = 82;
+            this.lbl_veterinaire_mesdonnees_mdpactuel.Text = "Mot de passe actuel :";
+            this.lbl_veterinaire_mesdonnees_mdpactuel.Visible = false;
+            // 
+            // tbx_veterinaire_mesdonnees_mdpactuel
+            // 
+            this.tbx_veterinaire_mesdonnees_mdpactuel.Location = new System.Drawing.Point(171, 308);
+            this.tbx_veterinaire_mesdonnees_mdpactuel.Margin = new System.Windows.Forms.Padding(2);
+            this.tbx_veterinaire_mesdonnees_mdpactuel.Name = "tbx_veterinaire_mesdonnees_mdpactuel";
+            this.tbx_veterinaire_mesdonnees_mdpactuel.Size = new System.Drawing.Size(114, 20);
+            this.tbx_veterinaire_mesdonnees_mdpactuel.TabIndex = 83;
+            this.tbx_veterinaire_mesdonnees_mdpactuel.Visible = false;
+            // 
+            // tbx_veterinaire_mesdonnees_newmdp
+            // 
+            this.tbx_veterinaire_mesdonnees_newmdp.Location = new System.Drawing.Point(474, 309);
+            this.tbx_veterinaire_mesdonnees_newmdp.Margin = new System.Windows.Forms.Padding(2);
+            this.tbx_veterinaire_mesdonnees_newmdp.Name = "tbx_veterinaire_mesdonnees_newmdp";
+            this.tbx_veterinaire_mesdonnees_newmdp.Size = new System.Drawing.Size(114, 20);
+            this.tbx_veterinaire_mesdonnees_newmdp.TabIndex = 85;
+            this.tbx_veterinaire_mesdonnees_newmdp.Visible = false;
+            // 
+            // lbl_veterinaire_mesdonnees_newmdp
+            // 
+            this.lbl_veterinaire_mesdonnees_newmdp.AutoSize = true;
+            this.lbl_veterinaire_mesdonnees_newmdp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lbl_veterinaire_mesdonnees_newmdp.Location = new System.Drawing.Point(308, 310);
+            this.lbl_veterinaire_mesdonnees_newmdp.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_veterinaire_mesdonnees_newmdp.Name = "lbl_veterinaire_mesdonnees_newmdp";
+            this.lbl_veterinaire_mesdonnees_newmdp.Size = new System.Drawing.Size(162, 17);
+            this.lbl_veterinaire_mesdonnees_newmdp.TabIndex = 84;
+            this.lbl_veterinaire_mesdonnees_newmdp.Text = "Nouveau mot de passe :";
+            this.lbl_veterinaire_mesdonnees_newmdp.Visible = false;
+            // 
+            // lbl_veterinaire_mesdonnees_modificationmdp
+            // 
+            this.lbl_veterinaire_mesdonnees_modificationmdp.AutoSize = true;
+            this.lbl_veterinaire_mesdonnees_modificationmdp.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_veterinaire_mesdonnees_modificationmdp.Location = new System.Drawing.Point(32, 252);
+            this.lbl_veterinaire_mesdonnees_modificationmdp.Name = "lbl_veterinaire_mesdonnees_modificationmdp";
+            this.lbl_veterinaire_mesdonnees_modificationmdp.Size = new System.Drawing.Size(265, 24);
+            this.lbl_veterinaire_mesdonnees_modificationmdp.TabIndex = 81;
+            this.lbl_veterinaire_mesdonnees_modificationmdp.Text = "Modification du mot de passe :";
+            this.lbl_veterinaire_mesdonnees_modificationmdp.Visible = false;
+            // 
+            // lbl_veterinaire_mesdonnees_confirmationnewmdp
+            // 
+            this.lbl_veterinaire_mesdonnees_confirmationnewmdp.AutoSize = true;
+            this.lbl_veterinaire_mesdonnees_confirmationnewmdp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lbl_veterinaire_mesdonnees_confirmationnewmdp.Location = new System.Drawing.Point(24, 356);
+            this.lbl_veterinaire_mesdonnees_confirmationnewmdp.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_veterinaire_mesdonnees_confirmationnewmdp.Name = "lbl_veterinaire_mesdonnees_confirmationnewmdp";
+            this.lbl_veterinaire_mesdonnees_confirmationnewmdp.Size = new System.Drawing.Size(240, 17);
+            this.lbl_veterinaire_mesdonnees_confirmationnewmdp.TabIndex = 86;
+            this.lbl_veterinaire_mesdonnees_confirmationnewmdp.Text = "Confirmer le nouveau mot de passe :";
+            this.lbl_veterinaire_mesdonnees_confirmationnewmdp.Visible = false;
+            // 
+            // tbx_veterinaire_mesdonnees_confirmationnewmdp
+            // 
+            this.tbx_veterinaire_mesdonnees_confirmationnewmdp.Location = new System.Drawing.Point(268, 355);
+            this.tbx_veterinaire_mesdonnees_confirmationnewmdp.Margin = new System.Windows.Forms.Padding(2);
+            this.tbx_veterinaire_mesdonnees_confirmationnewmdp.Name = "tbx_veterinaire_mesdonnees_confirmationnewmdp";
+            this.tbx_veterinaire_mesdonnees_confirmationnewmdp.Size = new System.Drawing.Size(114, 20);
+            this.tbx_veterinaire_mesdonnees_confirmationnewmdp.TabIndex = 87;
+            this.tbx_veterinaire_mesdonnees_confirmationnewmdp.Visible = false;
             // 
             // lbl_veterinaire_datejour
             // 
@@ -1748,5 +1869,14 @@ namespace AppCriée
         private System.Windows.Forms.Label lbl_veterinaire_mesdonnees_modifierprenom;
         private System.Windows.Forms.Label lbl_veterinaire_mesdonnees_modifiernom;
         private System.Windows.Forms.Label lbl_veterinaire_mesdonnees_modifierlogin;
+        private System.Windows.Forms.Label lbl_veterinaire_mesdonnees_modificationmdp;
+        private System.Windows.Forms.Button btn_veterinaire_mesdonnees_modifiermdp;
+        private System.Windows.Forms.TextBox tbx_veterinaire_mesdonnees_newmdp;
+        private System.Windows.Forms.Label lbl_veterinaire_mesdonnees_newmdp;
+        private System.Windows.Forms.TextBox tbx_veterinaire_mesdonnees_mdpactuel;
+        private System.Windows.Forms.Label lbl_veterinaire_mesdonnees_mdpactuel;
+        private System.Windows.Forms.TextBox tbx_veterinaire_mesdonnees_confirmationnewmdp;
+        private System.Windows.Forms.Label lbl_veterinaire_mesdonnees_confirmationnewmdp;
+        private System.Windows.Forms.Button btn_veterinaire_mesdonnees_validermodifmdp;
     }
 }
