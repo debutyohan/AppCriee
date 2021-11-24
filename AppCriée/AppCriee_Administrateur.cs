@@ -49,7 +49,7 @@ namespace AppCriée
                     break;
                 case "tbp_administrateur_gestioncomptes":
                     HiddenObject.Hide(new List<Control> { lbl_administrateur_gestioncomptes_modification, lbl_administrateur_gestioncomptes_ajout, lbl_administrateur_gestioncomptes_adrMail, lbl_administrateur_gestioncomptes_login, lbl_administrateur_gestioncomptes_motdepasse, lbl_administrateur_gestioncomptes_nom, lbl_administrateur_gestioncomptes_prenom, lbl_administrateur_gestioncomptes_typeuser, cbx_administrateur_gestioncomptes_typeuser, tbx_administrateur_gestioncomptes_adrMail, tbx_administrateur_gestioncomptes_login, tbx_administrateur_gestioncomptes_motdepasse, tbx_administrateur_gestioncomptes_nom, tbx_administrateur_gestioncomptes_prenom, btn_administrateur_gestioncomptes_validerajout, lbl_administrateur_gestioncomptes_validationajouterror, lbl_administrateur_gestioncomptes_champsobli, lbl_administrateur_gestioncomptes_validationajoutok, btn_administrateur_gestioncomptes_validermodif });
-                    CompleteControl.RemplirDataGridViewByRequest(dg_administrateur_gestioncomptes_listecompte, "SELECT utilisateur.id as iduser, login, nomuser, prenomuser, adrMail, libelle FROM utilisateur INNER JOIN typeutilisateur ON typeutilisateur.id=utilisateur.idtypeuser ORDER BY utilisateur.id", new string[] { "iduser", "login", "nomuser", "prenomuser", "adrMail", "libelle" });
+                    CompleteControl.RemplirDataGridViewByRequest(dg_administrateur_gestioncomptes_listecompte, "SELECT utilisateur.id as iduser, login, nomuser, prenomuser, adrMail, libelle FROM utilisateur INNER JOIN typeutilisateur ON typeutilisateur.id=utilisateur.idtypeuser WHERE idtypeuser<5 ORDER BY utilisateur.id", new string[] { "iduser", "login", "nomuser", "prenomuser", "adrMail", "libelle" });
                     foreach (DataGridViewRow ligne in dg_administrateur_gestioncomptes_listecompte.Rows)
                     {
                         if (ligne.Cells[4].Value.ToString().Trim() == "")
@@ -156,7 +156,7 @@ namespace AppCriée
         }
         private void btn_administrateur_gestioncomptes_modifier_Click(object sender, EventArgs e)
         {
-            HiddenObject.Hide(new List<Control> { lbl_administrateur_gestioncomptes_validationok, lbl_administrateur_gestioncomptes_champsobli, lbl_administrateur_gestioncomptes_ajout, lbl_administrateur_gestioncomptes_adrMail, lbl_administrateur_gestioncomptes_login, lbl_administrateur_gestioncomptes_motdepasse, lbl_administrateur_gestioncomptes_nom, lbl_administrateur_gestioncomptes_prenom, lbl_administrateur_gestioncomptes_typeuser, cbx_administrateur_gestioncomptes_typeuser, tbx_administrateur_gestioncomptes_adrMail, tbx_administrateur_gestioncomptes_login, tbx_administrateur_gestioncomptes_motdepasse, tbx_administrateur_gestioncomptes_nom, tbx_administrateur_gestioncomptes_prenom, btn_administrateur_gestioncomptes_validerajout, lbl_administrateur_gestioncomptes_modification, lbl_administrateur_gestioncomptes_validationajoutok, lbl_administrateur_gestioncomptes_validationajouterror });
+            HiddenObject.Hide(new List<Control> { lbl_administrateur_gestioncomptes_validationok, lbl_administrateur_gestioncomptes_champsobli, lbl_administrateur_gestioncomptes_ajout, lbl_administrateur_gestioncomptes_adrMail, lbl_administrateur_gestioncomptes_login, lbl_administrateur_gestioncomptes_motdepasse, lbl_administrateur_gestioncomptes_nom, lbl_administrateur_gestioncomptes_prenom, lbl_administrateur_gestioncomptes_typeuser, cbx_administrateur_gestioncomptes_typeuser, tbx_administrateur_gestioncomptes_adrMail, tbx_administrateur_gestioncomptes_login, tbx_administrateur_gestioncomptes_motdepasse, tbx_administrateur_gestioncomptes_nom, tbx_administrateur_gestioncomptes_prenom, btn_administrateur_gestioncomptes_validerajout, lbl_administrateur_gestioncomptes_modification, lbl_administrateur_gestioncomptes_validationajoutok, lbl_administrateur_gestioncomptes_validationajouterror, btn_administrateur_gestioncomptes_validermodif });
             if (dg_administrateur_gestioncomptes_listecompte.SelectedRows.Count != 1)
             {
                 lbl_administrateur_gestioncomptes_validationajouterror.Text = "Veuillez sélectionner un et un seul compte";
@@ -170,7 +170,7 @@ namespace AppCriée
                 lbl_administrateur_gestioncomptes_validationajouterror.Show();
                 return;
             }
-            CompleteControl.RemplirCombobox(cbx_administrateur_gestioncomptes_typeuser, "SELECT libelle FROM typeutilisateur", "libelle");
+            CompleteControl.RemplirCombobox(cbx_administrateur_gestioncomptes_typeuser, "SELECT libelle FROM typeutilisateur WHERE id<5", "libelle");
             tbx_administrateur_gestioncomptes_login.Text = ligneselect.Cells[1].Value.ToString();
             if (ligneselect.Cells[2].Value.ToString().Trim() == "(Non communiqué)")
             {
@@ -205,7 +205,7 @@ namespace AppCriée
         private void btn_administrateur_gestioncomptes_ajout_Click(object sender, EventArgs e)
         {
             HiddenObject.Hide(new List<Control> { lbl_administrateur_gestioncomptes_validationok, lbl_administrateur_gestioncomptes_modification, lbl_administrateur_gestioncomptes_validationajoutok, lbl_administrateur_gestioncomptes_validationajouterror, btn_administrateur_gestioncomptes_validermodif });
-            CompleteControl.RemplirCombobox(cbx_administrateur_gestioncomptes_typeuser, "SELECT libelle FROM typeutilisateur", "libelle");
+            CompleteControl.RemplirCombobox(cbx_administrateur_gestioncomptes_typeuser, "SELECT libelle FROM typeutilisateur WHERE id<5", "libelle");
             tbx_administrateur_gestioncomptes_adrMail.Text = "";
             tbx_administrateur_gestioncomptes_login.Text = "";
             tbx_administrateur_gestioncomptes_motdepasse.Text = "";

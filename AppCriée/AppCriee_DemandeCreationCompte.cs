@@ -25,7 +25,7 @@ namespace AppCriée
         {
             InitializeComponent();
             _appCriee = appCriee;
-            CompleteControl.RemplirCombobox(cbx_demandecreercompte_typeuser, "SELECT libelle FROM typeutilisateur", "libelle");
+            CompleteControl.RemplirCombobox(cbx_demandecreercompte_typeuser, "SELECT libelle FROM typeutilisateur WHERE id<5", "libelle");
         }
 
         #endregion
