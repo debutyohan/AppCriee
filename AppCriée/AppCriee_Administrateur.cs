@@ -145,9 +145,15 @@ namespace AppCriée
                         }
 
                         dg_administrateur_gestioncomptes_listecompte.Rows.RemoveAt(line.Index);
-                        CURS cs = new CURS();
-                        cs.ReqAdminPrepare("DELETE utilisateur FROM utilisateur WHERE id =?", new List<object> { line.Cells[0].Value });
 
+                        CURS cs = new CURS();
+                        cs.ReqAdminPrepare("DELETE directeurvente FROM directeurvente WHERE idUser =?", new List<object> { line.Cells[0].Value });
+                        cs.fermer();
+                        cs = new CURS();
+                        cs.ReqAdminPrepare("DELETE utilisateur FROM utilisateur WHERE id =?", new List<object> { line.Cells[0].Value });
+                        cs.fermer();
+                        lbl_administrateur_gestioncomptes_validationajoutok.Text = "L'utilisateur a bien été supprimée";
+                        lbl_administrateur_gestioncomptes_validationajoutok.Show();
                     }
 
                 }
@@ -233,20 +239,10 @@ namespace AppCriée
                 lbl_administrateur_gestioncomptes_validationajouterror.Show();
                 return;
             }
-            int idusermax = -1;
-            foreach (DataGridViewRow row in dg_administrateur_gestioncomptes_listecompte.Rows)
-            {
-                if (idusermax < Int32.Parse(row.Cells[0].Value.ToString()))
-                {
-                    idusermax = Int32.Parse(row.Cells[0].Value.ToString());
-                }
-                if (row.Cells[1].Value.ToString().Trim() == tbx_administrateur_gestioncomptes_login.Text)
-                {
-                    lbl_administrateur_gestioncomptes_validationajouterror.Text = "Le login existe déjà, veuillez en choisir un autre.";
-                    lbl_administrateur_gestioncomptes_validationajouterror.Show();
-                    return;
-                }
-            }
+            CURS csa = new CURS();
+            csa.ReqSelect("SELECT max(id) as maxid FROM utilisateur");
+            int idusermax = Int32.Parse(csa.champ("maxid").ToString());
+            csa.fermer();
             object adresseMail = tbx_administrateur_gestioncomptes_adrMail.Text;
             if (adresseMail.ToString().Trim() == "")
             {
@@ -266,6 +262,12 @@ namespace AppCriée
             CURS cs = new CURS();
             cs.ReqAdminPrepare("INSERT INTO utilisateur VALUES (?,?,?,?,?,(SELECT id FROM typeutilisateur WHERE libelle=?),?)", new List<object> { (idusermax + 1), tbx_administrateur_gestioncomptes_login.Text, motdepassehash, nom, prenom, cbx_administrateur_gestioncomptes_typeuser.Text, adresseMail });
             cs.fermer();
+            if (cbx_administrateur_gestioncomptes_typeuser.Text == "Directeur des ventes")
+            {
+                cs = new CURS();
+                cs.ReqAdminPrepare("INSERT INTO directeurvente(idUser) VALUES (?)", new List<object> { (idusermax + 1)});
+                cs.fermer();
+            }
             lbl_administrateur_gestioncomptes_validationajoutok.Text = "L'utilisateur a bien été ajouté.\n";
             tbc_administrateur_Selected(sender, _onglet);
             lbl_administrateur_gestioncomptes_validationajoutok.Show();

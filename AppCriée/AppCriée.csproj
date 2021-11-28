@@ -143,8 +143,12 @@
       <DependentUpon>Auth.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="obj\Debug\AppCriée.AppCriee.resources" />
+    <EmbeddedResource Include="obj\Debug\AppCriée.AppCriee_Administrateur.resources" />
+    <EmbeddedResource Include="obj\Debug\AppCriée.AppCriee_DemandeCreationCompte.resources" />
+    <EmbeddedResource Include="obj\Debug\AppCriée.AppCriee_DirecteurDesVentes.resources" />
     <EmbeddedResource Include="obj\Debug\AppCriée.AppCriee_Peseur.resources" />
     <EmbeddedResource Include="obj\Debug\AppCriée.AppCriee_Receptionniste.resources" />
+    <EmbeddedResource Include="obj\Debug\AppCriée.AppCriee_RecupMotdePasse.resources" />
     <EmbeddedResource Include="obj\Debug\AppCriée.AppCriee_Veterinaire.resources" />
     <EmbeddedResource Include="obj\Debug\AppCriée.Properties.Resources.resources" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -186,6 +190,8 @@
     <Content Include="bin\Debug\AppCriée.pdb" />
     <Content Include="bin\Debug\BouncyCastle.Crypto.dll" />
     <Content Include="bin\Debug\Google.Protobuf.dll" />
+    <Content Include="bin\Debug\itextsharp.dll" />
+    <Content Include="bin\Debug\itextsharp.xml" />
     <Content Include="bin\Debug\K4os.Compression.LZ4.dll" />
     <Content Include="bin\Debug\K4os.Compression.LZ4.Streams.dll" />
     <Content Include="bin\Debug\K4os.Hash.xxHash.dll" />
@@ -202,8 +208,10 @@
     <Content Include="obj\Debug\AppCriée.pdb" />
     <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
     <Content Include="Resources\autocollant-cadenas-muraux.jpg" />
+    <Content Include="Script SQL\modifappliwebv2.sql" />
     <Content Include="Script SQL\sqlcriemodif%285%29.sql" />
     <Content Include="Script SQL\sqlcriemodif%286%29.sql" />
+    <Content Include="Script SQL\sqlcriemodif%287%29.sql" />
     <None Include="Resources\computer-icons-login-icon-design-exit-5abfc840bf8ca4.9038982415225180807846.png" />
     <Content Include="Resources\kisspng-padlock-logo-symbol-locker-5b22e325cc22c3.2363844015290130298362.jpg" />
     <Content Include="Script SQL\SqlCrie.sql" />

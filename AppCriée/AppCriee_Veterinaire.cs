@@ -340,14 +340,18 @@ namespace AppCriée
                         CURS cs = new CURS();
                         cs.ReqAdminPrepare("DELETE FROM bac WHERE idBateau=? AND idLot=? AND idDatePeche=? AND id=?", new List<object> { idbateau, idLot, Datejour, id });
                         cs.fermer();
+                        cs = new CURS();
+                        cs.ReqAdminPrepare("UPDATE lot SET idusermodif=? , datemodif=? WHERE idDatePeche=? AND id=? AND idBateau=?", new List<object> { _useractuelle.Id, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), Datejour,idLot, idbateau });
+                        cs.fermer();
                     }
 
 
 
                 }
                 CURS csa = new CURS();
-                csa.ReqAdminPrepare("DELETE LOT FROM lot LEFT JOIN bac ON lot.idDatePeche=bac.idDatePeche AND lot.idBateau=bac.idBateau AND lot.id=bac.idLot WHERE lot.idDatePeche='" + Datejour + "' AND lot.idBateau='" + idbateau + "'AND bac.id is NULL", new List<object> { Datejour, idbateau });
+                csa.ReqAdminPrepare("DELETE LOT FROM lot LEFT JOIN bac ON lot.idDatePeche=bac.idDatePeche AND lot.idBateau=bac.idBateau AND lot.id=bac.idLot WHERE lot.idDatePeche=? AND lot.idBateau=? AND bac.id is NULL", new List<object> { Datejour, idbateau });
                 csa.fermer();
+                
                 if (rbtn_veterinaire_bacpoissons_touslesbacs.Checked)
                 {
                     cbx_veterinaire_bacpoissons_listebateaux_SelectionChangeCommitted(sender, e);
@@ -456,6 +460,9 @@ namespace AppCriée
                 {
                     CURS csm = new CURS();
                     csm.ReqAdminPrepare("UPDATE bac SET idTypeBac=? WHERE idDatePeche=? AND idBateau=? AND id=? AND idLot=?", new List<object> { cbx_veterinaire_bacpoissons_typebac.SelectedItem, Datejour, idbateau, idBacTabIsModifing, idLotTabIsModifing });
+                    csm.fermer();
+                    csm = new CURS();
+                    csm.ReqAdminPrepare("UPDATE lot SET idusermodif=? , datemodif=? WHERE idDatePeche=? AND id=? AND idBateau=?", new List<object> { _useractuelle.Id, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), Datejour, idLotTabIsModifing, idbateau });
                     csm.fermer();
                     if (rbtn_veterinaire_bacpoissons_bacparlots.Checked)
                     {
@@ -646,14 +653,10 @@ namespace AppCriée
             String elmt_bateau = cbx_veterinaire_lotspeche_listebateaux.Text;
             int char_bateau = elmt_bateau.IndexOf("(");
             String imma = elmt_bateau.Substring(char_bateau + 1, elmt_bateau.Length - char_bateau - 2);
-            int idlotmax = 0;
-            foreach (DataGridViewRow row in dg_veterinaire_lotspeche_lotsbateau.Rows)
-            {
-                if (idlotmax < Int32.Parse(row.Cells[6].Value.ToString()))
-                {
-                    idlotmax = Int32.Parse(row.Cells[6].Value.ToString());
-                }
-            }
+            CURS csa = new CURS();
+            csa.ReqSelectPrepare("SELECT max(id) as maxid FROM lot WHERE idDatePeche=? AND idbateau=(SELECT id FROM bateau WHERE immatriculation=?)", new List<object> {Datejour, imma });
+            int idlotmax = Int32.Parse(csa.champ("maxid").ToString());
+            csa.fermer();
             object[] etqplot = null;
             bool isok = true;
             if (dg_veterinaire_lotspeche_bacnotlot.SelectedRows.Count == 0)
@@ -687,7 +690,7 @@ namespace AppCriée
             else
             {
                 CURS cs = new CURS();
-                cs.ReqAdminPrepare("INSERT INTO lot(idDatePeche,idBateau , id, idEspece, idTaille, idPresentation, idQualite) VALUES (?,(SELECT id FROM bateau WHERE immatriculation=?),?,(SELECT id FROM espece WHERE nom=?),?,?,?)", new List<object> { Datejour, imma, (idlotmax + 1), etqplot[0], etqplot[1], etqplot[3], etqplot[2] });
+                cs.ReqAdminPrepare("INSERT INTO lot(idDatePeche,idBateau , id, idEspece, idTaille, idPresentation, idQualite, iduserinsert, idusermodif) VALUES (?,(SELECT id FROM bateau WHERE immatriculation=?),?,(SELECT id FROM espece WHERE nom=?),?,?,?,?,?)", new List<object> { Datejour, imma, (idlotmax + 1), etqplot[0], etqplot[1], etqplot[3], etqplot[2], _useractuelle.Id, _useractuelle.Id });
                 cs.fermer();
                 string requetesel = "INSERT INTO bac(id, idDatePeche,idBateau, idLot, idTypeBac) VALUES ";
                 List<object> paramrequetesel = new List<object>();
@@ -768,6 +771,10 @@ namespace AppCriée
                 }
                 cs = new CURS();
                 cs.ReqAdminPrepare("INSERT INTO bac(id, idDatePeche, idBateau,idLot, idTypeBac) VALUES " + requeteInsert.Substring(1), paramrequeteInsert);
+                cs.fermer();
+                cs = new CURS();
+                cs.ReqAdminPrepare("UPDATE lot SET idusermodif=? , datemodif=? WHERE idDatePeche=? AND id=? AND idBateau=?",new List<object> {_useractuelle.Id,DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), Datejour, numLot, idbateau });
+                cs.fermer();
                 cbx_veterinaire_lotspeche_listebateaux_SelectionChangeCommitted(sender, e);
                 lbl_veterinaire_lotspeche_isokcreerlot.Text = "Le ou les bacs ont bien été assignées au lot : " + numLot;
                 lbl_veterinaire_lotspeche_isokcreerlot.ForeColor = Color.Blue;

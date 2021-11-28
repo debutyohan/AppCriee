@@ -225,6 +225,9 @@ namespace AppCriée
             HiddenObject.Hide(new List<Control> { tbx_peseur_lotspeche_saisirpoids, lbl_peseur_lotspeche_saisirpoids, btn_peseur_lotspeche_validersaisiepoids });
 
             cs.fermer();
+            cs = new CURS();
+            cs.ReqAdminPrepare("UPDATE lot SET idusermodif=? , datemodif=? WHERE idDatePeche=? AND id=? AND idBateau=?", new List<object> { _useractuelle.Id, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), Datejour, idLotisWeightModifing, idbateau });
+            cs.fermer();
             int index = dg_peseur_lotspeche_lotsbateau.Rows.IndexOf(ligneselect);
             cbx_peseur_lotspeche_listebateaux_SelectionChangeCommitted(sender, e);
             dg_peseur_lotspeche_lotsbateau.Rows[index].Selected = true;
@@ -273,6 +276,9 @@ namespace AppCriée
                 btn_peseur_lotspeche_imprimerticketlot.Hide();
 
             }
+            cs.fermer();
+            cs = new CURS();
+            cs.ReqAdminPrepare("UPDATE lot SET idusermodif=? , datemodif=? WHERE idDatePeche=? AND id=? AND idBateau=?", new List<object> { _useractuelle.Id, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), Datejour, idlot, idbateau });
             cs.fermer();
             lbl_peseur_lotspeche_validation.Show();
         }
