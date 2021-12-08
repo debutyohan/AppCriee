@@ -654,7 +654,7 @@ namespace AppCriée
             int char_bateau = elmt_bateau.IndexOf("(");
             String imma = elmt_bateau.Substring(char_bateau + 1, elmt_bateau.Length - char_bateau - 2);
             CURS csa = new CURS();
-            csa.ReqSelectPrepare("SELECT max(id) as maxid FROM lot WHERE idDatePeche=? AND idbateau=(SELECT id FROM bateau WHERE immatriculation=?)", new List<object> {Datejour, imma });
+            csa.ReqSelectPrepare("SELECT IFNULL(max(id),0) as maxid FROM lot WHERE idDatePeche=? AND idbateau=(SELECT id FROM bateau WHERE immatriculation=?)", new List<object> {Datejour, imma });
             int idlotmax = Int32.Parse(csa.champ("maxid").ToString());
             csa.fermer();
             object[] etqplot = null;
@@ -812,7 +812,7 @@ namespace AppCriée
             cs.fermer();
 
             cs = new CURS();
-            cs.ReqSelectPrepare("SELECT bac.id as idBac, idTypeBac FROM bac INNER JOIN typebac ON typebac.id=bac.idTypeBac WHERE idDatePeche=? AND idBateau=? AND idLot=? AND (codeEtat IS NULL OR codeEtat='') ORDER BY bac.id", new List<Object> { Datejour, numBateau, idLot });
+            cs.ReqSelectPrepare("SELECT bac.id as idBac, idTypeBac FROM bac INNER JOIN typebac ON typebac.id=bac.idTypeBac INNER JOIN lot ON lot.idDatePeche=bac.idDatePeche AND lot.id=bac.idLot AND lot.idBateau=bac.idBateau WHERE bac.idDatePeche=? AND bac.idBateau=? AND bac.idLot=? AND (codeEtat IS NULL OR codeEtat='') ORDER BY bac.id", new List<Object> { Datejour, numBateau, idLot });
 
             List<string> listebac = new List<string>();
             List<string> listetypebac = new List<string>();
