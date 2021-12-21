@@ -125,7 +125,7 @@ namespace AppCriée
                 foreach (DataGridViewRow item in dg_pechejour.SelectedRows)
                 {
                     CURS cs = new CURS();
-                    cs.ReqSelectPrepare("SELECT COUNT(lot.id) as nbLot FROM lot INNER JOIN bateau ON lot.idBateau = bateau.id WHERE immatriculation=? AND idDatePeche=?", new List<object> { item.Cells[1].Value, Datejour });
+                    cs.ReqSelectPrepare("SELECT COUNT(lot.idLot) as nbLot FROM lot INNER JOIN bateau ON lot.idBateau = bateau.id WHERE immatriculation=? AND idDatePeche=?", new List<object> { item.Cells[1].Value, Datejour });
                     string nbLot = cs.champ("nbLot").ToString();
                     if (cs.champ("nbLot").ToString() != "0")
                     {
