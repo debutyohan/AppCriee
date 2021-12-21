@@ -116,7 +116,7 @@ namespace AppCriée
             cs.ReqSelectPrepare("SELECT id FROM bateau WHERE immatriculation ='" + imma + "'", new List<object> { imma });
             idbateau = Int32.Parse(cs.champ("id").ToString());
             lbl_peseur_lotspeche_lotsbateau.Text = "Liste de tous les lots du Bateau '" + elmt_bateau.Substring(0, char_bateau) + "' :";
-            bool islots = CompleteControl.RemplirDataGridViewByRequest(dg_peseur_lotspeche_lotsbateau, "SELECT bac.idLot as idLot, count(bac.idLot) as nbbac, espece.nom as nomEspece, idTaille, idPresentation, idQualite, SUM(poidsbrutBac) as poidstotal, codeEtat FROM bac INNER JOIN lot ON bac.idDatePeche=lot.idDatePeche AND bac.idBateau=lot.idBateau AND bac.idLot=lot.idLot INNER JOIN espece ON espece.id=lot.idEspece INNER JOIN bateau ON bateau.id=lot.idBateau AND bateau.id=bac.idBateau WHERE bac.idDatePeche=? AND immatriculation=? AND (codeEtat IS NULL OR codeEtat='' OR codeEtat='C') GROUP BY bac.idLot", new string[] { "idLot", "nomEspece", "idTaille", "idQualite", "idPresentation", "nbbac", "poidstotal", "codeEtat" }, new List<object> { Datejour, imma });
+            bool islots = CompleteControl.RemplirDataGridViewByRequest(dg_peseur_lotspeche_lotsbateau, "SELECT bac.idLot as idLot, count(bac.idLot) as nbbac, espece.nom as nomEspece, idTaille, idPresentation, idQualite, SUM(poidsbrutBac) as poidstotal, codeEtat FROM bac INNER JOIN lot ON bac.idDatePeche=lot.idDatePeche AND bac.idBateau=lot.idBateau AND bac.idLot=lot.idLot INNER JOIN espece ON espece.id=lot.idEspece INNER JOIN bateau ON bateau.id=lot.idBateau AND bateau.id=bac.idBateau WHERE bac.idDatePeche=? AND immatriculation=? AND (codeEtat='C' OR codeEtat='M') GROUP BY bac.idLot", new string[] { "idLot", "nomEspece", "idTaille", "idQualite", "idPresentation", "nbbac", "poidstotal", "codeEtat" }, new List<object> { Datejour, imma });
             if (islots == true)
             {
                 foreach (DataGridViewRow ligne in dg_peseur_lotspeche_lotsbateau.Rows)
@@ -136,7 +136,7 @@ namespace AppCriée
                         numLotBateau = "0" + numLotBateau;
                     }
                     ligne.Cells[0].Value = numLotBateau + numLotLot;
-                    if (ligne.Cells[7].Value.ToString().Trim() != "")
+                    if (ligne.Cells[7].Value.ToString().Trim() != "C")
                     {
                         CompleteControl.griseligne(ligne);
                     }
@@ -171,7 +171,7 @@ namespace AppCriée
                         return;
                     }
                 }
-                if (ligneselectionne.Cells[7].Value.ToString().Trim() == "")
+                if (ligneselectionne.Cells[7].Value.ToString().Trim() == "C")
                 {
                     rbtn_peseur_lotspeche_lotnonbloque.Checked = true;
                 }
@@ -179,6 +179,7 @@ namespace AppCriée
                 {
                     rbtn_peseur_lotspeche_lotbloque.Checked = true;
                     btn_peseur_lotspeche_imprimerticketlot.Show();
+                    btn_peseur_lotspeche_saisirpoids.Hide();
                 }
 
                 HiddenObject.Show(new List<Control> { rbtn_peseur_lotspeche_lotnonbloque, rbtn_peseur_lotspeche_lotbloque });
@@ -261,19 +262,21 @@ namespace AppCriée
             CURS cs = new CURS();
             if (rbtn_peseur_lotspeche_lotbloque.Checked)
             {
-                cs.ReqAdminPrepare("UPDATE lot SET codeEtat ='C' WHERE idDatePeche =? AND idBateau =? AND idLot =?", new List<object> { Datejour, idbateau, idlot });
+                cs.ReqAdminPrepare("UPDATE lot SET codeEtat ='M' WHERE idDatePeche =? AND idBateau =? AND idLot =?", new List<object> { Datejour, idbateau, idlot });
                 CompleteControl.griseligne(ligneselectionne);
                 lbl_peseur_lotspeche_validation.Text = "Le lot sélectionné a bien été bloqué";
-                ligneselectionne.Cells[7].Value = "C";
+                ligneselectionne.Cells[7].Value = "M";
                 btn_peseur_lotspeche_imprimerticketlot.Show();
+                btn_peseur_lotspeche_saisirpoids.Hide();
             }
             if (rbtn_peseur_lotspeche_lotnonbloque.Checked)
             {
-                cs.ReqAdminPrepare("UPDATE lot SET codeEtat =NULL WHERE idDatePeche =? AND idBateau =? AND idLot =?", new List<object> { Datejour, idbateau, idlot });
+                cs.ReqAdminPrepare("UPDATE lot SET codeEtat ='C' WHERE idDatePeche =? AND idBateau =? AND idLot =?", new List<object> { Datejour, idbateau, idlot });
                 CompleteControl.degriseligne(ligneselectionne);
                 lbl_peseur_lotspeche_validation.Text = "Le lot sélectionné a bien été débloqué";
-                ligneselectionne.Cells[7].Value = "";
+                ligneselectionne.Cells[7].Value = "C";
                 btn_peseur_lotspeche_imprimerticketlot.Hide();
+                btn_peseur_lotspeche_saisirpoids.Show();
 
             }
             cs.fermer();

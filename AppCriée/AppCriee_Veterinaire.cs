@@ -116,7 +116,7 @@ namespace AppCriée
                     else
                     {
                         HiddenObject.Hide(new List<Control> { lbl_veterinaire_touslots_error, lbl_veterinaire_touslots_ok });
-                        if (CompleteControl.RemplirDataGridViewByRequest(dg_veterinaire_touslots_alllot, "SELECT bateau.id as idBateau, bateau.nom as nomBateau, bac.idLot, count(bac.idLot) as nbbac, espece.nom as nomEspece, idTaille, idPresentation, idQualite, codeEtat FROM bac INNER JOIN lot ON bac.idDatePeche=lot.idDatePeche AND bac.idBateau=lot.idBateau AND bac.idLot=lot.idLot INNER JOIN espece ON espece.id=lot.idEspece INNER JOIN bateau ON bateau.id=lot.idBateau AND bateau.id=bac.idBateau WHERE bac.idDatePeche=? AND (codeEtat IS NULL OR codeEtat='' OR codeEtat='C') GROUP BY bac.idLot, lot.idBateau ORDER BY bateau.nom, bac.idLot", new string[] { "nomBateau", "idLot", "nomEspece", "idTaille", "idQualite", "idPresentation", "nbbac", "idBateau", "codeEtat" }, new List<object> { Datejour }))
+                        if (CompleteControl.RemplirDataGridViewByRequest(dg_veterinaire_touslots_alllot, "SELECT bateau.id as idBateau, bateau.nom as nomBateau, bac.idLot, count(bac.idLot) as nbbac, espece.nom as nomEspece, idTaille, idPresentation, idQualite, lot.codeEtat as codeEtat, descriptionEtat FROM bac INNER JOIN lot ON bac.idDatePeche=lot.idDatePeche AND bac.idBateau=lot.idBateau AND bac.idLot=lot.idLot INNER JOIN espece ON espece.id=lot.idEspece INNER JOIN bateau ON bateau.id=lot.idBateau AND bateau.id=bac.idBateau INNER JOIN etat ON etat.codeEtat=lot.codeEtat WHERE bac.idDatePeche=? AND (lot.codeEtat='C' OR lot.codeEtat='M') GROUP BY bac.idLot, lot.idBateau ORDER BY bateau.nom, bac.idLot", new string[] { "nomBateau", "idLot", "nomEspece", "idTaille", "idQualite", "idPresentation", "nbbac", "idBateau", "codeEtat" , "descriptionEtat" }, new List<object> { Datejour }))
                         {
                             foreach (DataGridViewRow ligne in dg_veterinaire_touslots_alllot.Rows)
                             {
@@ -135,7 +135,7 @@ namespace AppCriée
                                     numLotBateau = "0" + numLotBateau;
                                 }
                                 ligne.Cells[1].Value = numLotBateau + numLotLot;
-                                if (ligne.Cells[8].Value.ToString() != "")
+                                if (ligne.Cells[8].Value.ToString() != "C")
                                 {
                                     CompleteControl.griseligne(ligne);
                                 }
@@ -194,7 +194,7 @@ namespace AppCriée
             cs.fermer();
             cs = new CURS();
             dg_veterinaire_bacpoissons_listebac.Rows.Clear();
-            cs.ReqSelectPrepare("SELECT numBac as idBac, bac.idLot as idLot, idTypeBac, espece.nom as nomEspece, idTaille, idQualite, idPresentation, codeEtat FROM bac INNER JOIN lot ON lot.idLot=bac.idLot AND lot.idDatePeche=bac.idDatePeche AND lot.idBateau=bac.idBateau INNER JOIN espece ON lot.idEspece=espece.id INNER JOIN bateau ON lot.idBateau=bateau.id AND bac.idBateau=bateau.id WHERE bac.idDatePeche=? AND immatriculation=? AND (codeEtat IS NULL OR codeEtat='C' OR codeEtat='')", new List<object> { Datejour, imma });
+            cs.ReqSelectPrepare("SELECT numBac as idBac, bac.idLot as idLot, idTypeBac, espece.nom as nomEspece, idTaille, idQualite, idPresentation, codeEtat FROM bac INNER JOIN lot ON lot.idLot=bac.idLot AND lot.idDatePeche=bac.idDatePeche AND lot.idBateau=bac.idBateau INNER JOIN espece ON lot.idEspece=espece.id INNER JOIN bateau ON lot.idBateau=bateau.id AND bac.idBateau=bateau.id WHERE bac.idDatePeche=? AND immatriculation=? AND (codeEtat='C' OR codeEtat='M')", new List<object> { Datejour, imma });
             if (cs.champ("idBac") is null)
             {
                 lbl_veterinaire_bacpoissons_isbac.Show();
@@ -222,7 +222,7 @@ namespace AppCriée
                     dg_veterinaire_bacpoissons_listebac.Rows.Add(cs.champ("idBac") + " (" + numLotBateau + "" + numLotLot + ")", cs.champ("nomEspece"), cs.champ("idTaille"), cs.champ("idQualite"), cs.champ("idPresentation"), cs.champ("idTypeBac"));
                     DataGridViewRow lastline = dg_veterinaire_bacpoissons_listebac.Rows[dg_veterinaire_bacpoissons_listebac.Rows.Count - 1];
                     lastline.Cells[7].Value = cs.champ("codeEtat").ToString();
-                    if (cs.champ("codeEtat").ToString().Trim() == "C")
+                    if (cs.champ("codeEtat").ToString().Trim() != "C")
                     {
                         CompleteControl.griseligne(dg_veterinaire_bacpoissons_listebac.Rows[dg_veterinaire_bacpoissons_listebac.Rows.Count - 1]);
 
@@ -502,7 +502,7 @@ namespace AppCriée
             }
             else
             {
-                CompleteControl.RemplirCombobox(cbx_veterinaire_bacpoissons_choixlot, "SELECT lot.idLot as idLot, espece.nom as nomEspece, idTaille, idPresentation, idQualite, codeEtat FROM lot INNER JOIN espece ON espece.id=lot.idEspece INNER JOIN bateau ON bateau.id=lot.idBateau AND bateau.id=lot.idBateau WHERE lot.idDatePeche=? AND bateau.id=?", "#Lot n°#idLot (nomEspece:idTaille:idQualite:idPresentation)", new List<object> { Datejour, idbateau }, false);
+                CompleteControl.RemplirCombobox(cbx_veterinaire_bacpoissons_choixlot, "SELECT lot.idLot as idLot, espece.nom as nomEspece, idTaille, idPresentation, idQualite, codeEtat FROM lot INNER JOIN espece ON espece.id=lot.idEspece INNER JOIN bateau ON bateau.id=lot.idBateau AND bateau.id=lot.idBateau WHERE lot.idDatePeche=? AND bateau.id=? AND (codeEtat='C' OR codeEtat='M')", "#Lot n°#idLot (nomEspece:idTaille:idQualite:idPresentation)", new List<object> { Datejour, idbateau }, false);
                 if (listebacnotlot.Count(ai => ai.IdBateau == idbateau) != 0)
                 {
                     cbx_veterinaire_bacpoissons_choixlot.Items.Add("Pas de lots");
@@ -547,7 +547,7 @@ namespace AppCriée
                             dg_veterinaire_bacpoissons_listebac.Rows.Add(cs.champ("idBac") + " (" + numLotBateau + "" + numLotLot + ")", cs.champ("nomEspece"), cs.champ("idTaille"), cs.champ("idQualite"), cs.champ("idPresentation"), cs.champ("idTypeBac"));
                             DataGridViewRow lastline = dg_veterinaire_bacpoissons_listebac.Rows[dg_veterinaire_bacpoissons_listebac.Rows.Count - 1];
                             lastline.Cells[7].Value = cs.champ("codeEtat").ToString();
-                            if (cs.champ("codeEtat").ToString().Trim() != "")
+                            if (cs.champ("codeEtat").ToString().Trim() != "C")
                             {
                                 CompleteControl.griseligne(dg_veterinaire_bacpoissons_listebac.Rows[dg_veterinaire_bacpoissons_listebac.Rows.Count - 1]);
                                 HiddenObject.Hide(new List<Control> { btn_veterinaire_bacpoissons_modifierbacs, btn_veterinaire_bacpoissons_supprimerbacs });
@@ -591,7 +591,7 @@ namespace AppCriée
             String imma = elmt_bateau.Substring(char_bateau + 1, elmt_bateau.Length - char_bateau - 2);
             lbl_veterinaire_lotspeche_bacnotlot.Text = "Liste des Bacs non assignées à un lot du Bateau '" + elmt_bateau.Substring(0, char_bateau) + "' :";
             lbl_veterinaire_lotspeche_lotsbateau.Text = "Liste de tous les lots du Bateau '" + elmt_bateau.Substring(0, char_bateau) + "' :";
-            bool islots = CompleteControl.RemplirDataGridViewByRequest(dg_veterinaire_lotspeche_lotsbateau, "SELECT bac.idLot as idLot, count(bac.idLot) as nbbac, espece.nom as nomEspece, idTaille, idPresentation, idQualite FROM bac INNER JOIN lot ON bac.idDatePeche=lot.idDatePeche AND bac.idBateau=lot.idBateau AND bac.idLot=lot.idLot INNER JOIN espece ON espece.id=lot.idEspece INNER JOIN bateau ON bateau.id=lot.idBateau AND bateau.id=bac.idBateau WHERE bac.idDatePeche=? AND immatriculation=? AND (codeEtat IS NULL OR codeEtat='C' OR codeEtat='') GROUP BY bac.idLot", new string[] { "idLot", "nomEspece", "idTaille", "idQualite", "idPresentation", "nbbac", "idlot" }, new List<object> { Datejour, imma });
+            bool islots = CompleteControl.RemplirDataGridViewByRequest(dg_veterinaire_lotspeche_lotsbateau, "SELECT bac.idLot as idLot, count(bac.idLot) as nbbac, espece.nom as nomEspece, idTaille, idPresentation, idQualite FROM bac INNER JOIN lot ON bac.idDatePeche=lot.idDatePeche AND bac.idBateau=lot.idBateau AND bac.idLot=lot.idLot INNER JOIN espece ON espece.id=lot.idEspece INNER JOIN bateau ON bateau.id=lot.idBateau AND bateau.id=bac.idBateau WHERE bac.idDatePeche=? AND immatriculation=? AND (codeEtat='C' OR codeEtat='M') GROUP BY bac.idLot", new string[] { "idLot", "nomEspece", "idTaille", "idQualite", "idPresentation", "nbbac", "idlot" }, new List<object> { Datejour, imma });
             if (islots)
             {
                 foreach (DataGridViewRow ligne in dg_veterinaire_lotspeche_lotsbateau.Rows)
@@ -631,7 +631,7 @@ namespace AppCriée
             }
             if (isbacnotlot)
             {
-                CompleteControl.RemplirCombobox(cbx_veterinaire_lotspeche_lotsbateau, "SELECT lot.idLot as idLot, espece.nom as nomEspece, idTaille, idPresentation, idQualite FROM lot INNER JOIN espece ON espece.id=lot.idEspece INNER JOIN bateau ON bateau.id=lot.idBateau AND bateau.id=lot.idBateau WHERE lot.idDatePeche=? AND immatriculation=? AND (codeEtat is NULL OR codeEtat='')", "#Lot n°#idLot (nomEspece:idTaille:idQualite:idPresentation)", new List<object> { Datejour, imma }, false);
+                CompleteControl.RemplirCombobox(cbx_veterinaire_lotspeche_lotsbateau, "SELECT lot.idLot as idLot, espece.nom as nomEspece, idTaille, idPresentation, idQualite FROM lot INNER JOIN espece ON espece.id=lot.idEspece INNER JOIN bateau ON bateau.id=lot.idBateau AND bateau.id=lot.idBateau WHERE lot.idDatePeche=? AND immatriculation=? AND (codeEtat='C' OR codeEtat='M')", "#Lot n°#idLot (nomEspece:idTaille:idQualite:idPresentation)", new List<object> { Datejour, imma }, false);
                 HiddenObject.Show(new List<Control> { btn_veterinaire_lotspeche_creerlot, dg_veterinaire_lotspeche_bacnotlot });
                 if (islots)
                 {
@@ -812,7 +812,7 @@ namespace AppCriée
             cs.fermer();
 
             cs = new CURS();
-            cs.ReqSelectPrepare("SELECT numBac as idBac, idTypeBac FROM bac INNER JOIN typebac ON typebac.id=bac.idTypeBac INNER JOIN lot ON lot.idDatePeche=bac.idDatePeche AND lot.idLot=bac.idLot AND lot.idBateau=bac.idBateau WHERE bac.idDatePeche=? AND bac.idBateau=? AND bac.idLot=? AND (codeEtat IS NULL OR codeEtat='') ORDER BY numBac", new List<Object> { Datejour, numBateau, idLot });
+            cs.ReqSelectPrepare("SELECT numBac as idBac, idTypeBac FROM bac INNER JOIN typebac ON typebac.id=bac.idTypeBac INNER JOIN lot ON lot.idDatePeche=bac.idDatePeche AND lot.idLot=bac.idLot AND lot.idBateau=bac.idBateau WHERE bac.idDatePeche=? AND bac.idBateau=? AND bac.idLot=? AND (codeEtat='C' OR codeEtat='M') ORDER BY numBac", new List<Object> { Datejour, numBateau, idLot });
 
             List<string> listebac = new List<string>();
             List<string> listetypebac = new List<string>();
