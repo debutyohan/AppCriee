@@ -50,7 +50,7 @@ namespace AppCriée
                     break;
                 case "tbp_directeurdesventes_lotsvente":
                     CURS cs = new CURS();
-                    cs.ReqSelectPrepare("SELECT count(idLot) as nblot FROM lot WHERE codeEtat is not null", new List<object> { Datejour });
+                    cs.ReqSelectPrepare("SELECT count(idLot) as nblot FROM lot WHERE codeEtat!='C' AND codeEtat!='M'", new List<object> { Datejour });
                     if (cs.champ("nblot").ToString() == "0")
                     {
                         lbl_directeurdesventes_lotsvente_islots.Show();
@@ -58,7 +58,7 @@ namespace AppCriée
                     }
                     else
                     {
-                        if (CompleteControl.RemplirDataGridViewByRequest(dg_directeurdesventes_lotsvente_alllot, "SELECT bateau.nom as nomBateau, bac.idLot as idLot, count(bac.idLot) as nbbac, espece.nom as nomEspece, idTaille, idPresentation, idQualite, SUM(poidsbrutBac) as poidstotal, codeEtat, bateau.id as idBateau FROM bac INNER JOIN lot ON bac.idDatePeche=lot.idDatePeche AND bac.idBateau=lot.idBateau AND bac.idLot=lot.idLot INNER JOIN espece ON espece.id=lot.idEspece INNER JOIN bateau ON bateau.id=lot.idBateau AND bateau.id=bac.idBateau WHERE bac.idDatePeche=? AND codeEtat='C' GROUP BY bac.idLot, lot.idBateau ORDER BY bateau.nom, bac.idLot", new string[] { "nomBateau", "idLot", "nomEspece", "idTaille", "idQualite", "idPresentation", "nbbac", "poidstotal", "codeEtat", "idBateau" }, new List<object> { Datejour }))
+                        if (CompleteControl.RemplirDataGridViewByRequest(dg_directeurdesventes_lotsvente_alllot, "SELECT bateau.nom as nomBateau, bac.idLot as idLot, count(bac.idLot) as nbbac, espece.nom as nomEspece, idTaille, idPresentation, idQualite, SUM(poidsbrutBac) as poidstotal, codeEtat, bateau.id as idBateau FROM bac INNER JOIN lot ON bac.idDatePeche=lot.idDatePeche AND bac.idBateau=lot.idBateau AND bac.idLot=lot.idLot INNER JOIN espece ON espece.id=lot.idEspece INNER JOIN bateau ON bateau.id=lot.idBateau AND bateau.id=bac.idBateau INNER JOIN peche ON peche.datePeche=lot.idDatePeche AND peche.idBateau=lot.idBateau AND peche.idBateau=bateau.id AND peche.DatePeche=bac.idDatePeche AND peche.idBateau=bac.idBateau WHERE bac.idDatePeche=? AND codeEtat='C' GROUP BY bac.idLot, lot.idBateau ORDER BY heureArrivee, bac.idLot", new string[] { "nomBateau", "idLot", "nomEspece", "idTaille", "idQualite", "idPresentation", "nbbac", "poidstotal", "codeEtat", "idBateau" }, new List<object> { Datejour }))
                         {
                             foreach (DataGridViewRow ligne in dg_directeurdesventes_lotsvente_alllot.Rows)
                             {

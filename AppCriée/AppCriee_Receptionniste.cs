@@ -32,7 +32,8 @@ namespace AppCriée
             InitializeComponent();
             lbl_accueil_bienvenue.Text = "Bienvenue " + unutilisateur.Nom + " " + unutilisateur.Prenom;
             lbl_receptionniste_datejour.Text = "Date du jour : " + DateTime.Today.ToString("dd/MM/yyyy");
-            HiddenObject.Hide(new List<Control> { lbl_pechejour_allpeche, dg_pechejour, lbl_ajoutpeche_creerpeche_nombateau, cbx_ajoutpeche_creerpeche_nombateau, btn_pechejour_creerpeche_valider, lbl_pechejour_pecheok });
+            lbl_ajoutpeche_creerpeche_error.Text = "";
+            HiddenObject.Hide(new List<Control> { lbl_pechejour_allpeche, dg_pechejour, lbl_ajoutpeche_creerpeche_nombateau, cbx_ajoutpeche_creerpeche_nombateau, btn_pechejour_creerpeche_valider, lbl_pechejour_pecheok, lbl_ajoutpeche_creerpeche_heurearrivee, tbx_ajoutpeche_creerpeche_heurearrivee });
            
         }
 
@@ -57,7 +58,7 @@ namespace AppCriée
                     HiddenObject.Hide(new List<Control> { lbl_ajoutpeche_explication, lbl_ajoutpeche_explication2, btn_ajoutpeche_creerpeche });
                 }
                 cs.fermer();
-                if (CompleteControl.RemplirDataGridViewByRequest(dg_pechejour, "SELECT idBateau, nom, immatriculation FROM peche INNER JOIN Bateau ON peche.idBateau=Bateau.id WHERE DatePeche=?", new string[] { "nom", "immatriculation" }, new List<object> { Datejour }))
+                if (CompleteControl.RemplirDataGridViewByRequest(dg_pechejour, "SELECT idBateau, nom, immatriculation, heureArrivee FROM peche INNER JOIN Bateau ON peche.idBateau=Bateau.id WHERE DatePeche=? ORDER BY heureArrivee", new string[] { "nom", "immatriculation" , "heureArrivee"}, new List<object> { Datejour }))
                 {
                     HiddenObject.Hide(new List<Control> { lbl_ajoutpeche_ispeche });
                     HiddenObject.Show(new List<Control> { dg_pechejour, btn_receptionniste_peche_supprimer });
@@ -97,23 +98,29 @@ namespace AppCriée
 
         private void btn_receptionniste_creerpeche_Click(object sender, EventArgs e)
         {
-            HiddenObject.Show(new List<Control> { lbl_ajoutpeche_creerpeche_nombateau, cbx_ajoutpeche_creerpeche_nombateau, btn_pechejour_creerpeche_valider });
+            HiddenObject.Show(new List<Control> { lbl_ajoutpeche_creerpeche_nombateau, cbx_ajoutpeche_creerpeche_nombateau,lbl_ajoutpeche_creerpeche_heurearrivee, tbx_ajoutpeche_creerpeche_heurearrivee ,btn_pechejour_creerpeche_valider });
             btn_ajoutpeche_creerpeche.Hide();
             lbl_pechejour_pecheok.Hide();
             CompleteControl.RemplirCombobox(cbx_ajoutpeche_creerpeche_nombateau, "SELECT bateau.id, nom, immatriculation FROM peche RIGHT JOIN bateau ON peche.idBateau=Bateau.id  WHERE bateau.id NOT IN(SELECT DISTINCT idBateau FROM peche WHERE datePeche=?) GROUP BY bateau.id ORDER BY count(*)*(NOT(ISNULL(peche.datePeche))) DESC", "nom(immatriculation)", new List<object> { Datejour });
         }
         private void btn_receptionniste_creerpeche_valider_Click(object sender, EventArgs e)
         {
+            lbl_ajoutpeche_creerpeche_error.Text = "";
+            if (!Regex.IsMatch(tbx_ajoutpeche_creerpeche_heurearrivee.Text, @"^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$")){
+                lbl_ajoutpeche_creerpeche_error.Text = "Le format de l'heure entré n'est pas correcte, le format est hh:mm";
+                return;
+            }
             String elmt_bateau = cbx_ajoutpeche_creerpeche_nombateau.SelectedItem.ToString();
             int char_bateau = elmt_bateau.IndexOf("(");
             string nomBateau = elmt_bateau.Substring(0, char_bateau);
             String imma = elmt_bateau.Substring(char_bateau + 1, elmt_bateau.Length - char_bateau - 2);
             CURS cs = new CURS();
-            cs.ReqAdminPrepare("INSERT INTO Peche(DatePeche, idBateau) VALUES (?,(SELECT id FROM Bateau WHERE immatriculation = ?))", new List<object> { Datejour, imma });
+            cs.ReqAdminPrepare("INSERT INTO Peche(DatePeche, idBateau, heureArrivee) VALUES (?,(SELECT id FROM Bateau WHERE immatriculation = ?), ?)", new List<object> { Datejour, imma, tbx_ajoutpeche_creerpeche_heurearrivee.Text });
             cs.fermer();
-            HiddenObject.Hide(new List<Control> { lbl_pechejour_allpeche, lbl_ajoutpeche_creerpeche_nombateau, cbx_ajoutpeche_creerpeche_nombateau, btn_pechejour_creerpeche_valider, lbl_ajoutpeche_ispeche });
+            HiddenObject.Hide(new List<Control> { lbl_pechejour_allpeche, lbl_ajoutpeche_creerpeche_nombateau, cbx_ajoutpeche_creerpeche_nombateau, btn_pechejour_creerpeche_valider, lbl_ajoutpeche_ispeche, lbl_ajoutpeche_creerpeche_heurearrivee, tbx_ajoutpeche_creerpeche_heurearrivee});
             HiddenObject.Show(new List<Control> { btn_ajoutpeche_creerpeche, lbl_pechejour_pecheok, dg_pechejour, btn_receptionniste_peche_supprimer });
-            dg_pechejour.Rows.Add(nomBateau, imma);
+            tbc_receptionniste_Selected(sender, _onglet);
+            tbx_ajoutpeche_creerpeche_heurearrivee.Text = "";
             lbl_pechejour_pecheok.Text = "La peche de ce jour du bateau " + elmt_bateau + " a bien été crée";
         }
         private void btn_receptionniste_creerpeche_supprimer_Click(object sender, EventArgs e)

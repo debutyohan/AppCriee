@@ -23,12 +23,13 @@ namespace AppCriée
         string idBacisWeightModifing = "";
         DataGridViewCellEventArgs dernierclic;
         DataGridViewRow ligneselect;
+        DataGridViewRow ligneselectbac;
         int idbateau;
         AppCriee _authAccueil;
         User _useractuelle;
         TabControlEventArgs _onglet;
         string idUserModified;
-
+        int rowonepos;
         #endregion
 
         #region Constructeur
@@ -51,7 +52,7 @@ namespace AppCriée
         {
             if (cbx_peseur_lotspeche_listebateaux.SelectedItem is null)
             {
-                if (CompleteControl.RemplirCombobox(cbx_peseur_lotspeche_listebateaux, "SELECT idBateau, nom, immatriculation FROM peche INNER JOIN Bateau ON peche.idBateau=Bateau.id WHERE DatePeche=?", "nom(immatriculation)", new List<object> { Datejour }, false))
+                if (CompleteControl.RemplirCombobox(cbx_peseur_lotspeche_listebateaux, "SELECT idBateau, nom, immatriculation FROM peche INNER JOIN Bateau ON peche.idBateau=Bateau.id WHERE DatePeche=? ORDER BY heureArrivee", "nom(immatriculation)", new List<object> { Datejour }, false))
                 {
                     HiddenObject.Hide(new List<Control> { lbl_peseur_lotspeche_ispeche });
                     HiddenObject.Show(new List<Control> { cbx_peseur_lotspeche_listebateaux, lbl_peseur_lotspeche_choixbateau });
@@ -230,9 +231,12 @@ namespace AppCriée
             cs.ReqAdminPrepare("UPDATE lot SET idusermodif=? , datemodif=? WHERE idDatePeche=? AND idLot=? AND idBateau=?", new List<object> { _useractuelle.Id, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), Datejour, idLotisWeightModifing, idbateau });
             cs.fermer();
             int index = dg_peseur_lotspeche_lotsbateau.Rows.IndexOf(ligneselect);
+            int indexbac = dg_peseur_lotspeche_bacs.Rows.IndexOf(ligneselectbac);
             cbx_peseur_lotspeche_listebateaux_SelectionChangeCommitted(sender, e);
             dg_peseur_lotspeche_lotsbateau.Rows[index].Selected = true;
             dg_peseur_lotspeche_lotsbateau_CellEnter(sender, dernierclic);
+            dg_peseur_lotspeche_bacs.Rows[indexbac].Selected = true;
+            dg_peseur_lotspeche_bacs.FirstDisplayedScrollingRowIndex = rowonepos;
             lbl_peseur_lotspeche_validationok.Text = "Le bac a bien été modifié";
             lbl_peseur_lotspeche_validationok.ForeColor = Color.Blue;
             lbl_peseur_lotspeche_validationok.Show();
@@ -681,8 +685,21 @@ namespace AppCriée
 
 
 
+
         #endregion
 
+        private void dg_peseur_lotspeche_bacs_Scroll(object sender, ScrollEventArgs e)
+        {
+            rowonepos = dg_peseur_lotspeche_bacs.FirstDisplayedScrollingRowIndex;
+        }
 
+        private void dg_peseur_lotspeche_bacs_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dg_peseur_lotspeche_bacs.SelectedRows.Count == 1)
+            {
+                DataGridViewRow ligneselectionne = dg_peseur_lotspeche_bacs.SelectedRows[0];
+                ligneselectbac = ligneselectionne;
+            }
+        }
     }
 }

@@ -34,18 +34,9 @@ namespace AppCriée
             this.lbl_directeurdesventes_accueil_role = new System.Windows.Forms.Label();
             this.lbl_directeurdesventes_accueil_bienvenue = new System.Windows.Forms.Label();
             this.tbp_directeurdesventes_lotsvente = new System.Windows.Forms.TabPage();
+            this.lbl_directeurdesventes_lotsvente_info = new System.Windows.Forms.Label();
             this.lbl_directeurdesventes_lotsvente_islots = new System.Windows.Forms.Label();
             this.dg_directeurdesventes_lotsvente_alllot = new System.Windows.Forms.DataGridView();
-            this.nomBateau = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numLot = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nbbac = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.poidsTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.codeEtat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iddubateau = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbl_directeurdesventes_lotsvente_title = new System.Windows.Forms.Label();
             this.tbp_directeurdesventes_mesdonnees = new System.Windows.Forms.TabPage();
             this.btn_directeurdesventes_mesdonnees_validermodifmdp = new System.Windows.Forms.Button();
@@ -80,7 +71,16 @@ namespace AppCriée
             this.lbl_directeurdesventes_mesdonnees_modificationmdp = new System.Windows.Forms.Label();
             this.pbx_directeurdesventes_deconnexion = new System.Windows.Forms.PictureBox();
             this.lbl_directeurdesventes_datejour = new System.Windows.Forms.Label();
-            this.lbl_directeurdesventes_lotsvente_info = new System.Windows.Forms.Label();
+            this.nomBateau = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numLot = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nbbac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.poidsTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codeEtat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iddubateau = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbc_directeurdesventes.SuspendLayout();
             this.tbp_directeurdesventes_accueil.SuspendLayout();
             this.tbp_directeurdesventes_lotsvente.SuspendLayout();
@@ -152,6 +152,16 @@ namespace AppCriée
             this.tbp_directeurdesventes_lotsvente.Text = "Lots prêts pour la vente";
             this.tbp_directeurdesventes_lotsvente.UseVisualStyleBackColor = true;
             // 
+            // lbl_directeurdesventes_lotsvente_info
+            // 
+            this.lbl_directeurdesventes_lotsvente_info.AutoSize = true;
+            this.lbl_directeurdesventes_lotsvente_info.Location = new System.Drawing.Point(178, 568);
+            this.lbl_directeurdesventes_lotsvente_info.Name = "lbl_directeurdesventes_lotsvente_info";
+            this.lbl_directeurdesventes_lotsvente_info.Size = new System.Drawing.Size(652, 17);
+            this.lbl_directeurdesventes_lotsvente_info.TabIndex = 41;
+            this.lbl_directeurdesventes_lotsvente_info.Text = "Il ne s\'agit ici que des lots marqués et pesés par le peseur dont vous n\'avez pas" +
+    " encore entrés les prix";
+            // 
             // lbl_directeurdesventes_lotsvente_islots
             // 
             this.lbl_directeurdesventes_lotsvente_islots.AutoSize = true;
@@ -196,88 +206,6 @@ namespace AppCriée
             this.dg_directeurdesventes_lotsvente_alllot.Size = new System.Drawing.Size(1060, 433);
             this.dg_directeurdesventes_lotsvente_alllot.TabIndex = 39;
             this.dg_directeurdesventes_lotsvente_alllot.Visible = false;
-            // 
-            // nomBateau
-            // 
-            this.nomBateau.HeaderText = "Nom du bateau";
-            this.nomBateau.MinimumWidth = 6;
-            this.nomBateau.Name = "nomBateau";
-            this.nomBateau.ReadOnly = true;
-            this.nomBateau.Width = 125;
-            // 
-            // numLot
-            // 
-            this.numLot.HeaderText = "Numéro de lot";
-            this.numLot.MinimumWidth = 6;
-            this.numLot.Name = "numLot";
-            this.numLot.ReadOnly = true;
-            this.numLot.Width = 125;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Espèce";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 125;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Taille";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 65;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Qualité";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 65;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Présentation";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 75;
-            // 
-            // nbbac
-            // 
-            this.nbbac.HeaderText = "Nombre de bacs";
-            this.nbbac.MinimumWidth = 6;
-            this.nbbac.Name = "nbbac";
-            this.nbbac.ReadOnly = true;
-            this.nbbac.Width = 125;
-            // 
-            // poidsTotal
-            // 
-            this.poidsTotal.HeaderText = "Poids total (en kg)";
-            this.poidsTotal.MinimumWidth = 6;
-            this.poidsTotal.Name = "poidsTotal";
-            this.poidsTotal.ReadOnly = true;
-            this.poidsTotal.Width = 125;
-            // 
-            // codeEtat
-            // 
-            this.codeEtat.HeaderText = "Code état";
-            this.codeEtat.MinimumWidth = 6;
-            this.codeEtat.Name = "codeEtat";
-            this.codeEtat.ReadOnly = true;
-            this.codeEtat.Visible = false;
-            this.codeEtat.Width = 125;
-            // 
-            // iddubateau
-            // 
-            this.iddubateau.HeaderText = "idbateau";
-            this.iddubateau.MinimumWidth = 6;
-            this.iddubateau.Name = "iddubateau";
-            this.iddubateau.ReadOnly = true;
-            this.iddubateau.Visible = false;
-            this.iddubateau.Width = 125;
             // 
             // lbl_directeurdesventes_lotsvente_title
             // 
@@ -695,15 +623,85 @@ namespace AppCriée
             this.lbl_directeurdesventes_datejour.TabIndex = 20;
             this.lbl_directeurdesventes_datejour.Text = "Date du jour : 23/10/2021";
             // 
-            // lbl_directeurdesventes_lotsvente_info
+            // nomBateau
             // 
-            this.lbl_directeurdesventes_lotsvente_info.AutoSize = true;
-            this.lbl_directeurdesventes_lotsvente_info.Location = new System.Drawing.Point(178, 568);
-            this.lbl_directeurdesventes_lotsvente_info.Name = "lbl_directeurdesventes_lotsvente_info";
-            this.lbl_directeurdesventes_lotsvente_info.Size = new System.Drawing.Size(652, 17);
-            this.lbl_directeurdesventes_lotsvente_info.TabIndex = 41;
-            this.lbl_directeurdesventes_lotsvente_info.Text = "Il ne s\'agit ici que des lots marqués et pesés par le peseur dont vous n\'avez pas" +
-    " encore entrés les prix";
+            this.nomBateau.HeaderText = "Nom du bateau";
+            this.nomBateau.MinimumWidth = 6;
+            this.nomBateau.Name = "nomBateau";
+            this.nomBateau.ReadOnly = true;
+            this.nomBateau.Width = 125;
+            // 
+            // numLot
+            // 
+            this.numLot.HeaderText = "Numéro de lot";
+            this.numLot.MinimumWidth = 6;
+            this.numLot.Name = "numLot";
+            this.numLot.ReadOnly = true;
+            this.numLot.Width = 125;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Espèce";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 125;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Taille";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 65;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Qualité";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 65;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Présentation";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 75;
+            // 
+            // nbbac
+            // 
+            this.nbbac.HeaderText = "Nombre de bacs";
+            this.nbbac.MinimumWidth = 6;
+            this.nbbac.Name = "nbbac";
+            this.nbbac.ReadOnly = true;
+            // 
+            // poidsTotal
+            // 
+            this.poidsTotal.HeaderText = "Poids total (en kg)";
+            this.poidsTotal.MinimumWidth = 6;
+            this.poidsTotal.Name = "poidsTotal";
+            this.poidsTotal.ReadOnly = true;
+            // 
+            // codeEtat
+            // 
+            this.codeEtat.HeaderText = "Code état";
+            this.codeEtat.MinimumWidth = 6;
+            this.codeEtat.Name = "codeEtat";
+            this.codeEtat.ReadOnly = true;
+            this.codeEtat.Visible = false;
+            this.codeEtat.Width = 125;
+            // 
+            // iddubateau
+            // 
+            this.iddubateau.HeaderText = "idbateau";
+            this.iddubateau.MinimumWidth = 6;
+            this.iddubateau.Name = "iddubateau";
+            this.iddubateau.ReadOnly = true;
+            this.iddubateau.Visible = false;
+            this.iddubateau.Width = 125;
             // 
             // AppCriee_DirecteurDesVentes
             // 
@@ -776,6 +774,7 @@ namespace AppCriée
         private System.Windows.Forms.Label lbl_directeurdesventes_mesdonnees_modificationmdp;
         private System.Windows.Forms.Label lbl_directeurdesventes_mesdonnees_confirmationnewmdp;
         private System.Windows.Forms.TextBox tbx_directeurdesventes_mesdonnees_confirmationnewmdp;
+        private System.Windows.Forms.Label lbl_directeurdesventes_lotsvente_info;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomBateau;
         private System.Windows.Forms.DataGridViewTextBoxColumn numLot;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
@@ -786,6 +785,5 @@ namespace AppCriée
         private System.Windows.Forms.DataGridViewTextBoxColumn poidsTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn codeEtat;
         private System.Windows.Forms.DataGridViewTextBoxColumn iddubateau;
-        private System.Windows.Forms.Label lbl_directeurdesventes_lotsvente_info;
     }
 }
