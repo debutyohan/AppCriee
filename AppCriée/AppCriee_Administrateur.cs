@@ -49,7 +49,7 @@ namespace AppCriée
                     break;
                 case "tbp_administrateur_gestioncomptes":
                     HiddenObject.Hide(new List<Control> { lbl_administrateur_gestioncomptes_modification, lbl_administrateur_gestioncomptes_ajout, lbl_administrateur_gestioncomptes_adrMail, lbl_administrateur_gestioncomptes_login, lbl_administrateur_gestioncomptes_motdepasse, lbl_administrateur_gestioncomptes_nom, lbl_administrateur_gestioncomptes_prenom, lbl_administrateur_gestioncomptes_typeuser, cbx_administrateur_gestioncomptes_typeuser, tbx_administrateur_gestioncomptes_adrMail, tbx_administrateur_gestioncomptes_login, tbx_administrateur_gestioncomptes_motdepasse, tbx_administrateur_gestioncomptes_nom, tbx_administrateur_gestioncomptes_prenom, btn_administrateur_gestioncomptes_validerajout, lbl_administrateur_gestioncomptes_validationajouterror, lbl_administrateur_gestioncomptes_champsobli, lbl_administrateur_gestioncomptes_validationajoutok, btn_administrateur_gestioncomptes_validermodif });
-                    CompleteControl.RemplirDataGridViewByRequest(dg_administrateur_gestioncomptes_listecompte, "SELECT utilisateur.id as iduser, login, nomuser, prenomuser, adrMail, libelle FROM utilisateur INNER JOIN typeutilisateur ON typeutilisateur.id=utilisateur.idtypeuser WHERE idtypeuser<5 ORDER BY utilisateur.id", new string[] { "iduser", "login", "nomuser", "prenomuser", "adrMail", "libelle" });
+                    CompleteControl.RemplirDataGridViewByRequest(dg_administrateur_gestioncomptes_listecompte, "SELECT Utilisateur.id as iduser, login, nomuser, prenomuser, adrMail, libelle FROM Utilisateur INNER JOIN TypeUtilisateur ON TypeUtilisateur.id=Utilisateur.idtypeuser WHERE idtypeuser<5 ORDER BY Utilisateur.id", new string[] { "iduser", "login", "nomuser", "prenomuser", "adrMail", "libelle" });
                     foreach (DataGridViewRow ligne in dg_administrateur_gestioncomptes_listecompte.Rows)
                     {
                         if (ligne.Cells[4].Value.ToString().Trim() == "")
@@ -91,7 +91,7 @@ namespace AppCriée
                         lbl_administrateur_mesdonnees_prenom.Text = "Prénom : (Non communiquée)";
                     }
                     CURS cs = new CURS();
-                    cs.ReqSelect("SELECT count(id) as nb FROM utilisateur WHERE idtypeuser=0");
+                    cs.ReqSelect("SELECT count(id) as nb FROM Utilisateur WHERE idtypeuser=0");
                     string nb = cs.champ("nb").ToString();
                     cs.fermer();
                     if (nb == "1")
@@ -147,10 +147,10 @@ namespace AppCriée
                         dg_administrateur_gestioncomptes_listecompte.Rows.RemoveAt(line.Index);
 
                         CURS cs = new CURS();
-                        cs.ReqAdminPrepare("DELETE directeurvente FROM directeurvente WHERE idUser =?", new List<object> { line.Cells[0].Value });
+                        cs.ReqAdminPrepare("DELETE Directeurvente FROM Directeurvente WHERE id =?", new List<object> { line.Cells[0].Value });
                         cs.fermer();
                         cs = new CURS();
-                        cs.ReqAdminPrepare("DELETE utilisateur FROM utilisateur WHERE id =?", new List<object> { line.Cells[0].Value });
+                        cs.ReqAdminPrepare("DELETE Utilisateur FROM Utilisateur WHERE id =?", new List<object> { line.Cells[0].Value });
                         cs.fermer();
                         lbl_administrateur_gestioncomptes_validationajoutok.Text = "L'utilisateur a bien été supprimée";
                         lbl_administrateur_gestioncomptes_validationajoutok.Show();
@@ -176,7 +176,7 @@ namespace AppCriée
                 lbl_administrateur_gestioncomptes_validationajouterror.Show();
                 return;
             }
-            CompleteControl.RemplirCombobox(cbx_administrateur_gestioncomptes_typeuser, "SELECT libelle FROM typeutilisateur WHERE id<5", "libelle");
+            CompleteControl.RemplirCombobox(cbx_administrateur_gestioncomptes_typeuser, "SELECT libelle FROM TypeUtilisateur WHERE id<5", "libelle");
             tbx_administrateur_gestioncomptes_login.Text = ligneselect.Cells[1].Value.ToString();
             if (ligneselect.Cells[2].Value.ToString().Trim() == "(Non communiqué)")
             {
@@ -211,7 +211,7 @@ namespace AppCriée
         private void btn_administrateur_gestioncomptes_ajout_Click(object sender, EventArgs e)
         {
             HiddenObject.Hide(new List<Control> { lbl_administrateur_gestioncomptes_validationok, lbl_administrateur_gestioncomptes_modification, lbl_administrateur_gestioncomptes_validationajoutok, lbl_administrateur_gestioncomptes_validationajouterror, btn_administrateur_gestioncomptes_validermodif });
-            CompleteControl.RemplirCombobox(cbx_administrateur_gestioncomptes_typeuser, "SELECT libelle FROM typeutilisateur WHERE id<5", "libelle");
+            CompleteControl.RemplirCombobox(cbx_administrateur_gestioncomptes_typeuser, "SELECT libelle FROM TypeUtilisateur WHERE id<5", "libelle");
             tbx_administrateur_gestioncomptes_adrMail.Text = "";
             tbx_administrateur_gestioncomptes_login.Text = "";
             tbx_administrateur_gestioncomptes_motdepasse.Text = "";
@@ -240,7 +240,7 @@ namespace AppCriée
                 return;
             }
             CURS csa = new CURS();
-            csa.ReqSelect("SELECT max(id) as maxid FROM utilisateur");
+            csa.ReqSelect("SELECT max(id) as maxid FROM Utilisateur");
             int idusermax = Int32.Parse(csa.champ("maxid").ToString());
             csa.fermer();
             object adresseMail = tbx_administrateur_gestioncomptes_adrMail.Text;
@@ -260,12 +260,12 @@ namespace AppCriée
             }
             string motdepassehash = new HashData(tbx_administrateur_gestioncomptes_motdepasse.Text).HashCalculate();
             CURS cs = new CURS();
-            cs.ReqAdminPrepare("INSERT INTO utilisateur VALUES (?,?,?,?,?,(SELECT id FROM typeutilisateur WHERE libelle=?),?)", new List<object> { (idusermax + 1), tbx_administrateur_gestioncomptes_login.Text, motdepassehash, nom, prenom, cbx_administrateur_gestioncomptes_typeuser.Text, adresseMail });
+            cs.ReqAdminPrepare("INSERT INTO Utilisateur VALUES (?,?,?,?,?,(SELECT id FROM TypeUtilisateur WHERE libelle=?),?)", new List<object> { (idusermax + 1), tbx_administrateur_gestioncomptes_login.Text, motdepassehash, nom, prenom, cbx_administrateur_gestioncomptes_typeuser.Text, adresseMail });
             cs.fermer();
             if (cbx_administrateur_gestioncomptes_typeuser.Text == "Directeur des ventes")
             {
                 cs = new CURS();
-                cs.ReqAdminPrepare("INSERT INTO directeurvente(idUser) VALUES (?)", new List<object> { (idusermax + 1)});
+                cs.ReqAdminPrepare("INSERT INTO Directeurvente(id) VALUES (?)", new List<object> { (idusermax + 1)});
                 cs.fermer();
             }
             lbl_administrateur_gestioncomptes_validationajoutok.Text = "L'utilisateur a bien été ajouté.\n";
@@ -348,7 +348,7 @@ namespace AppCriée
 
             string motdepassehash = new HashData(tbx_administrateur_gestioncomptes_motdepasse.Text).HashCalculate();
             CURS cs = new CURS();
-            cs.ReqAdminPrepare("UPDATE utilisateur SET login=?, nomuser=?, prenomuser=?, idtypeuser=(SELECT id FROM typeutilisateur WHERE libelle=?), adrMail=? WHERE id=?", new List<object> { tbx_administrateur_gestioncomptes_login.Text, nom, prenom, cbx_administrateur_gestioncomptes_typeuser.Text, adresseMail, idUserModified });
+            cs.ReqAdminPrepare("UPDATE Utilisateur SET login=?, nomuser=?, prenomuser=?, idtypeuser=(SELECT id FROM TypeUtilisateur WHERE libelle=?), adrMail=? WHERE id=?", new List<object> { tbx_administrateur_gestioncomptes_login.Text, nom, prenom, cbx_administrateur_gestioncomptes_typeuser.Text, adresseMail, idUserModified });
             cs.fermer();
             lbl_administrateur_gestioncomptes_validationajoutok.Text = "Les données de l'utilisateur ont bien été modifiées.\n";
             tbc_administrateur_Selected(sender, _onglet);
@@ -405,7 +405,7 @@ namespace AppCriée
             if (MessageBox.Show("Etes-vous sûr de vouloir supprimer votre propre compte ?\nAttention, cette action est irréversible.", "Supprimer votre compte", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 CURS cs = new CURS();
-                cs.ReqAdminPrepare("DELETE FROM utilisateur WHERE id=?", new List<object> { _useractuelle.Id });
+                cs.ReqAdminPrepare("DELETE FROM Utilisateur WHERE id=?", new List<object> { _useractuelle.Id });
                 cs.fermer();
                 string adrMail = _useractuelle.AdrMail.Trim();
                 string login = _useractuelle.Login;
@@ -497,7 +497,7 @@ namespace AppCriée
             }
 
             CURS cs = new CURS();
-            cs.ReqAdminPrepare("UPDATE utilisateur SET login=?, nomuser=?, prenomuser=?, adrMail=? WHERE id=?", new List<object> { tbx_administrateur_mesdonnees_login.Text, nomModif, prenomModif, adrMail, idUserModified });
+            cs.ReqAdminPrepare("UPDATE Utilisateur SET login=?, nomuser=?, prenomuser=?, adrMail=? WHERE id=?", new List<object> { tbx_administrateur_mesdonnees_login.Text, nomModif, prenomModif, adrMail, idUserModified });
             cs.fermer();
             lbl_administrateur_mesdonnees_validationmodif.Text = "Vos données ont bien été modifiées.\n";
             HiddenObject.Hide(new List<Control> { lbl_administrateur_mesdonnees_validationmodiferreur, lbl_administrateur_mesdonnees_modification, lbl_administrateur_mesdonnees_modifieradrMail, lbl_administrateur_mesdonnees_modifierlogin, lbl_administrateur_mesdonnees_modifiernom, lbl_administrateur_mesdonnees_modifierprenom, tbx_administrateur_mesdonnees_login, tbx_administrateur_mesdonnees_nom, tbx_administrateur_mesdonnees_adrMail, tbx_administrateur_mesdonnees_prenom, btn_administrateur_mesdonnees_validermodif, lbl_administrateur_mesdonnees_champsobli });
@@ -575,7 +575,7 @@ namespace AppCriée
 
             string motdepassehash = new HashData(tbx_administrateur_mesdonnees_newmdp.Text).HashCalculate();
             CURS csm = new CURS();
-            csm.ReqAdminPrepare("UPDATE utilisateur SET pwd=? WHERE id=? ", new List<object> { motdepassehash, idUserModified });
+            csm.ReqAdminPrepare("UPDATE Utilisateur SET pwd=? WHERE id=? ", new List<object> { motdepassehash, idUserModified });
             csm.fermer();
             lbl_administrateur_mesdonnees_validationmodif.Text = "Votre mot de passe a bien été modifié.";
             lbl_administrateur_mesdonnees_validationmodif.Show();

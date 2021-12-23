@@ -25,7 +25,7 @@ namespace AppCriée
         {
             InitializeComponent();
             _appCriee = appCriee;
-            CompleteControl.RemplirCombobox(cbx_demandecreercompte_typeuser, "SELECT libelle FROM typeutilisateur WHERE id<5", "libelle");
+            CompleteControl.RemplirCombobox(cbx_demandecreercompte_typeuser, "SELECT libelle FROM TypeUtilisateur WHERE id<5", "libelle");
         }
 
         #endregion
@@ -40,7 +40,7 @@ namespace AppCriée
                 return;
             }
             CURS cs = new CURS();
-            cs.ReqSelectPrepare("SELECT count(id) as nb FROM utilisateur WHERE login=?", new List<object> { tbx_demandecreercompte_login.Text.Trim() });
+            cs.ReqSelectPrepare("SELECT count(id) as nb FROM Utilisateur WHERE login=?", new List<object> { tbx_demandecreercompte_login.Text.Trim() });
             string nblog = cs.champ("nb").ToString();
             cs.fermer();
             if (nblog != "0")

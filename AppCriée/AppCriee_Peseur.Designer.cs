@@ -149,9 +149,9 @@
             this.tbp_peseur_accueil.Controls.Add(this.lbl_peseur_accueil_bienvenue);
             this.tbp_peseur_accueil.Controls.Add(this.lbl_peseur_accueil_role);
             this.tbp_peseur_accueil.Location = new System.Drawing.Point(4, 22);
-            this.tbp_peseur_accueil.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbp_peseur_accueil.Margin = new System.Windows.Forms.Padding(4);
             this.tbp_peseur_accueil.Name = "tbp_peseur_accueil";
-            this.tbp_peseur_accueil.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbp_peseur_accueil.Padding = new System.Windows.Forms.Padding(4);
             this.tbp_peseur_accueil.Size = new System.Drawing.Size(1077, 653);
             this.tbp_peseur_accueil.TabIndex = 0;
             this.tbp_peseur_accueil.Text = "Accueil";
@@ -180,9 +180,9 @@
             this.tbp_peseur_lotspeche.Controls.Add(this.lbl_peseur_lotspeche_ispeche);
             this.tbp_peseur_lotspeche.Controls.Add(this.dg_peseur_lotspeche_lotsbateau);
             this.tbp_peseur_lotspeche.Location = new System.Drawing.Point(4, 22);
-            this.tbp_peseur_lotspeche.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbp_peseur_lotspeche.Margin = new System.Windows.Forms.Padding(4);
             this.tbp_peseur_lotspeche.Name = "tbp_peseur_lotspeche";
-            this.tbp_peseur_lotspeche.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbp_peseur_lotspeche.Padding = new System.Windows.Forms.Padding(4);
             this.tbp_peseur_lotspeche.Size = new System.Drawing.Size(1077, 653);
             this.tbp_peseur_lotspeche.TabIndex = 1;
             this.tbp_peseur_lotspeche.Text = "Lots de pêche";
@@ -231,7 +231,7 @@
             this.rbtn_peseur_lotspeche_lotbloque.AutoSize = true;
             this.rbtn_peseur_lotspeche_lotbloque.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtn_peseur_lotspeche_lotbloque.Location = new System.Drawing.Point(881, 231);
-            this.rbtn_peseur_lotspeche_lotbloque.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbtn_peseur_lotspeche_lotbloque.Margin = new System.Windows.Forms.Padding(4);
             this.rbtn_peseur_lotspeche_lotbloque.Name = "rbtn_peseur_lotspeche_lotbloque";
             this.rbtn_peseur_lotspeche_lotbloque.Size = new System.Drawing.Size(106, 21);
             this.rbtn_peseur_lotspeche_lotbloque.TabIndex = 34;
@@ -246,7 +246,7 @@
             this.rbtn_peseur_lotspeche_lotnonbloque.AutoSize = true;
             this.rbtn_peseur_lotspeche_lotnonbloque.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtn_peseur_lotspeche_lotnonbloque.Location = new System.Drawing.Point(881, 203);
-            this.rbtn_peseur_lotspeche_lotnonbloque.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbtn_peseur_lotspeche_lotnonbloque.Margin = new System.Windows.Forms.Padding(4);
             this.rbtn_peseur_lotspeche_lotnonbloque.Name = "rbtn_peseur_lotspeche_lotnonbloque";
             this.rbtn_peseur_lotspeche_lotnonbloque.Size = new System.Drawing.Size(139, 21);
             this.rbtn_peseur_lotspeche_lotnonbloque.TabIndex = 33;
@@ -356,6 +356,8 @@
             this.dg_peseur_lotspeche_bacs.Size = new System.Drawing.Size(397, 154);
             this.dg_peseur_lotspeche_bacs.TabIndex = 26;
             this.dg_peseur_lotspeche_bacs.Visible = false;
+            this.dg_peseur_lotspeche_bacs.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_peseur_lotspeche_bacs_CellEnter);
+            this.dg_peseur_lotspeche_bacs.Scroll += new System.Windows.Forms.ScrollEventHandler(this.dg_peseur_lotspeche_bacs_Scroll);
             // 
             // dataGridViewTextBoxColumn7
             // 
@@ -868,7 +870,7 @@
             this.btn_peseur_mesdonnees_supprimer.BackColor = System.Drawing.Color.Red;
             this.btn_peseur_mesdonnees_supprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_peseur_mesdonnees_supprimer.Location = new System.Drawing.Point(844, 219);
-            this.btn_peseur_mesdonnees_supprimer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_peseur_mesdonnees_supprimer.Margin = new System.Windows.Forms.Padding(4);
             this.btn_peseur_mesdonnees_supprimer.Name = "btn_peseur_mesdonnees_supprimer";
             this.btn_peseur_mesdonnees_supprimer.Size = new System.Drawing.Size(200, 52);
             this.btn_peseur_mesdonnees_supprimer.TabIndex = 23;
@@ -981,7 +983,7 @@
             this.Controls.Add(this.pbx_peseur_deconnexion);
             this.Controls.Add(this.tbc_peseur);
             this.Controls.Add(this.lbl_peseur_datejour);
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.MaximumSize = new System.Drawing.Size(1105, 779);
             this.MinimumSize = new System.Drawing.Size(1105, 723);
             this.Name = "AppCriee_Peseur";

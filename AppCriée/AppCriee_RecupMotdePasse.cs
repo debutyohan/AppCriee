@@ -54,7 +54,7 @@ namespace AppCriée
             {
 
                 CURS cs = new CURS();
-                cs.ReqSelectPrepare("SELECT count(id) as nb, adrMail FROM utilisateur WHERE login=?", new List<object> { tbx_recupmotdepasse_login.Text });
+                cs.ReqSelectPrepare("SELECT count(id) as nb, adrMail FROM Utilisateur WHERE login=?", new List<object> { tbx_recupmotdepasse_login.Text });
                 if (cs.champ("nb").ToString() == "0")
                 {
                     lbl_recupmotdepasse_error.Text = "Veuillez vérifier votre login, il est incorrect.\nSi vous ne vous souvenez pas de votre login, entrez votre adresse mail.\nSi vous ne vous souvenez pas non plus de votre adresse mail,\nrefaites une demande de compte auprès du support informatique dans l’option :\n« Demander la création d’un compte » lors de la page de connexion";
@@ -87,7 +87,7 @@ namespace AppCriée
             else
             {
                 CURS cs = new CURS();
-                cs.ReqSelectPrepare("SELECT count(login) AS nbadr, login FROM utilisateur WHERE adrMail=?", new List<object> { tbx_recupmotdepasse_adrMail.Text });
+                cs.ReqSelectPrepare("SELECT count(login) AS nbadr, login FROM Utilisateur WHERE adrMail=?", new List<object> { tbx_recupmotdepasse_adrMail.Text });
                 string nbadr = cs.champ("nbadr").ToString();
                 if (nbadr == "0")
                 {
@@ -101,7 +101,7 @@ namespace AppCriée
                 if (nbadr != "1")
                 {
                     cs = new CURS();
-                    cs.ReqSelectPrepare("SELECT login FROM utilisateur WHERE adrMail=?", new List<object> { tbx_recupmotdepasse_adrMail.Text });
+                    cs.ReqSelectPrepare("SELECT login FROM Utilisateur WHERE adrMail=?", new List<object> { tbx_recupmotdepasse_adrMail.Text });
                     string contenu = cs.champ("login").ToString();
                     cs.suivant();
                     while (!cs.Fin())
@@ -173,7 +173,7 @@ namespace AppCriée
             }
             string passhash = new HashData(tbx_recupmotdepasse_nouveaumotdepasse.Text).HashCalculate();
             CURS cs = new CURS();
-            cs.ReqAdminPrepare("UPDATE utilisateur SET pwd=? WHERE login=?", new List<object> { passhash, loginispassmodified });
+            cs.ReqAdminPrepare("UPDATE Utilisateur SET pwd=? WHERE login=?", new List<object> { passhash, loginispassmodified });
             cs.fermer();
             HiddenObject.Hide(new List<Control> { lbl_recupmotdepasse_error, lbl_recupmotdepasse_confirmermotdepasse, lbl_recupmotdepasse_nouveaumotdepasse, lbl_recupmotdepasse_indicationdebut, tbx_recupmotdepasse_confirmermotdepasse, tbx_recupmotdepasse_nouveaumotdepasse, btn_recupmotdepasse_validernouveaumotdepasse, chbx_recupmotdepasse_nouveaumotdepasse, chbx_recupmotdepasse_confirmermotdepasse });
             lbl_recupmotdepasse_ok.Show();

@@ -126,9 +126,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AppCriee_DirecteurDesVentes.resx">
       <DependentUpon>AppCriee_DirecteurDesVentes.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="AppCriee_Peseur.resx">
       <DependentUpon>AppCriee_Peseur.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="AppCriee_Receptionniste.resx">
       <DependentUpon>AppCriee_Receptionniste.cs</DependentUpon>
@@ -138,6 +140,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AppCriee_Veterinaire.resx">
       <DependentUpon>AppCriee_Veterinaire.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Auth.resx">
       <DependentUpon>Auth.cs</DependentUpon>
@@ -208,14 +211,20 @@
     <Content Include="obj\Debug\AppCriée.pdb" />
     <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
     <Content Include="Resources\autocollant-cadenas-muraux.jpg" />
+    <Content Include="Script SQL\modifappliweb.sql" />
     <Content Include="Script SQL\modifappliwebv2.sql" />
+    <Content Include="Script SQL\modifappliwebv3.sql" />
+    <Content Include="Script SQL\modifappliwebv4.sql" />
+    <Content Include="Script SQL\modifappliwebv5.sql" />
+    <Content Include="Script SQL\modifappliwebv6.sql" />
+    <Content Include="Script SQL\SqlCrie.sql" />
+    <Content Include="Script SQL\sqlcriemodif%284%29.sql" />
     <Content Include="Script SQL\sqlcriemodif%285%29.sql" />
     <Content Include="Script SQL\sqlcriemodif%286%29.sql" />
     <Content Include="Script SQL\sqlcriemodif%287%29.sql" />
+    <Content Include="Script SQL\sqlcriemodif%288%29.sql" />
     <None Include="Resources\computer-icons-login-icon-design-exit-5abfc840bf8ca4.9038982415225180807846.png" />
     <Content Include="Resources\kisspng-padlock-logo-symbol-locker-5b22e325cc22c3.2363844015290130298362.jpg" />
-    <Content Include="Script SQL\SqlCrie.sql" />
-    <Content Include="Script SQL\sqlcriemodif%284%29.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

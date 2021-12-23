@@ -1,4 +1,3 @@
-C:\Users\debut\source\repos\AppCriée\AppCriée\obj\Debug\AppCriée.csprojAssemblyReference.cache
 C:\Users\debut\source\repos\AppCriée\AppCriée\obj\Debug\AppCriée.Properties.Resources.resources
 C:\Users\debut\source\repos\AppCriée\AppCriée\obj\Debug\AppCriée.csproj.GenerateResource.cache
 C:\Users\debut\source\repos\AppCriée\AppCriée\obj\Debug\AppCriée.csproj.CoreCompileInputs.cache
@@ -57,3 +56,4 @@ C:\Users\debut\source\repos\AppCriée\AppCriée\obj\Debug\AppCriée.AppCriee_Rec
 C:\Users\LENOVO\source\repos\debutyohan\AppCriee\AppCriée\obj\Debug\AppCriée.AppCriee_RecupMotdePasse.resources
 C:\Users\debut\source\repos\AppCriée\AppCriée\obj\Debug\AppCriée.AppCriee_DemandeCreationCompte.resources
 C:\Users\LENOVO\source\repos\debutyohan\AppCriee\AppCriée\obj\Debug\AppCriée.AppCriee_DemandeCreationCompte.resources
+C:\Users\debut\source\repos\AppCriée\AppCriée\obj\Debug\AppCriée.csproj.AssemblyReference.cache
