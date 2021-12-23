@@ -51,14 +51,14 @@ namespace AppCriée
                     break;
                 case "tabPeche":
                 CURS cs = new CURS();
-                cs.ReqSelectPrepare("SELECT count(id) as nbnotpeche FROM bateau WHERE id NOT IN(SELECT DISTINCT idBateau FROM peche WHERE datePeche=?)", new List<object> { Datejour });
+                cs.ReqSelectPrepare("SELECT count(id) as nbnotpeche FROM Bateau WHERE id NOT IN(SELECT DISTINCT idBateau FROM Peche WHERE datePeche=?)", new List<object> { Datejour });
                 if (cs.champ("nbnotpeche").ToString() == "0")
                 {
                     lbl_pechejour_allpeche.Show();
                     HiddenObject.Hide(new List<Control> { lbl_ajoutpeche_explication, lbl_ajoutpeche_explication2, btn_ajoutpeche_creerpeche });
                 }
                 cs.fermer();
-                if (CompleteControl.RemplirDataGridViewByRequest(dg_pechejour, "SELECT idBateau, nom, immatriculation, heureArrivee FROM peche INNER JOIN Bateau ON peche.idBateau=Bateau.id WHERE DatePeche=? ORDER BY heureArrivee", new string[] { "nom", "immatriculation" , "heureArrivee"}, new List<object> { Datejour }))
+                if (CompleteControl.RemplirDataGridViewByRequest(dg_pechejour, "SELECT idBateau, nom, immatriculation, heureArrivee FROM Peche INNER JOIN Bateau ON Peche.idBateau=Bateau.id WHERE DatePeche=? ORDER BY heureArrivee", new string[] { "nom", "immatriculation" , "heureArrivee"}, new List<object> { Datejour }))
                 {
                     HiddenObject.Hide(new List<Control> { lbl_ajoutpeche_ispeche });
                     HiddenObject.Show(new List<Control> { dg_pechejour, btn_receptionniste_peche_supprimer });
@@ -101,7 +101,7 @@ namespace AppCriée
             HiddenObject.Show(new List<Control> { lbl_ajoutpeche_creerpeche_nombateau, cbx_ajoutpeche_creerpeche_nombateau,lbl_ajoutpeche_creerpeche_heurearrivee, tbx_ajoutpeche_creerpeche_heurearrivee ,btn_pechejour_creerpeche_valider });
             btn_ajoutpeche_creerpeche.Hide();
             lbl_pechejour_pecheok.Hide();
-            CompleteControl.RemplirCombobox(cbx_ajoutpeche_creerpeche_nombateau, "SELECT bateau.id, nom, immatriculation FROM peche RIGHT JOIN bateau ON peche.idBateau=Bateau.id  WHERE bateau.id NOT IN(SELECT DISTINCT idBateau FROM peche WHERE datePeche=?) GROUP BY bateau.id ORDER BY count(*)*(NOT(ISNULL(peche.datePeche))) DESC", "nom(immatriculation)", new List<object> { Datejour });
+            CompleteControl.RemplirCombobox(cbx_ajoutpeche_creerpeche_nombateau, "SELECT Bateau.id, nom, immatriculation FROM Peche RIGHT JOIN Bateau ON Peche.idBateau=Bateau.id  WHERE Bateau.id NOT IN(SELECT DISTINCT idBateau FROM Peche WHERE datePeche=?) GROUP BY Bateau.id ORDER BY count(*)*(NOT(ISNULL(Peche.datePeche))) DESC", "nom(immatriculation)", new List<object> { Datejour });
         }
         private void btn_receptionniste_creerpeche_valider_Click(object sender, EventArgs e)
         {
@@ -132,7 +132,7 @@ namespace AppCriée
                 foreach (DataGridViewRow item in dg_pechejour.SelectedRows)
                 {
                     CURS cs = new CURS();
-                    cs.ReqSelectPrepare("SELECT COUNT(lot.idLot) as nbLot FROM lot INNER JOIN bateau ON lot.idBateau = bateau.id WHERE immatriculation=? AND idDatePeche=?", new List<object> { item.Cells[1].Value, Datejour });
+                    cs.ReqSelectPrepare("SELECT COUNT(Lot.idLot) as nbLot FROM Lot INNER JOIN Bateau ON Lot.idBateau = Bateau.id WHERE immatriculation=? AND idDatePeche=?", new List<object> { item.Cells[1].Value, Datejour });
                     string nbLot = cs.champ("nbLot").ToString();
                     if (cs.champ("nbLot").ToString() != "0")
                     {
@@ -143,7 +143,7 @@ namespace AppCriée
                         listImmaIsNoLot += ", " + item.Cells[0].Value;
                         dg_pechejour.Rows.RemoveAt(item.Index);
                         cs = new CURS();
-                        cs.ReqAdminPrepare("DELETE peche FROM peche INNER JOIN bateau ON peche.idBateau = bateau.id WHERE peche.datePeche =? AND immatriculation=?", new List<object> { Datejour, item.Cells[1].Value });
+                        cs.ReqAdminPrepare("DELETE Peche FROM Peche INNER JOIN Bateau ON Peche.idBateau = Bateau.id WHERE Peche.datePeche =? AND immatriculation=?", new List<object> { Datejour, item.Cells[1].Value });
                     }
 
                 }
@@ -184,7 +184,7 @@ namespace AppCriée
             if (MessageBox.Show("Etes-vous sûr de vouloir supprimer votre propre compte ?\nAttention, cette action est irréversible.", "Supprimer votre compte", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 CURS cs = new CURS();
-                cs.ReqAdminPrepare("DELETE FROM utilisateur WHERE id=?", new List<object> { _useractuelle.Id });
+                cs.ReqAdminPrepare("DELETE FROM Utilisateur WHERE id=?", new List<object> { _useractuelle.Id });
                 cs.fermer();
                 string adrMail = _useractuelle.AdrMail.Trim();
                 string login = _useractuelle.Login;
@@ -275,7 +275,7 @@ namespace AppCriée
             }
 
             CURS cs = new CURS();
-            cs.ReqAdminPrepare("UPDATE utilisateur SET login=?, nomuser=?, prenomuser=?, adrMail=? WHERE id=?", new List<object> { tbx_receptionniste_mesdonnees_login.Text, nomModif, prenomModif, adrMail, idUserModified });
+            cs.ReqAdminPrepare("UPDATE Utilisateur SET login=?, nomuser=?, prenomuser=?, adrMail=? WHERE id=?", new List<object> { tbx_receptionniste_mesdonnees_login.Text, nomModif, prenomModif, adrMail, idUserModified });
             cs.fermer();
             lbl_receptionniste_mesdonnees_validationmodif.Text = "Vos données ont bien été modifiées.\n";
             HiddenObject.Hide(new List<Control> { lbl_receptionniste_mesdonnees_validationmodiferreur, lbl_receptionniste_mesdonnees_modification, lbl_receptionniste_mesdonnees_modifieradrMail, lbl_receptionniste_mesdonnees_modifierlogin, lbl_receptionniste_mesdonnees_modifiernom, lbl_receptionniste_mesdonnees_modifierprenom, tbx_receptionniste_mesdonnees_login, tbx_receptionniste_mesdonnees_nom, tbx_receptionniste_mesdonnees_adrMail, tbx_receptionniste_mesdonnees_prenom, btn_receptionniste_mesdonnees_validermodif, lbl_receptionniste_mesdonnees_champsobli });
@@ -352,7 +352,7 @@ namespace AppCriée
 
             string motdepassehash = new HashData(tbx_receptionniste_mesdonnees_newmdp.Text).HashCalculate();
             CURS csm = new CURS();
-            csm.ReqAdminPrepare("UPDATE utilisateur SET pwd=? WHERE id=? ", new List<object> { motdepassehash, idUserModified });
+            csm.ReqAdminPrepare("UPDATE Utilisateur SET pwd=? WHERE id=? ", new List<object> { motdepassehash, idUserModified });
             csm.fermer();
             lbl_receptionniste_mesdonnees_validationmodif.Text = "Votre mot de passe a bien été modifié.";
             lbl_receptionniste_mesdonnees_validationmodif.Show();

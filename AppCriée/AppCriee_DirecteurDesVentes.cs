@@ -50,7 +50,7 @@ namespace AppCriée
                     break;
                 case "tbp_directeurdesventes_lotsvente":
                     CURS cs = new CURS();
-                    cs.ReqSelectPrepare("SELECT count(idLot) as nblot FROM lot WHERE codeEtat!='C' AND codeEtat!='M'", new List<object> { Datejour });
+                    cs.ReqSelectPrepare("SELECT count(idLot) as nblot FROM Lot WHERE codeEtat='M'", new List<object> { Datejour });
                     if (cs.champ("nblot").ToString() == "0")
                     {
                         lbl_directeurdesventes_lotsvente_islots.Show();
@@ -58,7 +58,7 @@ namespace AppCriée
                     }
                     else
                     {
-                        if (CompleteControl.RemplirDataGridViewByRequest(dg_directeurdesventes_lotsvente_alllot, "SELECT bateau.nom as nomBateau, bac.idLot as idLot, count(bac.idLot) as nbbac, espece.nom as nomEspece, idTaille, idPresentation, idQualite, SUM(poidsbrutBac) as poidstotal, codeEtat, bateau.id as idBateau FROM bac INNER JOIN lot ON bac.idDatePeche=lot.idDatePeche AND bac.idBateau=lot.idBateau AND bac.idLot=lot.idLot INNER JOIN espece ON espece.id=lot.idEspece INNER JOIN bateau ON bateau.id=lot.idBateau AND bateau.id=bac.idBateau INNER JOIN peche ON peche.datePeche=lot.idDatePeche AND peche.idBateau=lot.idBateau AND peche.idBateau=bateau.id AND peche.DatePeche=bac.idDatePeche AND peche.idBateau=bac.idBateau WHERE bac.idDatePeche=? AND codeEtat='C' GROUP BY bac.idLot, lot.idBateau ORDER BY heureArrivee, bac.idLot", new string[] { "nomBateau", "idLot", "nomEspece", "idTaille", "idQualite", "idPresentation", "nbbac", "poidstotal", "codeEtat", "idBateau" }, new List<object> { Datejour }))
+                        if (CompleteControl.RemplirDataGridViewByRequest(dg_directeurdesventes_lotsvente_alllot, "SELECT Bateau.nom as nomBateau, Bac.idLot as idLot, count(Bac.idLot) as nbbac, Espece.nom as nomEspece, idTaille, idPresentation, idQualite, SUM(poidsbrutBac) as poidstotal, codeEtat, Bateau.id as idBateau FROM Bac INNER JOIN Lot ON Bac.idDatePeche=Lot.idDatePeche AND Bac.idBateau=Lot.idBateau AND Bac.idLot=Lot.idLot INNER JOIN Espece ON Espece.id=Lot.idEspece INNER JOIN Bateau ON Bateau.id=Lot.idBateau AND Bateau.id=Bac.idBateau INNER JOIN Peche ON Peche.datePeche=Lot.idDatePeche AND Peche.idBateau=Lot.idBateau AND Peche.idBateau=Bateau.id AND Peche.DatePeche=Bac.idDatePeche AND Peche.idBateau=Bac.idBateau WHERE Bac.idDatePeche=? AND codeEtat='M' GROUP BY Bac.idLot, Lot.idBateau ORDER BY heureArrivee, Bac.idLot", new string[] { "nomBateau", "idLot", "nomEspece", "idTaille", "idQualite", "idPresentation", "nbbac", "poidstotal", "codeEtat", "idBateau" }, new List<object> { Datejour }))
                         {
                             foreach (DataGridViewRow ligne in dg_directeurdesventes_lotsvente_alllot.Rows)
                             {
@@ -116,7 +116,7 @@ namespace AppCriée
             if (MessageBox.Show("Etes-vous sûr de vouloir supprimer votre propre compte ?\nAttention, cette action est irréversible.", "Supprimer votre compte", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 CURS cs = new CURS();
-                cs.ReqAdminPrepare("DELETE FROM utilisateur WHERE id=?", new List<object> { _useractuelle.Id });
+                cs.ReqAdminPrepare("DELETE FROM Utilisateur WHERE id=?", new List<object> { _useractuelle.Id });
                 cs.fermer();
                 string adrMail = _useractuelle.AdrMail.Trim();
                 string login = _useractuelle.Login;
@@ -208,7 +208,7 @@ namespace AppCriée
             }
 
             CURS cs = new CURS();
-            cs.ReqAdminPrepare("UPDATE utilisateur SET login=?, nomuser=?, prenomuser=?, adrMail=? WHERE id=?", new List<object> { tbx_directeurdesventes_mesdonnees_login.Text, nomModif, prenomModif, adrMail, idUserModified });
+            cs.ReqAdminPrepare("UPDATE Utilisateur SET login=?, nomuser=?, prenomuser=?, adrMail=? WHERE id=?", new List<object> { tbx_directeurdesventes_mesdonnees_login.Text, nomModif, prenomModif, adrMail, idUserModified });
             cs.fermer();
             lbl_directeurdesventes_mesdonnees_validationmodif.Text = "Vos données ont bien été modifiées.\n";
             HiddenObject.Hide(new List<Control> { lbl_directeurdesventes_mesdonnees_modificationmdp, lbl_directeurdesventes_mesdonnees_validationmodiferreur, lbl_directeurdesventes_mesdonnees_modification, lbl_directeurdesventes_mesdonnees_modifieradrMail, lbl_directeurdesventes_mesdonnees_modifierlogin, lbl_directeurdesventes_mesdonnees_modifiernom, lbl_directeurdesventes_mesdonnees_modifierprenom, tbx_directeurdesventes_mesdonnees_login, tbx_directeurdesventes_mesdonnees_nom, tbx_directeurdesventes_mesdonnees_adrMail, tbx_directeurdesventes_mesdonnees_prenom, btn_directeurdesventes_mesdonnees_validermodif, lbl_directeurdesventes_mesdonnees_champsobli });
@@ -285,7 +285,7 @@ namespace AppCriée
 
             string motdepassehash = new HashData(tbx_directeurdesventes_mesdonnees_newmdp.Text).HashCalculate();
             CURS csm = new CURS();
-            csm.ReqAdminPrepare("UPDATE utilisateur SET pwd=? WHERE id=? ", new List<object> { motdepassehash, idUserModified });
+            csm.ReqAdminPrepare("UPDATE Utilisateur SET pwd=? WHERE id=? ", new List<object> { motdepassehash, idUserModified });
             csm.fermer();
             lbl_directeurdesventes_mesdonnees_validationmodif.Text = "Votre mot de passe a bien été modifié.";
             lbl_directeurdesventes_mesdonnees_validationmodif.Show();

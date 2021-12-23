@@ -1515,7 +1515,7 @@ namespace AppCriée
             this.btn_veterinaire_mesdonnees_supprimer.BackColor = System.Drawing.Color.Red;
             this.btn_veterinaire_mesdonnees_supprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_veterinaire_mesdonnees_supprimer.Location = new System.Drawing.Point(859, 220);
-            this.btn_veterinaire_mesdonnees_supprimer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_veterinaire_mesdonnees_supprimer.Margin = new System.Windows.Forms.Padding(4);
             this.btn_veterinaire_mesdonnees_supprimer.Name = "btn_veterinaire_mesdonnees_supprimer";
             this.btn_veterinaire_mesdonnees_supprimer.Size = new System.Drawing.Size(200, 52);
             this.btn_veterinaire_mesdonnees_supprimer.TabIndex = 22;
@@ -1674,7 +1674,7 @@ namespace AppCriée
             this.nbbac.MinimumWidth = 6;
             this.nbbac.Name = "nbbac";
             this.nbbac.ReadOnly = true;
-            this.nbbac.Width = 125;
+            this.nbbac.Width = 75;
             // 
             // IdduBateau
             // 

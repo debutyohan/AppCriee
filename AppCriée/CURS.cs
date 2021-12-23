@@ -103,7 +103,6 @@ namespace AppCriée
         }
         public void ReqAdminPrepare(string req, List<object> parameters)
         {
-
             macommand = new MySqlCommand(req, maconnexion);
             int rang = 0;
             foreach (object param in parameters)

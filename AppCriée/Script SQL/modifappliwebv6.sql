@@ -1,5 +1,7 @@
 USE bddCrie2;
 SET FOREIGN_KEY_CHECKS = 0;
+set names 'utf8';
+ALTER DATABASE bddCrie2 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 ALTER TABLE Utilisateur MODIFY id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT;
 ALTER TABLE `Lot` DROP FOREIGN KEY `FK_LOT_ACHETEUR`;
 ALTER TABLE `Lot` DROP INDEX `FK_LOT_ACHETEUR`;
@@ -7,7 +9,7 @@ DROP TABLE Poster;
 DROP TABLE Acheteur;
 CREATE TABLE Acheteur
 (
-    id                    INTEGER   UNSIGNED    NOT NULL,
+    id                    INTEGER   UNSIGNED    NOT NULL AUTO_INCREMENT,
     raisonSocial     VARCHAR(100)        NULL,
     adrAcheteur  VARCHAR(100)        NULL,
     villeAcheteur  VARCHAR(100)        NULL,
@@ -20,8 +22,13 @@ CREATE TABLE Acheteur
   	CONSTRAINT FK_ACHETEUR_UTILISATEUR FOREIGN KEY  (id) references Utilisateur (id)
     
 ) ENGINE = INNODB;
+ALTER TABLE Acheteur CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE TypeUtilisateur CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE Espece CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE Qualite CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE Presentation CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
 INSERT INTO TypeUtilisateur VALUES (5, 'Acheteur');
-SET @maxid=(SELECT IFNULL(max(id),-1) FROM Utilisateur)+1;
+SET @maxid=(SELECT IFNULL(max(id),0) FROM Utilisateur)+1;
 INSERT INTO Utilisateur (id,login,pwd,nomuser,prenomuser,idtypeuser) VALUES(@maxid,'Treant_Marcel',SHA2('TM',256),'Treant','Marcel',5);
 INSERT INTO Acheteur (id,raisonSocial, cpAcheteur, villeAcheteur,numHabilitation) VALUES (@maxid,'Audierne Marée','29780','PLOUHINEC','CP40001000');
 SET @maxid=@maxid+1;
@@ -103,7 +110,7 @@ CREATE PROCEDURE Auth(
   IN val2 VARCHAR(100)
 )
 BEGIN
-    SELECT count(utilisateur.id) as nbUser, Utilisateur.id as iduser, login, nomuser, prenomuser, idtypeuser, libelle, adrMail
+    SELECT count(Utilisateur.id) as nbUser, Utilisateur.id as iduser, login, nomuser, prenomuser, idtypeuser, libelle, adrMail
     FROM Utilisateur INNER JOIN TypeUtilisateur ON Utilisateur.idtypeuser = TypeUtilisateur.id
     WHERE login=val1 AND pwd=val2 AND idtypeuser<5;
 END$
@@ -180,7 +187,7 @@ ALTER TABLE Facture ADD COLUMN datemodif DATETIME NOT NULL DEFAULT NOW();
 ALTER TABLE Acheteur DROP COLUMN clesession;
 ALTER TABLE Acheteur ADD COLUMN statutCompte INT(1) DEFAULT 0 NOT NULL;
 ALTER TABLE Acheteur ADD COLUMN clesession VARCHAR(256) NULL;
-UPDATE acheteur SET statutCompte=1;
+UPDATE Acheteur SET statutCompte=1;
 ALTER TABLE Peche ADD COLUMN heureArrivee TIME NULL;
 UPDATE Lot SET codeEtat = 'C' WHERE codeEtat IS NULL;
 ALTER TABLE Lot MODIFY codeEtat char(1) DEFAULT 'C' NOT NULL;
@@ -198,4 +205,10 @@ UPDATE Lot SET codeEtat='T' WHERE codeEtat='L';
 INSERT INTO Etat(codeEtat, descriptionEtat) VALUES ('C', 'Lot crée'), ('M', 'Lot marqué et pesé'), ('E', 'Lot prêt à la vente'), ('A', 'Lot clôturé : pour équarrisage, non vendu'), ('D', 'Lot clôturé : à donner pour une association'), ('T' , 'Lot clôturé : acheté par un acheteur'), ('F' , 'Lot à clôturer : sans acheteur');
 ALTER TABLE Lot ADD CONSTRAINT FK_LOT_ETAT FOREIGN KEY  (codeEtat) references Etat (codeEtat) ON DELETE RESTRICT ON UPDATE RESTRICT;
 ALTER TABLE Utilisateur ADD Constraint INDEX_UTILISATEUR_LOGIN unique index (login);
+UPDATE TypeUtilisateur SET libelle='Réceptionniste' WHERE id=3;
+UPDATE TypeUtilisateur SET libelle='Vétérinaire' WHERE id=2;
+UPDATE Qualite SET libelle='glacé' WHERE id='A';
+UPDATE Qualite SET libelle='déclassé' WHERE id='B';
+UPDATE Presentation SET libelle='Etété' WHERE id='ET';
+UPDATE Presentation SET libelle='Vidé' WHERE id='VID';
 SET FOREIGN_KEY_CHECKS = 1;

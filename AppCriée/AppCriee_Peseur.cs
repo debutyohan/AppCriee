@@ -52,7 +52,7 @@ namespace AppCriée
         {
             if (cbx_peseur_lotspeche_listebateaux.SelectedItem is null)
             {
-                if (CompleteControl.RemplirCombobox(cbx_peseur_lotspeche_listebateaux, "SELECT idBateau, nom, immatriculation FROM peche INNER JOIN Bateau ON peche.idBateau=Bateau.id WHERE DatePeche=? ORDER BY heureArrivee", "nom(immatriculation)", new List<object> { Datejour }, false))
+                if (CompleteControl.RemplirCombobox(cbx_peseur_lotspeche_listebateaux, "SELECT idBateau, nom, immatriculation FROM Peche INNER JOIN Bateau ON Peche.idBateau=Bateau.id WHERE DatePeche=? ORDER BY heureArrivee", "nom(immatriculation)", new List<object> { Datejour }, false))
                 {
                     HiddenObject.Hide(new List<Control> { lbl_peseur_lotspeche_ispeche });
                     HiddenObject.Show(new List<Control> { cbx_peseur_lotspeche_listebateaux, lbl_peseur_lotspeche_choixbateau });
@@ -114,10 +114,10 @@ namespace AppCriée
             int char_bateau = elmt_bateau.IndexOf("(");
             String imma = elmt_bateau.Substring(char_bateau + 1, elmt_bateau.Length - char_bateau - 2);
             CURS cs = new CURS();
-            cs.ReqSelectPrepare("SELECT id FROM bateau WHERE immatriculation ='" + imma + "'", new List<object> { imma });
+            cs.ReqSelectPrepare("SELECT id FROM Bateau WHERE immatriculation ='" + imma + "'", new List<object> { imma });
             idbateau = Int32.Parse(cs.champ("id").ToString());
             lbl_peseur_lotspeche_lotsbateau.Text = "Liste de tous les lots du Bateau '" + elmt_bateau.Substring(0, char_bateau) + "' :";
-            bool islots = CompleteControl.RemplirDataGridViewByRequest(dg_peseur_lotspeche_lotsbateau, "SELECT bac.idLot as idLot, count(bac.idLot) as nbbac, espece.nom as nomEspece, idTaille, idPresentation, idQualite, SUM(poidsbrutBac) as poidstotal, codeEtat FROM bac INNER JOIN lot ON bac.idDatePeche=lot.idDatePeche AND bac.idBateau=lot.idBateau AND bac.idLot=lot.idLot INNER JOIN espece ON espece.id=lot.idEspece INNER JOIN bateau ON bateau.id=lot.idBateau AND bateau.id=bac.idBateau WHERE bac.idDatePeche=? AND immatriculation=? AND (codeEtat='C' OR codeEtat='M') GROUP BY bac.idLot", new string[] { "idLot", "nomEspece", "idTaille", "idQualite", "idPresentation", "nbbac", "poidstotal", "codeEtat" }, new List<object> { Datejour, imma });
+            bool islots = CompleteControl.RemplirDataGridViewByRequest(dg_peseur_lotspeche_lotsbateau, "SELECT Bac.idLot as idLot, count(Bac.idLot) as nbbac, Espece.nom as nomEspece, idTaille, idPresentation, idQualite, SUM(poidsbrutBac) as poidstotal, codeEtat FROM Bac INNER JOIN Lot ON Bac.idDatePeche=Lot.idDatePeche AND Bac.idBateau=Lot.idBateau AND Bac.idLot=Lot.idLot INNER JOIN Espece ON Espece.id=Lot.idEspece INNER JOIN Bateau ON Bateau.id=Lot.idBateau AND Bateau.id=Bac.idBateau WHERE Bac.idDatePeche=? AND immatriculation=? AND (codeEtat='C' OR codeEtat='M') GROUP BY Bac.idLot", new string[] { "idLot", "nomEspece", "idTaille", "idQualite", "idPresentation", "nbbac", "poidstotal", "codeEtat" }, new List<object> { Datejour, imma });
             if (islots == true)
             {
                 foreach (DataGridViewRow ligne in dg_peseur_lotspeche_lotsbateau.Rows)
@@ -162,7 +162,7 @@ namespace AppCriée
                 DataGridViewRow ligneselectionne = dg_peseur_lotspeche_lotsbateau.SelectedRows[0];
                 ligneselect = ligneselectionne;
                 idLotisWeightModifing = Int32.Parse(ligneselectionne.Cells[0].Value.ToString().Substring(2, 3));
-                CompleteControl.RemplirDataGridViewByRequest(dg_peseur_lotspeche_bacs, "SELECT numBac as idBac, idTypeBac, tare, IF(ISNULL(poidsbrutBac)OR poidsbrutBac='0.00', 'Non saisie', poidsbrutBac) as poidsbrut FROM bac INNER JOIN typebac ON typebac.id=bac.idTypeBac WHERE idDatePeche=? AND idBateau=? AND idLot=? ORDER BY numBac", new string[] { "idBac", "idTypeBac", "tare", "poidsbrut" }, new List<object> { Datejour, idbateau, idLotisWeightModifing });
+                CompleteControl.RemplirDataGridViewByRequest(dg_peseur_lotspeche_bacs, "SELECT numBac as idBac, idTypeBac, tare, IF(ISNULL(poidsbrutBac)OR poidsbrutBac='0.00', 'Non saisie', poidsbrutBac) as poidsbrut FROM Bac INNER JOIN TypeBac ON TypeBac.id=Bac.idTypeBac WHERE idDatePeche=? AND idBateau=? AND idLot=? ORDER BY numBac", new string[] { "idBac", "idTypeBac", "tare", "poidsbrut" }, new List<object> { Datejour, idbateau, idLotisWeightModifing });
                 HiddenObject.Show(new List<Control> { dg_peseur_lotspeche_bacs, btn_peseur_lotspeche_saisirpoids, lbl_peseur_lotspeche_bacdulot, lbl_peseur_lotspeche_info });
                 foreach (DataGridViewRow ligne in dg_peseur_lotspeche_bacs.Rows)
                 {
@@ -216,26 +216,29 @@ namespace AppCriée
             string nouvpoids = "'" + tbx_peseur_lotspeche_saisirpoids.Text + "'";
             if (nouvpoids == "''")
             {
-                cs.ReqAdminPrepare("UPDATE bac SET poidsbrutbac=NULL WHERE idDatePeche=? AND idBateau=? AND idLot=? AND numBac=?", new List<object> { Datejour, idbateau, idLotisWeightModifing, idBacisWeightModifing });
+                cs.ReqAdminPrepare("UPDATE Bac SET poidsbrutbac=NULL WHERE idDatePeche=? AND idBateau=? AND idLot=? AND numBac=?", new List<object> { Datejour, idbateau, idLotisWeightModifing, idBacisWeightModifing });
 
             }
             else
             {
-                cs.ReqAdminPrepare("UPDATE bac SET poidsbrutbac=? WHERE idDatePeche=? AND idBateau=? AND idLot=? AND numBac=?", new List<object> { tbx_peseur_lotspeche_saisirpoids.Text, Datejour, idbateau, idLotisWeightModifing, idBacisWeightModifing });
+                cs.ReqAdminPrepare("UPDATE Bac SET poidsbrutbac=? WHERE idDatePeche=? AND idBateau=? AND idLot=? AND numBac=?", new List<object> { tbx_peseur_lotspeche_saisirpoids.Text, Datejour, idbateau, idLotisWeightModifing, idBacisWeightModifing });
 
             }
             HiddenObject.Hide(new List<Control> { tbx_peseur_lotspeche_saisirpoids, lbl_peseur_lotspeche_saisirpoids, btn_peseur_lotspeche_validersaisiepoids });
 
             cs.fermer();
             cs = new CURS();
-            cs.ReqAdminPrepare("UPDATE lot SET idusermodif=? , datemodif=? WHERE idDatePeche=? AND idLot=? AND idBateau=?", new List<object> { _useractuelle.Id, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), Datejour, idLotisWeightModifing, idbateau });
+            cs.ReqAdminPrepare("UPDATE Lot SET idusermodif=? , datemodif=? WHERE idDatePeche=? AND idLot=? AND idBateau=?", new List<object> { _useractuelle.Id, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), Datejour, idLotisWeightModifing, idbateau });
             cs.fermer();
             int index = dg_peseur_lotspeche_lotsbateau.Rows.IndexOf(ligneselect);
             int indexbac = dg_peseur_lotspeche_bacs.Rows.IndexOf(ligneselectbac);
             cbx_peseur_lotspeche_listebateaux_SelectionChangeCommitted(sender, e);
             dg_peseur_lotspeche_lotsbateau.Rows[index].Selected = true;
             dg_peseur_lotspeche_lotsbateau_CellEnter(sender, dernierclic);
-            dg_peseur_lotspeche_bacs.Rows[indexbac].Selected = true;
+            if (indexbac != -1)
+            {
+                dg_peseur_lotspeche_bacs.Rows[indexbac].Selected = true;
+            }
             dg_peseur_lotspeche_bacs.FirstDisplayedScrollingRowIndex = rowonepos;
             lbl_peseur_lotspeche_validationok.Text = "Le bac a bien été modifié";
             lbl_peseur_lotspeche_validationok.ForeColor = Color.Blue;
@@ -266,7 +269,7 @@ namespace AppCriée
             CURS cs = new CURS();
             if (rbtn_peseur_lotspeche_lotbloque.Checked)
             {
-                cs.ReqAdminPrepare("UPDATE lot SET codeEtat ='M' WHERE idDatePeche =? AND idBateau =? AND idLot =?", new List<object> { Datejour, idbateau, idlot });
+                cs.ReqAdminPrepare("UPDATE Lot SET codeEtat ='M' WHERE idDatePeche =? AND idBateau =? AND idLot =?", new List<object> { Datejour, idbateau, idlot });
                 CompleteControl.griseligne(ligneselectionne);
                 lbl_peseur_lotspeche_validation.Text = "Le lot sélectionné a bien été bloqué";
                 ligneselectionne.Cells[7].Value = "M";
@@ -275,7 +278,7 @@ namespace AppCriée
             }
             if (rbtn_peseur_lotspeche_lotnonbloque.Checked)
             {
-                cs.ReqAdminPrepare("UPDATE lot SET codeEtat ='C' WHERE idDatePeche =? AND idBateau =? AND idLot =?", new List<object> { Datejour, idbateau, idlot });
+                cs.ReqAdminPrepare("UPDATE Lot SET codeEtat ='C' WHERE idDatePeche =? AND idBateau =? AND idLot =?", new List<object> { Datejour, idbateau, idlot });
                 CompleteControl.degriseligne(ligneselectionne);
                 lbl_peseur_lotspeche_validation.Text = "Le lot sélectionné a bien été débloqué";
                 ligneselectionne.Cells[7].Value = "C";
@@ -285,7 +288,7 @@ namespace AppCriée
             }
             cs.fermer();
             cs = new CURS();
-            cs.ReqAdminPrepare("UPDATE lot SET idusermodif=? , datemodif=? WHERE idDatePeche=? AND idLot=? AND idBateau=?", new List<object> { _useractuelle.Id, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), Datejour, idlot, idbateau });
+            cs.ReqAdminPrepare("UPDATE Lot SET idusermodif=? , datemodif=? WHERE idDatePeche=? AND idLot=? AND idBateau=?", new List<object> { _useractuelle.Id, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), Datejour, idlot, idbateau });
             cs.fermer();
             lbl_peseur_lotspeche_validation.Show();
         }
@@ -296,7 +299,7 @@ namespace AppCriée
             string idbateau = Int32.Parse(ligneselectionne.Cells[0].Value.ToString().Substring(0, 2)).ToString();
             string idlot = Int32.Parse(ligneselectionne.Cells[0].Value.ToString().Substring(2, 3)).ToString();
             CURS cs = new CURS();
-            cs.ReqSelectPrepare("SELECT nomScientifique, nomCourt, espece.nom as NomEspece, bateau.nom as NomBateau, idTaille, idPresentation, idQualite FROM lot INNER JOIN espece ON espece.id=lot.idEspece INNER JOIN bateau ON bateau.id=lot.idBateau WHERE idDatePeche=? AND idBateau=? AND lot.idLot=?", new List<object> { Datejour, idbateau, idlot });
+            cs.ReqSelectPrepare("SELECT nomScientifique, nomCourt, Espece.nom as NomEspece, Bateau.nom as NomBateau, idTaille, idPresentation, idQualite FROM Lot INNER JOIN Espece ON Espece.id=Lot.idEspece INNER JOIN Bateau ON Bateau.id=Lot.idBateau WHERE idDatePeche=? AND idBateau=? AND Lot.idLot=?", new List<object> { Datejour, idbateau, idlot });
             string nomScientifique = cs.champ("nomScientifique").ToString();
             string nomCourt = cs.champ("nomCourt").ToString();
             string nomBateau = cs.champ("NomBateau").ToString();
@@ -309,7 +312,7 @@ namespace AppCriée
 
             cs.fermer();
             cs = new CURS();
-            cs.ReqSelect("SELECT id, tare FROM typebac");
+            cs.ReqSelect("SELECT id, tare FROM TypeBac");
             Dictionary<string, string> typebac = new Dictionary<string, string>();
             Dictionary<string, int> typebacnb = new Dictionary<string, int>();
             while (!cs.Fin())
@@ -475,7 +478,7 @@ namespace AppCriée
             if (MessageBox.Show("Etes-vous sûr de vouloir supprimer votre propre compte ?\nAttention, cette action est irréversible.", "Supprimer votre compte", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 CURS cs = new CURS();
-                cs.ReqAdminPrepare("DELETE FROM utilisateur WHERE id=?", new List<object> { _useractuelle.Id });
+                cs.ReqAdminPrepare("DELETE FROM Utilisateur WHERE id=?", new List<object> { _useractuelle.Id });
                 cs.fermer();
                 string adrMail = _useractuelle.AdrMail.Trim();
                 string login = _useractuelle.Login;
@@ -568,7 +571,7 @@ namespace AppCriée
             }
 
             CURS cs = new CURS();
-            cs.ReqAdminPrepare("UPDATE utilisateur SET login=?, nomuser=?, prenomuser=?, adrMail=? WHERE id=?", new List<object> { tbx_peseur_mesdonnees_login.Text, nomModif, prenomModif, adrMail, idUserModified });
+            cs.ReqAdminPrepare("UPDATE Utilisateur SET login=?, nomuser=?, prenomuser=?, adrMail=? WHERE id=?", new List<object> { tbx_peseur_mesdonnees_login.Text, nomModif, prenomModif, adrMail, idUserModified });
             cs.fermer();
             lbl_peseur_mesdonnees_validationmodif.Text = "Vos données ont bien été modifiées.\n";
             HiddenObject.Hide(new List<Control> { lbl_peseur_mesdonnees_modificationmdp, lbl_peseur_mesdonnees_validationmodiferreur, lbl_peseur_mesdonnees_modification, lbl_peseur_mesdonnees_modifieradrMail, lbl_peseur_mesdonnees_modifierlogin, lbl_peseur_mesdonnees_modifiernom, lbl_peseur_mesdonnees_modifierprenom, tbx_peseur_mesdonnees_login, tbx_peseur_mesdonnees_nom, tbx_peseur_mesdonnees_adrMail, tbx_peseur_mesdonnees_prenom, btn_peseur_mesdonnees_validermodif, lbl_peseur_mesdonnees_champsobli });
@@ -645,7 +648,7 @@ namespace AppCriée
 
             string motdepassehash = new HashData(tbx_peseur_mesdonnees_newmdp.Text).HashCalculate();
             CURS csm = new CURS();
-            csm.ReqAdminPrepare("UPDATE utilisateur SET pwd=? WHERE id=? ", new List<object> { motdepassehash, idUserModified });
+            csm.ReqAdminPrepare("UPDATE Utilisateur SET pwd=? WHERE id=? ", new List<object> { motdepassehash, idUserModified });
             csm.fermer();
             lbl_peseur_mesdonnees_validationmodif.Text = "Votre mot de passe a bien été modifié.";
             lbl_peseur_mesdonnees_validationmodif.Show();
