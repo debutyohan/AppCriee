@@ -1,7 +1,6 @@
 USE bddCrie2;
 SET FOREIGN_KEY_CHECKS = 0;
 set names 'utf8';
-ALTER DATABASE bddCrie2 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 ALTER TABLE Utilisateur MODIFY id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT;
 ALTER TABLE `Lot` DROP FOREIGN KEY `FK_LOT_ACHETEUR`;
 ALTER TABLE `Lot` DROP INDEX `FK_LOT_ACHETEUR`;
@@ -22,11 +21,6 @@ CREATE TABLE Acheteur
   	CONSTRAINT FK_ACHETEUR_UTILISATEUR FOREIGN KEY  (id) references Utilisateur (id)
     
 ) ENGINE = INNODB;
-ALTER TABLE Acheteur CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE TypeUtilisateur CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE Espece CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE Qualite CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE Presentation CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
 INSERT INTO TypeUtilisateur VALUES (5, 'Acheteur');
 SET @maxid=(SELECT IFNULL(max(id),0) FROM Utilisateur)+1;
 INSERT INTO Utilisateur (id,login,pwd,nomuser,prenomuser,idtypeuser) VALUES(@maxid,'Treant_Marcel',SHA2('TM',256),'Treant','Marcel',5);
