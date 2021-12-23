@@ -35,7 +35,6 @@ C:\Users\debut\source\repos\AppCriée\AppCriée\obj\Debug\AppCriée.AppCriee_Adm
 C:\Users\LENOVO\source\repos\debutyohan\AppCriee\AppCriée\bin\Debug\AppCriée.exe.config
 C:\Users\LENOVO\source\repos\debutyohan\AppCriee\AppCriée\bin\Debug\AppCriée.exe
 C:\Users\LENOVO\source\repos\debutyohan\AppCriee\AppCriée\bin\Debug\AppCriée.pdb
-C:\Users\LENOVO\source\repos\debutyohan\AppCriee\AppCriée\bin\Debug\itextsharp.dll
 C:\Users\LENOVO\source\repos\debutyohan\AppCriee\AppCriée\bin\Debug\Renci.SshNet.dll
 C:\Users\LENOVO\source\repos\debutyohan\AppCriee\AppCriée\bin\Debug\itextsharp.xml
 C:\Users\LENOVO\source\repos\debutyohan\AppCriee\AppCriée\bin\Debug\MySql.Data.xml
