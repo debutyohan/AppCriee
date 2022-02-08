@@ -217,6 +217,7 @@
     <Content Include="Script SQL\modifappliwebv4.sql" />
     <Content Include="Script SQL\modifappliwebv5.sql" />
     <Content Include="Script SQL\modifappliwebv6.sql" />
+    <Content Include="Script SQL\modifappliwebv7.sql" />
     <Content Include="Script SQL\SqlCrie.sql" />
     <Content Include="Script SQL\sqlcriemodif%284%29.sql" />
     <Content Include="Script SQL\sqlcriemodif%285%29.sql" />

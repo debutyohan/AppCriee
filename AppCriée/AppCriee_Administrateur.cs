@@ -348,7 +348,7 @@ namespace AppCriée
 
             string motdepassehash = new HashData(tbx_administrateur_gestioncomptes_motdepasse.Text).HashCalculate();
             CURS cs = new CURS();
-            cs.ReqAdminPrepare("UPDATE Utilisateur SET login=?, nomuser=?, prenomuser=?, idtypeuser=(SELECT id FROM TypeUtilisateur WHERE libelle=?), adrMail=? WHERE id=?", new List<object> { tbx_administrateur_gestioncomptes_login.Text, nom, prenom, cbx_administrateur_gestioncomptes_typeuser.Text, adresseMail, idUserModified });
+            cs.ReqAdminPrepare("CALL UPDATE_USER (?, ?, ?, ?, ?, ?)", new List<object> { idUserModified, tbx_administrateur_gestioncomptes_login.Text, nom, prenom, cbx_administrateur_gestioncomptes_typeuser.Text, adresseMail });
             cs.fermer();
             lbl_administrateur_gestioncomptes_validationajoutok.Text = "Les données de l'utilisateur ont bien été modifiées.\n";
             tbc_administrateur_Selected(sender, _onglet);
