@@ -21,7 +21,7 @@ namespace AppCriée
         TabControlEventArgs _onglet;
         string idUserModified;
         string loginUserModified;
-
+        string adrMailModified;
         #endregion
 
         #region Constructeur
@@ -44,34 +44,34 @@ namespace AppCriée
             _onglet = e;
             switch (e.TabPage.Name)
             {
-                case "tbp_administrateur_accueil":
-                    lbl_administrateur_accueil_bienvenue.Text = "Bienvenue " + _useractuelle.Nom + " " + _useractuelle.Prenom;
-                    break;
-                case "tbp_administrateur_gestioncomptes":
-                    HiddenObject.Hide(new List<Control> { lbl_administrateur_gestioncomptes_modification, lbl_administrateur_gestioncomptes_ajout, lbl_administrateur_gestioncomptes_adrMail, lbl_administrateur_gestioncomptes_login, lbl_administrateur_gestioncomptes_motdepasse, lbl_administrateur_gestioncomptes_nom, lbl_administrateur_gestioncomptes_prenom, lbl_administrateur_gestioncomptes_typeuser, cbx_administrateur_gestioncomptes_typeuser, tbx_administrateur_gestioncomptes_adrMail, tbx_administrateur_gestioncomptes_login, tbx_administrateur_gestioncomptes_motdepasse, tbx_administrateur_gestioncomptes_nom, tbx_administrateur_gestioncomptes_prenom, btn_administrateur_gestioncomptes_validerajout, lbl_administrateur_gestioncomptes_validationajouterror, lbl_administrateur_gestioncomptes_champsobli, lbl_administrateur_gestioncomptes_validationajoutok, btn_administrateur_gestioncomptes_validermodif });
-                    CompleteControl.RemplirDataGridViewByRequest(dg_administrateur_gestioncomptes_listecompte, "SELECT Utilisateur.id as iduser, login, nomuser, prenomuser, adrMail, libelle FROM Utilisateur INNER JOIN TypeUtilisateur ON TypeUtilisateur.id=Utilisateur.idtypeuser WHERE idtypeuser<5 ORDER BY Utilisateur.id", new string[] { "iduser", "login", "nomuser", "prenomuser", "adrMail", "libelle" });
-                    foreach (DataGridViewRow ligne in dg_administrateur_gestioncomptes_listecompte.Rows)
+            case "tbp_administrateur_accueil":
+                lbl_administrateur_accueil_bienvenue.Text = "Bienvenue " + _useractuelle.Nom + " " + _useractuelle.Prenom;
+                break;
+            case "tbp_administrateur_gestioncomptes":
+                HiddenObject.Hide(new List<Control> { lbl_administrateur_gestioncomptes_modification, lbl_administrateur_gestioncomptes_ajout, lbl_administrateur_gestioncomptes_adrMail, lbl_administrateur_gestioncomptes_login, lbl_administrateur_gestioncomptes_motdepasse, lbl_administrateur_gestioncomptes_nom, lbl_administrateur_gestioncomptes_prenom, lbl_administrateur_gestioncomptes_typeuser, cbx_administrateur_gestioncomptes_typeuser, tbx_administrateur_gestioncomptes_adrMail, tbx_administrateur_gestioncomptes_login, tbx_administrateur_gestioncomptes_motdepasse, tbx_administrateur_gestioncomptes_nom, tbx_administrateur_gestioncomptes_prenom, btn_administrateur_gestioncomptes_validerajout, lbl_administrateur_gestioncomptes_validationajouterror, lbl_administrateur_gestioncomptes_champsobli, lbl_administrateur_gestioncomptes_validationajoutok, btn_administrateur_gestioncomptes_validermodif });
+                CompleteControl.RemplirDataGridViewByRequest(dg_administrateur_gestioncomptes_listecompte, "SELECT Utilisateur.id as iduser, login, nomuser, prenomuser, adrMail, libelle FROM Utilisateur INNER JOIN TypeUtilisateur ON TypeUtilisateur.id=Utilisateur.idtypeuser WHERE idtypeuser<5 ORDER BY Utilisateur.id", new string[] { "iduser", "login", "nomuser", "prenomuser", "adrMail", "libelle" }, true, new string[] {"login", "nomuser", "prenomuser", "adrMail" });
+                foreach (DataGridViewRow ligne in dg_administrateur_gestioncomptes_listecompte.Rows)
+                {
+                    if ((ligne.Cells[4].Value ?? "").ToString() == "")
                     {
-                        if (ligne.Cells[4].Value.ToString().Trim() == "")
-                        {
-                            ligne.Cells[4].Value = "(Non communiquée)";
-                        }
-                        if (ligne.Cells[2].Value.ToString().Trim() == "")
-                        {
-                            ligne.Cells[2].Value = "(Non communiqué)";
-                        }
-                        if (ligne.Cells[3].Value.ToString().Trim() == "")
-                        {
-                            ligne.Cells[3].Value = "(Non communiqué)";
-                        }
-                        if (ligne.Cells[0].Value.ToString() == _useractuelle.Id.ToString())
-                        {
-                            CompleteControl.griseligne(ligne);
-                        }
+                        ligne.Cells[4].Value = "(Non communiquée)";
                     }
-                    dg_administrateur_gestioncomptes_listecompte.Show();
-                    break;
-                case "tbp_administrateur_mesdonnees":
+                    if ((ligne.Cells[2].Value ?? "").ToString() == "")
+                    {
+                        ligne.Cells[2].Value = "(Non communiqué)";
+                    }
+                    if ((ligne.Cells[3].Value ?? "").ToString() == "")
+                    {
+                        ligne.Cells[3].Value = "(Non communiqué)";
+                    }
+                    if (ligne.Cells[0].Value.ToString() == _useractuelle.Id.ToString())
+                    {
+                         CompleteControl.griseligne(ligne);
+                    }
+                }
+                dg_administrateur_gestioncomptes_listecompte.Show();
+                break;
+             case "tbp_administrateur_mesdonnees":
                     HiddenObject.Hide(new List<Control> { lbl_administrateur_mesdonnees_modificationmdp, lbl_administrateur_mesdonnees_validationmodif, lbl_administrateur_mesdonnees_mdpactuel, tbx_administrateur_mesdonnees_mdpactuel, lbl_administrateur_mesdonnees_newmdp, tbx_administrateur_mesdonnees_newmdp, lbl_administrateur_mesdonnees_confirmationnewmdp, tbx_administrateur_mesdonnees_confirmationnewmdp, btn_administrateur_mesdonnees_validermodifmdp, lbl_administrateur_mesdonnees_validationmodiferreur, lbl_administrateur_mesdonnees_modification, lbl_administrateur_mesdonnees_modifieradrMail, lbl_administrateur_mesdonnees_modifierlogin, lbl_administrateur_mesdonnees_modifiernom, lbl_administrateur_mesdonnees_modifierprenom, tbx_administrateur_mesdonnees_login, tbx_administrateur_mesdonnees_nom, tbx_administrateur_mesdonnees_adrMail, tbx_administrateur_mesdonnees_prenom, btn_administrateur_mesdonnees_validermodif, lbl_administrateur_mesdonnees_champsobli, lbl_administrateur_mesdonnees_validationmodif, lbl_administrateur_mesdonnees_validationmodiferreur,  });
                     lbl_administrateur_mesdonnees_login.Text = "Login : " + _useractuelle.Login;
                     lbl_administrateur_mesdonnees_prenom.Text = "Prénom : " + _useractuelle.Prenom;
@@ -207,6 +207,7 @@ namespace AppCriée
             DataGridViewRow ligneselected = dg_administrateur_gestioncomptes_listecompte.SelectedRows[0];
             idUserModified = ligneselected.Cells[0].Value.ToString();
             loginUserModified = ligneselected.Cells[1].Value.ToString();
+            adrMailModified = ligneselected.Cells[4].Value.ToString();
         }
         private void btn_administrateur_gestioncomptes_ajout_Click(object sender, EventArgs e)
         {
@@ -239,6 +240,31 @@ namespace AppCriée
                 lbl_administrateur_gestioncomptes_validationajouterror.Show();
                 return;
             }
+
+            CURS csb = new CURS();
+            csb.ReqSelectPrepare("SELECT COUNT(login) as nblogin FROM Utilisateur WHERE login=?", new List<object> { (new CryptData(tbx_administrateur_gestioncomptes_login.Text)).EncryptData() });
+            string nblogin = csb.champ("nblogin").ToString();
+            csb.suivant();
+            csb.fermer();
+            if (nblogin == "1")
+            {
+                lbl_administrateur_gestioncomptes_validationajouterror.Text = "Le login est déjà utilisé pour un utilisateur";
+                lbl_administrateur_gestioncomptes_validationajouterror.Show();
+                return;
+            }
+            CURS csc = new CURS();
+            csc.ReqSelectPrepare("SELECT COUNT(adrMail) as nbadrMail FROM Utilisateur WHERE adrMail=?", new List<object> { (new CryptData(tbx_administrateur_gestioncomptes_adrMail.Text)).EncryptData() });
+            string nbadrMail = csc.champ("nbadrMail").ToString();
+            csc.suivant();
+            csc.fermer();
+            if (nbadrMail == "1")
+            {
+                lbl_administrateur_gestioncomptes_validationajouterror.Text = "L’adresse mail est déjà utilisé pour un utilisateur";
+                lbl_administrateur_gestioncomptes_validationajouterror.Show();
+                return;
+            }
+            csc.suivant();
+            csc.fermer();
             CURS csa = new CURS();
             csa.ReqSelect("SELECT max(id) as maxid FROM Utilisateur");
             int idusermax = Int32.Parse(csa.champ("maxid").ToString());
@@ -260,7 +286,7 @@ namespace AppCriée
             }
             string motdepassehash = new HashData(tbx_administrateur_gestioncomptes_motdepasse.Text).HashCalculate();
             CURS cs = new CURS();
-            cs.ReqAdminPrepare("INSERT INTO Utilisateur VALUES (?,?,?,?,?,(SELECT id FROM TypeUtilisateur WHERE libelle=?),?)", new List<object> { (idusermax + 1), tbx_administrateur_gestioncomptes_login.Text, motdepassehash, nom, prenom, cbx_administrateur_gestioncomptes_typeuser.Text, adresseMail });
+            cs.ReqAdminPrepare("INSERT INTO Utilisateur VALUES (?,?,?,?,?,(SELECT id FROM TypeUtilisateur WHERE libelle=?),?)", new List<object> { (idusermax + 1), (new CryptData(tbx_administrateur_gestioncomptes_login.Text)).EncryptData(), (new CryptData(motdepassehash)).EncryptData(), (new CryptData(nom)).EncryptData(), (new CryptData(prenom)).EncryptData(), cbx_administrateur_gestioncomptes_typeuser.Text, (new CryptData(adresseMail)).EncryptData() });
             cs.fermer();
             if (cbx_administrateur_gestioncomptes_typeuser.Text == "Directeur des ventes")
             {
@@ -316,20 +342,30 @@ namespace AppCriée
                 lbl_administrateur_gestioncomptes_validationajouterror.Show();
                 return;
             }
-            int idusermax = -1;
-            foreach (DataGridViewRow row in dg_administrateur_gestioncomptes_listecompte.Rows)
+            CURS csb = new CURS();
+            csb.ReqSelectPrepare("SELECT COUNT(login) as nblogin FROM Utilisateur WHERE login=? AND login!=?", new List<object> { (new CryptData(tbx_administrateur_gestioncomptes_login.Text)).EncryptData(), loginUserModified });
+            string nblogin = csb.champ("nblogin").ToString();
+            csb.suivant();
+            csb.fermer();
+            if (nblogin == "1")
             {
-                if (idusermax < Int32.Parse(row.Cells[0].Value.ToString()))
-                {
-                    idusermax = Int32.Parse(row.Cells[0].Value.ToString());
-                }
-                if (row.Cells[1].Value.ToString().Trim() == tbx_administrateur_gestioncomptes_login.Text && loginUserModified != tbx_administrateur_gestioncomptes_login.Text)
-                {
-                    lbl_administrateur_gestioncomptes_validationajouterror.Text = "Le login existe déjà, veuillez en choisir un autre.";
-                    lbl_administrateur_gestioncomptes_validationajouterror.Show();
-                    return;
-                }
+                lbl_administrateur_gestioncomptes_validationajouterror.Text = "Le login est déjà utilisé pour un utilisateur";
+                lbl_administrateur_gestioncomptes_validationajouterror.Show();
+                return;
             }
+            CURS csa = new CURS();
+            csa.ReqSelectPrepare("SELECT COUNT(adrMail) as nbadrMail FROM Utilisateur WHERE adrMail=? AND adrMail!=?", new List<object> { (new CryptData(tbx_administrateur_gestioncomptes_adrMail.Text)).EncryptData(), adrMailModified });
+            string nbadrMail = csa.champ("nbadrMail").ToString();
+            csa.suivant();
+            csa.fermer();
+            if (nbadrMail == "1")
+            {
+                lbl_administrateur_gestioncomptes_validationajouterror.Text = "L’adresse mail est déjà utilisé pour un utilisateur";
+                lbl_administrateur_gestioncomptes_validationajouterror.Show();
+                return;
+            }
+            csa.suivant();
+            csa.fermer();
             object adresseMail = tbx_administrateur_gestioncomptes_adrMail.Text;
             if (adresseMail.ToString().Trim() == "")
             {
@@ -348,7 +384,7 @@ namespace AppCriée
 
             string motdepassehash = new HashData(tbx_administrateur_gestioncomptes_motdepasse.Text).HashCalculate();
             CURS cs = new CURS();
-            cs.ReqAdminPrepare("CALL UPDATE_USER (?, ?, ?, ?, ?, ?)", new List<object> { idUserModified, tbx_administrateur_gestioncomptes_login.Text, nom, prenom, cbx_administrateur_gestioncomptes_typeuser.Text, adresseMail });
+            cs.ReqAdminPrepare("CALL UPDATE_USER (?, ?, ?, ?, ?, ?)", new List<object> { idUserModified, (new CryptData(tbx_administrateur_gestioncomptes_login.Text)).EncryptData(), (new CryptData(nom)).EncryptData(), (new CryptData(prenom)).EncryptData(), cbx_administrateur_gestioncomptes_typeuser.Text, (new CryptData(adresseMail)).EncryptData() });
             cs.fermer();
             lbl_administrateur_gestioncomptes_validationajoutok.Text = "Les données de l'utilisateur ont bien été modifiées.\n";
             tbc_administrateur_Selected(sender, _onglet);
@@ -393,6 +429,7 @@ namespace AppCriée
             }
             idUserModified = null;
             loginUserModified = null;
+            adrMailModified = null;
         }
         
 
@@ -479,7 +516,30 @@ namespace AppCriée
                 lbl_administrateur_mesdonnees_validationmodiferreur.Show();
                 return;
             }
-
+            CURS csb = new CURS();
+            csb.ReqSelectPrepare("SELECT COUNT(login) as nblogin FROM Utilisateur WHERE login=? AND id!=?", new List<object> { (new CryptData(tbx_administrateur_mesdonnees_login.Text)).EncryptData(), idUserModified });
+            string nblogin = csb.champ("nblogin").ToString();
+            csb.suivant();
+            csb.fermer();
+            if (nblogin == "1")
+            {
+                lbl_administrateur_mesdonnees_validationmodiferreur.Text = "Le login est déjà utilisé pour un utilisateur";
+                lbl_administrateur_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+            CURS csa = new CURS();
+            csa.ReqSelectPrepare("SELECT COUNT(adrMail) as nbadrMail FROM Utilisateur WHERE adrMail=? AND id!=?", new List<object> { (new CryptData(tbx_administrateur_mesdonnees_adrMail.Text)).EncryptData(), idUserModified });
+            string nbadrMail = csa.champ("nbadrMail").ToString();
+            csa.suivant();
+            csa.fermer();
+            if (nbadrMail == "1")
+            {
+                lbl_administrateur_mesdonnees_validationmodiferreur.Text = "L’adresse mail est déjà utilisé pour un utilisateur";
+                lbl_administrateur_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+            csa.suivant();
+            csa.fermer();
             object adrMail = tbx_administrateur_mesdonnees_adrMail.Text;
             if (adrMail.ToString().Trim() == "")
             {
@@ -497,7 +557,7 @@ namespace AppCriée
             }
 
             CURS cs = new CURS();
-            cs.ReqAdminPrepare("UPDATE Utilisateur SET login=?, nomuser=?, prenomuser=?, adrMail=? WHERE id=?", new List<object> { tbx_administrateur_mesdonnees_login.Text, nomModif, prenomModif, adrMail, idUserModified });
+            cs.ReqAdminPrepare("UPDATE Utilisateur SET login=?, nomuser=?, prenomuser=?, adrMail=? WHERE id=?", new List<object> { (new CryptData(tbx_administrateur_mesdonnees_login.Text)).EncryptData(), (new CryptData(nomModif)).EncryptData(), (new CryptData(prenomModif)).EncryptData(), (new CryptData(adrMail)).EncryptData(), idUserModified });
             cs.fermer();
             lbl_administrateur_mesdonnees_validationmodif.Text = "Vos données ont bien été modifiées.\n";
             HiddenObject.Hide(new List<Control> { lbl_administrateur_mesdonnees_validationmodiferreur, lbl_administrateur_mesdonnees_modification, lbl_administrateur_mesdonnees_modifieradrMail, lbl_administrateur_mesdonnees_modifierlogin, lbl_administrateur_mesdonnees_modifiernom, lbl_administrateur_mesdonnees_modifierprenom, tbx_administrateur_mesdonnees_login, tbx_administrateur_mesdonnees_nom, tbx_administrateur_mesdonnees_adrMail, tbx_administrateur_mesdonnees_prenom, btn_administrateur_mesdonnees_validermodif, lbl_administrateur_mesdonnees_champsobli });
@@ -530,19 +590,7 @@ namespace AppCriée
         {
             idUserModified = _useractuelle.Id.ToString();
             String passwdhash = new HashData(tbx_administrateur_mesdonnees_mdpactuel.Text).HashCalculate();
-            if (tbx_administrateur_mesdonnees_mdpactuel.Text == "")
-            {
-                lbl_administrateur_mesdonnees_validationmodiferreur.Text = "Tous les champs obligatoires doivent être remplis";
-                lbl_administrateur_mesdonnees_validationmodiferreur.Show();
-                return;
-            }
-            if (tbx_administrateur_mesdonnees_newmdp.Text == "")
-            {
-                lbl_administrateur_mesdonnees_validationmodiferreur.Text = "Tous les champs obligatoires doivent être remplis";
-                lbl_administrateur_mesdonnees_validationmodiferreur.Show();
-                return;
-            }
-            if (tbx_administrateur_mesdonnees_confirmationnewmdp.Text == "")
+            if (tbx_administrateur_mesdonnees_mdpactuel.Text == ""|| tbx_administrateur_mesdonnees_newmdp.Text == ""|| tbx_administrateur_mesdonnees_confirmationnewmdp.Text == "")
             {
                 lbl_administrateur_mesdonnees_validationmodiferreur.Text = "Tous les champs obligatoires doivent être remplis";
                 lbl_administrateur_mesdonnees_validationmodiferreur.Show();
@@ -550,7 +598,7 @@ namespace AppCriée
             }
 
             CURS cs = new CURS();
-            cs.ReqSelectPrepare("CALL Auth(?,?)", new List<object> { _useractuelle.Login, passwdhash });
+            cs.ReqSelectPrepare("CALL Auth(?,?)", new List<object> { (new CryptData(_useractuelle.Login)).EncryptData(), (new CryptData(passwdhash)).EncryptData() });
             if (cs.champ("nbUser").ToString() == "0")
             {
                 lbl_administrateur_mesdonnees_validationmodiferreur.Text = "Votre mot de passe actuel est incorrect.";
@@ -575,7 +623,7 @@ namespace AppCriée
 
             string motdepassehash = new HashData(tbx_administrateur_mesdonnees_newmdp.Text).HashCalculate();
             CURS csm = new CURS();
-            csm.ReqAdminPrepare("UPDATE Utilisateur SET pwd=? WHERE id=? ", new List<object> { motdepassehash, idUserModified });
+            csm.ReqAdminPrepare("UPDATE Utilisateur SET pwd=? WHERE id=? ", new List<object> { (new CryptData(motdepassehash)).EncryptData(), idUserModified });
             csm.fermer();
             lbl_administrateur_mesdonnees_validationmodif.Text = "Votre mot de passe a bien été modifié.";
             lbl_administrateur_mesdonnees_validationmodif.Show();
@@ -607,13 +655,6 @@ namespace AppCriée
         {
             this.Close();
         }
-
-
-
-
-
-
-
 
         #endregion
 

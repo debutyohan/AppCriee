@@ -54,15 +54,15 @@ namespace AppCriée
             {
 
                 CURS cs = new CURS();
-                cs.ReqSelectPrepare("SELECT count(id) as nb, adrMail FROM Utilisateur WHERE login=?", new List<object> { tbx_recupmotdepasse_login.Text });
-                if (cs.champ("nb").ToString() == "0")
+                cs.ReqSelectPrepare("SELECT count(id) as nb, adrMail, idtypeuser FROM Utilisateur WHERE login=?", new List<object> { (new CryptData(tbx_recupmotdepasse_login.Text)).EncryptData() });
+                if ((cs.champ("nb").ToString() == "0") || ((cs.champ("nb").ToString() == "1")&&(cs.champ("idtypeuser").ToString() == "5")))
                 {
                     lbl_recupmotdepasse_error.Text = "Veuillez vérifier votre login, il est incorrect.\nSi vous ne vous souvenez pas de votre login, entrez votre adresse mail.\nSi vous ne vous souvenez pas non plus de votre adresse mail,\nrefaites une demande de compte auprès du support informatique dans l’option :\n« Demander la création d’un compte » lors de la page de connexion";
                     lbl_recupmotdepasse_error.Show();
                     cs.fermer();
                     return;
                 }
-                string adrMail = cs.champ("adrMail").ToString().Trim();
+                string adrMail = (new CryptData(cs.champ("adrMail"))).DecryptData() ?? "";
                 cs.fermer();
                 if (adrMail == "")
                 {
@@ -80,51 +80,40 @@ namespace AppCriée
                     MessageBox.Show("Un envoi de mail a échoué : " + resultmsg.Message + "\nVeuillez réessayer plus tard, vérifier votre pare-feu ou contacter\nle support informatique de l’application");
                     return;
                 }
-                HiddenObject.Hide(new List<Control> { lbl_recupmotdepasse_adrMail, lbl_recupmotdepasse_login, lbl_recupmotdepasse_ou, btn_recupmotdepasse_reinit, tbx_recupmotdepasse_adrMail, tbx_recupmotdepasse_login });
+                HiddenObject.Hide(new List<Control> { lbl_recupmotdepasse_adrMail, lbl_recupmotdepasse_login, lbl_recupmotdepasse_ou, btn_recupmotdepasse_reinit, tbx_recupmotdepasse_adrMail, tbx_recupmotdepasse_login, lbl_recupmotdepasse_error});
                 lbl_recupmotdepasse_indicationdebut.Text = "Insérer le code qui vous a été transmis par\nmail sur l'adresse mail associé à votre compte";
                 HiddenObject.Show(new List<Control> {lbl_recupmotdepasse_code, tbx_recupmotdepasse_code, btn_recupmotdepasse_validercode });
             }
             else
             {
                 CURS cs = new CURS();
-                cs.ReqSelectPrepare("SELECT count(login) AS nbadr, login FROM Utilisateur WHERE adrMail=?", new List<object> { tbx_recupmotdepasse_adrMail.Text });
+                cs.ReqSelectPrepare("SELECT count(login) AS nbadr, login, idtypeuser FROM Utilisateur WHERE adrMail=?", new List<object> { (new CryptData(tbx_recupmotdepasse_adrMail.Text)).EncryptData() });
                 string nbadr = cs.champ("nbadr").ToString();
-                if (nbadr == "0")
+                if ((nbadr == "0") || ((nbadr == "1") && cs.champ("idtypeuser").ToString()=="5"))
                 {
                     lbl_recupmotdepasse_error.Text = "Aucun compte n'est reliée à cette adresse mail.\nVeuillez vérifier l'adresse mail ou insérer votre login.\nSi vous ne vous souvenez pas ni de votre adresse mail ni de votre login,\nrefaites une demande de compte auprès du support informatique dans l’option :\n« Demander la création d’un compte » lors de la page de connexion";
                     lbl_recupmotdepasse_error.Show();
                     cs.fermer();
                     return;
                 }
-                loginispassmodified = cs.champ("login").ToString();
+                loginispassmodified = (new CryptData(cs.champ("login"))).DecryptData();
                 cs.fermer();
-                if (nbadr != "1")
+                if (nbadr != "0")
                 {
-                    cs = new CURS();
-                    cs.ReqSelectPrepare("SELECT login FROM Utilisateur WHERE adrMail=?", new List<object> { tbx_recupmotdepasse_adrMail.Text });
-                    string contenu = cs.champ("login").ToString();
-                    cs.suivant();
-                    while (!cs.Fin())
+                    Exception resultmsg;
+                    codegenere = Outils.GeneratePassword(10, new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' });
+                    
+                    string contenu = "Vous avez demandé une réinitialisation de votre mot de passe sur votre compte '" + loginispassmodified + "'.\nVoici le code à saisir dans la fenêtre de l'application :\n" + codegenere;
+                    bool ismail = CompleteControl.SendMail(tbx_recupmotdepasse_adrMail.Text, "AppCriée : Réinitialisation de mot de passe", "Vous avez demandé une réinitialisation de votre mot de passe sur votre compte '" + tbx_recupmotdepasse_login.Text.Trim() + "'.\nVoici le code à saisir dans la fenêtre de l'application :\n" + codegenere + "\n\nSupport Informatique de l'application AppCriée\n\nPour toutes questions relatives à l'application AppCriée, veuillez nous contacter à l'adresse : " + DataSystem.AdrMailFrom(), out resultmsg);
+                    if (!ismail)
                     {
-                        contenu += ", "+cs.champ("login").ToString();
-                        cs.suivant();
-                    }
-                    cs.fermer();
-                    contenu = "Vous avez demandé la réinitialisation du mot de passe.\nEtant donné que plusieurs comptes sont associés à votre adresse mail, veuillez choisir le compte spécifique où vous souhaitez réinitialiser le mot de passe\n\nVoici la liste de vos comptes :\n" + contenu;
-                    Exception exception;
-                    bool isresult = CompleteControl.SendMail(tbx_recupmotdepasse_adrMail.Text, "AppCriée : Réinitialisation de mot de passe",contenu, out exception);
-                    if (!isresult)
-                    {
-                        MessageBox.Show("Un envoi de mail a échoué : " + exception.Message + "\nVeuillez réessayer plus tard, vérifier votre pare-feu ou contacter le support informatique de l’application", "Echec d'envoi de mail", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    lbl_recupmotdepasse_error.Text = "L'adresse mail entrée est associé à plusieurs comptes\ndont la liste vous a été envoyé par mail.\n\nVeuillez entrer le login spécifique dans la zone de saisie au\nlieu de mettre votre adresse mail";
-                    lbl_recupmotdepasse_error.Show();
+                    MessageBox.Show("Un envoi de mail a échoué : " + resultmsg.Message + "\nVeuillez réessayer plus tard, vérifier votre pare-feu ou contacter\nle support informatique de l’application");
                     return;
+                    }
+                    HiddenObject.Hide(new List<Control> { lbl_recupmotdepasse_adrMail, lbl_recupmotdepasse_login, lbl_recupmotdepasse_ou, btn_recupmotdepasse_reinit, tbx_recupmotdepasse_adrMail, tbx_recupmotdepasse_login, lbl_recupmotdepasse_error });
+                    lbl_recupmotdepasse_indicationdebut.Text = "Insérer le code qui vous a été transmis par\nmail sur l'adresse mail associé à votre compte";
+                    HiddenObject.Show(new List<Control> { lbl_recupmotdepasse_code, tbx_recupmotdepasse_code, btn_recupmotdepasse_validercode });
                 }
-                HiddenObject.Hide(new List<Control> { lbl_recupmotdepasse_adrMail, lbl_recupmotdepasse_login, lbl_recupmotdepasse_ou, btn_recupmotdepasse_reinit, tbx_recupmotdepasse_adrMail, tbx_recupmotdepasse_login });
-                tbx_recupmotdepasse_login.Text = loginispassmodified;
-                btn_recupmotdepasse_reinit.PerformClick();
 
             }
         }
@@ -173,7 +162,7 @@ namespace AppCriée
             }
             string passhash = new HashData(tbx_recupmotdepasse_nouveaumotdepasse.Text).HashCalculate();
             CURS cs = new CURS();
-            cs.ReqAdminPrepare("UPDATE Utilisateur SET pwd=? WHERE login=?", new List<object> { passhash, loginispassmodified });
+            cs.ReqAdminPrepare("UPDATE Utilisateur SET pwd=? WHERE login=?", new List<object> { (new CryptData(passhash)).EncryptData(), (new CryptData(loginispassmodified)).EncryptData() });
             cs.fermer();
             HiddenObject.Hide(new List<Control> { lbl_recupmotdepasse_error, lbl_recupmotdepasse_confirmermotdepasse, lbl_recupmotdepasse_nouveaumotdepasse, lbl_recupmotdepasse_indicationdebut, tbx_recupmotdepasse_confirmermotdepasse, tbx_recupmotdepasse_nouveaumotdepasse, btn_recupmotdepasse_validernouveaumotdepasse, chbx_recupmotdepasse_nouveaumotdepasse, chbx_recupmotdepasse_confirmermotdepasse });
             lbl_recupmotdepasse_ok.Show();

@@ -11,15 +11,15 @@ namespace AppCriée
     {
         public static string ConnectionChain()
         {
-            return "server = " + ConfigurationManager.AppSettings["server"] + "; user id = " + ConfigurationManager.AppSettings["user id"] + "; password = " + ConfigurationManager.AppSettings["password"] + " ; database = " + ConfigurationManager.AppSettings["database"];
+            return "server = " + (new CryptData(ConfigurationManager.AppSettings["server"])).DecryptData() + "; user id = " + (new CryptData(ConfigurationManager.AppSettings["user id"])).DecryptData() + "; password = " + (new CryptData(ConfigurationManager.AppSettings["password"])).DecryptData() + " ; database = " + (new CryptData(ConfigurationManager.AppSettings["database"])).DecryptData();
         }
         public static string[] ParamSMTP()
         {
-            return new string[] { ConfigurationManager.AppSettings["serveurSMTP"], ConfigurationManager.AppSettings["adrMailFrom"], ConfigurationManager.AppSettings["portSMTP"], ConfigurationManager.AppSettings["passMailFrom"] };
+            return new string[] { (new CryptData(ConfigurationManager.AppSettings["serveurSMTP"])).DecryptData(), (new CryptData(ConfigurationManager.AppSettings["adrMailFrom"])).DecryptData(), ConfigurationManager.AppSettings["portSMTP"], (new CryptData(ConfigurationManager.AppSettings["passMailFrom"])).DecryptData() };
         }
         public static string AdrMailFrom()
         {
-            return ConfigurationManager.AppSettings["adrMailFrom"];
+            return (new CryptData(ConfigurationManager.AppSettings["adrMailFrom"])).DecryptData();
         }
     }
 }

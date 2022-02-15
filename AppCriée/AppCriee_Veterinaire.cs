@@ -1082,6 +1082,30 @@ namespace AppCriée
                 return;
             }
 
+            CURS csb = new CURS();
+            csb.ReqSelectPrepare("SELECT COUNT(login) as nblogin FROM Utilisateur WHERE login=? AND id!=?", new List<object> { (new CryptData(tbx_veterinaire_mesdonnees_login.Text)).EncryptData(), idUserModified });
+            string nblogin = csb.champ("nblogin").ToString();
+            csb.suivant();
+            csb.fermer();
+            if (nblogin == "1")
+            {
+                lbl_veterinaire_mesdonnees_validationmodiferreur.Text = "Le login est déjà utilisé pour un utilisateur";
+                lbl_veterinaire_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+            CURS csa = new CURS();
+            csa.ReqSelectPrepare("SELECT COUNT(adrMail) as nbadrMail FROM Utilisateur WHERE adrMail=? AND id!=?", new List<object> { (new CryptData(tbx_veterinaire_mesdonnees_adrMail.Text)).EncryptData(), idUserModified });
+            string nbadrMail = csa.champ("nbadrMail").ToString();
+            csa.suivant();
+            csa.fermer();
+            if (nbadrMail == "1")
+            {
+                lbl_veterinaire_mesdonnees_validationmodiferreur.Text = "L’adresse mail est déjà utilisé pour un utilisateur";
+                lbl_veterinaire_mesdonnees_validationmodiferreur.Show();
+                return;
+            }
+            csa.suivant();
+            csa.fermer();
             object adrMail = tbx_veterinaire_mesdonnees_adrMail.Text;
             if (adrMail.ToString().Trim() == "")
             {
@@ -1099,7 +1123,7 @@ namespace AppCriée
             }
 
             CURS cs = new CURS();
-            cs.ReqAdminPrepare("UPDATE Utilisateur SET login=?, nomuser=?, prenomuser=?, adrMail=? WHERE id=?", new List<object> { tbx_veterinaire_mesdonnees_login.Text, nomModif, prenomModif, adrMail, idUserModified });
+            cs.ReqAdminPrepare("UPDATE Utilisateur SET login=?, nomuser=?, prenomuser=?, adrMail=? WHERE id=?", new List<object> { (new CryptData(tbx_veterinaire_mesdonnees_login.Text)).EncryptData(), (new CryptData(nomModif)).EncryptData(), (new CryptData(prenomModif)).EncryptData(), (new CryptData(adrMail)).EncryptData(), idUserModified });
             cs.fermer();
             lbl_veterinaire_mesdonnees_validationmodif.Text = "Vos données ont bien été modifiées.\n";
             HiddenObject.Hide(new List<Control> { lbl_veterinaire_mesdonnees_modificationmdp, lbl_veterinaire_mesdonnees_validationmodiferreur, lbl_veterinaire_mesdonnees_modification, lbl_veterinaire_mesdonnees_modifieradrMail, lbl_veterinaire_mesdonnees_modifierlogin, lbl_veterinaire_mesdonnees_modifiernom, lbl_veterinaire_mesdonnees_modifierprenom, tbx_veterinaire_mesdonnees_login, tbx_veterinaire_mesdonnees_nom, tbx_veterinaire_mesdonnees_adrMail, tbx_veterinaire_mesdonnees_prenom, btn_veterinaire_mesdonnees_validermodif, lbl_veterinaire_mesdonnees_champsobli });
@@ -1151,7 +1175,7 @@ namespace AppCriée
             }
 
             CURS cs = new CURS();
-            cs.ReqSelectPrepare("CALL Auth(?,?)", new List<object> { _useractuelle.Login, passwdhash });
+            cs.ReqSelectPrepare("CALL Auth(?,?)", new List<object> { (new CryptData(_useractuelle.Login)).EncryptData(), (new CryptData(passwdhash)).EncryptData() });
             if (cs.champ("nbUser").ToString() == "0")
             {
                 lbl_veterinaire_mesdonnees_validationmodiferreur.Text = "Votre mot de passe actuel est incorrect.";
@@ -1176,7 +1200,7 @@ namespace AppCriée
 
             string motdepassehash = new HashData(tbx_veterinaire_mesdonnees_newmdp.Text).HashCalculate();
             CURS csm = new CURS();
-            csm.ReqAdminPrepare("UPDATE Utilisateur SET pwd=? WHERE id=? ", new List<object> { motdepassehash, idUserModified });
+            csm.ReqAdminPrepare("UPDATE Utilisateur SET pwd=? WHERE id=? ", new List<object> { (new CryptData(motdepassehash)).EncryptData(), idUserModified });
             csm.fermer();
             lbl_veterinaire_mesdonnees_validationmodif.Text = "Votre mot de passe a bien été modifié.";
             lbl_veterinaire_mesdonnees_validationmodif.Show();

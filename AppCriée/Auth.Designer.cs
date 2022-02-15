@@ -156,7 +156,7 @@ namespace AppCriée
             this.lbl_auth_oublimotdepasse.AutoSize = true;
             this.lbl_auth_oublimotdepasse.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbl_auth_oublimotdepasse.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_auth_oublimotdepasse.Location = new System.Drawing.Point(674, 180);
+            this.lbl_auth_oublimotdepasse.Location = new System.Drawing.Point(665, 316);
             this.lbl_auth_oublimotdepasse.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_auth_oublimotdepasse.Name = "lbl_auth_oublimotdepasse";
             this.lbl_auth_oublimotdepasse.Size = new System.Drawing.Size(154, 17);

@@ -96,9 +96,13 @@ namespace AppCriée
             }
             return ispeche;
         }
-        public static bool RemplirDataGridViewByRequest(DataGridView unDataGridView, string requete, String[] Params, Boolean clear = true)
+        public static bool RemplirDataGridViewByRequest(DataGridView unDataGridView, string requete, string[] Params, Boolean clear = true, string[] paramciffer = null )
         {
             bool islots = false;
+            if(paramciffer is null)
+            {
+                paramciffer = new string[1];
+            }
             unDataGridView.Rows.Clear();
             CURS cs = new CURS();
             cs.ReqSelect(requete);
@@ -106,9 +110,16 @@ namespace AppCriée
             while (!cs.Fin())
             {
                 int i = 0;
-                foreach (String unParams in Params)
+                foreach (string unParams in Params)
                 {
-                    Parametres[i] = cs.champ(unParams);
+                    if (paramciffer.Contains(unParams))
+                    {
+                        Parametres[i] = (new CryptData(cs.champ(unParams))).DecryptData();
+                    }
+                    else
+                    {
+                        Parametres[i] = cs.champ(unParams);
+                    }
                     i++;
                 }
                 islots = true;
@@ -119,7 +130,7 @@ namespace AppCriée
             cs.fermer();
             return islots;
         }
-        public static bool RemplirDataGridViewByRequest(DataGridView unDataGridView, String requete, String[] Params, List<object> parameters, Boolean clear = true)
+        public static bool RemplirDataGridViewByRequest(DataGridView unDataGridView, string requete, string[] Params, List<object> parameters, Boolean clear = true)
         {
             bool islots = false;
             unDataGridView.Rows.Clear();
@@ -129,7 +140,7 @@ namespace AppCriée
             while (!cs.Fin())
             {
                 int i = 0;
-                foreach (String unParams in Params)
+                foreach (string unParams in Params)
                 {
                     Parametres[i] = cs.champ(unParams);
                     i++;

@@ -40,12 +40,22 @@ namespace AppCriée
                 return;
             }
             CURS cs = new CURS();
-            cs.ReqSelectPrepare("SELECT count(id) as nb FROM Utilisateur WHERE login=?", new List<object> { tbx_demandecreercompte_login.Text.Trim() });
+            cs.ReqSelectPrepare("SELECT count(id) as nb FROM Utilisateur WHERE login=?", new List<object> { (new CryptData(tbx_demandecreercompte_login.Text.Trim())).EncryptData() });
             string nblog = cs.champ("nb").ToString();
             cs.fermer();
             if (nblog != "0")
             {
                 lbl_demandecreercompte_error.Text = "Ce login existe déjà, veuillez en choisir un autre";
+                lbl_demandecreercompte_error.Show();
+                return;
+            }
+            CURS csa = new CURS();
+            csa.ReqSelectPrepare("SELECT count(id) as nb FROM Utilisateur WHERE adrMail=?", new List<object> { (new CryptData(tbx_demandecreercompte_adrMail.Text.Trim())).EncryptData() });
+            string nbmail = csa.champ("nb").ToString();
+            cs.fermer();
+            if (nbmail != "0")
+            {
+                lbl_demandecreercompte_error.Text = "Cette adresse mail est déjà utilisée, veuillez en choisir une autre";
                 lbl_demandecreercompte_error.Show();
                 return;
             }
