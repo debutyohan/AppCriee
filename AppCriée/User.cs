@@ -15,7 +15,9 @@ namespace AppCriée
         private int _type;
         private string _libelletype;
         private string _adrMail;
-        public User(int id, string login, string nom, string prenom, int type, string libelletype, string adrMail)
+        private string _datecreation;
+        private string _datemodif;
+        public User(int id, string login, string nom, string prenom, int type, string libelletype, string adrMail, string datecreation, string datemodif)
         {
             _id = id;
             _login = login;
@@ -24,6 +26,8 @@ namespace AppCriée
             _type = type;
             _libelletype = libelletype;
             _adrMail = adrMail;
+            _datecreation = datecreation;
+            _datemodif = datemodif;
         }
 
         public int Id { get => _id; set => _id = value; }
@@ -33,5 +37,7 @@ namespace AppCriée
         public int Type { get => _type; set => _type = value; }
         public string Libelletype { get => _libelletype; set => _libelletype = value; }
         public string AdrMail { get => _adrMail; set => _adrMail = value; }
-    }
+		public string Datecreation { get => _datecreation; set => _datecreation = value; }
+		public string Datemodif { get => _datemodif; set => _datemodif = value; }
+	}
 }

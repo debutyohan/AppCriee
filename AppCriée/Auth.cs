@@ -39,8 +39,8 @@ namespace AppCriée
              if (cs.champ("nbUser").ToString() == "1")
              {
                  lbl_auth_falseidpasswd.Hide();
-                
-                 User UserConnecte = new User(Int32.Parse(cs.champ("iduser").ToString()), (new CryptData(cs.champ("login"))).DecryptData(), (new CryptData(cs.champ("nomuser"))).DecryptData() ?? "", (new CryptData(cs.champ("prenomuser"))).DecryptData() ?? "", Int32.Parse(cs.champ("idtypeuser").ToString()), cs.champ("libelle").ToString(), (new CryptData(cs.champ("adrMail"))).DecryptData() ?? ""); ;
+
+                User UserConnecte = new User(Int32.Parse(cs.champ("iduser").ToString()), (new CryptData(cs.champ("login"))).DecryptData(), (new CryptData(cs.champ("nomuser"))).DecryptData() ?? "", (new CryptData(cs.champ("prenomuser"))).DecryptData() ?? "", Int32.Parse(cs.champ("idtypeuser").ToString()), cs.champ("libelle").ToString(), (new CryptData(cs.champ("adrMail"))).DecryptData() ?? "", cs.champ("dateinsert").ToString(), cs.champ("datemodif").ToString());
                 
                  switch (UserConnecte.Type)
                  {

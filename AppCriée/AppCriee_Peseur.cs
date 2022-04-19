@@ -78,6 +78,7 @@ namespace AppCriée
                     lbl_peseur_mesdonnees_nom.Text = "Nom : " + _useractuelle.Nom;
                     lbl_peseur_mesdonnees_adrMail.Text = "Adresse Mail : " + _useractuelle.AdrMail;
                     lbl_peseur_mesdonnees_typeuser.Text = "Type utilisateur : " + _useractuelle.Libelletype;
+                    lbl_peseur_mesdonnees_datecreation.Text = "Date de création : " + _useractuelle.Datecreation;
                     if (_useractuelle.AdrMail == "")
                     {
                         lbl_peseur_mesdonnees_adrMail.Text = "Adresse Mail : (Non communiquée)";
@@ -595,7 +596,7 @@ namespace AppCriée
             }
 
             CURS cs = new CURS();
-            cs.ReqAdminPrepare("UPDATE Utilisateur SET login=?, nomuser=?, prenomuser=?, adrMail=? WHERE id=?", new List<object> { (new CryptData(tbx_peseur_mesdonnees_login.Text)).EncryptData(), (new CryptData(nomModif)).EncryptData(), (new CryptData(prenomModif)).EncryptData(), (new CryptData(adrMail)).EncryptData(), idUserModified });
+            cs.ReqAdminPrepare("UPDATE Utilisateur SET login=?, nomuser=?, prenomuser=?, adrMail=?, datemodif=NOW() WHERE id=?", new List<object> { (new CryptData(tbx_peseur_mesdonnees_login.Text)).EncryptData(), (new CryptData(nomModif)).EncryptData(), (new CryptData(prenomModif)).EncryptData(), (new CryptData(adrMail)).EncryptData(), idUserModified });
             cs.fermer();
             lbl_peseur_mesdonnees_validationmodif.Text = "Vos données ont bien été modifiées.\n";
             HiddenObject.Hide(new List<Control> { lbl_peseur_mesdonnees_modificationmdp, lbl_peseur_mesdonnees_validationmodiferreur, lbl_peseur_mesdonnees_modification, lbl_peseur_mesdonnees_modifieradrMail, lbl_peseur_mesdonnees_modifierlogin, lbl_peseur_mesdonnees_modifiernom, lbl_peseur_mesdonnees_modifierprenom, tbx_peseur_mesdonnees_login, tbx_peseur_mesdonnees_nom, tbx_peseur_mesdonnees_adrMail, tbx_peseur_mesdonnees_prenom, btn_peseur_mesdonnees_validermodif, lbl_peseur_mesdonnees_champsobli });
@@ -672,7 +673,7 @@ namespace AppCriée
 
             string motdepassehash = new HashData(tbx_peseur_mesdonnees_newmdp.Text).HashCalculate();
             CURS csm = new CURS();
-            csm.ReqAdminPrepare("UPDATE Utilisateur SET pwd=? WHERE id=? ", new List<object> { (new CryptData(motdepassehash)).EncryptData(), idUserModified });
+            csm.ReqAdminPrepare("UPDATE Utilisateur SET pwd=?, datemodif=NOW() WHERE id=? ", new List<object> { (new CryptData(motdepassehash)).EncryptData(), idUserModified });
             csm.fermer();
             lbl_peseur_mesdonnees_validationmodif.Text = "Votre mot de passe a bien été modifié.";
             lbl_peseur_mesdonnees_validationmodif.Show();

@@ -75,6 +75,7 @@ namespace AppCriée
                     lbl_receptionniste_mesdonnees_nom.Text = "Nom : " + _useractuelle.Nom;
                     lbl_receptionniste_mesdonnees_adrMail.Text = "Adresse Mail : " + _useractuelle.AdrMail;
                     lbl_receptionniste_mesdonnees_typeuser.Text = "Type utilisateur : " + _useractuelle.Libelletype;
+                    lbl_receptionniste_mesdonnees_datecreation.Text = "Date de création : " + _useractuelle.Datecreation;
                     if (_useractuelle.AdrMail == "")
                     {
                         lbl_receptionniste_mesdonnees_adrMail.Text = "Adresse Mail : (Non communiquée)";
@@ -299,7 +300,7 @@ namespace AppCriée
             }
 
             CURS cs = new CURS();
-            cs.ReqAdminPrepare("UPDATE Utilisateur SET login=?, nomuser=?, prenomuser=?, adrMail=? WHERE id=?", new List<object> { (new CryptData(tbx_receptionniste_mesdonnees_login.Text)).EncryptData(), (new CryptData(nomModif)).EncryptData(), (new CryptData(prenomModif)).EncryptData(), (new CryptData(adrMail)).EncryptData(), idUserModified });
+            cs.ReqAdminPrepare("UPDATE Utilisateur SET login=?, nomuser=?, prenomuser=?, adrMail=?, datemodif=NOW() WHERE id=?", new List<object> { (new CryptData(tbx_receptionniste_mesdonnees_login.Text)).EncryptData(), (new CryptData(nomModif)).EncryptData(), (new CryptData(prenomModif)).EncryptData(), (new CryptData(adrMail)).EncryptData(), idUserModified });
             cs.fermer();
             lbl_receptionniste_mesdonnees_validationmodif.Text = "Vos données ont bien été modifiées.\n";
             HiddenObject.Hide(new List<Control> { lbl_receptionniste_mesdonnees_validationmodiferreur, lbl_receptionniste_mesdonnees_modification, lbl_receptionniste_mesdonnees_modifieradrMail, lbl_receptionniste_mesdonnees_modifierlogin, lbl_receptionniste_mesdonnees_modifiernom, lbl_receptionniste_mesdonnees_modifierprenom, tbx_receptionniste_mesdonnees_login, tbx_receptionniste_mesdonnees_nom, tbx_receptionniste_mesdonnees_adrMail, tbx_receptionniste_mesdonnees_prenom, btn_receptionniste_mesdonnees_validermodif, lbl_receptionniste_mesdonnees_champsobli });
@@ -376,7 +377,7 @@ namespace AppCriée
 
             string motdepassehash = new HashData(tbx_receptionniste_mesdonnees_newmdp.Text).HashCalculate();
             CURS csm = new CURS();
-            csm.ReqAdminPrepare("UPDATE Utilisateur SET pwd=? WHERE id=? ", new List<object> { (new CryptData(motdepassehash)).EncryptData(), idUserModified });
+            csm.ReqAdminPrepare("UPDATE Utilisateur SET pwd=?, datemodif=NOW() WHERE id=? ", new List<object> { (new CryptData(motdepassehash)).EncryptData(), idUserModified });
             csm.fermer();
             lbl_receptionniste_mesdonnees_validationmodif.Text = "Votre mot de passe a bien été modifié.";
             lbl_receptionniste_mesdonnees_validationmodif.Show();

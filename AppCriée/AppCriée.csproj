@@ -212,6 +212,8 @@
     <Content Include="obj\Debug\AppCriée.pdb" />
     <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
     <Content Include="Resources\autocollant-cadenas-muraux.jpg" />
+    <Content Include="Script SQL\androideditscriptsql.sql" />
+    <Content Include="Script SQL\androideditscriptsqlv2.sql" />
     <Content Include="Script SQL\modifappliweb.sql" />
     <Content Include="Script SQL\modifappliwebv2.sql" />
     <Content Include="Script SQL\modifappliwebv3.sql" />
