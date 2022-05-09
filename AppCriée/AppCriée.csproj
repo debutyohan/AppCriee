@@ -214,7 +214,10 @@
     <Content Include="Resources\autocollant-cadenas-muraux.jpg" />
     <Content Include="Script SQL\androideditscriptsql.sql" />
     <Content Include="Script SQL\androideditscriptsqlv2.sql" />
+    <Content Include="Script SQL\androideditscriptsqlv3.sql" />
     <Content Include="Script SQL\modifappliweb.sql" />
+    <Content Include="Script SQL\modifappliwebv10.sql" />
+    <Content Include="Script SQL\modifappliwebv11.sql" />
     <Content Include="Script SQL\modifappliwebv2.sql" />
     <Content Include="Script SQL\modifappliwebv3.sql" />
     <Content Include="Script SQL\modifappliwebv4.sql" />
@@ -222,12 +225,14 @@
     <Content Include="Script SQL\modifappliwebv6.sql" />
     <Content Include="Script SQL\modifappliwebv7.sql" />
     <Content Include="Script SQL\modifappliwebv8.sql" />
+    <Content Include="Script SQL\modifappliwebv9.sql" />
     <Content Include="Script SQL\SqlCrie.sql" />
     <Content Include="Script SQL\sqlcriemodif%284%29.sql" />
     <Content Include="Script SQL\sqlcriemodif%285%29.sql" />
     <Content Include="Script SQL\sqlcriemodif%286%29.sql" />
     <Content Include="Script SQL\sqlcriemodif%287%29.sql" />
     <Content Include="Script SQL\sqlcriemodif%288%29.sql" />
+    <Content Include="Script SQL\sqlcriemodif%289%29.sql" />
     <None Include="Resources\computer-icons-login-icon-design-exit-5abfc840bf8ca4.9038982415225180807846.png" />
     <Content Include="Resources\kisspng-padlock-logo-symbol-locker-5b22e325cc22c3.2363844015290130298362.jpg" />
   </ItemGroup>
